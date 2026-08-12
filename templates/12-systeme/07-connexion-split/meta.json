@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "07",
   "variante": "07-connexion-split",
+  "role": "Authentification",
   "archetype": "split-screen",
+  "dna": {
+    "composition": "panelled",
+    "density": "balanced",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "none",
+    "media": "full-bleed",
+    "motion": "discreet",
+    "interaction": "form-flow"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Authentification"
+  "statut": "fini"
 }

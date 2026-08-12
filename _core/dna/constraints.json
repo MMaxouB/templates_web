@@ -1,0 +1,261 @@
+{
+  "$comment": "Contraintes créatives. Chaque variante en porte au moins deux, dont au moins une du groupe `structurelle`. Elles sont déclarées dans meta.json et vérifiées par _tools/check-constraints.js — ce ne sont pas des intentions, ce sont des tests.",
+  "version": 1,
+
+  "regle_d_attribution": {
+    "minimum": 2,
+    "minimum_structurelles": 1,
+    "justification": "Une contrainte non vérifiable est une intention. Deux contraintes opposables forcent une décision de conception que le réflexe ne peut pas satisfaire par défaut."
+  },
+
+  "types_de_verification": {
+    "css_absent": "Le motif ne doit apparaître dans aucun CSS de la variante.",
+    "css_present": "Le motif doit apparaître au moins une fois.",
+    "html_absent": "Le motif ne doit apparaître dans aucune page HTML de la variante.",
+    "metrique": "Mesuré sur la page rendue par la sonde de _tools/screenshot.js.",
+    "revue": "Non automatisable. Vérifié en revue, avec une note écrite dans meta.json.justifications."
+  },
+
+  "contraintes": {
+
+    "no-cards": {
+      "groupe": "structurelle",
+      "titre": "Aucune carte",
+      "regle": "Aucun contenu n'est enfermé dans une surface arrondie et ombrée. Les regroupements se font par la position, le filet ou l'espacement.",
+      "verification": [
+        { "type": "revue", "detail": "Aucun sélecteur ne combine `background` de surface + `border-radius` + `box-shadow`." },
+        { "type": "css_absent", "motif": "box-shadow:\\s*(?!none)", "portee": "selecteurs_de_bloc" }
+      ],
+      "piege": "Retirer l'ombre en gardant le fond et l'arrondi produit une carte pâle, pas une absence de carte."
+    },
+
+    "no-hero": {
+      "groupe": "structurelle",
+      "titre": "Aucun hero",
+      "regle": "La page commence par du contenu réel. Pas de bandeau d'ouverture titre + accroche + boutons.",
+      "verification": [
+        { "type": "metrique", "cle": "premier_ecran_elements", "min": 6, "detail": "Le premier écran contient au moins six éléments de contenu distincts." },
+        { "type": "metrique", "cle": "premier_h1_hauteur_relative", "max": 0.4, "detail": "Le premier titre n'occupe pas plus de 40 % du premier écran." }
+      ]
+    },
+
+    "typography-first": {
+      "groupe": "expressive",
+      "titre": "La typographie est le décor",
+      "regle": "Aucun élément graphique ne concurrence le texte. La composition typographique est le visuel.",
+      "verification": [
+        { "type": "html_absent", "motif": "<img" },
+        { "type": "metrique", "cle": "ratio_taille_type", "min": 8, "detail": "Rapport ≥ 8:1 entre la plus grande et la plus petite taille de texte." }
+      ]
+    },
+
+    "asymmetry": {
+      "groupe": "structurelle",
+      "titre": "Asymétrie",
+      "regle": "Aucun axe de symétrie. Le poids visuel est déséquilibré volontairement.",
+      "verification": [
+        { "type": "metrique", "cle": "score_symetrie", "max": 0.72, "detail": "La moitié gauche et la moitié droite miroir se ressemblent à moins de 72 %." },
+        { "type": "css_absent", "motif": "margin(-inline)?:\\s*0\\s+auto", "portee": "conteneur_principal" }
+      ]
+    },
+
+    "dense": {
+      "groupe": "structurelle",
+      "titre": "Densité forte",
+      "regle": "Beaucoup d'information par écran, sans perte de lisibilité.",
+      "verification": [
+        { "type": "metrique", "cle": "premier_ecran_elements", "min": 46 },
+        { "type": "metrique", "cle": "couverture_encre", "min": 0.22 }
+      ]
+    },
+
+    "no-gradient": {
+      "groupe": "materielle",
+      "titre": "Aucun dégradé",
+      "regle": "Pas de dégradé décoratif. Les dégradés de trame (`repeating-linear-gradient` servant de texture) sont autorisés.",
+      "verification": [
+        { "type": "css_absent", "motif": "(?<!repeating-)(linear|radial|conic)-gradient" }
+      ]
+    },
+
+    "no-shadow": {
+      "groupe": "materielle",
+      "titre": "Aucune ombre",
+      "regle": "Pas de `box-shadow`, pas de `text-shadow`, pas de `filter: drop-shadow`. La profondeur vient d'ailleurs, ou n'existe pas.",
+      "verification": [
+        { "type": "css_absent", "motif": "box-shadow:\\s*(?!none)" },
+        { "type": "css_absent", "motif": "drop-shadow\\(" }
+      ]
+    },
+
+    "no-rounded": {
+      "groupe": "materielle",
+      "titre": "Aucun arrondi",
+      "regle": "`border-radius: 0` partout, sauf sur un élément réellement circulaire (pastille, portrait) — et il doit alors valoir 50 %.",
+      "verification": [
+        { "type": "css_absent", "motif": "border-radius:\\s*(?!0|50%|999)" }
+      ]
+    },
+
+    "monochrome": {
+      "groupe": "materielle",
+      "titre": "Monochrome",
+      "regle": "Une seule teinte, déclinée en valeurs. Aucune couleur d'accent d'une autre teinte.",
+      "verification": [
+        { "type": "metrique", "cle": "teintes_distinctes", "max": 1, "detail": "Mesuré sur la capture : une seule famille de teinte au-delà des gris." }
+      ]
+    },
+
+    "editorial": {
+      "groupe": "expressive",
+      "titre": "Penser publication imprimée",
+      "regle": "La page obéit aux règles de l'imprimé : mesure maîtrisée, colonnes, appels de note, légendes, folios, veuves et orphelines gérées.",
+      "verification": [
+        { "type": "css_present", "motif": "(column-count|column-width|orphans|widows|hanging-punctuation|text-wrap:\\s*pretty)" },
+        { "type": "revue", "detail": "Une hiérarchie de publication existe réellement : surtitre, titre, chapô, corps, légende, note." }
+      ]
+    },
+
+    "raw-web": {
+      "groupe": "expressive",
+      "titre": "Web brut",
+      "regle": "Assumer les conventions du Web historique : éléments natifs non restylés, liens soulignés, marges par défaut visibles.",
+      "verification": [
+        { "type": "revue", "detail": "Au moins trois éléments natifs sont laissés dans leur rendu par défaut." }
+      ]
+    },
+
+    "physical": {
+      "groupe": "materielle",
+      "titre": "Matériau physique",
+      "regle": "On doit sentir une matière — papier, métal, bois, plastique, béton, textile — produite uniquement en CSS/SVG.",
+      "verification": [
+        { "type": "css_present", "motif": "(repeating-linear-gradient|repeating-radial-gradient|url\\(\"data:image/svg)" },
+        { "type": "revue", "detail": "La matière est cohérente sur toute la page, pas appliquée à un seul bloc." }
+      ]
+    },
+
+    "data-first": {
+      "groupe": "structurelle",
+      "titre": "Interface de données",
+      "regle": "L'information est traitée comme une donnée : alignée, comparable, triable, chiffrée.",
+      "verification": [
+        { "type": "css_present", "motif": "font-variant-numeric:\\s*tabular-nums" },
+        { "type": "metrique", "cle": "premier_ecran_elements", "min": 46 }
+      ]
+    },
+
+    "empty": {
+      "groupe": "structurelle",
+      "titre": "Le vide comme structure",
+      "regle": "Le vide n'est pas de la marge : il porte du sens et occupe la majorité de la surface.",
+      "verification": [
+        { "type": "metrique", "cle": "couverture_encre", "max": 0.08 },
+        { "type": "metrique", "cle": "premier_ecran_elements", "max": 5 }
+      ]
+    },
+
+    "controlled-chaos": {
+      "groupe": "structurelle",
+      "titre": "Chaos contrôlé",
+      "regle": "Composition irrégulière obéissant à une règle interne écrite. L'irrégularité doit être reproductible, pas aléatoire.",
+      "verification": [
+        { "type": "revue", "detail": "La règle interne est écrite dans le README de la variante et on peut l'appliquer à un contenu nouveau." },
+        { "type": "metrique", "cle": "score_symetrie", "max": 0.6 }
+      ]
+    },
+
+    "no-standard-cta": {
+      "groupe": "structurelle",
+      "titre": "Aucun CTA moderne",
+      "regle": "Le mécanisme d'action principal n'est pas un bouton plein arrondi centré.",
+      "verification": [
+        { "type": "revue", "detail": "L'action principale passe par un lien typographique, un filet, une zone, un champ ou un mot du texte." },
+        { "type": "css_absent", "motif": "\\.(btn|button|cta)[^{]*\\{[^}]*border-radius:\\s*(?!0)", "portee": "classes_d_action" }
+      ]
+    },
+
+    "no-centered-text": {
+      "groupe": "structurelle",
+      "titre": "Aucun texte centré",
+      "regle": "`text-align: center` est interdit sur tout bloc de texte courant.",
+      "verification": [
+        { "type": "css_absent", "motif": "text-align:\\s*center" }
+      ]
+    },
+
+    "single-type-size": {
+      "groupe": "expressive",
+      "titre": "Une seule taille de texte",
+      "regle": "Toute la page est composée dans une seule taille. La hiérarchie passe par autre chose.",
+      "verification": [
+        { "type": "metrique", "cle": "tailles_distinctes", "max": 2 }
+      ]
+    },
+
+    "no-images": {
+      "groupe": "materielle",
+      "titre": "Aucun média",
+      "regle": "Ni image, ni illustration SVG décorative. Les SVG fonctionnels (icônes d'interface, schémas de données) restent permis.",
+      "verification": [
+        { "type": "html_absent", "motif": "<img" }
+      ]
+    },
+
+    "visible-grid": {
+      "groupe": "expressive",
+      "titre": "Grille visible",
+      "regle": "La grille de composition est dessinée et perceptible, pas seulement respectée.",
+      "verification": [
+        { "type": "revue", "detail": "Les modules de la grille sont visibles (filets, fonds alternés, repères)." }
+      ]
+    },
+
+    "no-animation": {
+      "groupe": "materielle",
+      "titre": "Aucun mouvement",
+      "regle": "Zéro transition, zéro animation, y compris au survol.",
+      "verification": [
+        { "type": "css_absent", "motif": "transition(-property|-duration)?:\\s*(?!none)" },
+        { "type": "css_absent", "motif": "@keyframes" }
+      ]
+    },
+
+    "no-viewport-sections": {
+      "groupe": "structurelle",
+      "titre": "Aucune section pleine hauteur",
+      "regle": "Aucun bloc ne fait exactement un écran de haut. Le rythme vertical ne peut pas être celui du viewport.",
+      "verification": [
+        { "type": "css_absent", "motif": "(min-)?height:\\s*100(vh|dvh|svh)" }
+      ]
+    },
+
+    "no-sans-serif": {
+      "groupe": "expressive",
+      "titre": "Aucune linéale",
+      "regle": "Ni sans-serif ni pile système. Serif, mono, display ou script uniquement.",
+      "verification": [
+        { "type": "css_absent", "motif": "(system-ui|-apple-system|ui-sans-serif|sans-serif)" }
+      ]
+    },
+
+    "justified": {
+      "groupe": "expressive",
+      "titre": "Composition justifiée",
+      "regle": "Texte justifié avec césures, comme un livre. Impose de gérer les lézardes et la mesure.",
+      "verification": [
+        { "type": "css_present", "motif": "text-align:\\s*justify" },
+        { "type": "css_present", "motif": "hyphens:\\s*auto" }
+      ]
+    },
+
+    "no-js": {
+      "groupe": "technique",
+      "titre": "Zéro JavaScript",
+      "regle": "Menus, onglets, accordéons et carrousels en HTML/CSS seuls.",
+      "verification": [
+        { "type": "revue", "detail": "assets/js/ est absent ou vide, et aucune page ne charge de script." }
+      ]
+    }
+  }
+}

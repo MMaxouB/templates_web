@@ -26,6 +26,30 @@
    Vérification : templates/12-systeme/16-style-guide
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   ORDRE DES COUCHES
+
+   Déclaré une fois ici, valable pour tout le dépôt. Il permet à une direction
+   artistique de reprendre la main sur une décision de structure sans guerre de
+   spécificité, et à une structure de rester lisible sans `!important`.
+
+     reset      — normalisation
+     base       — ce fichier : le contrat de tokens
+     palette    — couleurs seules
+     direction  — la direction artistique : formes, matières, typographie
+     structure  — le layout.css d'une variante
+     overrides  — le peu qu'une direction doit pouvoir imposer à la structure
+
+   ⚠ Les règles NON layerisées gagnent sur toutes les couches. Les variantes
+     écrites avant l'introduction des couches sont donc encore prioritaires :
+     c'est voulu pendant la migration. check-constraints.js signale les
+     layout.css qui ne sont pas encore dans `@layer structure`.
+   -------------------------------------------------------------------------- */
+
+@layer reset, base, palette, direction, structure, overrides;
+
+@layer base {
+
 :root {
   /* ---------------------------------------------------------------- COULEURS
      Des rôles, jamais des noms de couleur. `--accent` peut être rouge dans un
@@ -122,27 +146,157 @@
 
   /* -------------------------------------------------------------- ESPACEMENT
      Toute l'échelle découle de --space-unit. Un thème dense la réduit,
-     un thème aéré l'augmente, et tous les écarts suivent. */
+     un thème aéré l'augmente, et tous les écarts suivent.
+
+     L'échelle est en outre multipliée par --density, pour qu'une direction
+     qui change la densité déplace vraiment toute la composition au lieu de
+     réduire un padding local. Défaut 1 → valeurs inchangées. */
 
   --space-unit: 0.5rem;
-  --space-1: var(--space-unit);
-  --space-2: calc(var(--space-unit) * 2);
-  --space-3: calc(var(--space-unit) * 3);
-  --space-4: calc(var(--space-unit) * 4);
-  --space-6: calc(var(--space-unit) * 6);
-  --space-8: calc(var(--space-unit) * 8);
-  --space-12: calc(var(--space-unit) * 12);
-  --space-16: calc(var(--space-unit) * 16);
-  --space-24: calc(var(--space-unit) * 24);
+  --space-1: calc(var(--space-unit) * var(--density));
+  --space-2: calc(var(--space-unit) * 2 * var(--density));
+  --space-3: calc(var(--space-unit) * 3 * var(--density));
+  --space-4: calc(var(--space-unit) * 4 * var(--density));
+  --space-6: calc(var(--space-unit) * 6 * var(--density));
+  --space-8: calc(var(--space-unit) * 8 * var(--density));
+  --space-12: calc(var(--space-unit) * 12 * var(--density));
+  --space-16: calc(var(--space-unit) * 16 * var(--density));
+  --space-24: calc(var(--space-unit) * 24 * var(--density));
 
   --container-max: 72rem;
-  --measure: 65ch; /* largeur de lecture confortable */
+  --measure: calc(65ch * var(--density-measure)); /* largeur de lecture */
 
   /* --------------------------------------------------------------- MOUVEMENT */
 
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
   --duration-slow: 400ms;
+
+  /* ======================================================================
+     TOKENS EXPRESSIFS
+
+     Les tokens ci-dessus décrivent un système de design moderne générique.
+     C'est le problème : s'ils sont le seul vocabulaire disponible, les 145
+     architectures parlent la même langue et se ressemblent.
+
+     Les tokens ci-dessous existent pour que deux directions artistiques
+     puissent produire des FORMES différentes, et pas seulement des couleurs
+     différentes. Chacun a une valeur par défaut neutre — donc rien ne casse —
+     et chacun est censé être redéfini par une direction.
+
+     Chaque token déclaratif (`--*-model`, `--*-style`) sert deux publics :
+     le CSS, qui s'en sert, et les outils, qui le lisent pour savoir ce que la
+     direction a choisi.
+     ====================================================================== */
+
+  /* ------------------------------------------------------------ DENSITÉ
+     Multiplicateur global. Il agit sur l'espacement, l'interlignage ET la
+     mesure en même temps — c'est ce qui différencie une vraie densité d'un
+     simple `padding` réduit. */
+
+  --density: 1;              /* 0.6 dense · 1 équilibré · 1.6 aéré */
+  --density-leading: 1;      /* facteur appliqué aux interlignages */
+  --density-measure: 1;      /* facteur appliqué à --measure */
+
+  /* ------------------------------------------------------------- RYTHME
+     Comment les écarts verticaux se succèdent. `regular` = tous identiques,
+     ce qui est le réflexe. Les autres imposent une progression. */
+
+  --rhythm: regular;         /* regular · syncopated · compressed · expanding · interrupted */
+  --rhythm-step: var(--space-8);
+
+  /* ------------------------------------------------------------ SURFACE
+     De quoi les blocs ont l'air d'être faits. `--surface-texture-image` est
+     une image CSS (dégradé répété ou SVG en data-uri) — jamais un fichier
+     distant. */
+
+  --surface-model: flat-paint;   /* voir _core/dna/schema.json → surface */
+  --surface-texture-image: none;
+  --surface-texture-size: auto;
+  --surface-texture-blend: normal;
+  --surface-texture-opacity: 1;
+
+  /* ---------------------------------------------------------- PROFONDEUR
+     La profondeur n'est pas forcément une ombre. Elle peut être un décalage
+     plein, un creux, un contour, ou un simple recouvrement. */
+
+  --depth-model: shadow;     /* flat · shadow · offset · inset · outline · overlap */
+  --depth-offset: 0 0;       /* utilisé par `offset` : décalage plein */
+  --depth-outline: 0;        /* utilisé par `outline` : épaisseur du contour */
+
+  /* ------------------------------------------------------------- FILETS
+     Le style des séparateurs. Un filet est souvent le seul élément graphique
+     d'une direction éditoriale — il mérite son propre vocabulaire. */
+
+  --rule-style: solid;       /* DÉCLARATIF, lu par les outils :
+                                solid · double · dotted · dashed · thick ·
+                                hairline · none · ornament */
+  --rule-line: solid;        /* la valeur CSS réellement employée en border-style */
+  --rule-width: var(--border-width);
+  --rule-color: var(--border);
+  --rule-ornament: '';       /* glyphe de séparation pour `ornament` */
+
+  /* ---------------------------------------------------------- CONTRÔLES
+     Forme et remplissage des éléments d'action. Sépare la FORME du bouton de
+     son ARRONDI : un contrôle peut être rectangulaire et plein, ou arrondi et
+     souligné, ce que `--radius-*` seul ne sait pas dire. */
+
+  --control-shape: soft;     /* rect · soft · pill · cut · asymmetric · none */
+  --control-fill: solid;     /* solid · outline · underline · ghost · none */
+  --control-radius: var(--radius-md);
+  --control-cut: 0;          /* taille du chanfrein pour `cut` */
+  --control-pad-x: var(--space-3);
+  --control-pad-y: var(--space-2);
+  --control-case: none;      /* none · uppercase · lowercase · capitalize */
+  --control-tracking: var(--tracking-normal);
+
+  /* --------------------------------------------------------------- FOCUS
+     L'anneau de focus par défaut est lui aussi un facteur d'uniformité. Il
+     doit rester TOUJOURS visible — mais il peut avoir la forme que la
+     direction impose. */
+
+  --focus-style: ring;       /* ring · block · invert · underline · bracket */
+
+  /* --------------------------------------------------------------- MÉDIA
+     Traitement par défaut des visuels de la variante. */
+
+  --media-model: full-bleed; /* voir _core/dna/schema.json → media */
+  --media-filter: none;      /* grayscale(1) · sepia(...) · contrast(...) */
+  --media-frame: none;       /* bordure/passe-partout appliqué aux figures */
+  --media-radius: 0;
+  --media-ratio: auto;
+
+  /* ---------------------------------------------------------- DÉCORATION
+     Combien d'ornement la direction s'autorise. 0 = aucun, 3 = surchargé. */
+
+  --decor-level: 0;
+  --decor-color: var(--border);
+
+  /* ---------------------------------------------- SYSTÈME TYPOGRAPHIQUE
+     `--type-system` déclare CE QUI PORTE LA HIÉRARCHIE. C'est la décision
+     structurante ; les piles de polices ne sont que sa mise en œuvre.
+
+     Les quatre rôles remplacent le trio display/body/mono, trop pauvre pour
+     décrire un système à familles opposées. Ils retombent tous sur
+     --font-body, donc les variantes existantes sont inchangées. */
+
+  --type-system: size-driven;  /* voir _core/dna/schema.json → typography.system */
+
+  --font-title: var(--font-display);
+  --font-lead: var(--font-body);   /* chapô, accroches */
+  --font-meta: var(--font-body);   /* dates, folios, légendes, numéros */
+  --font-ui: var(--font-body);     /* libellés de contrôle */
+
+  --case-title: none;
+  --case-meta: none;
+  --tracking-title: var(--tracking-tight);
+  --tracking-meta: var(--tracking-normal);
+  --weight-title: var(--weight-bold);
+
+  /* --------------------------------------------------------- MOUVEMENT (2)
+     Déclare la philosophie, pas seulement les durées. */
+
+  --motion-model: discreet;  /* voir _core/dna/schema.json → motion */
 }
 
 /* ==========================================================================
@@ -155,12 +309,19 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--fg);
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-normal);
   letter-spacing: var(--tracking-normal);
+
+  /* La matière de la page. Défaut `none` → aucun effet. Une direction pose
+     ici un grain de papier, une trame d'impression ou des lignes de balayage
+     en une seule déclaration, et cela s'applique aux 145 architectures. */
+  background-image: var(--surface-texture-image);
+  background-size: var(--surface-texture-size);
+  background-blend-mode: var(--surface-texture-blend);
 }
 
 ::selection {
@@ -168,9 +329,50 @@ body {
   color: var(--selection-fg);
 }
 
+/* --------------------------------------------------------------------------
+   Focus.
+
+   L'anneau bleu de 2px est lui aussi une signature d'uniformité. Il reste
+   OBLIGATOIRE et visible partout — mais sa forme appartient à la direction.
+   Tout est paramétré par variables : une direction change l'apparence sans
+   réécrire ce sélecteur, et sans jamais pouvoir le supprimer.
+
+   `--focus-extra` accepte une ombre (bloc plein, crochets, cadre décalé) ;
+   `--focus-decoration` un soulignement. Les deux valent `none` par défaut.
+   -------------------------------------------------------------------------- */
+
 :focus-visible {
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
+  box-shadow: var(--focus-extra, none);
+  text-decoration: var(--focus-decoration, none);
+}
+
+/* --------------------------------------------------------------------------
+   Séparateurs. Une direction éditoriale n'a souvent qu'un seul élément
+   graphique : le filet. Il mérite d'être piloté au même titre que la couleur.
+   -------------------------------------------------------------------------- */
+
+hr {
+  border: 0;
+  border-top: var(--rule-width) var(--rule-line) var(--rule-color);
+  margin-block: var(--space-6);
+}
+
+/* --------------------------------------------------------------------------
+   Mouvement réduit. Contrat non négociable du dépôt : il vaut pour toutes les
+   philosophies de motion, y compris celles qui reposent sur le défilement.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 h1,
@@ -204,3 +406,5 @@ pre {
   outline-offset: 2px;
   opacity: 0.65;
 }
+
+} /* @layer base */

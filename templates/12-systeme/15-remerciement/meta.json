@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "15",
   "variante": "15-remerciement",
+  "role": "Après conversion",
   "archetype": "colonne-unique",
+  "dna": {
+    "composition": "centered-axial",
+    "density": "balanced",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "none",
+    "media": "none",
+    "motion": "discreet",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Après conversion"
+  "statut": "fini"
 }

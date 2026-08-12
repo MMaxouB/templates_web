@@ -1,0 +1,319 @@
+{
+  "$comment": "Vocabulaire de l'ADN de conception. Neuf axes indépendants. Chaque variante en déclare un par axe dans son meta.json. C'est ce vocabulaire qui rend calculable la distance entre deux variantes — donc détectable la ressemblance. Toute valeur absente de ce fichier est refusée par _tools/check-constraints.js.",
+  "version": 2,
+
+  "principe": [
+    "Un axe n'est légitime que s'il a des conséquences STRUCTURELLES. Changer sa valeur doit changer le HTML ou la logique de mise en page, pas seulement une déclaration CSS cosmétique.",
+    "Le champ `consequence` de chaque valeur dit ce qui doit réellement changer. Il est opposable : en revue, on vérifie la conséquence, pas l'étiquette.",
+    "Le champ `reflexe: true` marque les valeurs par défaut des interfaces générées par LLM. Elles ne sont pas interdites — elles sont facturées par _core/dna/anti-llm.json.",
+    "Le champ `poids` est perceptuel : il pondère la distance entre deux variantes. Deux axes invisibles sur une capture (motion, interaction) pèsent peu."
+  ],
+
+  "axes": {
+
+    "composition": {
+      "poids": 3,
+      "description": "Où les choses sont posées et comment la page se divise. L'axe le plus discriminant à l'œil.",
+      "valeurs": {
+        "centered-axial": {
+          "reflexe": true,
+          "resume": "Tout aligné sur un axe central unique.",
+          "consequence": "Conteneur centré, `text-align: center` dominant, symétrie gauche/droite."
+        },
+        "flush-left-ragged": {
+          "resume": "Tout pend d'un unique axe gauche, drapeau à droite.",
+          "consequence": "Aucun centrage. Une seule marge gauche partagée par tous les niveaux, y compris les titres et les médias."
+        },
+        "asymmetric-weighted": {
+          "resume": "Déséquilibre assumé : une moitié porte le poids.",
+          "consequence": "Grille à colonnes inégales (ex. 7/3, 2/9). Le vide n'est pas centré. Aucun bloc pleine largeur centré."
+        },
+        "editorial-columns": {
+          "resume": "Flux de texte en colonnes, logique d'imprimé.",
+          "consequence": "`column-count` ou grille de colonnes étroites, texte qui coule, filets de séparation, chapô, appels de note."
+        },
+        "modular-grid": {
+          "resume": "Grille stricte et visible, alignement au module.",
+          "consequence": "Grille de 6/12/16 colonnes explicitement visible (filets ou fonds), tout élément aligné sur un module, aucune exception."
+        },
+        "broken-grid": {
+          "resume": "Une grille existe, puis elle est violée sciemment.",
+          "consequence": "Grille de base + au moins trois éléments qui la débordent ou la chevauchent, avec une logique répétable."
+        },
+        "diagonal": {
+          "resume": "L'axe dominant n'est ni horizontal ni vertical.",
+          "consequence": "`transform: rotate()` ou `clip-path` structurant, lecture en biais, blocs non orthogonaux."
+        },
+        "stacked-planes": {
+          "resume": "Plans superposés, profondeur par recouvrement.",
+          "consequence": "Éléments qui se chevauchent avec `z-index` signifiant. La profondeur vient du recouvrement, pas de l'ombre."
+        },
+        "panelled": {
+          "resume": "Panneaux fixes indépendants, logique d'outil.",
+          "consequence": "Zones à défilement indépendant, hauteur pleine, séparateurs francs. Le document ne défile pas globalement."
+        },
+        "full-bleed": {
+          "resume": "Bord à bord, aucun conteneur.",
+          "consequence": "Aucun `max-width` sur les blocs principaux. Les marges sont internes, jamais externes."
+        },
+        "narrow-measure": {
+          "resume": "Colonne très étroite, marges immenses.",
+          "consequence": "Mesure ≤ 45ch, ≥ 40 % de la largeur laissée vide. Le vide est le sujet."
+        },
+        "scattered": {
+          "resume": "Positions libres dans un espace.",
+          "consequence": "Positionnement absolu ou grille par coordonnées. Aucun flux vertical régulier."
+        },
+        "banded": {
+          "resume": "Bandes horizontales pleine largeur de nature contrastée.",
+          "consequence": "Chaque bande change de fond, de densité et d'alignement interne. Rupture nette entre bandes."
+        },
+        "marginal": {
+          "resume": "Le contenu occupe les marges, le centre est vide.",
+          "consequence": "Contenu en périphérie (haut/bas/côtés), centre laissé libre ou occupé par un seul élément."
+        },
+        "tabular": {
+          "resume": "La page est une matrice.",
+          "consequence": "Structure ligne × colonne comme mise en page principale, en-têtes persistants, alignement des chiffres."
+        }
+      }
+    },
+
+    "density": {
+      "poids": 2.5,
+      "description": "Quantité d'information par écran. Doit changer la composition, jamais uniquement le `padding`.",
+      "mesure": "Nombre d'éléments de contenu visibles dans le premier écran à 1280×800, et taux de couverture d'encre.",
+      "valeurs": {
+        "void": {
+          "resume": "Le vide est l'élément structurel.",
+          "consequence": "≤ 5 éléments dans le premier écran, couverture d'encre < 8 %. Le vide porte du sens, il n'est pas du padding.",
+          "cible_elements": [0, 5]
+        },
+        "airy": {
+          "resume": "Très respirant.",
+          "consequence": "6 à 12 éléments. Interlignage large, une idée par bloc.",
+          "cible_elements": [6, 12]
+        },
+        "balanced": {
+          "reflexe": true,
+          "resume": "Le réglage par défaut du web contemporain.",
+          "consequence": "13 à 25 éléments.",
+          "cible_elements": [13, 25]
+        },
+        "compact": {
+          "resume": "Serré mais confortable.",
+          "consequence": "26 à 45 éléments. Interlignage resserré, hiérarchie plus plate.",
+          "cible_elements": [26, 45]
+        },
+        "dense": {
+          "resume": "Densité de tableau de bord.",
+          "consequence": "46 à 80 éléments. Le blanc devient rare, les séparateurs remplacent l'espacement.",
+          "cible_elements": [46, 80]
+        },
+        "information-heavy": {
+          "resume": "Densité d'outil professionnel.",
+          "consequence": "81 à 150 éléments. Texte ≤ 13px courant, tout est aligné sur une grille de base serrée.",
+          "cible_elements": [81, 150]
+        },
+        "maximalist": {
+          "resume": "Horreur du vide, superpositions.",
+          "consequence": "> 150 éléments, recouvrements assumés, plusieurs systèmes visuels cohabitent.",
+          "cible_elements": [151, 9999]
+        }
+      }
+    },
+
+    "typography": {
+      "poids": 2.5,
+      "description": "Le SYSTÈME typographique, pas la police. Deux pages dans la même police peuvent appartenir à deux systèmes opposés.",
+      "sous_axes": ["system", "voice"],
+      "system": {
+        "size-driven": {
+          "reflexe": true,
+          "resume": "La hiérarchie est portée par la taille.",
+          "consequence": "≥ 5 tailles distinctes, une seule famille, poids quasi constant."
+        },
+        "weight-driven": {
+          "resume": "Une taille, plusieurs graisses.",
+          "consequence": "≤ 2 tailles pour tout le corps de page. La hiérarchie vient de 300/400/700/900."
+        },
+        "case-driven": {
+          "resume": "La casse fait la hiérarchie.",
+          "consequence": "Capitales et petites capitales structurent les niveaux. Tailles presque identiques."
+        },
+        "spacing-driven": {
+          "resume": "L'interlettrage et la position font la hiérarchie.",
+          "consequence": "Même taille et même graisse partout ; `letter-spacing` de -0.04em à 0.4em et retraits distinguent les niveaux."
+        },
+        "family-contrast": {
+          "resume": "Deux familles opposées portent la hiérarchie.",
+          "consequence": "Opposition franche (didone/grotesque, mono/serif). Chaque famille a un rôle exclusif, jamais décoratif."
+        },
+        "rule-driven": {
+          "resume": "Filets et numérotation font la hiérarchie ; le texte reste plat.",
+          "consequence": "Titres non différenciés typographiquement — distingués par filets, numéros, retraits ou pastilles."
+        },
+        "flat": {
+          "resume": "Hiérarchie volontairement absente.",
+          "consequence": "Une seule taille, une seule graisse, aucune emphase. La structure vient de l'ordre et de l'espacement seuls."
+        },
+        "display-dominant": {
+          "resume": "Un élément typographique énorme EST la page.",
+          "consequence": "Un bloc de texte ≥ 12vw. Tout le reste ≤ 1rem. Le rapport entre les deux dépasse 10:1."
+        }
+      },
+      "voice": {
+        "$comment": "Caractère des familles. Piles système uniquement — voir README, section Typographie. Chaque pile doit dégrader vers un caractère voisin, jamais vers system-ui.",
+        "transitional-serif": { "pile": "Georgia, 'Liberation Serif', 'Times New Roman', serif" },
+        "oldstyle-serif": { "pile": "'Palatino Linotype', Palatino, 'URW Palladio L', 'Book Antiqua', Georgia, serif" },
+        "didone": { "pile": "Didot, 'Bodoni MT', 'Playfair Display', 'Times New Roman', serif" },
+        "slab": { "pile": "Rockwell, 'Bookman Old Style', 'URW Bookman L', 'Courier New', serif" },
+        "humanist-sans": { "pile": "'Trebuchet MS', 'Lucida Grande', Verdana, 'DejaVu Sans', sans-serif" },
+        "neo-grotesque": { "pile": "Helvetica, 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif" },
+        "geometric-sans": { "pile": "Futura, 'Century Gothic', 'URW Gothic L', 'Avant Garde', sans-serif" },
+        "condensed": { "pile": "'Arial Narrow', 'Liberation Sans Narrow', 'Helvetica Neue Condensed', Impact, sans-serif" },
+        "expanded": { "pile": "Verdana, 'DejaVu Sans', Tahoma, sans-serif", "note": "élargi par letter-spacing et font-stretch, pas par la police seule" },
+        "poster-heavy": { "pile": "Impact, Haettenschweiler, 'Arial Black', 'Franklin Gothic Heavy', sans-serif" },
+        "typewriter-mono": { "pile": "'Courier New', Courier, 'Nimbus Mono L', monospace" },
+        "system-mono": { "pile": "ui-monospace, Menlo, Consolas, 'DejaVu Sans Mono', monospace" },
+        "ui-native": { "reflexe": true, "pile": "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" },
+        "rounded": { "pile": "ui-rounded, 'Varela Round', 'Trebuchet MS', sans-serif" },
+        "casual": { "pile": "'Comic Sans MS', 'Chalkboard SE', 'Segoe Print', cursive" },
+        "engraved": { "pile": "Copperplate, 'Copperplate Gothic Light', 'Optima', 'Palatino Linotype', serif" },
+        "mixed-mismatch": { "pile": "variable — au moins trois familles délibérément mal assorties" }
+      }
+    },
+
+    "geometry": {
+      "poids": 2,
+      "description": "Le vocabulaire de formes. Ce qui délimite, ce qui découpe, ce qui n'a pas de bord du tout.",
+      "valeurs": {
+        "hard-rectilinear": { "resume": "Angles vifs, orthogonalité stricte.", "consequence": "`border-radius: 0` partout. Aucune exception hors éléments réellement circulaires." },
+        "soft-rounded": { "reflexe": true, "resume": "Arrondis généralisés.", "consequence": "`border-radius` ≥ 8px sur les surfaces." },
+        "circular": { "resume": "Le cercle est le module de base.", "consequence": "Cercles et arcs comme éléments structurants, pas comme avatars. Mise en page radiale ou circulaire." },
+        "angular-cut": { "resume": "Coins coupés, biseaux, chanfreins.", "consequence": "`clip-path` polygonal sur les surfaces. Aucun `border-radius`." },
+        "organic": { "resume": "Courbes irrégulières, formes libres.", "consequence": "`border-radius` asymétrique multi-valeurs ou `clip-path` courbe. Aucun rectangle pur." },
+        "linear-rules": { "resume": "Seuls des filets structurent.", "consequence": "Aucune surface fermée. La structure est faite de lignes 1px et d'espacement uniquement." },
+        "frames": { "resume": "Cadres et encadrements comme motif.", "consequence": "Bordures épaisses ou doubles comme élément graphique, avec un rôle de cadre (marie-louise), pas de conteneur." },
+        "borderless": { "resume": "Aucune limite dessinée.", "consequence": "Ni bordure, ni fond de surface, ni ombre. Seul l'espacement sépare." },
+        "overlapping": { "resume": "Les formes se recouvrent.", "consequence": "Marges négatives structurantes. Au moins trois recouvrements signifiants." },
+        "modular-blocks": { "resume": "Pavage d'aplats pleins.", "consequence": "Blocs de couleur pleine jointifs, sans gouttière. La couleur définit la zone." },
+        "irregular": { "resume": "Aucune règle de forme constante.", "consequence": "Chaque zone a sa propre géométrie, avec une logique interne documentée." }
+      }
+    },
+
+    "surface": {
+      "poids": 1.5,
+      "description": "De quoi les choses ont l'air d'être faites. Uniquement CSS/SVG, aucune image bitmap.",
+      "valeurs": {
+        "flat-paint": { "reflexe": true, "resume": "Aplats numériques neutres.", "consequence": "Fonds unis, aucune texture." },
+        "paper": { "resume": "Papier : grain, fibre, léger jaunissement.", "consequence": "Texture de grain SVG en `background-image` data-uri, teinte chaude, ombres portées de feuille." },
+        "newsprint": { "resume": "Papier journal : gris, absorbant, trame.", "consequence": "Fond gris chaud, encre jamais noire pure, filets fins, trame de demi-teinte." },
+        "metal": { "resume": "Métal : dégradés durs, arêtes, reflets.", "consequence": "Dégradés à bandes nettes (pas de dégradé doux), bords en biseau clair/sombre." },
+        "glass": { "reflexe": true, "resume": "Verre translucide.", "consequence": "`backdrop-filter` + bordure claire. À justifier." },
+        "concrete": { "resume": "Béton : grain minéral, coffrage.", "consequence": "Bruit SVG dense, joints de banche visibles, gris froid." },
+        "textile": { "resume": "Tissu : trame, couture, matité.", "consequence": "Motif de tissage en `repeating-linear-gradient` croisé, coutures en pointillé." },
+        "screen-phosphor": { "resume": "Écran cathodique : lignes de balayage, halo.", "consequence": "Scanlines en `repeating-linear-gradient`, `text-shadow` de lueur, fond jamais noir pur." },
+        "plastic": { "resume": "Plastique moulé : brillance, bombé.", "consequence": "Dégradé spéculaire haut, ombre interne basse, arêtes adoucies." },
+        "printed-halftone": { "resume": "Impression offset : points de trame.", "consequence": "Trame de points en `radial-gradient` répété, décalage d'encre visible." },
+        "void": { "resume": "Aucune surface. Du texte sur un fond.", "consequence": "Un seul fond pour toute la page. Aucun bloc n'a de fond propre." }
+      }
+    },
+
+    "navigation": {
+      "poids": 1.5,
+      "description": "Comment on se déplace. La barre horizontale n'est PAS le comportement par défaut.",
+      "valeurs": {
+        "top-bar": { "reflexe": true, "resume": "Barre horizontale, logo à gauche, liens à droite.", "consequence": "Le schéma standard." },
+        "sidebar": { "resume": "Colonne latérale persistante.", "consequence": "Navigation en colonne pleine hauteur, contenu à côté." },
+        "vertical-index": { "resume": "Index vertical typographique, sans fond.", "consequence": "Liste verticale de titres, aucun conteneur, souvent numérotée." },
+        "bottom-bar": { "resume": "Barre en bas d'écran.", "consequence": "Navigation ancrée en bas, pensée pour le pouce." },
+        "overlay-menu": { "resume": "Menu plein écran.", "consequence": "Un seul déclencheur ; l'ouverture masque entièrement la page." },
+        "inline-contextual": { "resume": "La navigation est dans le texte.", "consequence": "Aucun bloc de navigation. Les liens sont des mots du contenu." },
+        "numeric-index": { "resume": "Navigation par numéros.", "consequence": "Les sections sont désignées par des numéros (01, 02…) qui servent de navigation." },
+        "alphabetic-index": { "resume": "Navigation par lettres.", "consequence": "Index A–Z persistant, saut à la lettre." },
+        "command-line": { "resume": "On navigue en tapant.", "consequence": "Invite, historique, commandes. Aucun lien cliquable primaire." },
+        "scroll-only": { "resume": "Aucune navigation, le défilement suffit.", "consequence": "Aucun élément de navigation. Le seul contrôle est la molette." },
+        "progress-driven": { "resume": "La progression est la navigation.", "consequence": "Indicateur d'avancement + précédent/suivant comme seuls déplacements." },
+        "floating": { "resume": "Élément flottant détaché des bords.", "consequence": "Navigation en `position: fixed` détachée, sans arrimage à un bord." },
+        "marginal-notes": { "resume": "Navigation en marge, façon apparat critique.", "consequence": "Liens et repères dans une colonne de marge étroite, alignés au contenu." },
+        "map-spatial": { "resume": "Navigation par une carte ou un plan.", "consequence": "Une représentation spatiale est le moyen principal d'accès." },
+        "tab-panel": { "resume": "Onglets, pas de défilement.", "consequence": "Le contenu change sans que la page défile." },
+        "none": { "resume": "Aucune navigation du tout.", "consequence": "Page isolée, sans issue autre que le retour navigateur." }
+      }
+    },
+
+    "media": {
+      "poids": 1.5,
+      "description": "Traitement des visuels. `width:100%; object-fit:cover` n'est qu'une des vingt réponses possibles.",
+      "valeurs": {
+        "none": { "resume": "Aucun média. La typographie porte tout.", "consequence": "Zéro `<img>`, zéro `<svg>` décoratif." },
+        "svg-diagram": { "resume": "Le média est un schéma, pas une illustration.", "consequence": "SVG techniques : diagrammes, courbes, plans, cotes." },
+        "full-bleed": { "reflexe": true, "resume": "Média plein cadre.", "consequence": "Média bord à bord occupant ≥ 50 % du premier écran." },
+        "tiny-inset": { "resume": "Vignettes minuscules.", "consequence": "Aucun média > 120px. Le média est une note, pas un sujet." },
+        "aggressive-crop": { "resume": "Recadrage violent, hors sujet assumé.", "consequence": "Ratios extrêmes (5:1, 1:4), sujet coupé, cadrage désinvolte." },
+        "uncropped-object": { "resume": "Le média n'est jamais recadré.", "consequence": "`object-fit: contain`, ratio d'origine préservé, le vide autour est assumé." },
+        "mosaic": { "resume": "Mosaïque sans gouttière.", "consequence": "Médias jointifs, aucune marge, mur d'images." },
+        "out-of-grid": { "resume": "Le média sort de la grille.", "consequence": "Débordement hors conteneur, chevauchement du texte." },
+        "masked": { "resume": "Média partiellement masqué.", "consequence": "`clip-path` ou masque révélant une partie seulement." },
+        "monochrome": { "resume": "Média en une seule teinte.", "consequence": "`filter: grayscale(1)` + teinte, ou SVG monochrome." },
+        "duotone": { "resume": "Bichromie stricte.", "consequence": "Deux couleurs seulement, via `filter` + fusion ou SVG." },
+        "halftone": { "resume": "Média tramé.", "consequence": "Simulation de trame d'impression, points visibles." },
+        "background-texture": { "resume": "Le média est une texture de fond, jamais un sujet.", "consequence": "Motif répété en arrière-plan, jamais d'élément média isolé." },
+        "framed-plate": { "resume": "Planche encadrée avec légende.", "consequence": "Cadre + légende numérotée + marge blanche, façon planche d'ouvrage." },
+        "captioned-editorial": { "resume": "Média toujours légendé, logique de presse.", "consequence": "`<figure>` + `<figcaption>` systématiques, crédit, alignement au texte." }
+      }
+    },
+
+    "motion": {
+      "poids": 0.5,
+      "description": "Philosophie du mouvement. Invisible sur une capture, mais structurante à l'usage.",
+      "valeurs": {
+        "none": { "resume": "Aucune animation, aucune transition.", "consequence": "Zéro `transition`, zéro `animation`. Choix positif, pas un oubli." },
+        "instant": { "resume": "Changements instantanés, assumés.", "consequence": "`transition-duration: 0s` explicite ; les états basculent net." },
+        "discreet": { "resume": "Transitions courtes, à peine perçues.", "consequence": "≤ 120ms, uniquement sur les états interactifs." },
+        "mechanical": { "resume": "Mouvement par crans, régulier.", "consequence": "`steps()` dans les courbes, aucune inertie, rythme d'horloge." },
+        "elastic": { "resume": "Rebond, dépassement.", "consequence": "Courbes avec dépassement (`cubic-bezier` > 1), déformation." },
+        "physical": { "resume": "Masse, inertie, gravité.", "consequence": "Accélération/décélération asymétriques, les objets lourds bougent lentement." },
+        "brutal-cut": { "resume": "Coupe franche, aucune interpolation.", "consequence": "Les changements sont des coupes, jamais des fondus." },
+        "sequential": { "resume": "Les éléments arrivent en séquence ordonnée.", "consequence": "Décalage temporel calculé par index, ordre lisible." },
+        "continuous-loop": { "resume": "Quelque chose bouge en permanence.", "consequence": "Animation en boucle sans déclencheur, cadence lente." },
+        "scroll-driven": { "resume": "Le défilement pilote tout.", "consequence": "`animation-timeline: scroll()` ou équivalent ; rien ne bouge sans défilement." },
+        "cursor-driven": { "resume": "Le curseur pilote.", "consequence": "La position du pointeur pilote un paramètre continu, pas un simple survol." },
+        "hover-only": { "resume": "Le mouvement n'existe qu'au survol.", "consequence": "Aucune animation au chargement ni au défilement." },
+        "directional": { "resume": "Le mouvement a un sens signifiant.", "consequence": "Entrées et sorties suivent une direction cohérente avec la navigation." },
+        "kinetic-type": { "resume": "C'est le texte qui bouge.", "consequence": "L'animation porte sur la typographie elle-même, pas sur des conteneurs." },
+        "fade-up": { "reflexe": true, "resume": "Fondu + translation vers le haut à l'apparition.", "consequence": "Le réflexe par défaut. À justifier." }
+      }
+    },
+
+    "interaction": {
+      "poids": 0.5,
+      "description": "Comment le contenu se révèle et comment l'interface répond.",
+      "valeurs": {
+        "static-all-visible": { "resume": "Tout est visible d'emblée.", "consequence": "Aucun contenu masqué. Aucun état à déplier." },
+        "progressive-reveal": { "resume": "Le contenu se dévoile au fur et à mesure.", "consequence": "Révélation liée au défilement ou à une progression, avec repli sans JS." },
+        "expand-collapse": { "resume": "Replié par défaut.", "consequence": "`<details>` ou équivalent accessible ; l'état par défaut est fermé." },
+        "filter-sort": { "resume": "L'utilisateur réduit un ensemble.", "consequence": "Filtres et tris qui modifient réellement le DOM visible, avec compteur." },
+        "modal-layer": { "resume": "Le détail s'ouvre en couche.", "consequence": "`<dialog>` ou couche modale, piège de focus, retour à l'origine." },
+        "drag-manipulate": { "resume": "On déplace des objets.", "consequence": "Glisser-déposer avec équivalent clavier obligatoire." },
+        "command-input": { "resume": "On tape ce qu'on veut.", "consequence": "Saisie libre interprétée, historique, aide intégrée." },
+        "hover-preview": { "resume": "Le survol révèle.", "consequence": "Aperçu au survol, avec équivalent au focus clavier." },
+        "page-turn": { "resume": "On tourne des pages.", "consequence": "Navigation discrète par unité, précédent/suivant, pas de défilement continu." },
+        "spatial-zoom": { "resume": "On zoome et on se déplace.", "consequence": "Zoom/panoramique dans un espace plus grand que l'écran, avec repères." },
+        "stateful-tool": { "resume": "L'interface a un état persistant.", "consequence": "Sélection, mode, historique — l'écran dépend de ce qui a été fait avant." },
+        "form-flow": { "resume": "Un parcours de saisie structure la page.", "consequence": "Étapes, validation, erreurs, état de succès." }
+      }
+    }
+  },
+
+  "seuils": {
+    "$comment": "Distance ADN pondérée, normalisée entre 0 (identique) et 1 (tout diffère).",
+    "collision": 0.30,
+    "risque": 0.45,
+    "sain": 0.60,
+    "benchmark_minimum": 0.60,
+    "meme_archetype_minimum": 0.45,
+    "$note_archetype": "Deux variantes partageant le même archétype de mise en page doivent différer d'au moins 0.45 — soit au moins quatre axes, dont un lourd."
+  }
+}

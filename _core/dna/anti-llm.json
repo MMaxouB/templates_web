@@ -1,0 +1,169 @@
+{
+  "$comment": "Les réflexes des interfaces générées par LLM. Rien n'est interdit : tout est facturé. Une variante dispose d'un budget ; le dépassement exige une justification écrite dans meta.json.justifications, nommant la direction artistique que le réflexe sert. Vérifié par _tools/check-constraints.js.",
+  "version": 1,
+
+  "budget": {
+    "par_variante": 6,
+    "regle": "Somme des coûts des réflexes détectés ≤ 6. Au-delà, chaque réflexe excédentaire doit être justifié nommément.",
+    "pourquoi": "Une interdiction pure produit de l'évitement mécanique — on remplace le bleu par du vert et le problème reste. Un budget force un arbitrage : si on dépense 4 points dans un hero centré, on n'a plus de quoi payer les cartes arrondies et les ombres douces. La page devient forcément différente."
+  },
+
+  "reflexes": {
+
+    "police-de-marque-llm": {
+      "cout": 5,
+      "detail": "Inter, Manrope, Geist, DM Sans, Space Grotesk, Poppins, Plus Jakarta, Satoshi, Figtree, Outfit, Sora, General Sans.",
+      "detection": {
+        "type": "css",
+        "motif": "font-(?:family|body|display|title|lead|meta|ui)[^;]*\\b(Inter|Manrope|Geist|DM Sans|Space Grotesk|Poppins|Plus Jakarta|Satoshi|Figtree|Outfit|Sora|General Sans)\\b",
+        "$note_motif": "Ancré sur une déclaration de police ET borné par \\b. Sans les deux, « Inter » se déclenchait sur « pointer » et le rapport devenait ininterprétable."
+      },
+      "note": "Double motif de refus : c'est la signature typographique la plus reconnaissable, et aucune n'est une police système — elle retomberait silencieusement sur une autre pile."
+    },
+
+    "hero-centre": {
+      "cout": 4,
+      "detail": "Ouverture de page : grand titre centré + accroche + un ou deux boutons.",
+      "detection": { "type": "metrique", "cle": "hero_centre_detecte" }
+    },
+
+    "fade-up-au-scroll": {
+      "cout": 3,
+      "detail": "`opacity: 0` + `translateY(N)` révélé à l'apparition, appliqué section par section.",
+      "detection": { "type": "css", "motif": "translateY\\((1[0-9]|[2-9][0-9])px\\)[\\s\\S]{0,200}opacity|opacity:\\s*0[\\s\\S]{0,200}translateY\\(" }
+    },
+
+    "backdrop-blur": {
+      "cout": 3,
+      "detail": "`backdrop-filter: blur()` sans que le verre soit la direction artistique.",
+      "detection": { "type": "css", "motif": "backdrop-filter:\\s*[^;]*blur" },
+      "gratuit_si": ["surface:glass"]
+    },
+
+    "grille-de-cartes-features": {
+      "cout": 3,
+      "detail": "Trois ou quatre cartes identiques présentant des « fonctionnalités », icône + titre + paragraphe.",
+      "detection": { "type": "metrique", "cle": "grille_cartes_egales" }
+    },
+
+    "accent-bleu-violet": {
+      "cout": 2,
+      "detail": "Accent principal dans la plage 210°–290°.",
+      "detection": { "type": "palette", "teinte_min": 210, "teinte_max": 290 },
+      "gratuit_si": ["palette declaree bleue par le client"]
+    },
+
+    "arrondi-genereux": {
+      "cout": 2,
+      "detail": "`border-radius` ≥ 8px sur des éléments non circulaires.",
+      "detection": { "type": "css", "motif": "border-radius:\\s*(?:[89]|[1-9][0-9])px|--radius-(md|lg):\\s*(?:[89]|[1-9][0-9])px" },
+      "gratuit_si": ["geometry:soft-rounded", "geometry:organic"]
+    },
+
+    "bouton-pilule": {
+      "cout": 2,
+      "detail": "`border-radius: 999px` sur une action.",
+      "detection": { "type": "css", "motif": "border-radius:\\s*(999|9999)px|var\\(--radius-pill\\)" }
+    },
+
+    "ombre-douce-diffuse": {
+      "cout": 2,
+      "detail": "Ombre à flou large et faible opacité — la signature de l'élévation « SaaS ».",
+      "detection": { "type": "css", "motif": "box-shadow:[^;]*\\s(1[2-9]|[2-9][0-9])px\\s+rgba?\\([^)]*0?\\.(0[1-9]|1[0-5])" },
+      "gratuit_si": ["surface:paper", "surface:plastic"]
+    },
+
+    "degrade-decoratif": {
+      "cout": 2,
+      "detail": "Dégradé qui ne sert ni de trame ni de matière.",
+      "detection": { "type": "css", "motif": "(?<!repeating-)(linear|radial|conic)-gradient" },
+      "gratuit_si": ["surface:metal", "surface:plastic", "surface:glass"]
+    },
+
+    "badge-au-dessus-du-titre": {
+      "cout": 2,
+      "detail": "Petite pastille de texte posée juste au-dessus du h1.",
+      "detection": { "type": "metrique", "cle": "badge_avant_h1" }
+    },
+
+    "navbar-logo-gauche-liens-droite": {
+      "cout": 2,
+      "detail": "La barre horizontale standard.",
+      "detection": { "type": "metrique", "cle": "navbar_standard" },
+      "gratuit_si": ["navigation:top-bar declaree ET justifiee"]
+    },
+
+    "temoignages-en-cartes": {
+      "cout": 2,
+      "detail": "Avis en cartes avec portrait rond, nom et fonction.",
+      "detection": { "type": "revue" }
+    },
+
+    "pied-de-page-multi-colonnes": {
+      "cout": 2,
+      "detail": "Grand pied de page à quatre ou cinq colonnes de liens.",
+      "detection": { "type": "metrique", "cle": "footer_colonnes", "seuil": 4 }
+    },
+
+    "bento": {
+      "cout": 2,
+      "detail": "Mosaïque de blocs inégaux employée parce qu'elle est à la mode.",
+      "detection": { "type": "revue" },
+      "gratuit_si": ["la variante EST l'archetype bento et le justifie"]
+    },
+
+    "section-plein-ecran-en-ouverture": {
+      "cout": 2,
+      "detail": "Premier bloc à `min-height: 100vh`.",
+      "detection": { "type": "css", "motif": "(min-)?height:\\s*100(vh|dvh|svh)" }
+    },
+
+    "sous-titre-gris": {
+      "cout": 1,
+      "detail": "Accroche en gris moyen sous le titre, systématiquement.",
+      "detection": { "type": "metrique", "cle": "sous_titre_gris" }
+    },
+
+    "faq-accordeon": {
+      "cout": 1,
+      "detail": "Questions fréquentes en accordéon, par défaut.",
+      "detection": { "type": "html", "motif": "<details" },
+      "gratuit_si": ["interaction:expand-collapse declaree"]
+    },
+
+    "emoji-comme-icone": {
+      "cout": 1,
+      "detail": "Emoji utilisés en guise d'icônes d'interface.",
+      "detection": { "type": "html", "motif": "[\\u{1F300}-\\u{1FAFF}\\u{2600}-\\u{27BF}]" }
+    },
+
+    "logos-clients": {
+      "cout": 1,
+      "detail": "Bandeau de logos en niveaux de gris sous le hero.",
+      "detection": { "type": "revue" }
+    },
+
+    "deux-cta-cote-a-cote": {
+      "cout": 1,
+      "detail": "Action principale + action secondaire côte à côte, la seconde en contour.",
+      "detection": { "type": "metrique", "cle": "double_cta" }
+    }
+  },
+
+  "reflexes_de_structure": {
+    "$comment": "Ceux-ci ne se détectent pas dans le CSS mais dans l'enchaînement des sections. Vérifiés en revue.",
+    "sequence-saas": {
+      "cout": 4,
+      "detail": "hero → fonctionnalités → preuve sociale → tarifs → FAQ → CTA final → pied de page.",
+      "note": "C'est le squelette narratif par défaut. Une variante qui le suit doit avoir une raison de vendre quelque chose."
+    },
+    "trois-colonnes-de-tarifs-avec-celle-du-milieu-mise-en-avant": {
+      "cout": 3,
+      "detail": "Le motif de tarification par défaut, badge « le plus choisi » compris."
+    },
+    "grille-parfaitement-reguliere": {
+      "cout": 2,
+      "detail": "Tous les éléments au même format, gouttières égales, aucune exception."
+    }
+  }
+}

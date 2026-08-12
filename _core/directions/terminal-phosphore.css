@@ -1,0 +1,183 @@
+/* ==========================================================================
+   DIRECTION · terminal-phosphore
+   --------------------------------------------------------------------------
+   NOUVELLE. Seconde preuve que la couche « direction » déplace autre chose
+   que la couleur — et volontairement à l'opposé de `presse-imprimee`, pour
+   que les deux servent de bornes au Diversity Benchmark.
+
+   Logique interne : un terminal à tube cathodique.
+
+     · Une seule famille : monospace. Toute la mise en page tombe sur une
+       grille de caractères — d'où --measure exprimée en ch, et une échelle
+       typographique PLATE : un terminal n'a qu'un corps de texte.
+     · La hiérarchie ne peut donc venir ni de la taille ni de la famille :
+       elle vient de l'INVERSION (fond/texte échangés) et de la casse.
+     · Aucune surface, aucune bordure, aucun arrondi. Ce qui délimite, c'est
+       un caractère : │ ─ ┌ ┐.
+     · Le mouvement est une coupe franche — un écran de texte ne fond pas.
+     · Le focus est un bloc inversé qui clignote : c'est le curseur.
+
+   Palette recommandée : `phosphore-vert`.
+   Contraintes servies : monochrome · no-cards · no-rounded · no-shadow ·
+                         single-type-size · no-sans-serif
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Terminal Phosphore';
+    --direction-slug: 'terminal-phosphore';
+
+    /* ---------------------------------------------------- TYPOGRAPHIE
+       Échelle plate assumée : le rapport entre la plus grande et la plus
+       petite taille est de 1.35, là où une page moderne monte à 5 ou 6.
+       C'est la contrainte `single-type-size`. */
+    --type-system: case-driven;
+
+    --font-body: 'Courier New', Courier, 'Nimbus Mono L', monospace;
+    --font-display: var(--font-body);
+    --font-title: var(--font-body);
+    --font-lead: var(--font-body);
+    --font-meta: var(--font-body);
+    --font-ui: var(--font-body);
+    --font-mono: var(--font-body);
+
+    --scale-ratio: 1.06;
+    --leading-tight: 1.2;
+    --leading-normal: 1.2;   /* interligne de terminal : constant */
+    --leading-loose: 1.2;
+
+    --weight-normal: 400;
+    --weight-medium: 400;
+    --weight-bold: 700;
+    --weight-title: 700;
+
+    --case-title: uppercase;
+    --case-meta: uppercase;
+    --tracking-title: 0.08em;
+    --tracking-meta: 0.08em;
+    --tracking-tight: 0em;
+
+    /* ---------------------------------------------------------- FORMES */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 1px;
+
+    --depth-model: flat;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    --rule-style: dashed;
+    --rule-line: dashed;
+    --rule-width: 1px;
+    --rule-color: var(--fg-subtle);
+
+    /* ------------------------------------------------------- CONTRÔLES
+       Pas de bouton : un libellé entre crochets, comme une commande. */
+    --control-shape: none;
+    --control-fill: none;
+    --control-radius: 0;
+    --control-case: uppercase;
+    --control-tracking: 0.08em;
+    --control-pad-x: 0;
+    --control-pad-y: 0;
+
+    /* ----------------------------------------------------------- FOCUS
+       Le curseur : un bloc inversé. Toujours visible, jamais un anneau. */
+    --focus-style: invert;
+    --focus-ring: 0 solid transparent;
+    --focus-offset: 0;
+    --focus-extra: 0 0 0 0.12em var(--fg);
+
+    /* --------------------------------------------------------- SURFACE
+       Lignes de balayage + halo de phosphore. Zéro image, zéro requête. */
+    --surface-model: screen-phosphor;
+    --surface-texture-image:
+      repeating-linear-gradient(
+        to bottom,
+        rgb(0 0 0 / 0) 0 2px,
+        rgb(0 0 0 / 0.28) 2px 3px
+      );
+    --surface-texture-size: 100% 3px;
+    --surface-texture-blend: normal;
+
+    /* ----------------------------------------------------------- MÉDIA
+       Un terminal n'affiche pas d'image : il affiche des caractères. */
+    --media-model: none;
+
+    /* -------------------------------------------------- DENSITÉ, RYTHME
+       Mesure en colonnes de caractères, à l'ancienne : 80 colonnes. */
+    --density: 0.75;
+    --density-measure: 1.23;   /* ≈ 80ch */
+    --space-unit: 0.5rem;
+    --rhythm: regular;
+    --container-max: 82ch;
+
+    /* ------------------------------------------------------- MOUVEMENT
+       Coupe franche. Rien ne s'interpole, sauf le curseur qui clignote. */
+    --motion-model: brutal-cut;
+    --ease: steps(1, end);
+    --duration-fast: 0s;
+    --duration-slow: 0s;
+    --decor-level: 0;
+  }
+
+  body {
+    text-shadow: 0 0 6px currentColor;   /* halo de phosphore */
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    text-transform: var(--case-title);
+    letter-spacing: var(--tracking-title);
+    font-weight: var(--weight-title);
+  }
+
+  /* La hiérarchie par inversion : un titre est une ligne en vidéo inverse.
+     C'est la seule manière de hiérarchiser quand la taille est constante. */
+  h2 {
+    background: var(--fg);
+    color: var(--bg);
+    text-shadow: none;
+    padding-inline: 0.5ch;
+    display: inline-block;
+  }
+
+  /* L'invite tient lieu de puce. */
+  li::marker { content: '> '; }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover { background: var(--fg); color: var(--bg); text-shadow: none; }
+
+  hr {
+    border: 0;
+    overflow: hidden;
+    height: 1em;
+  }
+  hr::before {
+    content: '────────────────────────────────────────────────────────────────────────────────';
+    color: var(--fg-subtle);
+  }
+}
+
+@layer overrides {
+  /* Aucune surface, aucun cadre : ce qui délimite est un caractère. */
+  :where(main) :where(section, article, aside, li, div) {
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  /* Un terminal ne centre pas. Il écrit ligne à ligne, à gauche. */
+  :where(main) :where(h1, h2, h3, h4, p, li) {
+    text-align: start;
+  }
+}

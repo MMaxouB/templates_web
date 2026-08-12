@@ -1,0 +1,39 @@
+{
+  "$comment": "Un préréglage associe une direction artistique et une palette sous un nom unique. C'est ce qu'on montre au client — il choisit « une architecture et un habillage », le découpage interne ne le concerne pas. Les anciens thèmes monolithiques de _core/themes/ restent lisibles par build.js pendant la migration.",
+  "version": 1,
+
+  "presets": {
+    "moderne-clair": {
+      "nom": "Moderne Clair",
+      "direction": "moderne-neutre",
+      "palette": "bleu-corporate",
+      "remplace": "modern-light",
+      "role": "temoin",
+      "note": "Le témoin. Conservé pour mesurer la distance des autres, et parce qu'un client le demandera tel quel."
+    },
+    "neon-nuit": {
+      "nom": "Néon Nuit",
+      "direction": "neon-nocturne",
+      "palette": "neon-cyan-magenta",
+      "remplace": "dark-neon"
+    },
+    "neo-brutal": {
+      "nom": "Néo-brutal",
+      "direction": "neo-brutaliste",
+      "palette": "jaune-corail",
+      "remplace": "neo-brutalism"
+    },
+    "quotidien": {
+      "nom": "Quotidien",
+      "direction": "presse-imprimee",
+      "palette": "encre-journal",
+      "note": "Première direction écrite après l'audit de diversité. Sert de borne « éditorial » au Diversity Benchmark."
+    },
+    "console": {
+      "nom": "Console",
+      "direction": "terminal-phosphore",
+      "palette": "phosphore-vert",
+      "note": "Borne opposée à `quotidien` dans le Diversity Benchmark."
+    }
+  }
+}

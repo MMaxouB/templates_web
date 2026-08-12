@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "11",
   "variante": "11-tarifs-comparatif",
+  "role": "Offres",
   "archetype": "liste-dense",
+  "dna": {
+    "composition": "tabular",
+    "density": "compact",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "linear-rules",
+    "surface": "flat-paint",
+    "navigation": "scroll-only",
+    "media": "none",
+    "motion": "discreet",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Offres"
+  "statut": "fini"
 }

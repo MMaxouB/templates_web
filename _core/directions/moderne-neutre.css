@@ -1,0 +1,67 @@
+/* ==========================================================================
+   DIRECTION · moderne-neutre
+   Extraite de l'ancien thème `modern-light`.
+   --------------------------------------------------------------------------
+   ⚠ CETTE DIRECTION EST LE TÉMOIN, PAS LA RÉFÉRENCE.
+
+   C'est la somme exacte des réflexes que le catalogue combat : pile système,
+   arrondis généreux, ombres diffuses et froides, densité « équilibrée »,
+   hiérarchie par la taille. Elle est conservée pour deux raisons, et deux
+   seulement :
+
+     1. c'est le point de comparaison — une nouvelle direction se juge à sa
+        distance d'avec celle-ci ;
+     2. certains clients veulent littéralement ça, et le catalogue doit
+        pouvoir le fournir sans mentir sur ce que c'est.
+
+   Coût anti-LLM à vide : 4 points sur 6 (arrondi 2, ombre douce 2). Une
+   variante montée sur cette direction n'a donc presque plus de budget pour
+   quoi que ce soit d'autre. C'est voulu.
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Moderne Neutre';
+    --direction-slug: 'moderne-neutre';
+    --direction-role: 'temoin';
+
+    /* Typographie — hiérarchie par la taille, une seule famille */
+    --type-system: size-driven;
+    --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, sans-serif;
+    --font-display: var(--font-body);
+    --scale-ratio: 1.333;
+    --leading-normal: 1.6;
+    --tracking-tight: -0.022em;
+
+    /* Formes */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 20px;
+    --border-width: 1px;
+
+    /* Profondeur — élévation par ombre diffuse */
+    --depth-model: shadow;
+    --shadow-style: soft;
+    --shadow-sm: 0 1px 2px rgb(16 21 28 / 0.06);
+    --shadow-md: 0 6px 20px rgb(16 21 28 / 0.08);
+    --shadow-lg: 0 20px 48px rgb(16 21 28 / 0.12);
+
+    /* Contrôles */
+    --control-shape: soft;
+    --control-fill: solid;
+    --control-radius: var(--radius-md);
+
+    /* Surface, média, densité, mouvement */
+    --surface-model: flat-paint;
+    --media-model: full-bleed;
+    --density: 1;
+    --rhythm: regular;
+    --motion-model: discreet;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-fast: 160ms;
+    --duration-slow: 420ms;
+
+    --container-max: 72rem;
+  }
+}

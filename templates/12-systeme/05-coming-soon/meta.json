@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "05",
   "variante": "05-coming-soon",
+  "role": "Avant lancement",
   "archetype": "colonne-unique",
+  "dna": {
+    "composition": "centered-axial",
+    "density": "airy",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "none",
+    "media": "none",
+    "motion": "discreet",
+    "interaction": "form-flow"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Avant lancement"
+  "statut": "fini"
 }

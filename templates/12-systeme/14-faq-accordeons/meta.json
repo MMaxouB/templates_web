@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "14",
   "variante": "14-faq-accordeons",
+  "role": "Questions fréquentes",
   "archetype": "accordeons",
+  "dna": {
+    "composition": "centered-axial",
+    "density": "balanced",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "top-bar",
+    "media": "none",
+    "motion": "discreet",
+    "interaction": "expand-collapse"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Questions fréquentes"
+  "statut": "fini"
 }

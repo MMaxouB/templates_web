@@ -2,7 +2,14 @@
    reset.css — normalisation
    Partagé par toutes les variantes. Ne contient aucune décision esthétique :
    pas une seule couleur, pas une seule police. Uniquement de la remise à plat.
+   --------------------------------------------------------------------------
+   Tout le fichier vit dans `@layer reset`, la couche la plus faible. L'ordre
+   des couches est déclaré dans tokens.css. Sans cela, la normalisation
+   l'emporterait sur le contrat de tokens — un `h1` perdrait sa graisse et le
+   corps de page son interlignage.
    ========================================================================== */
+
+@layer reset {
 
 *,
 *::before,
@@ -150,3 +157,5 @@ hr {
     scroll-behavior: auto !important;
   }
 }
+
+} /* @layer reset */

@@ -93,24 +93,34 @@ const AA = 4.5;
 const base = parse(path.join(CORE, 'tokens.css'));
 const only = process.argv[2];
 
-let themes = fs.readdirSync(path.join(CORE, 'themes'))
-  .filter((f) => f.endsWith('.css'))
-  .map((f) => f.replace(/\.css$/, ''))
-  .sort();
+/* On vérifie les PALETTES (le format courant) et les THÈMES (l'ancien format
+   monolithique, encore employé par les seize variantes du lot 1). Les deux
+   déclarent des couleurs, les deux doivent tenir le contrat. */
+const sources = [];
 
+for (const [dossier, genre] of [['palettes', 'palette'], ['themes', 'thème']]) {
+  const dir = path.join(CORE, dossier);
+  if (!fs.existsSync(dir)) continue;
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith('.css')).sort()) {
+    sources.push({ slug: f.replace(/\.css$/, ''), genre, fichier: path.join(dir, f) });
+  }
+}
+
+let cibles = sources;
 if (only) {
-  if (!themes.includes(only)) {
-    console.error(`✗ thème inconnu : ${only}. Disponibles : ${themes.join(', ')}`);
+  cibles = sources.filter((s) => s.slug === only);
+  if (!cibles.length) {
+    console.error(`✗ inconnu : ${only}. Disponibles : ${sources.map((s) => s.slug).join(', ')}`);
     process.exit(1);
   }
-  themes = [only];
 }
 
 let failures = 0;
 let unresolved = 0;
 
-for (const theme of themes) {
-  const tokens = { ...base, ...parse(path.join(CORE, 'themes', `${theme}.css`)) };
+for (const source of cibles) {
+  const theme = `${source.slug}${source.genre === 'thème' ? ' (thème déprécié)' : ''}`;
+  const tokens = { ...base, ...parse(source.fichier) };
   const bad = [];
 
   for (const [fgName, bgName] of PAIRS) {
@@ -148,4 +158,6 @@ if (failures || unresolved) {
   process.exit(1);
 }
 
-console.log(`\n${themes.length} thème(s) conformes.`);
+const palettes = cibles.filter((s) => s.genre === 'palette').length;
+const themes = cibles.length - palettes;
+console.log(`\n${palettes} palette(s) et ${themes} thème(s) conformes.`);

@@ -1,0 +1,38 @@
+/* ==========================================================================
+   PALETTE · neon-cyan-magenta
+   Extraite de l'ancien thème `dark-neon`. Éprouve le contraste inversé.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    color-scheme: dark;
+
+    --palette-name: 'Néon Cyan & Magenta';
+    --palette-slug: 'neon-cyan-magenta';
+
+    --bg: #0a0a0f;
+    --bg-elevated: #14141f;
+    --bg-sunken: #05050a;
+
+    --fg: #e8ecf4;
+    --fg-muted: #9aa3b8;
+    --fg-subtle: #818b9f;
+
+    --accent: #00f0ff;
+    --accent-fg: #04121a;
+    --accent-hover: #63f7ff;
+    --accent-text: #00f0ff;
+
+    --border: #24243a;
+    --border-strong: #00f0ff;
+
+    --success: #2ce8a0;
+    --warning: #ffc94d;
+    --danger: #ff3d71;
+    --info: #00f0ff;
+
+    /* La sélection reprend le second néon. */
+    --selection-bg: #ff00a0;
+    --selection-fg: #ffffff;
+  }
+}

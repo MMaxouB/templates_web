@@ -1,0 +1,39 @@
+/* ==========================================================================
+   PALETTE · jaune-corail
+   Extraite de l'ancien thème `neo-brutalism`.
+   --------------------------------------------------------------------------
+   C'est la palette qui a fait naître la séparation --accent / --accent-text :
+   le corail est excellent en fond de bouton (7:1 avec du noir dessus) et
+   illisible en texte sur le jaune (2.25:1). Voir BRAINSTORM.md § 3.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Jaune & Corail';
+    --palette-slug: 'jaune-corail';
+
+    --bg: #ffde59;
+    --bg-elevated: #ffffff;
+    --bg-sunken: #f2d13f;
+
+    --fg: #000000;
+    --fg-muted: #000000;
+    --fg-subtle: #4a4a4a;
+
+    --accent: #ff5f5f;
+    --accent-fg: #000000;
+    --accent-hover: #ff8a8a;
+    --accent-text: #a3001f;
+
+    --border: #000000;
+    --border-strong: #000000;
+
+    --success: #00593a;
+    --warning: #6b3300;
+    --danger: #8f0018;
+    --info: #12358f;
+
+    --selection-bg: #000000;
+    --selection-fg: #ffde59;
+  }
+}

@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "12",
   "variante": "12-contact-carte",
+  "role": "Contact",
   "archetype": "carte-interactive",
+  "dna": {
+    "composition": "asymmetric-weighted",
+    "density": "compact",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "top-bar",
+    "media": "svg-diagram",
+    "motion": "discreet",
+    "interaction": "form-flow"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Contact"
+  "statut": "fini"
 }

@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "01",
   "variante": "01-404-illustree",
+  "role": "Erreur 404",
   "archetype": "plein-ecran",
+  "dna": {
+    "composition": "centered-axial",
+    "density": "airy",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "none",
+    "media": "svg-diagram",
+    "motion": "discreet",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Erreur 404"
+  "statut": "fini"
 }

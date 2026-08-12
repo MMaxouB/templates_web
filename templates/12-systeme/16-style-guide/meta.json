@@ -4,6 +4,23 @@
   "numero": "16",
   "variante": "16-style-guide",
   "archetype": "trois-colonnes",
+  "dna": {
+    "composition": "modular-grid",
+    "density": "balanced",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "vertical-index",
+    "media": "none",
+    "motion": "discreet",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],

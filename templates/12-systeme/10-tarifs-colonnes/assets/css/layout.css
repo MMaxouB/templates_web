@@ -5,6 +5,12 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Toute la structure vit dans `@layer structure` : voir l'ordre des couches
+   en tête de _core/tokens.css. C'est ce qui permet à une direction
+   artistique de reprendre la main via `@layer overrides`. */
+
+@layer structure {
+
 .skip {
   position: absolute;
   inset-block-start: var(--space-2);
@@ -319,3 +325,5 @@
   .head__lead { font-size: var(--text-base); }
   .nav { justify-content: center; }
 }
+
+} /* @layer structure */

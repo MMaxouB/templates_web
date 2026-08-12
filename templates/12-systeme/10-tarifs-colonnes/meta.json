@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "10",
   "variante": "10-tarifs-colonnes",
+  "role": "Offres",
   "archetype": "grille-uniforme",
+  "dna": {
+    "composition": "centered-axial",
+    "density": "compact",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "top-bar",
+    "media": "none",
+    "motion": "discreet",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Offres"
+  "statut": "fini"
 }

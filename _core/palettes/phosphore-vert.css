@@ -1,0 +1,38 @@
+/* ==========================================================================
+   PALETTE · phosphore-vert
+   Moniteur monochrome. Le fond n'est pas noir pur : un tube éteint reste gris
+   très sombre, et le noir pur casse l'illusion.
+   Contrainte `monochrome` : une seule teinte, déclinée en valeurs.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    color-scheme: dark;
+
+    --palette-name: 'Phosphore Vert';
+    --palette-slug: 'phosphore-vert';
+
+    --bg: #0a0f0a;
+    --bg-elevated: #0f170f;
+    --bg-sunken: #060906;
+
+    --fg: #4dff4d;
+    --fg-muted: #2fc72f;
+    --fg-subtle: #26a326;
+
+    --accent: #4dff4d;
+    --accent-fg: #060906;
+    --accent-hover: #8cff8c;
+    --accent-text: #4dff4d;
+
+    --border: #1e5c1e;
+    --border-strong: #4dff4d;
+
+    /* Monochrome strict : les couleurs sémantiques restent dans la teinte et
+       se distinguent par la valeur, pas par le ton. */
+    --success: #4dff4d;
+    --warning: #8cff8c;
+    --danger: #b6ffb6;
+    --info: #2fc72f;
+  }
+}

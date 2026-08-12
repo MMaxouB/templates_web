@@ -1,0 +1,33 @@
+/* ==========================================================================
+   PALETTE · encre-journal
+   Papier journal : le fond n'est jamais blanc, l'encre n'est jamais noire.
+   C'est ce léger défaut qui fait la crédibilité de l'imprimé.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Encre & Journal';
+    --palette-slug: 'encre-journal';
+
+    --bg: #f2efe7;
+    --bg-elevated: #f7f5ef;
+    --bg-sunken: #e6e2d7;
+
+    --fg: #14120e;
+    --fg-muted: #4a4539;
+    --fg-subtle: #5d5748;
+
+    --accent: #8c1d18;
+    --accent-fg: #f7f5ef;
+    --accent-hover: #6d1512;
+    --accent-text: #8c1d18;
+
+    --border: #2b2820;
+    --border-strong: #14120e;
+
+    --success: #2f5d2f;
+    --warning: #7a4a00;
+    --danger: #8c1d18;
+    --info: #1f4a6b;
+  }
+}

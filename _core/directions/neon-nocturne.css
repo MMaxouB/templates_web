@@ -1,0 +1,70 @@
+/* ==========================================================================
+   DIRECTION · neon-nocturne
+   Extraite de l'ancien thème `dark-neon`.
+   --------------------------------------------------------------------------
+   Éprouve les tokens sur le contraste inversé et sur une profondeur qui n'est
+   pas une ombre mais un halo. `--depth-model: outline` le dit explicitement :
+   ce que le thème appelait `--shadow-*` ne sont pas des ombres.
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Néon Nocturne';
+    --direction-slug: 'neon-nocturne';
+
+    /* Typographie — sans-serif technique pour le texte, mono pour les titres.
+       Deux familles opposées : la hiérarchie tient au contraste de famille,
+       pas seulement à la taille. */
+    --type-system: family-contrast;
+    --font-body: ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue',
+      Arial, sans-serif;
+    --font-display: var(--font-mono);
+    --font-title: var(--font-mono);
+    --font-meta: var(--font-mono);
+    --scale-ratio: 1.25;
+    --leading-normal: 1.6;
+    --tracking-tight: 0em;
+    --tracking-wide: 0.14em;
+    --case-meta: uppercase;
+    --tracking-meta: 0.14em;
+
+    /* Formes — anguleuses */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --border-width: 1px;
+
+    /* Profondeur — halos, pas ombres */
+    --depth-model: outline;
+    --shadow-style: soft;
+    --shadow-sm: 0 0 0 1px rgb(0 240 255 / 0.16);
+    --shadow-md: 0 0 20px rgb(0 240 255 / 0.22), 0 0 0 1px rgb(0 240 255 / 0.3);
+    --shadow-lg: 0 0 48px rgb(255 0 160 / 0.28), 0 0 0 1px rgb(0 240 255 / 0.45);
+
+    --rule-style: hairline;
+    --rule-line: solid;
+    --rule-width: 1px;
+    --rule-color: var(--border-strong);
+
+    --control-shape: rect;
+    --control-fill: outline;
+    --control-radius: 2px;
+    --control-case: uppercase;
+    --control-tracking: 0.14em;
+
+    --focus-style: ring;
+
+    --surface-model: screen-phosphor;
+    --media-model: duotone;
+    --media-filter: saturate(1.4) contrast(1.1);
+
+    --density: 1;
+    --space-unit: 0.5rem;
+    --container-max: 68rem;
+
+    --motion-model: directional;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 120ms;
+    --duration-slow: 320ms;
+  }
+}

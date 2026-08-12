@@ -1,0 +1,187 @@
+/* ==========================================================================
+   DIRECTION · presse-imprimee
+   --------------------------------------------------------------------------
+   NOUVELLE. Elle existe pour prouver que la couche « direction » peut faire
+   ce qu'un thème ne pouvait pas : changer la FORME, pas la couleur.
+
+   Logique interne : une page de journal.
+
+     · La hiérarchie vient des FILETS et de la CASSE, pas de la taille. Un
+       titre de rubrique et un corps de texte peuvent avoir le même corps ;
+       ce qui les sépare est un filet et une capitale.
+     · Le texte coule en colonnes étroites. La mesure est courte parce qu'elle
+       l'est en typographie de presse, pas parce que c'est « lisible ».
+     · Aucune surface. Aucune ombre. Aucun arrondi. Un journal n'a pas de
+       cartes : il a des blocs délimités par des filets.
+     · Le papier n'est jamais blanc et l'encre jamais noire. Le grain est là.
+     · Densité serrée : le blanc coûte du papier.
+
+   Palette recommandée : `encre-journal`.
+   Contraintes servies : no-cards · no-shadow · no-rounded · editorial · dense
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Presse Imprimée';
+    --direction-slug: 'presse-imprimee';
+
+    /* ---------------------------------------------------- TYPOGRAPHIE
+       Système piloté par les filets : les tailles sont volontairement
+       proches, l'échelle est presque plate. Ce qui hiérarchise, ce sont
+       --rule-* et --case-*. */
+    --type-system: rule-driven;
+
+    --font-body: Georgia, 'Liberation Serif', 'Times New Roman', serif;
+    --font-display: 'Arial Narrow', 'Liberation Sans Narrow', Impact, sans-serif;
+    --font-title: var(--font-display);
+    --font-lead: Georgia, 'Liberation Serif', 'Times New Roman', serif;
+    --font-meta: 'Arial Narrow', 'Liberation Sans Narrow', Arial, sans-serif;
+    --font-ui: var(--font-meta);
+
+    --scale-ratio: 1.15;          /* échelle resserrée : presque plate */
+    --leading-tight: 1.05;
+    --leading-normal: 1.38;       /* interlignage de presse, court */
+    --leading-loose: 1.5;
+
+    --case-title: uppercase;
+    --case-meta: uppercase;
+    --tracking-title: 0.01em;
+    --tracking-meta: 0.1em;
+    --weight-title: 700;
+
+    /* ---------------------------------------------------------- FORMES
+       Rien n'est arrondi, rien n'est ombré, rien n'a de surface. */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 1px;
+
+    --depth-model: flat;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    /* ---------------------------------------------------------- FILETS
+       Seul élément graphique de la direction. Il porte la hiérarchie. */
+    --rule-style: hairline;
+    --rule-line: solid;
+    --rule-width: 1px;
+    --rule-color: var(--border);
+
+    /* ------------------------------------------------------- CONTRÔLES
+       Pas de bouton plein : un libellé souligné, en capitales étroites. */
+    --control-shape: rect;
+    --control-fill: underline;
+    --control-radius: 0;
+    --control-case: uppercase;
+    --control-tracking: 0.1em;
+    --control-pad-x: 0;
+    --control-pad-y: 0;
+
+    /* ----------------------------------------------------------- FOCUS
+       Bloc inversé, comme un surlignage de correcteur. */
+    --focus-style: block;
+    --focus-ring: 2px solid var(--fg);
+    --focus-offset: 0;
+
+    /* --------------------------------------------------------- SURFACE
+       Grain de papier en SVG inline. Aucune ressource distante. */
+    --surface-model: newsprint;
+    --surface-texture-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)' opacity='0.055'/%3E%3C/svg%3E");
+    --surface-texture-size: 140px 140px;
+    --surface-texture-blend: multiply;
+
+    /* ----------------------------------------------------------- MÉDIA
+       Planche tramée, toujours légendée, jamais en couleur. */
+    --media-model: halftone;
+    --media-filter: grayscale(1) contrast(1.25);
+    --media-frame: 1px solid var(--border);
+    --media-radius: 0;
+
+    /* -------------------------------------------------- DENSITÉ, RYTHME
+       Le blanc coûte du papier. La densité agit sur toute l'échelle
+       d'espacement, pas sur un padding local. */
+    --density: 0.62;
+    --density-measure: 0.55;      /* mesure courte : ~36ch, colonne de presse */
+    --space-unit: 0.5rem;
+    --rhythm: compressed;
+    --container-max: 78rem;
+
+    /* ------------------------------------------------------- MOUVEMENT
+       Un journal ne bouge pas. */
+    --motion-model: none;
+    --duration-fast: 0s;
+    --duration-slow: 0s;
+    --decor-level: 1;
+  }
+
+  /* ------------------------------------------------------------------
+     Règles de publication. Elles appartiennent à la direction : ce sont
+     des conventions d'imprimé, pas des choix de structure. */
+
+  body {
+    hyphens: auto;
+    orphans: 3;
+    widows: 3;
+    font-variant-numeric: oldstyle-nums;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    text-transform: var(--case-title);
+    letter-spacing: var(--tracking-title);
+    font-weight: var(--weight-title);
+    text-wrap: balance;
+  }
+
+  /* Le filet EST la hiérarchie : chaque titre de niveau 2 est précédé d'un
+     filet pleine largeur, comme un changement de rubrique. */
+  h2::before {
+    content: '';
+    display: block;
+    border-top: 3px solid var(--fg);
+    margin-block: var(--space-4) var(--space-2);
+  }
+
+  figure { margin-block: var(--space-4); }
+
+  figcaption {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: var(--case-meta);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 0.35em;
+    margin-top: 0.5em;
+  }
+
+  blockquote {
+    border-left: 0;
+    border-block: 1px solid var(--fg);
+    padding-block: var(--space-2);
+    font-size: var(--text-lg);
+    line-height: 1.25;
+  }
+
+  a { text-underline-offset: 0.14em; }
+}
+
+@layer overrides {
+  /* Le peu que la direction impose à la structure. Court par discipline :
+     une direction qui a besoin de vingt règles ici décrit une structure. */
+
+  /* Aucune carte ne survit : ni surface, ni ombre, ni arrondi. */
+  :where(main) :where(section, article, aside, li, div) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Aucun centrage : la presse compose au fer à gauche. */
+  :where(main) :where(h1, h2, h3, h4, p, li, figcaption) {
+    text-align: start;
+  }
+}

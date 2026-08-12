@@ -3,7 +3,25 @@
   "famille_nom": "Pages système & tunnels",
   "numero": "09",
   "variante": "09-tunnel-paiement",
+  "role": "Commande",
   "archetype": "multi-etapes",
+  "dna": {
+    "composition": "asymmetric-weighted",
+    "density": "dense",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "soft-rounded",
+    "surface": "flat-paint",
+    "navigation": "progress-driven",
+    "media": "none",
+    "motion": "discreet",
+    "interaction": "form-flow"
+  },
+  "habillage_reference": "moderne-clair",
+  "creativeConstraints": [],
+  "justifications": {},
   "pages": [
     "index.html"
   ],
@@ -12,6 +30,5 @@
     "dark-neon",
     "neo-brutalism"
   ],
-  "statut": "fini",
-  "role": "Commande"
+  "statut": "fini"
 }

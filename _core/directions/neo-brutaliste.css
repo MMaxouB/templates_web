@@ -1,0 +1,90 @@
+/* ==========================================================================
+   DIRECTION · neo-brutaliste
+   Extraite de l'ancien thème `neo-brutalism`.
+   --------------------------------------------------------------------------
+   La direction la plus utile du dépôt en test : elle casse tout ce qui suppose
+   une ombre floue, un arrondi ou une bordure fine. Si une structure tient
+   sous celle-ci, elle tient partout.
+
+   Ce qu'elle ne fait TOUJOURS PAS, et c'est le cœur du problème que le
+   catalogue doit résoudre : elle ne déplace rien. Un hero centré reste centré,
+   une grille de trois cartes reste une grille de trois cartes. La couche
+   `overrides` ci-dessous est le début de la réponse — mais l'essentiel se joue
+   dans la structure, pas ici.
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Néo-brutaliste';
+    --direction-slug: 'neo-brutaliste';
+
+    /* Typographie — grotesque grasse, serrée, très contrastée */
+    --type-system: weight-driven;
+    --font-body: 'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-display: var(--font-body);
+    --scale-ratio: 1.5;
+    --weight-normal: 500;
+    --weight-medium: 700;
+    --weight-bold: 900;
+    --weight-title: 900;
+    --leading-tight: 0.95;
+    --leading-normal: 1.45;
+    --tracking-tight: -0.04em;
+
+    /* Formes — aucun arrondi, bordures épaisses */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 3px;
+
+    /* Profondeur — décalage plein, jamais de flou */
+    --depth-model: offset;
+    --shadow-style: hard-offset;
+    --shadow-sm: 3px 3px 0 var(--border-strong);
+    --shadow-md: 6px 6px 0 var(--border-strong);
+    --shadow-lg: 12px 12px 0 var(--border-strong);
+
+    /* Filets — épais et pleins */
+    --rule-style: thick;
+    --rule-line: solid;
+    --rule-width: 3px;
+    --rule-color: var(--border-strong);
+
+    /* Contrôles — rectangulaires, pleins, en capitales */
+    --control-shape: rect;
+    --control-fill: solid;
+    --control-radius: 0;
+    --control-case: uppercase;
+    --control-tracking: 0.02em;
+
+    /* Focus — bloc épais, pas un anneau discret */
+    --focus-style: block;
+    --focus-ring: 4px solid var(--border-strong);
+    --focus-offset: 3px;
+
+    --surface-model: flat-paint;
+    --media-model: framed-plate;
+    --media-frame: 3px solid var(--border-strong);
+    --media-radius: 0;
+
+    --density: 0.9;
+    --space-unit: 0.45rem;
+    --container-max: 68rem;
+
+    /* Mouvement — sec, par crans, sans amorti */
+    --motion-model: mechanical;
+    --ease: steps(3, end);
+    --duration-fast: 90ms;
+    --duration-slow: 180ms;
+  }
+}
+
+@layer overrides {
+  /* Aucun arrondi ne survit, d'où qu'il vienne — y compris d'une structure
+     qui aurait écrit une valeur en dur. Seuls les éléments réellement
+     circulaires sont épargnés. */
+  :where(:not([class*='avatar']):not([class*='dot']):not([class*='pastille'])) {
+    border-radius: 0;
+  }
+}

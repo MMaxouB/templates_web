@@ -1,0 +1,37 @@
+/* ==========================================================================
+   PALETTE · bleu-corporate
+   Extraite de l'ancien thème `modern-light`.
+   --------------------------------------------------------------------------
+   ⚠ Le bleu 210°–290° est facturé 2 points par _core/dna/anti-llm.json : c'est
+     l'accent par défaut des interfaces générées. Cette palette existe parce
+     qu'un client la demandera littéralement — pas parce qu'elle est un bon
+     choix par défaut.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Bleu Corporate';
+    --palette-slug: 'bleu-corporate';
+
+    --bg: #ffffff;
+    --bg-elevated: #ffffff;
+    --bg-sunken: #f4f7fb;
+
+    --fg: #10151c;
+    --fg-muted: #4d5866;
+    --fg-subtle: #616b77;
+
+    --accent: #0b5fff;
+    --accent-fg: #ffffff;
+    --accent-hover: #0847c4;
+    --accent-text: #0b5fff;
+
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+
+    --success: #0a7a43;
+    --warning: #9c5c00;
+    --danger: #d13438;
+    --info: #0b5fff;
+  }
+}

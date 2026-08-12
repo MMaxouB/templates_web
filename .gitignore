@@ -1,8 +1,13 @@
 # Dossiers autonomes générés par _tools/build.js
 dist/
 
-# Captures générées par _tools/screenshot.js
+# Captures et mesures générées par _tools/screenshot.js
 **/preview.png
+previews/
+
+# Fichier temporaire de la sonde de screenshot.js — normalement supprimé
+# aussitôt, listé ici au cas où une exécution serait interrompue.
+**/__sonde.html
 
 # Système
 .DS_Store

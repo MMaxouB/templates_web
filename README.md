@@ -1095,14 +1095,22 @@ l'œil. Les trois thèmes passent désormais les seize paires.
 > C'était le lot le moins gratifiant — aucune page présentable à la fin — mais c'est
 > exactement là que ces défauts coûtaient le moins cher à corriger.
 
-### Lot 1 — Les pages système
+### Lot 1 — Les pages système · ✅ *terminé*
 
-Les seize variantes de la famille `12-systeme`, en trois thèmes.
+Les seize variantes de la famille `12-systeme`, validées sur les trois thèmes de référence.
+**48 dossiers livrables** générés par `build.js`.
 
-Ce sont des pages autonomes, courtes, rapides à produire, et ce sont **les cas les plus
-extrêmes pour les tokens** : une 404 typographique et un tableau comparatif de tarifs
-ne sollicitent pas du tout les mêmes variables. Si les tokens survivent à ce lot,
-ils survivront au reste. Et le catalogue a déjà 48 entrées présentables.
+C'était le bon banc d'essai : une 404 typographique et un tableau comparatif de tarifs ne
+sollicitent pas du tout les mêmes variables. Résultat du contrôle automatisé — **1 116
+éléments de texte mesurés sur 45 combinaisons page × thème, zéro contraste sous le seuil**,
+et aucun débordement horizontal sur 320 / 768 / 1280 / 1920 px.
+
+**Ce que le lot a appris.** Deux pièges de vérification, pas de défaut de conception :
+
+- Dans une grille `justify-items: center`, les enfants prennent leur largeur `max-content` :
+  un titre long refuse de se replier et déborde. Il faut `max-inline-size: 100%`.
+- Un décor en `position: absolute` s'échappe de son conteneur dès que celui-ci repasse en
+  `position: static` — `overflow: hidden` ne le clippe alors plus.
 
 ### Lot 2 — Le socle des trois familles principales
 
@@ -1189,17 +1197,19 @@ Une variante n'est considérée comme finie que quand tout est coché.
 
 | | Catalogué | Produit |
 |---|---:|---:|
-| Architectures | 145 | 1 |
-| Archétypes couverts | 31 | 1 |
+| Architectures | 145 | 16 |
+| Archétypes couverts | 31 | 11 |
 | Thèmes | 333 | 3 |
-| Templates générés | — | 3 |
+| Templates générés | — | 48 |
 
-**Lot 0 terminé.** Les fondations sont posées et éprouvées : les tokens, les trois thèmes
-de référence, le style-guide, et l'outillage (`new-variant.sh`, `build.js`,
-`check-contrast.js`). Les 145 dossiers d'architecture existent avec leurs fichiers et leur
-`meta.json`, mais sont vides — seul `12-systeme/16-style-guide` est écrit.
+**Lots 0 et 1 terminés.** Les fondations sont éprouvées et la famille `12-systeme` est
+complète : seize architectures écrites, chacune validée sur les trois thèmes de référence.
+Onze des trente et un archétypes sont déjà représentés.
 
-Prochaine étape : **Lot 1**, les seize pages système.
+Les 129 autres dossiers d'architecture existent avec leurs fichiers et leur `meta.json`,
+mais sont vides.
+
+Prochaine étape : **Lot 2**, le socle de `01-vitrine`, `02-boutique` et `03-portfolio`.
 
 Deux points restent à décider :
 

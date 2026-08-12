@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Questions fréquentes — Lorem ipsum</title>
+  <meta name="description" content="Réponses aux questions les plus courantes.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav">
+  <a class="brand" href="#" data-stub><span class="brand__mark" aria-hidden="true"></span> Lorem</a>
+  <nav class="nav__links" aria-label="Principale">
+    <a href="#" data-stub>Ipsum</a>
+    <a href="#" aria-current="page">Aide</a>
+    <a href="#" data-stub>Contact</a>
+  </nav>
+</header>
+
+<main id="contenu" class="wrap">
+
+  <header class="head">
+    <h1 class="head__title">Questions fréquentes</h1>
+    <p class="head__lead">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+    </p>
+
+    <div class="search">
+      <label class="visually-hidden" for="q">Rechercher dans les questions</label>
+      <input type="search" id="q" placeholder="Rechercher une question…" autocomplete="off" data-search>
+      <button class="search__clear" type="button" data-clear hidden aria-label="Effacer la recherche">×</button>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filtrer par catégorie">
+      <button class="pill" type="button" data-filter="all" aria-pressed="true">Tout</button>
+      <button class="pill" type="button" data-filter="a" aria-pressed="false">Lorem</button>
+      <button class="pill" type="button" data-filter="b" aria-pressed="false">Ipsum</button>
+      <button class="pill" type="button" data-filter="c" aria-pressed="false">Dolor</button>
+    </div>
+
+    <p class="tools">
+      <span class="tools__count" role="status" data-count></span>
+      <button class="link-btn" type="button" data-expand>Tout déplier</button>
+    </p>
+  </header>
+
+  <div class="faq" data-faq>
+
+    <section class="cat" data-cat="a">
+      <h2 class="cat__title">Lorem</h2>
+
+      <details class="qa">
+        <summary>Lorem ipsum dolor sit amet consectetur ?</summary>
+        <div class="qa__body">
+          <p>Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>Ut enim ad minim veniam quis nostrud ?</summary>
+        <div class="qa__body">
+          <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+          <ul>
+            <li>Lorem ipsum dolor sit</li>
+            <li>Consectetur adipiscing elit</li>
+            <li>Sed do eiusmod tempor</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>Duis aute irure dolor in reprehenderit ?</summary>
+        <div class="qa__body">
+          <p>In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="cat" data-cat="b">
+      <h2 class="cat__title">Ipsum</h2>
+
+      <details class="qa">
+        <summary>Excepteur sint occaecat cupidatat non proident ?</summary>
+        <div class="qa__body">
+          <p>Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>Sed ut perspiciatis unde omnis iste natus ?</summary>
+        <div class="qa__body">
+          <p>Error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>Nemo enim ipsam voluptatem quia voluptas ?</summary>
+        <div class="qa__body">
+          <p>Aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="cat" data-cat="c">
+      <h2 class="cat__title">Dolor</h2>
+
+      <details class="qa">
+        <summary>Neque porro quisquam est qui dolorem ?</summary>
+        <div class="qa__body">
+          <p>Ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+        </div>
+      </details>
+
+      <details class="qa">
+        <summary>Quis autem vel eum iure reprehenderit ?</summary>
+        <div class="qa__body">
+          <p>Qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.</p>
+        </div>
+      </details>
+    </section>
+
+    <p class="empty" data-empty hidden role="status">
+      Aucune question ne correspond. Essayez un autre terme ou
+      <a href="#" data-stub>écrivez-nous</a>.
+    </p>
+
+  </div>
+
+  <aside class="cta">
+    <h2 class="cta__title">Vous n'avez pas trouvé ?</h2>
+    <p class="cta__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <a class="btn" href="#" data-stub>Nous écrire</a>
+  </aside>
+
+</main>
+
+<footer class="foot">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

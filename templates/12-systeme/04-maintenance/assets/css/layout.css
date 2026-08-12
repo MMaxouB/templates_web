@@ -1,0 +1,244 @@
+/* ==========================================================================
+   12-systeme/04-maintenance — layout
+   Archétype : plein-ecran
+   Compte à rebours dominant, raison de l'interruption, inscription au retour.
+   Aucune couleur en dur. Uniquement des var(--…).
+   ========================================================================== */
+
+/* Fond décoratif : bandes d'avertissement en dégradé, entièrement en CSS. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60rem 40rem at 50% -10%,
+      color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+    repeating-linear-gradient(135deg,
+      color-mix(in srgb, var(--warning) 7%, transparent) 0 18px,
+      transparent 18px 36px);
+}
+
+.stage {
+  display: grid;
+  gap: var(--space-6);
+  align-content: center;
+  justify-items: center;
+  min-block-size: 100svh;
+  max-inline-size: 48rem;
+  margin-inline: auto;
+  padding: var(--space-12) var(--space-4);
+  text-align: center;
+}
+
+/* `justify-items: center` dimensionne chaque enfant à sa largeur max-content :
+   sans cette contrainte, un titre long refuse de se replier et déborde. */
+.stage > * {
+  max-inline-size: 100%;
+}
+
+/* ------------------------------------------------------------------ badge */
+
+.badge {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.badge__dot {
+  inline-size: 0.55rem;
+  block-size: 0.55rem;
+  border-radius: var(--radius-pill);
+  background: var(--warning);
+}
+
+/* La pulsation est décorative : elle disparaît en mouvement réduit. */
+@media (prefers-reduced-motion: no-preference) {
+  .badge__dot { animation: pulse 2s var(--ease) infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.8); }
+  }
+}
+
+/* ------------------------------------------------------------------ texte */
+
+.title {
+  font-size: var(--text-4xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.lead {
+  max-inline-size: var(--measure);
+  color: var(--fg-muted);
+  font-size: var(--text-lg);
+}
+
+/* --------------------------------------------------------------- horloge */
+
+.clock {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  inline-size: 100%;
+  padding: var(--space-6) var(--space-4);
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.clock__list {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.unit {
+  display: grid;
+  gap: var(--space-1);
+  justify-items: center;
+  min-inline-size: 4.5rem;
+}
+
+.unit__v {
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 11vw, 4.5rem);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-tight);
+}
+
+.unit__k {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.unit--sep {
+  min-inline-size: 0;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  line-height: 1.1;
+  color: var(--fg-subtle);
+}
+
+.clock__note {
+  color: var(--fg-subtle);
+  font-size: var(--text-sm);
+}
+
+/* ------------------------------------------------------------ inscription */
+
+.notify {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  inline-size: 100%;
+}
+
+.notify__title {
+  font-size: var(--text-lg);
+}
+
+.notify__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  inline-size: min(100%, 28rem);
+}
+
+.notify__form input {
+  flex: 1 1 12rem;
+  min-inline-size: 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg);
+  color: var(--fg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.notify__form input::placeholder { color: var(--fg-subtle); }
+.notify__form input[aria-invalid='true'] { border-color: var(--danger); }
+
+.btn {
+  padding: var(--space-2) var(--space-4);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  transition: background var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover { background: var(--accent-hover); }
+.btn:active { transform: translate(1px, 1px); }
+
+.notify__msg {
+  flex-basis: 100%;
+  font-size: var(--text-sm);
+  color: var(--success);
+}
+
+.notify__msg[data-state='error'] { color: var(--danger); }
+
+/* ------------------------------------------------------------------- pied */
+
+.foot {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  inline-size: 100%;
+  padding-block-start: var(--space-4);
+  border-block-start: var(--border-width) solid var(--border);
+  font-size: var(--text-sm);
+}
+
+.foot__state {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.foot__k { color: var(--fg-subtle); }
+
+.foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  justify-content: center;
+}
+
+.foot a {
+  color: var(--accent-text);
+  text-decoration: none;
+  border-block-end: var(--border-width) solid transparent;
+}
+
+.foot a:hover { border-block-end-color: currentColor; }
+
+/* ------------------------------------------------------------- responsive */
+
+@media (max-width: 40rem) {
+  .title { font-size: var(--text-2xl); }
+  .lead { font-size: var(--text-base); }
+  .clock { padding: var(--space-4) var(--space-2); }
+  .clock__list { gap: var(--space-1); }
+
+  /* Les blocs se partagent la place restante au lieu d'imposer leur largeur. */
+  .unit { min-inline-size: 0; flex: 1 1 0; }
+  .unit--sep { flex: 0 0 auto; font-size: var(--text-2xl); }
+  .unit__v { font-size: clamp(1.75rem, 13vw, 3rem); }
+}

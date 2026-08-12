@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bientôt disponible — Lorem ipsum</title>
+  <meta name="description" content="Quelque chose se prépare. Laissez votre adresse pour être prévenu.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<main class="column">
+
+  <header class="brand">
+    <span class="brand__mark" aria-hidden="true"></span>
+    <span class="brand__name">Lorem</span>
+  </header>
+
+  <!-- Le visuel d'attente est un dégradé animé en CSS : aucune image. -->
+  <div class="teaser" aria-hidden="true">
+    <span class="teaser__blob teaser__blob--a"></span>
+    <span class="teaser__blob teaser__blob--b"></span>
+    <span class="teaser__blob teaser__blob--c"></span>
+  </div>
+
+  <h1 class="title">Lorem ipsum dolor sit amet, consectetur</h1>
+
+  <p class="lead">
+    Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation.
+  </p>
+
+  <!-- Le formulaire est l'élément dominant : c'est le seul objectif de la page. -->
+  <form class="signup" action="#" data-stub novalidate data-signup>
+    <label class="visually-hidden" for="mail">Adresse électronique</label>
+    <div class="signup__row">
+      <input type="email" id="mail" name="mail" required
+             placeholder="lorem@ipsum.test" autocomplete="email">
+      <button class="btn" type="submit">Me prévenir</button>
+    </div>
+    <p class="signup__msg" data-signup-msg role="status" hidden></p>
+    <p class="signup__fine">
+      Lorem ipsum dolor sit amet. Aucun message indésirable, désinscription en un clic.
+    </p>
+  </form>
+
+  <dl class="facts">
+    <div class="facts__item">
+      <dt>Lorem</dt>
+      <dd>Ipsum dolor</dd>
+    </div>
+    <div class="facts__item">
+      <dt>Consectetur</dt>
+      <dd>Adipiscing elit</dd>
+    </div>
+    <div class="facts__item">
+      <dt>Tempor</dt>
+      <dd>Incididunt ut</dd>
+    </div>
+  </dl>
+
+  <footer class="foot">
+    <nav class="foot__social" aria-label="Réseaux">
+      <a href="#" data-stub aria-label="Lorem">Lo</a>
+      <a href="#" data-stub aria-label="Ipsum">Ip</a>
+      <a href="#" data-stub aria-label="Dolor">Do</a>
+    </nav>
+    <p class="foot__legal">
+      <a href="#" data-stub>Mentions légales</a>
+      <span aria-hidden="true">·</span>
+      <a href="#" data-stub>Confidentialité</a>
+    </p>
+  </footer>
+
+</main>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

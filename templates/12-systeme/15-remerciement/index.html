@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Merci — Lorem ipsum</title>
+  <meta name="description" content="Confirmation et prochaines étapes.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<main class="column">
+
+  <!-- Coche dessinée en SVG : animée une seule fois, jamais en boucle. -->
+  <div class="seal" aria-hidden="true">
+    <svg viewBox="0 0 64 64" class="seal__svg">
+      <circle cx="32" cy="32" r="29" class="seal__ring"/>
+      <path d="M20 33 L28 41 L44 24" class="seal__check"/>
+    </svg>
+  </div>
+
+  <header class="head">
+    <h1 class="head__title">Merci, Lorem</h1>
+    <p class="head__lead">
+      Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+      Une confirmation a été envoyée à <strong>lorem@ipsum.test</strong>.
+    </p>
+    <p class="ref">
+      Référence <code>LI-0000-0000</code>
+      <button class="copy" type="button" data-copy="LI-0000-0000">Copier</button>
+    </p>
+  </header>
+
+  <!-- Prochaines étapes : c'est ce que le visiteur veut savoir maintenant. -->
+  <section class="next" aria-labelledby="next-titre">
+    <h2 class="next__title" id="next-titre">Et maintenant ?</h2>
+    <ol class="steps" role="list">
+      <li class="step step--done">
+        <span class="step__n" aria-hidden="true">✓</span>
+        <span class="step__body">
+          <strong>Lorem ipsum dolor</strong>
+          <span>Sit amet consectetur adipiscing elit.</span>
+        </span>
+      </li>
+      <li class="step step--now">
+        <span class="step__n" aria-hidden="true">2</span>
+        <span class="step__body">
+          <strong>Sed do eiusmod tempor</strong>
+          <span>Incididunt ut labore et dolore magna aliqua, sous vingt-quatre heures.</span>
+        </span>
+      </li>
+      <li class="step">
+        <span class="step__n" aria-hidden="true">3</span>
+        <span class="step__body">
+          <strong>Ut enim ad minim veniam</strong>
+          <span>Quis nostrud exercitation ullamco laboris nisi.</span>
+        </span>
+      </li>
+    </ol>
+  </section>
+
+  <div class="actions">
+    <a class="btn" href="#" data-stub>Suivre ma demande</a>
+    <a class="btn btn--ghost" href="#" data-stub>Retour à l'accueil</a>
+  </div>
+
+  <!-- Partage : liens simples, aucun script tiers, aucun traceur. -->
+  <section class="share" aria-labelledby="share-titre">
+    <h2 class="share__title" id="share-titre">Partager</h2>
+    <div class="share__row">
+      <a class="share__btn" href="#" data-stub>Lorem</a>
+      <a class="share__btn" href="#" data-stub>Ipsum</a>
+      <a class="share__btn" href="#" data-stub>Dolor</a>
+      <button class="share__btn" type="button" data-copy="https://lorem.ipsum.test/">Copier le lien</button>
+    </div>
+  </section>
+
+  <section class="more" aria-labelledby="more-titre">
+    <h2 class="more__title" id="more-titre">Pour aller plus loin</h2>
+    <div class="cards">
+      <a class="card" href="#" data-stub>
+        <span class="card__media" aria-hidden="true"></span>
+        <span class="card__name">Lorem ipsum dolor</span>
+        <span class="card__desc">Consectetur adipiscing elit sed do eiusmod.</span>
+      </a>
+      <a class="card" href="#" data-stub>
+        <span class="card__media" aria-hidden="true"></span>
+        <span class="card__name">Tempor incididunt</span>
+        <span class="card__desc">Ut labore et dolore magna aliqua enim.</span>
+      </a>
+      <a class="card" href="#" data-stub>
+        <span class="card__media" aria-hidden="true"></span>
+        <span class="card__name">Quis nostrud</span>
+        <span class="card__desc">Exercitation ullamco laboris nisi aliquip.</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>
+      Une question ? <a href="#" data-stub>Nous écrire</a>
+      <span aria-hidden="true">·</span>
+      <a href="#" data-stub>Mentions légales</a>
+    </p>
+  </footer>
+
+</main>
+
+<!-- Confirmation de copie, annoncée aux lecteurs d'écran. -->
+<p class="toast" data-toast role="status" hidden></p>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nous écrire — Lorem ipsum</title>
+  <meta name="description" content="Formulaire de contact détaillé.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au formulaire</a>
+
+<div class="split">
+
+  <!-- Panneau figé : informations, ne défile jamais sur grand écran. -->
+  <aside class="panel" aria-labelledby="panel-titre">
+    <div class="panel__art" aria-hidden="true">
+      <span class="panel__grad"></span>
+    </div>
+
+    <div class="panel__body">
+      <a class="brand" href="#" data-stub>
+        <span class="brand__mark" aria-hidden="true"></span> Lorem
+      </a>
+
+      <div class="panel__text">
+        <h1 class="panel__title" id="panel-titre">Lorem ipsum dolor sit amet</h1>
+        <p class="panel__lead">
+          Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+          et dolore magna aliqua.
+        </p>
+      </div>
+
+      <dl class="infos">
+        <div><dt>Écrire</dt><dd><a href="#" data-stub>lorem@ipsum.test</a></dd></div>
+        <div><dt>Appeler</dt><dd><a href="#" data-stub>00 00 00 00 00</a></dd></div>
+        <div><dt>Horaires</dt><dd>Lundi au vendredi, 9 h – 18 h</dd></div>
+        <div><dt>Adresse</dt><dd>12 rue Dolor, 00000 Sit Amet</dd></div>
+      </dl>
+
+      <p class="panel__note">Réponse sous un jour ouvré en moyenne.</p>
+    </div>
+  </aside>
+
+  <!-- Panneau défilant : le formulaire, plus long que l'écran. -->
+  <main class="main" id="contenu">
+    <div class="main__inner">
+
+      <header class="main__head">
+        <h2 class="main__title">Nous écrire</h2>
+        <p class="main__sub">Les champs marqués d'une étoile sont obligatoires.</p>
+      </header>
+
+      <form class="form" action="#" data-stub novalidate data-form>
+
+        <fieldset class="group">
+          <legend class="group__legend">Vous</legend>
+
+          <div class="row2">
+            <label class="field">
+              <span class="field__label">Prénom <abbr title="obligatoire">*</abbr></span>
+              <input type="text" name="prenom" autocomplete="given-name" placeholder="Lorem"
+                     data-req data-kind="text">
+              <span class="field__msg" data-msg></span>
+            </label>
+            <label class="field">
+              <span class="field__label">Nom <abbr title="obligatoire">*</abbr></span>
+              <input type="text" name="nom" autocomplete="family-name" placeholder="Ipsum"
+                     data-req data-kind="text">
+              <span class="field__msg" data-msg></span>
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="field__label">Adresse électronique <abbr title="obligatoire">*</abbr></span>
+            <input type="email" name="mail" autocomplete="email" placeholder="lorem@ipsum.test"
+                   data-req data-kind="mail">
+            <span class="field__msg" data-msg></span>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Téléphone <span class="field__opt">facultatif</span></span>
+            <input type="tel" name="tel" autocomplete="tel" placeholder="00 00 00 00 00">
+          </label>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend class="group__legend">Votre demande</legend>
+
+          <fieldset class="chips">
+            <legend class="field__label">Sujet</legend>
+            <div class="chips__list">
+              <label class="chip"><input type="radio" name="sujet" value="a" checked><span>Lorem</span></label>
+              <label class="chip"><input type="radio" name="sujet" value="b"><span>Ipsum</span></label>
+              <label class="chip"><input type="radio" name="sujet" value="c"><span>Dolor</span></label>
+              <label class="chip"><input type="radio" name="sujet" value="d"><span>Sit amet</span></label>
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span class="field__label">
+              Message <abbr title="obligatoire">*</abbr>
+              <span class="field__count"><span data-count>0</span> / 1000</span>
+            </span>
+            <textarea name="message" rows="8" maxlength="1000"
+                      placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit…"
+                      data-req data-kind="long" data-textarea></textarea>
+            <span class="field__msg" data-msg></span>
+          </label>
+        </fieldset>
+
+        <label class="check">
+          <input type="checkbox" name="rgpd" data-req data-kind="check">
+          <span>
+            J'accepte que ces informations soient utilisées pour traiter ma demande,
+            conformément à la <a href="#" data-stub>politique de confidentialité</a>.
+          </span>
+        </label>
+        <p class="field__msg" data-msg></p>
+
+        <div class="actions">
+          <button class="btn" type="submit">Envoyer le message</button>
+          <button class="btn btn--ghost" type="reset">Réinitialiser</button>
+        </div>
+
+        <p class="done" data-done hidden role="status">
+          <strong>Lorem ipsum.</strong> Le message serait envoyé ici — la page est
+          une maquette, rien n'est transmis.
+        </p>
+      </form>
+
+      <footer class="main__foot">
+        <p><a href="#" data-stub>Mentions légales</a> · <a href="#" data-stub>Confidentialité</a></p>
+      </footer>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

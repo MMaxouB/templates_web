@@ -1,0 +1,193 @@
+/* ==========================================================================
+   12-systeme/03-404-interactive — layout
+   Archétype : canvas-libre
+   Un mini-jeu occupe la page pendant que le visiteur décide où aller.
+   Aucune couleur en dur. Uniquement des var(--…).
+   ========================================================================== */
+
+.shell {
+  display: grid;
+  gap: var(--space-6);
+  align-content: center;
+  min-block-size: 100svh;
+  max-inline-size: 56rem;
+  margin-inline: auto;
+  padding: var(--space-8) var(--space-4);
+}
+
+/* ------------------------------------------------------------------- tête */
+
+.head {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  text-align: center;
+}
+
+.head__code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent-text);
+}
+
+.head__title {
+  font-size: var(--text-3xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.head__lead {
+  max-inline-size: var(--measure);
+  color: var(--fg-muted);
+}
+
+/* -------------------------------------------------------------------- jeu */
+
+.play {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.play__bar {
+  display: flex;
+  gap: var(--space-6);
+  justify-content: center;
+}
+
+.stat {
+  display: grid;
+  gap: var(--space-1);
+  justify-items: center;
+}
+
+.stat__k {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.stat__v {
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.play__stage {
+  position: relative;
+  border: calc(var(--border-width) * 2) solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--bg-sunken);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* Le canvas garde son rapport 16/9 et s'adapte à la largeur disponible. */
+[data-canvas] {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 16 / 9;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+/* ------------------------------------------------------------------ voile */
+
+.veil {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: var(--space-3);
+  place-content: center;
+  justify-items: center;
+  padding: var(--space-4);
+  text-align: center;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+.veil[hidden] { display: none; }
+
+.veil__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+}
+
+.veil__text {
+  max-inline-size: 28ch;
+  color: var(--fg-muted);
+  font-size: var(--text-sm);
+}
+
+.btn {
+  padding: var(--space-2) var(--space-6);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--weight-medium);
+  transition: background var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover { background: var(--accent-hover); }
+.btn:active { transform: translate(1px, 1px); }
+
+/* ------------------------------------------------------------------ aide */
+
+.aide {
+  text-align: center;
+  color: var(--fg-subtle);
+  font-size: var(--text-xs);
+}
+
+kbd {
+  display: inline-block;
+  padding: 0 var(--space-1);
+  margin-inline: 1px;
+  background: var(--bg-sunken);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+}
+
+/* ---------------------------------------------------------------- sorties */
+
+.exits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+}
+
+.exits a {
+  color: var(--fg-muted);
+  text-decoration: none;
+  border-block-end: var(--border-width) solid transparent;
+}
+
+.exits a:hover {
+  color: var(--fg);
+  border-block-end-color: currentColor;
+}
+
+.exits__main {
+  color: var(--accent-text) !important;
+  font-weight: var(--weight-medium);
+}
+
+.exits__sep { color: var(--fg-subtle); }
+
+/* ------------------------------------------------------------- responsive */
+
+@media (max-width: 40rem) {
+  .head__title { font-size: var(--text-2xl); }
+  .play__bar { gap: var(--space-4); }
+  .stat__v { font-size: var(--text-lg); }
+}

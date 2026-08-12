@@ -1,0 +1,262 @@
+/* ==========================================================================
+   12-systeme/11-tarifs-comparatif — layout
+   Archétype : liste-dense
+   Grand tableau de comparaison, en-tête collant, infobulles.
+   Aucune couleur en dur. Uniquement des var(--…).
+   ========================================================================== */
+
+.skip {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-start: var(--space-2);
+  z-index: 20;
+  padding: var(--space-2) var(--space-3);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+
+.skip:focus { transform: none; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.brand {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.brand__mark {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+}
+
+.nav__back { font-size: var(--text-sm); color: var(--accent-text); text-decoration: none; }
+.nav__back:hover { text-decoration: underline; }
+
+/* ---------------------------------------------------------------- structure */
+
+.wrap {
+  inline-size: min(100%, var(--container-max));
+  margin-inline: auto;
+  padding: var(--space-8) var(--space-4) var(--space-12);
+}
+
+.head { display: grid; gap: var(--space-2); margin-block-end: var(--space-6); }
+.head__title { font-size: var(--text-3xl); letter-spacing: var(--tracking-tight); }
+.head__lead { max-inline-size: var(--measure); color: var(--fg-muted); }
+
+/* Le défilement latéral appartient au tableau, jamais à la page. */
+.scroller {
+  overflow-x: auto;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+}
+
+.scroller:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
+
+/* ------------------------------------------------------------------ tableau */
+
+.cmp {
+  inline-size: 100%;
+  min-inline-size: 46rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--text-sm);
+}
+
+.cmp__c0 { inline-size: 40%; }
+
+/* En-tête collant : les formules restent visibles pendant la comparaison. */
+.cmp thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  padding: var(--space-6) var(--space-3) var(--space-4);
+  background: var(--bg-elevated);
+  border-block-end: calc(var(--border-width) * 2) solid var(--border-strong);
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.hcell { display: grid; gap: var(--space-2); justify-items: center; }
+
+.hcell__flag {
+  padding: var(--space-1) var(--space-2);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  white-space: nowrap;
+}
+
+.hcell__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+}
+
+.hcell__price {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.hcell__cta {
+  display: block;
+  inline-size: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--fg);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hcell__cta:hover { background: var(--bg-sunken); }
+
+.hcell__cta--full {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.hcell__cta--full:hover { background: var(--accent-hover); }
+
+/* --------------------------------------------------------------- les lignes */
+
+.cmp tbody th[scope='row'] {
+  padding: var(--space-3);
+  text-align: start;
+  font-weight: var(--weight-normal);
+  color: var(--fg);
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.cmp tbody td {
+  padding: var(--space-3);
+  text-align: center;
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.cmp tbody tr:hover th[scope='row'],
+.cmp tbody tr:hover td { background: var(--bg-sunken); }
+
+.cmp__group th {
+  padding: var(--space-4) var(--space-3) var(--space-2);
+  background: var(--bg-sunken);
+  border-block-end: var(--border-width) solid var(--border);
+  text-align: start;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.cmp__group:hover th { background: var(--bg-sunken); }
+
+/* La colonne mise en avant est cerclée sans fond coloré : ça tient partout. */
+.cmp__star {
+  box-shadow:
+    inset 1px 0 0 var(--accent),
+    inset -1px 0 0 var(--accent);
+}
+
+.yes { color: var(--success); font-size: var(--text-lg); }
+.no { color: var(--fg-subtle); font-size: var(--text-lg); }
+
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* --------------------------------------------------------------- infobulle */
+
+.tip {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+  margin-inline-start: var(--space-1);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  color: var(--fg-muted);
+  font-size: var(--text-xs);
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.tip:hover { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+
+.bubble {
+  position: absolute;
+  z-index: 30;
+  max-inline-size: 18rem;
+  padding: var(--space-2) var(--space-3);
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  pointer-events: none;
+}
+
+.bubble[hidden] { display: none; }
+
+/* ------------------------------------------------------------------- notes */
+
+.hint {
+  margin-block-start: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--fg-subtle);
+}
+
+.note {
+  margin-block-start: var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.note a { color: var(--accent-text); }
+
+.foot {
+  padding: var(--space-6) var(--space-4);
+  border-block-start: var(--border-width) solid var(--border);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--fg-subtle);
+}
+
+.foot a { color: var(--fg-muted); text-decoration: none; }
+.foot a:hover { color: var(--fg); }
+
+/* -------------------------------------------------------------- responsive */
+
+@media (max-width: 40rem) {
+  .wrap { padding-inline: var(--space-3); }
+  .head__title { font-size: var(--text-2xl); }
+  .cmp { min-inline-size: 40rem; }
+  .cmp thead th { padding-block-start: var(--space-4); }
+  .hcell__price { font-size: var(--text-xl); }
+}

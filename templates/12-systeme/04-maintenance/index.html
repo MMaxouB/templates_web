@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maintenance en cours — Lorem ipsum</title>
+  <meta name="description" content="Service temporairement indisponible. Retour prévu sous peu.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<!-- Fond décoratif : dégradés et rayures CSS, aucune image. -->
+<div class="backdrop" aria-hidden="true"></div>
+
+<main class="stage">
+
+  <p class="badge">
+    <span class="badge__dot" aria-hidden="true"></span>
+    Maintenance planifiée
+  </p>
+
+  <h1 class="title">Lorem ipsum dolor sit amet</h1>
+
+  <p class="lead">
+    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+    magna aliqua. Le service revient dès la fin de l'opération.
+  </p>
+
+  <!-- Le compte à rebours structure la page : c'est le plus gros élément. -->
+  <section class="clock" aria-labelledby="clock-titre">
+    <h2 class="visually-hidden" id="clock-titre">Temps restant estimé</h2>
+    <ol class="clock__list" role="list" data-countdown>
+      <li class="unit"><span class="unit__v" data-h>02</span><span class="unit__k">heures</span></li>
+      <li class="unit unit--sep" aria-hidden="true">:</li>
+      <li class="unit"><span class="unit__v" data-m>00</span><span class="unit__k">minutes</span></li>
+      <li class="unit unit--sep" aria-hidden="true">:</li>
+      <li class="unit"><span class="unit__v" data-s>00</span><span class="unit__k">secondes</span></li>
+    </ol>
+    <p class="clock__note" data-countdown-note role="status">
+      Estimation indicative, susceptible d'évoluer.
+    </p>
+  </section>
+
+  <section class="notify" aria-labelledby="notify-titre">
+    <h2 class="notify__title" id="notify-titre">Être prévenu du retour</h2>
+    <form class="notify__form" action="#" data-stub novalidate data-notify>
+      <label class="visually-hidden" for="mail">Adresse électronique</label>
+      <input type="email" id="mail" name="mail" required
+             placeholder="lorem@ipsum.test" autocomplete="email">
+      <button class="btn" type="submit">Me prévenir</button>
+      <p class="notify__msg" data-notify-msg role="status" hidden></p>
+    </form>
+  </section>
+
+  <footer class="foot">
+    <p class="foot__state">
+      <span class="foot__k">État des services</span>
+      <a href="#" data-stub>Lorem ipsum</a>
+    </p>
+    <nav class="foot__links" aria-label="Autres liens">
+      <a href="#" data-stub>Nous écrire</a>
+      <a href="#" data-stub>Dolor sit amet</a>
+      <a href="#" data-stub>Consectetur</a>
+    </nav>
+  </footer>
+
+</main>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

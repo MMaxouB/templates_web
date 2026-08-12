@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page introuvable — Lorem ipsum</title>
+  <meta name="description" content="La page demandée n'existe pas. En attendant, une distraction.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<main class="shell">
+
+  <header class="head">
+    <p class="head__code">404</p>
+    <h1 class="head__title">Lorem ipsum dolor sit amet</h1>
+    <p class="head__lead">
+      Consectetur adipiscing elit. La page n'existe pas — autant occuper le temps
+      que vous mettrez à repartir.
+    </p>
+  </header>
+
+  <section class="play" aria-labelledby="play-titre">
+    <h2 class="visually-hidden" id="play-titre">Distraction</h2>
+
+    <div class="play__bar">
+      <p class="stat"><span class="stat__k">Score</span><span class="stat__v" data-score>0</span></p>
+      <p class="stat"><span class="stat__k">Temps</span><span class="stat__v" data-time>30</span></p>
+      <p class="stat"><span class="stat__k">Record</span><span class="stat__v" data-best>0</span></p>
+    </div>
+
+    <div class="play__stage">
+      <canvas data-canvas width="800" height="450" aria-describedby="play-aide"></canvas>
+
+      <!-- Voile d'accueil, de pause et de fin. Le contenu est piloté en JS. -->
+      <div class="veil" data-veil>
+        <p class="veil__title" data-veil-title>Lorem ipsum</p>
+        <p class="veil__text" data-veil-text>
+          Attrapez les carrés. Flèches du clavier ou souris.
+        </p>
+        <button class="btn" type="button" data-start>Commencer</button>
+      </div>
+    </div>
+
+    <p class="aide" id="play-aide">
+      Flèches directionnelles, <kbd>Z</kbd><kbd>Q</kbd><kbd>S</kbd><kbd>D</kbd>, souris ou
+      doigt pour déplacer. <kbd>Échap</kbd> pour mettre en pause.
+    </p>
+  </section>
+
+  <nav class="exits" aria-label="Liens de secours">
+    <a class="exits__main" href="#" data-stub>← Retour à l'accueil</a>
+    <span class="exits__sep" aria-hidden="true">·</span>
+    <a href="#" data-stub>Lorem ipsum</a>
+    <a href="#" data-stub>Dolor sit</a>
+    <a href="#" data-stub>Nous écrire</a>
+  </nav>
+
+</main>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

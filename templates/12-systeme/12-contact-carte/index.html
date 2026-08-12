@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Lorem ipsum</title>
+  <meta name="description" content="Nous écrire, nous appeler, nous trouver.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav">
+  <a class="brand" href="#" data-stub><span class="brand__mark" aria-hidden="true"></span> Lorem</a>
+  <nav class="nav__links" aria-label="Principale">
+    <a href="#" data-stub>Ipsum</a>
+    <a href="#" data-stub>Dolor</a>
+    <a href="#" aria-current="page">Contact</a>
+  </nav>
+</header>
+
+<main id="contenu" class="wrap">
+
+  <header class="head">
+    <h1 class="head__title">Lorem ipsum dolor</h1>
+    <p class="head__lead">
+      Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+    </p>
+  </header>
+
+  <div class="cols">
+
+    <!-- Formulaire -->
+    <section class="form-side" aria-labelledby="form-titre">
+      <h2 class="visually-hidden" id="form-titre">Formulaire de contact</h2>
+
+      <form class="form" action="#" data-stub novalidate data-form>
+        <div class="row2">
+          <label class="field">
+            <span class="field__label">Nom</span>
+            <input type="text" name="nom" autocomplete="name" placeholder="Lorem Ipsum"
+                   data-req data-kind="text">
+            <span class="field__msg" data-msg></span>
+          </label>
+          <label class="field">
+            <span class="field__label">Adresse électronique</span>
+            <input type="email" name="mail" autocomplete="email" placeholder="lorem@ipsum.test"
+                   data-req data-kind="mail">
+            <span class="field__msg" data-msg></span>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Sujet</span>
+          <select name="sujet">
+            <option>Lorem ipsum dolor</option>
+            <option>Sit amet consectetur</option>
+            <option>Adipiscing elit sed</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field__label">
+            Message
+            <span class="field__count"><span data-count>0</span> / 600</span>
+          </span>
+          <textarea name="message" rows="6" maxlength="600"
+                    placeholder="Lorem ipsum dolor sit amet…"
+                    data-req data-kind="long" data-textarea></textarea>
+          <span class="field__msg" data-msg></span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" name="rgpd" data-req data-kind="check">
+          <span>J'accepte que ces informations soient utilisées pour me répondre.</span>
+        </label>
+        <p class="field__msg" data-msg></p>
+
+        <button class="btn" type="submit">Envoyer</button>
+
+        <p class="done" data-done hidden role="status">
+          <strong>Lorem ipsum.</strong> Le message serait envoyé ici — la page est
+          une maquette, rien n'est transmis.
+        </p>
+      </form>
+    </section>
+
+    <!-- Carte + coordonnées -->
+    <section class="map-side" aria-labelledby="map-titre">
+      <h2 class="visually-hidden" id="map-titre">Nous trouver</h2>
+
+      <!-- Carte stylisée en SVG : aucune ressource distante, aucun traceur. -->
+      <div class="map">
+        <svg viewBox="0 0 400 300" role="img" aria-labelledby="map-alt" class="map__svg">
+          <title id="map-alt">Plan schématique des trois adresses</title>
+
+          <rect width="400" height="300" class="map__bg"/>
+
+          <!-- Voies -->
+          <g class="map__roads">
+            <path d="M0 96 H400"/>
+            <path d="M0 210 H400"/>
+            <path d="M120 0 V300"/>
+            <path d="M280 0 V300"/>
+            <path d="M0 300 L400 0" class="map__roads--minor"/>
+          </g>
+
+          <!-- Blocs -->
+          <g class="map__blocks">
+            <rect x="16" y="112" width="88" height="82" rx="3"/>
+            <rect x="136" y="112" width="128" height="82" rx="3"/>
+            <rect x="296" y="14" width="88" height="66" rx="3"/>
+            <rect x="16" y="226" width="88" height="58" rx="3"/>
+          </g>
+
+          <!-- Plan d'eau -->
+          <path d="M296 226 h88 v58 h-88 z" class="map__water"/>
+
+          <!-- Repères, pilotés au survol des adresses -->
+          <g class="pin" data-pin="a" transform="translate(200 153)">
+            <circle r="16" class="pin__halo"/>
+            <circle r="8" class="pin__dot"/>
+          </g>
+          <g class="pin" data-pin="b" transform="translate(340 47)">
+            <circle r="16" class="pin__halo"/>
+            <circle r="8" class="pin__dot"/>
+          </g>
+          <g class="pin" data-pin="c" transform="translate(60 255)">
+            <circle r="16" class="pin__halo"/>
+            <circle r="8" class="pin__dot"/>
+          </g>
+        </svg>
+      </div>
+
+      <ul class="places" role="list">
+        <li class="place" data-place="a">
+          <h3 class="place__name">Lorem</h3>
+          <address class="place__addr">12 rue Dolor<br>00000 Sit Amet</address>
+          <p class="place__meta">Lundi au vendredi · 9 h – 18 h</p>
+        </li>
+        <li class="place" data-place="b">
+          <h3 class="place__name">Ipsum</h3>
+          <address class="place__addr">4 avenue Consectetur<br>00000 Adipiscing</address>
+          <p class="place__meta">Lundi au vendredi · 10 h – 17 h</p>
+        </li>
+        <li class="place" data-place="c">
+          <h3 class="place__name">Dolor</h3>
+          <address class="place__addr">88 boulevard Tempor<br>00000 Incididunt</address>
+          <p class="place__meta">Sur rendez-vous</p>
+        </li>
+      </ul>
+
+      <dl class="direct">
+        <div><dt>Téléphone</dt><dd><a href="#" data-stub>00 00 00 00 00</a></dd></div>
+        <div><dt>Écrire</dt><dd><a href="#" data-stub>lorem@ipsum.test</a></dd></div>
+      </dl>
+    </section>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a> · <a href="#" data-stub>Confidentialité</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page introuvable — Lorem ipsum</title>
+  <meta name="description" content="La page demandée n'existe pas ou a été déplacée.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<main class="stage">
+
+  <figure class="art">
+    <svg viewBox="0 0 240 160" role="img" aria-labelledby="art-titre" class="art__svg">
+      <title id="art-titre">Illustration d'une page égarée</title>
+
+      <!-- Feuille de papier, en retrait -->
+      <rect x="34" y="26" width="96" height="118" rx="4"
+            class="art__paper art__paper--back" transform="rotate(-8 82 85)"/>
+      <rect x="52" y="20" width="96" height="118" rx="4" class="art__paper"/>
+
+      <!-- Lignes de texte -->
+      <g class="art__lines">
+        <rect x="66" y="42" width="68" height="5" rx="2.5"/>
+        <rect x="66" y="56" width="52" height="5" rx="2.5"/>
+        <rect x="66" y="70" width="60" height="5" rx="2.5"/>
+        <rect x="66" y="84" width="34" height="5" rx="2.5"/>
+      </g>
+
+      <!-- Loupe -->
+      <circle cx="164" cy="94" r="34" class="art__glass"/>
+      <circle cx="164" cy="94" r="34" class="art__ring"/>
+      <line x1="188" y1="118" x2="212" y2="142" class="art__handle"/>
+
+      <!-- Point d'interrogation dans la loupe -->
+      <text x="164" y="106" text-anchor="middle" class="art__mark">?</text>
+    </svg>
+  </figure>
+
+  <div class="stage__text">
+    <p class="eyebrow">Erreur 404</p>
+    <h1 class="title">Lorem ipsum dolor sit</h1>
+    <p class="lead">
+      Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. La page demandée n'existe pas ou a changé d'adresse.
+    </p>
+
+    <form class="search" role="search" action="#" data-stub>
+      <label class="visually-hidden" for="q">Rechercher</label>
+      <input type="search" id="q" name="q" placeholder="Lorem ipsum dolor…" autocomplete="off">
+      <button type="submit" class="btn">Rechercher</button>
+    </form>
+
+    <nav class="links" aria-label="Liens de secours">
+      <a class="links__item" href="#" data-stub>Lorem ipsum</a>
+      <a class="links__item" href="#" data-stub>Dolor sit amet</a>
+      <a class="links__item" href="#" data-stub>Consectetur elit</a>
+      <a class="links__item" href="#" data-stub>Sed do eiusmod</a>
+    </nav>
+
+    <p class="back">
+      <a href="#" data-stub>← Retour à l'accueil</a>
+    </p>
+  </div>
+
+</main>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

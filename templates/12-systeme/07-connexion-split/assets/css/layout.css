@@ -1,0 +1,310 @@
+/* ==========================================================================
+   12-systeme/07-connexion-split — layout
+   Archétype : split-screen
+   Écran coupé : visuel plein cadre d'un côté, formulaire de l'autre.
+   Aucune couleur en dur. Uniquement des var(--…).
+   ========================================================================== */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-block-size: 100svh;
+}
+
+/* --------------------------------------------------------- moitié figée */
+
+.side {
+  position: sticky;
+  inset-block-start: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  block-size: 100svh;
+  padding: var(--space-8);
+  overflow: hidden;
+  background:
+    linear-gradient(160deg,
+      color-mix(in srgb, var(--accent) 88%, var(--fg)) 0%,
+      var(--accent) 55%,
+      color-mix(in srgb, var(--accent) 70%, var(--bg)) 100%);
+  color: var(--accent-fg);
+}
+
+/* Décor : anneaux concentriques en CSS, aucune image. */
+.side__art {
+  position: absolute;
+  inset-block-start: -8rem;
+  inset-inline-end: -8rem;
+  inline-size: 32rem;
+  block-size: 32rem;
+  pointer-events: none;
+}
+
+.side__ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.18;
+}
+
+.side__ring--2 { inset: 4rem; opacity: 0.13; }
+.side__ring--3 { inset: 8rem; opacity: 0.09; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .side__ring { animation: breathe 12s var(--ease) infinite alternate; }
+  .side__ring--2 { animation-delay: -4s; }
+  .side__ring--3 { animation-delay: -8s; }
+  @keyframes breathe {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+  }
+}
+
+.side__body {
+  position: relative;
+  display: grid;
+  gap: var(--space-8);
+}
+
+.side__brand {
+  position: absolute;
+  inset-block-start: calc(var(--space-8) * -1 - 100%);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+}
+
+.quote {
+  display: grid;
+  gap: var(--space-4);
+  max-inline-size: 32ch;
+}
+
+.quote p {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-normal);
+}
+
+.quote__by {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  font-size: var(--text-sm);
+}
+
+.quote__avatar {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  opacity: 0.35;
+  flex: none;
+}
+
+.quote__role { opacity: 0.8; }
+
+/* ----------------------------------------------------- moitié défilante */
+
+.main {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8) var(--space-6);
+  background: var(--bg);
+}
+
+.main__inner {
+  inline-size: min(100%, 24rem);
+  display: grid;
+  gap: var(--space-6);
+}
+
+.main__head {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.main__title {
+  font-size: var(--text-3xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.main__sub {
+  color: var(--fg-muted);
+  font-size: var(--text-sm);
+}
+
+.main__sub a {
+  color: var(--accent-text);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+}
+
+.main__sub a:hover { text-decoration: underline; }
+
+/* -------------------------------------------------------------- formulaire */
+
+.form { display: grid; gap: var(--space-4); }
+
+.field { display: grid; gap: var(--space-1); }
+
+.field__label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.field__aside {
+  color: var(--accent-text);
+  font-size: var(--text-xs);
+  text-decoration: none;
+}
+
+.field__aside:hover { text-decoration: underline; }
+
+.field__wrap { position: relative; display: block; }
+
+.field input {
+  inline-size: 100%;
+  padding: var(--space-3);
+  background: var(--bg-sunken);
+  color: var(--fg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.field input[type='password'] { padding-inline-end: var(--space-16); }
+.field input::placeholder { color: var(--fg-subtle); }
+.field input[aria-invalid='true'] { border-color: var(--danger); }
+
+.reveal {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: var(--space-2);
+  transform: translateY(-50%);
+  padding: var(--space-1) var(--space-2);
+  background: var(--bg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--fg-muted);
+  font-size: var(--text-xs);
+}
+
+.reveal:hover { color: var(--fg); }
+
+.form__error {
+  padding: var(--space-2) var(--space-3);
+  border-inline-start: calc(var(--border-width) * 3) solid var(--danger);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+  color: var(--danger);
+  font-size: var(--text-sm);
+}
+
+.check {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  cursor: pointer;
+}
+
+.btn {
+  inline-size: 100%;
+  padding: var(--space-3);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--weight-bold);
+  transition: background var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover { background: var(--accent-hover); }
+.btn:active { transform: translate(1px, 1px); }
+
+.rule {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  color: var(--fg-subtle);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.rule::before,
+.rule::after {
+  content: '';
+  flex: 1;
+  block-size: var(--border-width);
+  background: var(--border);
+}
+
+.sso {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+
+.sso__btn {
+  padding: var(--space-2);
+  background: var(--bg-sunken);
+  color: var(--fg);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  transition: background var(--duration-fast) var(--ease);
+}
+
+.sso__btn:hover { background: var(--bg-elevated); }
+
+.main__foot {
+  font-size: var(--text-xs);
+  color: var(--fg-subtle);
+}
+
+.main__foot p {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.main__foot a { color: var(--fg-muted); text-decoration: none; }
+.main__foot a:hover { color: var(--fg); }
+
+/* ------------------------------------------------------------- responsive */
+
+/* Sous 60rem le split n'a plus de sens : on empile et le visuel se réduit
+   à un bandeau, sans jamais voler la place au formulaire. */
+@media (max-width: 60rem) {
+  .split { grid-template-columns: 1fr; }
+
+  /* `relative` et non `static` : le décor est en position absolue, et un parent
+     statique le laisserait se rattacher au document — `overflow: hidden` ne le
+     clipperait plus et il déborderait de la page. */
+  .side {
+    position: relative;
+    block-size: auto;
+    min-block-size: 14rem;
+    padding: var(--space-6);
+  }
+
+  .side__brand { position: static; margin-block-end: var(--space-4); }
+  .side__art { inline-size: 20rem; block-size: 20rem; inset-block-start: -6rem; }
+  .quote p { font-size: var(--text-lg); }
+  .main { padding: var(--space-8) var(--space-4); }
+}
+
+@media (max-width: 30rem) {
+  .quote p { font-size: var(--text-base); }
+  .main__title { font-size: var(--text-2xl); }
+}

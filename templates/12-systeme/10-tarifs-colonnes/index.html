@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tarifs — Lorem ipsum</title>
+  <meta name="description" content="Trois formules, sans engagement.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav">
+  <a class="brand" href="#" data-stub><span class="brand__mark" aria-hidden="true"></span> Lorem</a>
+  <nav class="nav__links" aria-label="Principale">
+    <a href="#" data-stub>Ipsum</a>
+    <a href="#" data-stub>Dolor</a>
+    <a href="#" aria-current="page">Tarifs</a>
+    <a href="#" data-stub>Amet</a>
+  </nav>
+  <a class="nav__cta" href="#" data-stub>Se connecter</a>
+</header>
+
+<main id="contenu">
+
+  <section class="head">
+    <h1 class="head__title">Lorem ipsum dolor sit amet</h1>
+    <p class="head__lead">
+      Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+      et dolore magna aliqua.
+    </p>
+
+    <!-- La bascule pilote les trois cartes d'un coup. -->
+    <div class="toggle">
+      <span id="lbl-m" class="toggle__side">Mensuel</span>
+      <button class="toggle__btn" type="button" role="switch" aria-checked="false"
+              aria-labelledby="lbl-m lbl-a" data-toggle>
+        <span class="toggle__knob" aria-hidden="true"></span>
+      </button>
+      <span id="lbl-a" class="toggle__side">Annuel</span>
+      <span class="toggle__save">Deux mois offerts</span>
+    </div>
+  </section>
+
+  <section class="grid" aria-label="Formules">
+
+    <article class="plan">
+      <header class="plan__head">
+        <h2 class="plan__name">Lorem</h2>
+        <p class="plan__desc">Consectetur adipiscing elit.</p>
+      </header>
+      <p class="plan__price">
+        <span class="plan__amount" data-price data-m="0" data-a="0">0 €</span>
+        <span class="plan__per" data-per>par mois</span>
+      </p>
+      <a class="btn btn--ghost" href="#" data-stub>Commencer</a>
+      <ul class="feats" role="list">
+        <li>Lorem ipsum dolor</li>
+        <li>Sit amet consectetur</li>
+        <li>Adipiscing elit sed</li>
+        <li class="feats__off">Do eiusmod tempor</li>
+        <li class="feats__off">Incididunt ut labore</li>
+      </ul>
+    </article>
+
+    <article class="plan plan--star">
+      <p class="plan__flag">Le plus choisi</p>
+      <header class="plan__head">
+        <h2 class="plan__name">Ipsum</h2>
+        <p class="plan__desc">Sed do eiusmod tempor incididunt.</p>
+      </header>
+      <p class="plan__price">
+        <span class="plan__amount" data-price data-m="24" data-a="20">24 €</span>
+        <span class="plan__per" data-per>par mois</span>
+      </p>
+      <a class="btn" href="#" data-stub>Choisir cette formule</a>
+      <ul class="feats" role="list">
+        <li>Lorem ipsum dolor</li>
+        <li>Sit amet consectetur</li>
+        <li>Adipiscing elit sed</li>
+        <li>Do eiusmod tempor</li>
+        <li class="feats__off">Incididunt ut labore</li>
+      </ul>
+    </article>
+
+    <article class="plan">
+      <header class="plan__head">
+        <h2 class="plan__name">Dolor</h2>
+        <p class="plan__desc">Ut labore et dolore magna aliqua.</p>
+      </header>
+      <p class="plan__price">
+        <span class="plan__amount" data-price data-m="72" data-a="60">72 €</span>
+        <span class="plan__per" data-per>par mois</span>
+      </p>
+      <a class="btn btn--ghost" href="#" data-stub>Nous contacter</a>
+      <ul class="feats" role="list">
+        <li>Lorem ipsum dolor</li>
+        <li>Sit amet consectetur</li>
+        <li>Adipiscing elit sed</li>
+        <li>Do eiusmod tempor</li>
+        <li>Incididunt ut labore</li>
+      </ul>
+    </article>
+
+  </section>
+
+  <p class="note">
+    Lorem ipsum dolor sit amet. Tous les prix sont hors taxes.
+    <a href="#" data-stub>Voir le comparatif détaillé</a>
+  </p>
+
+  <section class="faq" aria-labelledby="faq-titre">
+    <h2 class="faq__title" id="faq-titre">Questions fréquentes</h2>
+    <div class="faq__list">
+      <details class="qa">
+        <summary>Lorem ipsum dolor sit amet ?</summary>
+        <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </details>
+      <details class="qa">
+        <summary>Ut enim ad minim veniam ?</summary>
+        <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </details>
+      <details class="qa">
+        <summary>Duis aute irure dolor ?</summary>
+        <p>In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </details>
+      <details class="qa">
+        <summary>Excepteur sint occaecat cupidatat ?</summary>
+        <p>Non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a> · <a href="#" data-stub>Confidentialité</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+/* ==========================================================================
+   12-systeme/12-contact-carte — layout
+   Archétype : carte-interactive
+   Formulaire d'un côté, carte et coordonnées de l'autre, survol synchronisé.
+   Aucune couleur en dur. Uniquement des var(--…).
+   ========================================================================== */
+
+.skip {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-start: var(--space-2);
+  z-index: 10;
+  padding: var(--space-2) var(--space-3);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+
+.skip:focus { transform: none; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.brand {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.brand__mark {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+}
+
+.nav__links { display: flex; gap: var(--space-4); font-size: var(--text-sm); }
+.nav__links a { color: var(--fg-muted); text-decoration: none; }
+.nav__links a:hover { color: var(--fg); }
+.nav__links a[aria-current='page'] { color: var(--fg); font-weight: var(--weight-medium); }
+
+/* ---------------------------------------------------------------- structure */
+
+.wrap {
+  inline-size: min(100%, var(--container-max));
+  margin-inline: auto;
+  padding: var(--space-8) var(--space-4) var(--space-12);
+}
+
+.head { display: grid; gap: var(--space-2); margin-block-end: var(--space-8); }
+.head__title { font-size: var(--text-3xl); letter-spacing: var(--tracking-tight); }
+.head__lead { max-inline-size: var(--measure); color: var(--fg-muted); }
+
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* -------------------------------------------------------------- formulaire */
+
+.form { display: grid; gap: var(--space-4); }
+
+.field { display: grid; gap: var(--space-1); }
+
+.field__label {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.field__count { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-subtle); }
+
+.field input,
+.field select,
+.field textarea {
+  inline-size: 100%;
+  padding: var(--space-3);
+  background: var(--bg-elevated);
+  color: var(--fg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.field textarea { resize: vertical; min-block-size: 8rem; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--fg-subtle); }
+.field :is(input, textarea)[aria-invalid='true'] { border-color: var(--danger); }
+
+.field__msg { font-size: var(--text-sm); color: var(--danger); min-block-size: 1.2em; }
+
+.row2 { display: grid; gap: var(--space-4); grid-template-columns: 1fr 1fr; }
+
+.check {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  cursor: pointer;
+}
+
+.check input { margin-block-start: 0.25em; flex: none; }
+
+.btn {
+  justify-self: start;
+  padding: var(--space-3) var(--space-8);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--weight-medium);
+  transition: background var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover { background: var(--accent-hover); }
+.btn:active { transform: translate(1px, 1px); }
+
+.done {
+  padding: var(--space-3) var(--space-4);
+  border-inline-start: calc(var(--border-width) * 3) solid var(--success);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+  font-size: var(--text-sm);
+}
+
+.done[hidden] { display: none; }
+
+/* -------------------------------------------------------------------- carte */
+
+.map-side { display: grid; gap: var(--space-4); }
+
+.map {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.map__svg { inline-size: 100%; block-size: auto; display: block; }
+
+.map__bg { fill: var(--bg-sunken); }
+
+.map__roads path {
+  stroke: var(--bg);
+  stroke-width: 10;
+  fill: none;
+}
+
+.map__roads--minor { stroke-width: 5; opacity: 0.7; }
+
+.map__blocks rect { fill: var(--border); opacity: 0.55; }
+.map__water { fill: var(--info); opacity: 0.25; }
+
+/* Repères : le halo grossit quand l'adresse correspondante est survolée. */
+.pin__halo {
+  fill: var(--accent);
+  opacity: 0.16;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--duration-fast) var(--ease),
+              opacity var(--duration-fast) var(--ease);
+}
+
+.pin__dot {
+  fill: var(--accent);
+  stroke: var(--bg);
+  stroke-width: 2.5;
+}
+
+.pin[data-active] .pin__halo { transform: scale(1.7); opacity: 0.35; }
+.pin[data-active] .pin__dot { fill: var(--accent-text); }
+
+/* ------------------------------------------------------------------ adresses */
+
+.places { display: grid; gap: var(--space-2); }
+
+.place {
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast) var(--ease);
+}
+
+.place[data-active] { border-color: var(--accent); }
+
+.place__name { font-size: var(--text-base); }
+.place__addr { font-style: normal; font-size: var(--text-sm); color: var(--fg-muted); }
+.place__meta { font-size: var(--text-xs); color: var(--fg-subtle); margin-block-start: var(--space-1); }
+
+.direct {
+  display: grid;
+  gap: var(--space-2);
+  padding-block-start: var(--space-4);
+  border-block-start: var(--border-width) solid var(--border);
+  font-size: var(--text-sm);
+}
+
+.direct > div { display: flex; gap: var(--space-3); justify-content: space-between; }
+.direct dt { color: var(--fg-muted); }
+.direct a { color: var(--accent-text); text-decoration: none; }
+.direct a:hover { text-decoration: underline; }
+
+/* -------------------------------------------------------------------- pied */
+
+.foot {
+  padding: var(--space-6) var(--space-4);
+  border-block-start: var(--border-width) solid var(--border);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--fg-subtle);
+}
+
+.foot a { color: var(--fg-muted); text-decoration: none; }
+.foot a:hover { color: var(--fg); }
+
+/* -------------------------------------------------------------- responsive */
+
+@media (max-width: 64rem) {
+  .cols { grid-template-columns: 1fr; gap: var(--space-8); }
+  /* La carte passe en premier : on se repère avant d'écrire. */
+  .map-side { order: -1; }
+}
+
+@media (max-width: 40rem) {
+  .wrap { padding-inline: var(--space-3); }
+  .head__title { font-size: var(--text-2xl); }
+  .row2 { grid-template-columns: 1fr; }
+  .btn { justify-self: stretch; }
+}

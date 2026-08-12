@@ -1,0 +1,273 @@
+/* ==========================================================================
+   12-systeme/15-remerciement — layout
+   Archétype : colonne-unique
+   Confirmation, prochaines étapes, partage, suggestion de suite.
+   Aucune couleur en dur. Uniquement des var(--…).
+   ========================================================================== */
+
+.column {
+  display: grid;
+  gap: var(--space-8);
+  justify-items: center;
+  inline-size: min(100%, 44rem);
+  margin-inline: auto;
+  padding: var(--space-12) var(--space-4) var(--space-16);
+  text-align: center;
+}
+
+/* `justify-items: center` dimensionne chaque enfant à sa largeur max-content :
+   sans cette contrainte, un titre long refuse de se replier et déborde. */
+.column > * { max-inline-size: 100%; }
+
+/* ------------------------------------------------------------------ sceau */
+
+.seal { inline-size: 4.5rem; }
+.seal__svg { inline-size: 100%; block-size: auto; }
+
+.seal__ring {
+  fill: none;
+  stroke: var(--success);
+  stroke-width: 3;
+  opacity: 0.35;
+}
+
+.seal__check {
+  fill: none;
+  stroke: var(--success);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Tracé une seule fois au chargement, jamais en boucle. */
+@media (prefers-reduced-motion: no-preference) {
+  .seal__check {
+    stroke-dasharray: 44;
+    stroke-dashoffset: 44;
+    animation: draw var(--duration-slow) var(--ease) 150ms forwards;
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+}
+
+/* ------------------------------------------------------------------ tête */
+
+.head { display: grid; gap: var(--space-3); justify-items: center; }
+.head > * { max-inline-size: 100%; }
+
+.head__title { font-size: var(--text-4xl); letter-spacing: var(--tracking-tight); }
+.head__lead { max-inline-size: var(--measure); color: var(--fg-muted); font-size: var(--text-lg); }
+
+.ref {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-sunken);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.ref code { font-weight: var(--weight-bold); color: var(--fg); }
+
+.copy {
+  padding: var(--space-1) var(--space-2);
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--accent-text);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+}
+
+.copy:hover { background: var(--bg); }
+
+/* -------------------------------------------------------------- étapes */
+
+.next {
+  inline-size: 100%;
+  padding: var(--space-6);
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: start;
+}
+
+.next__title { font-size: var(--text-lg); margin-block-end: var(--space-4); }
+
+.steps { display: grid; gap: var(--space-4); }
+
+.step {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.step__n {
+  display: grid;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border: calc(var(--border-width) * 2) solid var(--border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--fg-subtle);
+}
+
+.step--done .step__n { border-color: var(--success); color: var(--success); }
+
+.step--now .step__n {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+}
+
+.step__body { display: grid; gap: 2px; font-size: var(--text-sm); }
+.step__body span { color: var(--fg-muted); }
+.step--done .step__body strong { color: var(--fg-muted); }
+
+/* ------------------------------------------------------------------ actions */
+
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+
+.btn {
+  padding: var(--space-3) var(--space-6);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover { background: var(--accent-hover); }
+.btn:active { transform: translate(1px, 1px); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--border-strong);
+  box-shadow: none;
+}
+
+.btn--ghost:hover { background: var(--bg-sunken); }
+
+/* ------------------------------------------------------------------ partage */
+
+.share { display: grid; gap: var(--space-3); justify-items: center; }
+
+.share__title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.share__row { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+
+.share__btn {
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--fg-muted);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease),
+              color var(--duration-fast) var(--ease);
+}
+
+.share__btn:hover { color: var(--accent-text); border-color: var(--accent-text); }
+
+/* -------------------------------------------------------------------- suite */
+
+.more { inline-size: 100%; display: grid; gap: var(--space-4); }
+
+.more__title {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.cards {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+  text-align: start;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+/* Vignette : dégradé CSS, aucune image. */
+.card__media {
+  block-size: 4.5rem;
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(135deg, var(--accent) 0%, transparent 70%),
+    var(--bg-sunken);
+}
+
+.card__name { font-weight: var(--weight-medium); font-size: var(--text-sm); }
+.card__desc { color: var(--fg-muted); font-size: var(--text-xs); }
+
+/* --------------------------------------------------------------------- pied */
+
+.foot { font-size: var(--text-sm); color: var(--fg-subtle); }
+.foot p { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+.foot a { color: var(--fg-muted); text-decoration: none; }
+.foot a:hover { color: var(--fg); }
+
+/* -------------------------------------------------------------------- toast */
+
+.toast {
+  position: fixed;
+  inset-block-end: var(--space-4);
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  padding: var(--space-2) var(--space-4);
+  background: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+  font-size: var(--text-sm);
+}
+
+.toast[hidden] { display: none; }
+
+/* --------------------------------------------------------------- responsive */
+
+@media (max-width: 40rem) {
+  .column { padding-block-start: var(--space-8); gap: var(--space-6); }
+  .head__title { font-size: var(--text-2xl); }
+  .head__lead { font-size: var(--text-base); }
+  .next { padding: var(--space-4); }
+  .cards { grid-template-columns: 1fr; }
+  .actions .btn { flex: 1 1 100%; text-align: center; }
+}

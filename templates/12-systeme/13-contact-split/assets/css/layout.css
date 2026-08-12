@@ -1,0 +1,290 @@
+/* ==========================================================================
+   12-systeme/13-contact-split — layout
+   Archétype : split-screen
+   Panneau d'informations figé d'un côté, formulaire long de l'autre.
+   Aucune couleur en dur. Uniquement des var(--…).
+   ========================================================================== */
+
+.skip {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-start: var(--space-2);
+  z-index: 20;
+  padding: var(--space-2) var(--space-3);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+
+.skip:focus { transform: none; }
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+  min-block-size: 100svh;
+}
+
+/* ---------------------------------------------------------- panneau figé */
+
+.panel {
+  position: sticky;
+  inset-block-start: 0;
+  display: flex;
+  flex-direction: column;
+  block-size: 100svh;
+  padding: var(--space-8);
+  overflow: hidden;
+  background: var(--bg-sunken);
+  border-inline-end: var(--border-width) solid var(--border);
+}
+
+.panel__art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.panel__grad {
+  position: absolute;
+  inset-block-start: -30%;
+  inset-inline-start: -30%;
+  inline-size: 130%;
+  block-size: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%,
+    color-mix(in srgb, var(--accent) 30%, transparent), transparent 65%);
+  filter: blur(20px);
+}
+
+.panel__body {
+  position: relative;
+  display: grid;
+  gap: var(--space-8);
+  align-content: space-between;
+  block-size: 100%;
+}
+
+.brand {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.brand__mark {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+}
+
+.panel__text { display: grid; gap: var(--space-3); }
+.panel__title { font-size: var(--text-3xl); letter-spacing: var(--tracking-tight); }
+.panel__lead { color: var(--fg-muted); }
+
+.infos { display: grid; gap: var(--space-3); font-size: var(--text-sm); }
+.infos > div { display: grid; gap: 2px; }
+.infos dt { font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--fg-subtle); }
+.infos a { color: var(--accent-text); text-decoration: none; }
+.infos a:hover { text-decoration: underline; }
+
+.panel__note { font-size: var(--text-xs); color: var(--fg-subtle); }
+
+/* ------------------------------------------------------ panneau défilant */
+
+.main {
+  padding: var(--space-8) var(--space-6) var(--space-16);
+  background: var(--bg);
+}
+
+.main__inner {
+  inline-size: min(100%, 34rem);
+  margin-inline: auto;
+  display: grid;
+  gap: var(--space-8);
+}
+
+.main__head { display: grid; gap: var(--space-1); }
+.main__title { font-size: var(--text-2xl); }
+.main__sub { color: var(--fg-muted); font-size: var(--text-sm); }
+
+/* -------------------------------------------------------------- formulaire */
+
+.form { display: grid; gap: var(--space-6); }
+
+.group {
+  display: grid;
+  gap: var(--space-4);
+  border: none;
+  padding: 0;
+}
+
+.group__legend {
+  padding-block-end: var(--space-2);
+  border-block-end: var(--border-width) solid var(--border);
+  inline-size: 100%;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.field { display: grid; gap: var(--space-1); }
+
+.field__label {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.field__label abbr { color: var(--danger); text-decoration: none; }
+.field__opt { font-size: var(--text-xs); color: var(--fg-subtle); font-style: italic; }
+.field__count { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-subtle); }
+
+.field input,
+.field textarea {
+  inline-size: 100%;
+  padding: var(--space-3);
+  background: var(--bg-elevated);
+  color: var(--fg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.field textarea { resize: vertical; min-block-size: 10rem; }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--fg-subtle); }
+.field :is(input, textarea)[aria-invalid='true'] { border-color: var(--danger); }
+
+.field__msg { font-size: var(--text-sm); color: var(--danger); min-block-size: 1.2em; }
+
+.row2 { display: grid; gap: var(--space-4); grid-template-columns: 1fr 1fr; }
+
+/* ------------------------------------------------------------------ pastilles */
+
+.chips { border: none; padding: 0; display: grid; gap: var(--space-2); }
+
+.chips__list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+.chip { cursor: pointer; }
+.chip input { position: absolute; opacity: 0; pointer-events: none; }
+
+.chip span {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  transition: border-color var(--duration-fast) var(--ease),
+              background var(--duration-fast) var(--ease);
+}
+
+.chip:hover span { border-color: var(--border-strong); }
+
+.chip input:checked + span {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border-color: var(--accent);
+}
+
+/* La case est masquée : c'est à l'étiquette de montrer le focus clavier. */
+.chip input:focus-visible + span {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* ------------------------------------------------------------------ actions */
+
+.check {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  cursor: pointer;
+}
+
+.check input { margin-block-start: 0.25em; flex: none; }
+.check a { color: var(--accent-text); }
+
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+.btn {
+  padding: var(--space-3) var(--space-6);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--weight-medium);
+  transition: background var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover { background: var(--accent-hover); }
+.btn:active { transform: translate(1px, 1px); }
+.btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--fg-muted);
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+.btn--ghost:hover { background: var(--bg-sunken); color: var(--fg); }
+
+.done {
+  padding: var(--space-3) var(--space-4);
+  border-inline-start: calc(var(--border-width) * 3) solid var(--success);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+  font-size: var(--text-sm);
+}
+
+.done[hidden] { display: none; }
+
+.main__foot { font-size: var(--text-xs); color: var(--fg-subtle); }
+.main__foot a { color: var(--fg-muted); text-decoration: none; }
+.main__foot a:hover { color: var(--fg); }
+
+/* -------------------------------------------------------------- responsive */
+
+/* Sous 64rem le split n'a plus de sens : on empile, et le panneau se réduit
+   à un bandeau. `relative` et non `static` pour que le décor absolu reste
+   rattaché au panneau et continue d'être clippé. */
+@media (max-width: 64rem) {
+  .split { grid-template-columns: 1fr; }
+
+  .panel {
+    position: relative;
+    block-size: auto;
+    padding: var(--space-6);
+    border-inline-end: none;
+    border-block-end: var(--border-width) solid var(--border);
+  }
+
+  .panel__body { gap: var(--space-6); }
+  .panel__title { font-size: var(--text-2xl); }
+  .infos { grid-template-columns: repeat(2, 1fr); }
+  .main { padding-inline: var(--space-4); }
+}
+
+@media (max-width: 40rem) {
+  .row2 { grid-template-columns: 1fr; }
+  .infos { grid-template-columns: 1fr; }
+  .panel__title { font-size: var(--text-xl); }
+  .actions .btn { flex: 1 1 100%; }
+}

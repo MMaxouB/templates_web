@@ -1,0 +1,176 @@
+/* ==========================================================================
+   12-systeme/01-404-illustree — layout
+   Archétype : plein-ecran
+   Illustration SVG centrale, message court, recherche et liens de secours.
+   Aucune couleur en dur. Uniquement des var(--…).
+   ========================================================================== */
+
+.stage {
+  display: grid;
+  gap: var(--space-8);
+  place-content: center;
+  place-items: center;
+  min-block-size: 100svh;
+  max-inline-size: var(--container-max);
+  margin-inline: auto;
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+}
+
+/* ---------------------------------------------------------------- l'image */
+
+.art {
+  inline-size: min(100%, 24rem);
+}
+
+.art__svg {
+  inline-size: 100%;
+  block-size: auto;
+  overflow: visible;
+}
+
+.art__paper {
+  fill: var(--bg-elevated);
+  stroke: var(--border-strong);
+  stroke-width: 2;
+}
+
+.art__paper--back {
+  fill: var(--bg-sunken);
+  opacity: 0.7;
+}
+
+.art__lines rect {
+  fill: var(--fg-subtle);
+  opacity: 0.5;
+}
+
+.art__glass {
+  fill: var(--accent);
+  opacity: 0.12;
+}
+
+.art__ring {
+  fill: none;
+  stroke: var(--accent-text);
+  stroke-width: 4;
+}
+
+.art__handle {
+  stroke: var(--accent-text);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.art__mark {
+  fill: var(--accent-text);
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: var(--weight-bold);
+}
+
+/* ---------------------------------------------------------------- le texte */
+
+.stage__text {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: center;
+  max-inline-size: var(--measure);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.title {
+  font-size: var(--text-4xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.lead {
+  color: var(--fg-muted);
+  font-size: var(--text-lg);
+}
+
+/* ------------------------------------------------------------- recherche */
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  inline-size: 100%;
+  margin-block-start: var(--space-2);
+}
+
+.search input {
+  flex: 1 1 12rem;
+  min-inline-size: 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-sunken);
+  color: var(--fg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.search input::placeholder { color: var(--fg-subtle); }
+
+.btn {
+  padding: var(--space-2) var(--space-4);
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  transition: background var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover { background: var(--accent-hover); }
+.btn:active { transform: translate(1px, 1px); }
+
+/* ------------------------------------------------------------------ liens */
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  justify-content: center;
+  margin-block-start: var(--space-2);
+}
+
+.links__item {
+  color: var(--accent-text);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  border-block-end: var(--border-width) solid transparent;
+  transition: border-color var(--duration-fast) var(--ease);
+}
+
+.links__item:hover { border-block-end-color: currentColor; }
+
+.back {
+  margin-block-start: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.back a {
+  color: var(--fg-muted);
+  text-decoration: none;
+}
+
+.back a:hover { color: var(--fg); }
+
+/* ------------------------------------------------------------- responsive */
+
+@media (max-width: 40rem) {
+  .stage { gap: var(--space-6); }
+  .title { font-size: var(--text-3xl); }
+  .lead { font-size: var(--text-base); }
+  .art { inline-size: min(100%, 16rem); }
+}

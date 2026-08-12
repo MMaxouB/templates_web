@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion — Lorem ipsum</title>
+  <meta name="description" content="Accéder à votre espace.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<div class="split">
+
+  <!-- Moitié figée : ne défile jamais, disparaît sous 60rem. -->
+  <aside class="side" aria-label="Présentation">
+    <div class="side__art" aria-hidden="true">
+      <span class="side__ring side__ring--1"></span>
+      <span class="side__ring side__ring--2"></span>
+      <span class="side__ring side__ring--3"></span>
+    </div>
+
+    <div class="side__body">
+      <p class="side__brand">Lorem</p>
+      <blockquote class="quote">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <footer class="quote__by">
+          <span class="quote__avatar" aria-hidden="true"></span>
+          <span>
+            <strong>Dolor Sit</strong><br>
+            <span class="quote__role">Consectetur adipiscing</span>
+          </span>
+        </footer>
+      </blockquote>
+    </div>
+  </aside>
+
+  <!-- Moitié défilante : tout le contenu utile. -->
+  <main class="main">
+    <div class="main__inner">
+
+      <header class="main__head">
+        <h1 class="main__title">Lorem ipsum dolor</h1>
+        <p class="main__sub">
+          Pas encore de compte ? <a href="#" data-stub>Créer un compte</a>
+        </p>
+      </header>
+
+      <form class="form" action="#" data-stub novalidate data-login>
+
+        <label class="field">
+          <span class="field__label">Adresse électronique</span>
+          <input type="email" name="mail" required autocomplete="email"
+                 placeholder="lorem@ipsum.test">
+        </label>
+
+        <label class="field">
+          <span class="field__label">
+            Mot de passe
+            <a class="field__aside" href="#" data-stub>Oublié ?</a>
+          </span>
+          <span class="field__wrap">
+            <input type="password" name="pass" required autocomplete="current-password"
+                   placeholder="••••••••" data-pass>
+            <button class="reveal" type="button" data-reveal
+                    aria-label="Afficher le mot de passe" aria-pressed="false">Afficher</button>
+          </span>
+        </label>
+
+        <p class="form__error" data-error role="alert" hidden></p>
+
+        <label class="check">
+          <input type="checkbox" name="stay">
+          <span>Rester connecté</span>
+        </label>
+
+        <button class="btn" type="submit">Se connecter</button>
+
+        <p class="rule"><span>ou</span></p>
+
+        <div class="sso">
+          <button class="sso__btn" type="button" data-stub>Lorem</button>
+          <button class="sso__btn" type="button" data-stub>Ipsum</button>
+          <button class="sso__btn" type="button" data-stub>Dolor</button>
+        </div>
+      </form>
+
+      <footer class="main__foot">
+        <p>
+          <a href="#" data-stub>Mentions légales</a>
+          <span aria-hidden="true">·</span>
+          <a href="#" data-stub>Confidentialité</a>
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

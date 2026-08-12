@@ -7,6 +7,11 @@
   "pages": [
     "index.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "themes_valides": [
+    "modern-light",
+    "dark-neon",
+    "neo-brutalism"
+  ],
+  "statut": "fini",
+  "role": "Commande"
 }

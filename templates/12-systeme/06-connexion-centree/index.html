@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion — Lorem ipsum</title>
+  <meta name="description" content="Accéder à votre espace.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<main class="canvas">
+
+  <section class="card" aria-labelledby="titre">
+
+    <header class="card__head">
+      <span class="brand" aria-hidden="true"></span>
+      <h1 class="card__title" id="titre">Lorem ipsum</h1>
+      <p class="card__sub">Consectetur adipiscing elit sed do eiusmod.</p>
+    </header>
+
+    <!-- Connexion externe avant le formulaire : c'est le chemin le plus court. -->
+    <div class="sso">
+      <button class="sso__btn" type="button" data-stub>
+        <span class="sso__mark" aria-hidden="true">L</span>
+        Continuer avec Lorem
+      </button>
+      <button class="sso__btn" type="button" data-stub>
+        <span class="sso__mark" aria-hidden="true">I</span>
+        Continuer avec Ipsum
+      </button>
+    </div>
+
+    <p class="rule"><span>ou</span></p>
+
+    <form class="form" action="#" data-stub novalidate data-login>
+
+      <label class="field">
+        <span class="field__label">Adresse électronique</span>
+        <input type="email" name="mail" required autocomplete="email"
+               placeholder="lorem@ipsum.test">
+      </label>
+
+      <label class="field">
+        <span class="field__label">
+          Mot de passe
+          <a class="field__aside" href="#" data-stub>Oublié ?</a>
+        </span>
+        <span class="field__wrap">
+          <input type="password" name="pass" required autocomplete="current-password"
+                 placeholder="••••••••" data-pass>
+          <button class="reveal" type="button" data-reveal
+                  aria-label="Afficher le mot de passe" aria-pressed="false">Afficher</button>
+        </span>
+      </label>
+
+      <p class="form__error" data-error role="alert" hidden></p>
+
+      <label class="check">
+        <input type="checkbox" name="stay">
+        <span>Rester connecté sur cet appareil</span>
+      </label>
+
+      <button class="btn" type="submit">Se connecter</button>
+    </form>
+
+    <p class="alt">
+      Pas encore de compte ? <a href="#" data-stub>Créer un compte</a>
+    </p>
+
+  </section>
+
+  <footer class="foot">
+    <p>
+      <a href="#" data-stub>Mentions légales</a>
+      <span aria-hidden="true">·</span>
+      <a href="#" data-stub>Confidentialité</a>
+      <span aria-hidden="true">·</span>
+      <a href="#" data-stub>Aide</a>
+    </p>
+  </footer>
+
+</main>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

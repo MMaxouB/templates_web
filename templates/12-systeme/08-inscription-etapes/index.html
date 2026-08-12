@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Créer un compte — Lorem ipsum</title>
+  <meta name="description" content="Création de compte en trois étapes.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="#" data-stub>
+      <span class="brand__mark" aria-hidden="true"></span>
+      Lorem
+    </a>
+    <p class="top__alt">Déjà un compte ? <a href="#" data-stub>Se connecter</a></p>
+  </header>
+
+  <main class="flow">
+
+    <!-- Le fil d'étapes est la structure de la page. -->
+    <nav class="steps" aria-label="Progression">
+      <ol class="steps__list" role="list">
+        <li class="step" data-step-nav="1" aria-current="step">
+          <span class="step__n">1</span>
+          <span class="step__k">Identifiants</span>
+        </li>
+        <li class="step" data-step-nav="2">
+          <span class="step__n">2</span>
+          <span class="step__k">Informations</span>
+        </li>
+        <li class="step" data-step-nav="3">
+          <span class="step__n">3</span>
+          <span class="step__k">Confirmation</span>
+        </li>
+      </ol>
+      <div class="steps__bar"><span class="steps__fill" data-fill></span></div>
+    </nav>
+
+    <form class="card" action="#" data-stub novalidate data-form>
+
+      <!-- ÉTAPE 1 -->
+      <section class="panel" data-panel="1" aria-labelledby="t1">
+        <h1 class="panel__title" id="t1">Lorem ipsum dolor</h1>
+        <p class="panel__sub">Consectetur adipiscing elit sed do eiusmod tempor.</p>
+
+        <label class="field">
+          <span class="field__label">Adresse électronique</span>
+          <input type="email" name="mail" autocomplete="email" placeholder="lorem@ipsum.test"
+                 data-req data-kind="mail">
+          <span class="field__msg" data-msg></span>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Mot de passe</span>
+          <input type="password" name="pass" autocomplete="new-password" placeholder="••••••••"
+                 data-req data-kind="pass" data-pass>
+          <span class="field__msg" data-msg></span>
+        </label>
+
+        <!-- Force du mot de passe : quatre segments, calculés en JS. -->
+        <div class="strength" data-strength hidden>
+          <div class="strength__bars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <p class="strength__label" data-strength-label role="status"></p>
+        </div>
+      </section>
+
+      <!-- ÉTAPE 2 -->
+      <section class="panel" data-panel="2" hidden aria-labelledby="t2">
+        <h1 class="panel__title" id="t2">Dolor sit amet</h1>
+        <p class="panel__sub">Ut enim ad minim veniam quis nostrud exercitation.</p>
+
+        <div class="row2">
+          <label class="field">
+            <span class="field__label">Prénom</span>
+            <input type="text" name="prenom" autocomplete="given-name" placeholder="Lorem"
+                   data-req data-kind="text">
+            <span class="field__msg" data-msg></span>
+          </label>
+          <label class="field">
+            <span class="field__label">Nom</span>
+            <input type="text" name="nom" autocomplete="family-name" placeholder="Ipsum"
+                   data-req data-kind="text">
+            <span class="field__msg" data-msg></span>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Intitulé <span class="field__opt">facultatif</span></span>
+          <input type="text" name="role" placeholder="Dolor sit amet">
+        </label>
+
+        <fieldset class="choice">
+          <legend class="field__label">Lorem ipsum</legend>
+          <label class="choice__item">
+            <input type="radio" name="type" value="a" checked>
+            <span><strong>Consectetur</strong><br>Adipiscing elit sed do eiusmod tempor.</span>
+          </label>
+          <label class="choice__item">
+            <input type="radio" name="type" value="b">
+            <span><strong>Incididunt</strong><br>Ut labore et dolore magna aliqua enim.</span>
+          </label>
+        </fieldset>
+      </section>
+
+      <!-- ÉTAPE 3 -->
+      <section class="panel" data-panel="3" hidden aria-labelledby="t3">
+        <h1 class="panel__title" id="t3">Consectetur adipiscing</h1>
+        <p class="panel__sub">Vérifiez les informations avant de valider.</p>
+
+        <dl class="recap" data-recap></dl>
+
+        <label class="check">
+          <input type="checkbox" name="cgu" data-req data-kind="check">
+          <span>
+            J'accepte les <a href="#" data-stub>conditions générales</a> et la
+            <a href="#" data-stub>politique de confidentialité</a>.
+          </span>
+        </label>
+        <p class="field__msg field__msg--block" data-msg></p>
+      </section>
+
+      <p class="done" data-done hidden role="status">
+        <strong>Lorem ipsum.</strong> Le compte serait créé ici — la page est une maquette,
+        aucune donnée n'est envoyée.
+      </p>
+
+      <footer class="card__foot">
+        <button class="btn btn--ghost" type="button" data-prev hidden>Retour</button>
+        <span class="card__count" data-count>Étape 1 sur 3</span>
+        <button class="btn" type="button" data-next>Continuer</button>
+      </footer>
+
+    </form>
+
+  </main>
+
+  <footer class="foot">
+    <p><a href="#" data-stub>Mentions légales</a> · <a href="#" data-stub>Aide</a></p>
+  </footer>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

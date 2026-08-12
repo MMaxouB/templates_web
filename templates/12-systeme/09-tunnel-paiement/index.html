@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commande — Lorem ipsum</title>
+  <meta name="description" content="Tunnel de commande en quatre étapes.">
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="#" data-stub><span class="brand__mark" aria-hidden="true"></span> Lorem</a>
+  <p class="bar__safe">
+    <span class="bar__lock" aria-hidden="true">◆</span> Paiement sécurisé
+  </p>
+</header>
+
+<div class="layout">
+
+  <main class="col">
+
+    <nav class="rail" aria-label="Progression">
+      <ol class="rail__list" role="list">
+        <li class="rail__step" data-step-nav="1" aria-current="step"><span>1</span>Panier</li>
+        <li class="rail__step" data-step-nav="2"><span>2</span>Livraison</li>
+        <li class="rail__step" data-step-nav="3"><span>3</span>Paiement</li>
+        <li class="rail__step" data-step-nav="4"><span>4</span>Récapitulatif</li>
+      </ol>
+    </nav>
+
+    <form class="panels" action="#" data-stub novalidate data-form>
+
+      <!-- 1 · PANIER -->
+      <section class="panel" data-panel="1" aria-labelledby="p1">
+        <h1 class="panel__title" id="p1">Votre panier</h1>
+
+        <ul class="cart" role="list" data-cart>
+          <li class="line" data-line data-price="24">
+            <span class="line__media" aria-hidden="true"></span>
+            <span class="line__body">
+              <strong>Lorem ipsum dolor</strong>
+              <span class="line__meta">Consectetur · Adipiscing</span>
+            </span>
+            <span class="line__qty">
+              <label class="visually-hidden" for="q1">Quantité pour Lorem ipsum dolor</label>
+              <select id="q1" data-qty>
+                <option>1</option><option selected>2</option><option>3</option><option>4</option>
+              </select>
+            </span>
+            <span class="line__price" data-line-total>48,00 €</span>
+          </li>
+          <li class="line" data-line data-price="16">
+            <span class="line__media" aria-hidden="true"></span>
+            <span class="line__body">
+              <strong>Sed do eiusmod</strong>
+              <span class="line__meta">Tempor · Incididunt</span>
+            </span>
+            <span class="line__qty">
+              <label class="visually-hidden" for="q2">Quantité pour Sed do eiusmod</label>
+              <select id="q2" data-qty>
+                <option selected>1</option><option>2</option><option>3</option><option>4</option>
+              </select>
+            </span>
+            <span class="line__price" data-line-total>16,00 €</span>
+          </li>
+        </ul>
+
+        <p class="hint">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </section>
+
+      <!-- 2 · LIVRAISON -->
+      <section class="panel" data-panel="2" hidden aria-labelledby="p2">
+        <h1 class="panel__title" id="p2">Livraison</h1>
+
+        <div class="row2">
+          <label class="field">
+            <span class="field__label">Prénom</span>
+            <input type="text" name="prenom" autocomplete="given-name" placeholder="Lorem" data-req data-kind="text">
+            <span class="field__msg" data-msg></span>
+          </label>
+          <label class="field">
+            <span class="field__label">Nom</span>
+            <input type="text" name="nom" autocomplete="family-name" placeholder="Ipsum" data-req data-kind="text">
+            <span class="field__msg" data-msg></span>
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="field__label">Adresse</span>
+          <input type="text" name="adresse" autocomplete="street-address" placeholder="12 rue Dolor" data-req data-kind="text">
+          <span class="field__msg" data-msg></span>
+        </label>
+
+        <div class="row2">
+          <label class="field">
+            <span class="field__label">Code postal</span>
+            <input type="text" name="cp" inputmode="numeric" autocomplete="postal-code" placeholder="00000" data-req data-kind="cp">
+            <span class="field__msg" data-msg></span>
+          </label>
+          <label class="field">
+            <span class="field__label">Ville</span>
+            <input type="text" name="ville" autocomplete="address-level2" placeholder="Sit Amet" data-req data-kind="text">
+            <span class="field__msg" data-msg></span>
+          </label>
+        </div>
+
+        <fieldset class="choice">
+          <legend class="field__label">Mode de livraison</legend>
+          <label class="choice__item">
+            <input type="radio" name="ship" value="0" checked data-ship>
+            <span class="choice__text"><strong>Standard</strong><br>Trois à cinq jours</span>
+            <span class="choice__price">Offerte</span>
+          </label>
+          <label class="choice__item">
+            <input type="radio" name="ship" value="6.9" data-ship>
+            <span class="choice__text"><strong>Express</strong><br>Vingt-quatre heures</span>
+            <span class="choice__price">6,90 €</span>
+          </label>
+        </fieldset>
+      </section>
+
+      <!-- 3 · PAIEMENT -->
+      <section class="panel" data-panel="3" hidden aria-labelledby="p3">
+        <h1 class="panel__title" id="p3">Paiement</h1>
+
+        <label class="field">
+          <span class="field__label">Numéro de carte</span>
+          <input type="text" name="carte" inputmode="numeric" autocomplete="cc-number"
+                 placeholder="0000 0000 0000 0000" maxlength="19" data-req data-kind="card" data-card>
+          <span class="field__msg" data-msg></span>
+        </label>
+
+        <div class="row2">
+          <label class="field">
+            <span class="field__label">Expiration</span>
+            <input type="text" name="exp" inputmode="numeric" autocomplete="cc-exp"
+                   placeholder="MM/AA" maxlength="5" data-req data-kind="exp" data-exp>
+            <span class="field__msg" data-msg></span>
+          </label>
+          <label class="field">
+            <span class="field__label">Cryptogramme</span>
+            <input type="text" name="cvc" inputmode="numeric" autocomplete="cc-csc"
+                   placeholder="000" maxlength="4" data-req data-kind="cvc">
+            <span class="field__msg" data-msg></span>
+          </label>
+        </div>
+
+        <p class="reassure">
+          <strong>Maquette.</strong> Aucun champ n'est transmis et aucun paiement n'est possible :
+          cette page sert uniquement à montrer la structure du tunnel.
+        </p>
+      </section>
+
+      <!-- 4 · RÉCAPITULATIF -->
+      <section class="panel" data-panel="4" hidden aria-labelledby="p4">
+        <h1 class="panel__title" id="p4">Récapitulatif</h1>
+        <dl class="recap" data-recap></dl>
+
+        <label class="check">
+          <input type="checkbox" name="cgv" data-req data-kind="check">
+          <span>J'accepte les <a href="#" data-stub>conditions générales de vente</a>.</span>
+        </label>
+        <p class="field__msg" data-msg></p>
+
+        <p class="done" data-done hidden role="status">
+          <strong>Lorem ipsum.</strong> La commande serait validée ici.
+        </p>
+      </section>
+
+      <footer class="nav">
+        <button class="btn btn--ghost" type="button" data-prev hidden>Retour</button>
+        <button class="btn" type="button" data-next>Continuer</button>
+      </footer>
+
+    </form>
+  </main>
+
+  <!-- Le récapitulatif reste visible pendant tout le parcours. -->
+  <aside class="side" aria-labelledby="side-titre">
+    <div class="side__inner">
+      <h2 class="side__title" id="side-titre">Votre commande</h2>
+
+      <dl class="totals">
+        <div><dt>Sous-total</dt><dd data-sub>64,00 €</dd></div>
+        <div><dt>Livraison</dt><dd data-ship-total>Offerte</dd></div>
+        <div class="totals__big"><dt>Total</dt><dd data-total>64,00 €</dd></div>
+      </dl>
+
+      <ul class="trust" role="list">
+        <li>Lorem ipsum dolor sit amet</li>
+        <li>Consectetur adipiscing elit</li>
+        <li>Sed do eiusmod tempor</li>
+      </ul>
+
+      <p class="side__help">
+        Une question ? <a href="#" data-stub>Nous écrire</a>
+      </p>
+    </div>
+  </aside>
+
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

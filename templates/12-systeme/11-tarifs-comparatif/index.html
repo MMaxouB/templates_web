@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comparatif des formules — Lorem ipsum</title>
+  <meta name="description" content="Comparaison ligne à ligne des formules.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav">
+  <a class="brand" href="#" data-stub><span class="brand__mark" aria-hidden="true"></span> Lorem</a>
+  <a class="nav__back" href="#" data-stub>← Vue simplifiée</a>
+</header>
+
+<main id="contenu" class="wrap">
+
+  <header class="head">
+    <h1 class="head__title">Comparatif détaillé</h1>
+    <p class="head__lead">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Toutes les
+      caractéristiques, ligne à ligne.
+    </p>
+  </header>
+
+  <!-- Le tableau EST la mise en page. Il défile latéralement sur petit écran,
+       jamais la page entière. -->
+  <div class="scroller" tabindex="0" role="region" aria-labelledby="tab-titre">
+    <h2 class="visually-hidden" id="tab-titre">Tableau comparatif des formules</h2>
+
+    <table class="cmp">
+      <colgroup>
+        <col class="cmp__c0"><col><col><col>
+      </colgroup>
+
+      <thead>
+        <tr>
+          <th scope="col"><span class="visually-hidden">Caractéristique</span></th>
+          <th scope="col">
+            <span class="hcell">
+              <span class="hcell__name">Lorem</span>
+              <span class="hcell__price">0 €</span>
+              <a class="hcell__cta" href="#" data-stub>Commencer</a>
+            </span>
+          </th>
+          <th scope="col" class="cmp__star">
+            <span class="hcell">
+              <span class="hcell__flag">Le plus choisi</span>
+              <span class="hcell__name">Ipsum</span>
+              <span class="hcell__price">24 €</span>
+              <a class="hcell__cta hcell__cta--full" href="#" data-stub>Choisir</a>
+            </span>
+          </th>
+          <th scope="col">
+            <span class="hcell">
+              <span class="hcell__name">Dolor</span>
+              <span class="hcell__price">72 €</span>
+              <a class="hcell__cta" href="#" data-stub>Nous écrire</a>
+            </span>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="cmp__group"><th colspan="4" scope="colgroup">Consectetur</th></tr>
+
+        <tr>
+          <th scope="row">
+            Lorem ipsum dolor
+            <button class="tip" type="button" data-tip="Sed do eiusmod tempor incididunt ut labore et dolore magna."
+                    aria-label="Précision sur Lorem ipsum dolor">?</button>
+          </th>
+          <td><span class="yes" aria-label="Inclus">◆</span></td>
+          <td class="cmp__star"><span class="yes" aria-label="Inclus">◆</span></td>
+          <td><span class="yes" aria-label="Inclus">◆</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Sit amet consectetur</th>
+          <td class="num">3</td>
+          <td class="num cmp__star">25</td>
+          <td class="num">Illimité</td>
+        </tr>
+        <tr>
+          <th scope="row">Adipiscing elit sed</th>
+          <td class="num">1 Go</td>
+          <td class="num cmp__star">50 Go</td>
+          <td class="num">1 To</td>
+        </tr>
+
+        <tr class="cmp__group"><th colspan="4" scope="colgroup">Tempor incididunt</th></tr>
+
+        <tr>
+          <th scope="row">
+            Do eiusmod tempor
+            <button class="tip" type="button" data-tip="Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+                    aria-label="Précision sur Do eiusmod tempor">?</button>
+          </th>
+          <td><span class="no" aria-label="Non inclus">·</span></td>
+          <td class="cmp__star"><span class="yes" aria-label="Inclus">◆</span></td>
+          <td><span class="yes" aria-label="Inclus">◆</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Incididunt ut labore</th>
+          <td><span class="no" aria-label="Non inclus">·</span></td>
+          <td class="cmp__star"><span class="no" aria-label="Non inclus">·</span></td>
+          <td><span class="yes" aria-label="Inclus">◆</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Et dolore magna</th>
+          <td class="num">—</td>
+          <td class="num cmp__star">48 h</td>
+          <td class="num">4 h</td>
+        </tr>
+
+        <tr class="cmp__group"><th colspan="4" scope="colgroup">Ut enim ad minim</th></tr>
+
+        <tr>
+          <th scope="row">Veniam quis nostrud</th>
+          <td><span class="no" aria-label="Non inclus">·</span></td>
+          <td class="cmp__star"><span class="yes" aria-label="Inclus">◆</span></td>
+          <td><span class="yes" aria-label="Inclus">◆</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Exercitation ullamco</th>
+          <td><span class="no" aria-label="Non inclus">·</span></td>
+          <td class="cmp__star"><span class="no" aria-label="Non inclus">·</span></td>
+          <td><span class="yes" aria-label="Inclus">◆</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="hint">Le tableau défile latéralement sur écran étroit.</p>
+
+  <p class="note">
+    Lorem ipsum dolor sit amet, tous les prix sont hors taxes.
+    <a href="#" data-stub>Nous écrire</a> pour un devis sur mesure.
+  </p>
+
+</main>
+
+<!-- Infobulle unique, déplacée au survol / au focus. -->
+<div class="bubble" data-bubble role="tooltip" hidden></div>
+
+<footer class="foot">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "famille": "05-landing",
+  "famille_nom": "Landing & conversion",
+  "numero": "01",
+  "variante": "01-hero-centre",
+  "archetype": "one-page",
+  "pages": [
+    "index.html",
+    "merci.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

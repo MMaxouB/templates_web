@@ -1,0 +1,14 @@
+{
+  "famille": "09-annuaire",
+  "famille_nom": "Annuaire, listing & recherche",
+  "numero": "05",
+  "variante": "05-facettes-avancees",
+  "archetype": "sidebar",
+  "pages": [
+    "index.html",
+    "fiche.html",
+    "carte.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

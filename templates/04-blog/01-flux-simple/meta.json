@@ -1,0 +1,14 @@
+{
+  "famille": "04-blog",
+  "famille_nom": "Blog & magazine",
+  "numero": "01",
+  "variante": "01-flux-simple",
+  "archetype": "colonne-unique",
+  "pages": [
+    "index.html",
+    "article.html",
+    "categorie.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

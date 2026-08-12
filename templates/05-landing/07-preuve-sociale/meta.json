@@ -1,0 +1,13 @@
+{
+  "famille": "05-landing",
+  "famille_nom": "Landing & conversion",
+  "numero": "07",
+  "variante": "07-preuve-sociale",
+  "archetype": "grille-uniforme",
+  "pages": [
+    "index.html",
+    "merci.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

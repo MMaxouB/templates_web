@@ -1,0 +1,14 @@
+{
+  "famille": "07-doc",
+  "famille_nom": "Documentation & base de connaissances",
+  "numero": "07",
+  "variante": "07-code-cote-a-cote",
+  "archetype": "split-screen",
+  "pages": [
+    "index.html",
+    "article.html",
+    "recherche.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

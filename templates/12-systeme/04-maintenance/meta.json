@@ -1,0 +1,12 @@
+{
+  "famille": "12-systeme",
+  "famille_nom": "Pages système & tunnels",
+  "numero": "04",
+  "variante": "04-maintenance",
+  "archetype": "plein-ecran",
+  "pages": [
+    "index.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

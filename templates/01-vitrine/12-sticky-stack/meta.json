@@ -1,0 +1,14 @@
+{
+  "famille": "01-vitrine",
+  "famille_nom": "Vitrine",
+  "numero": "12",
+  "variante": "12-sticky-stack",
+  "archetype": "sticky-stack",
+  "pages": [
+    "index.html",
+    "page.html",
+    "contact.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

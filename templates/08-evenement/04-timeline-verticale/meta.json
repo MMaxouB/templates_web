@@ -1,0 +1,14 @@
+{
+  "famille": "08-evenement",
+  "famille_nom": "Événement & temporel",
+  "numero": "04",
+  "variante": "04-timeline-verticale",
+  "archetype": "timeline",
+  "pages": [
+    "index.html",
+    "programme.html",
+    "inscription.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

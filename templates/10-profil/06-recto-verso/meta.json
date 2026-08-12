@@ -1,0 +1,13 @@
+{
+  "famille": "10-profil",
+  "famille_nom": "Profil & page personnelle",
+  "numero": "06",
+  "variante": "06-recto-verso",
+  "archetype": "drawer-modale",
+  "pages": [
+    "index.html",
+    "page.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

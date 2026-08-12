@@ -1,0 +1,14 @@
+{
+  "famille": "04-blog",
+  "famille_nom": "Blog & magazine",
+  "numero": "10",
+  "variante": "10-archive-chronologique",
+  "archetype": "timeline",
+  "pages": [
+    "index.html",
+    "article.html",
+    "categorie.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

@@ -1,0 +1,14 @@
+{
+  "famille": "01-vitrine",
+  "famille_nom": "Vitrine",
+  "numero": "01",
+  "variante": "01-hero-plein-ecran",
+  "archetype": "nav-horizontale",
+  "pages": [
+    "index.html",
+    "page.html",
+    "contact.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

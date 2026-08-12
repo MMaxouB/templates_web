@@ -1,0 +1,14 @@
+{
+  "famille": "07-doc",
+  "famille_nom": "Documentation & base de connaissances",
+  "numero": "06",
+  "variante": "06-mono-page-ancres",
+  "archetype": "one-page",
+  "pages": [
+    "index.html",
+    "article.html",
+    "recherche.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

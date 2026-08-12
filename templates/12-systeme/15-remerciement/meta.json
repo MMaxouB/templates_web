@@ -1,0 +1,12 @@
+{
+  "famille": "12-systeme",
+  "famille_nom": "Pages système & tunnels",
+  "numero": "15",
+  "variante": "15-remerciement",
+  "archetype": "colonne-unique",
+  "pages": [
+    "index.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

@@ -1,0 +1,14 @@
+{
+  "famille": "01-vitrine",
+  "famille_nom": "Vitrine",
+  "numero": "06",
+  "variante": "06-nav-overlay",
+  "archetype": "nav-overlay",
+  "pages": [
+    "index.html",
+    "page.html",
+    "contact.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

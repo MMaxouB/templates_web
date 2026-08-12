@@ -1,0 +1,12 @@
+{
+  "famille": "12-systeme",
+  "famille_nom": "Pages système & tunnels",
+  "numero": "11",
+  "variante": "11-tarifs-comparatif",
+  "archetype": "liste-dense",
+  "pages": [
+    "index.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

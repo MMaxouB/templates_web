@@ -1,0 +1,13 @@
+{
+  "famille": "11-media",
+  "famille_nom": "Média riche & immersif",
+  "numero": "07",
+  "variante": "07-visualiseur-360",
+  "archetype": "canvas-libre",
+  "pages": [
+    "index.html",
+    "lecture.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

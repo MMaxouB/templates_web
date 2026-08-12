@@ -1,0 +1,14 @@
+{
+  "famille": "01-vitrine",
+  "famille_nom": "Vitrine",
+  "numero": "04",
+  "variante": "04-one-page-ancres",
+  "archetype": "one-page",
+  "pages": [
+    "index.html",
+    "page.html",
+    "contact.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

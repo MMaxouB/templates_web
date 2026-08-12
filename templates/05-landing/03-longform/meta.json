@@ -1,0 +1,13 @@
+{
+  "famille": "05-landing",
+  "famille_nom": "Landing & conversion",
+  "numero": "03",
+  "variante": "03-longform",
+  "archetype": "colonne-unique",
+  "pages": [
+    "index.html",
+    "merci.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

@@ -1,0 +1,13 @@
+{
+  "famille": "05-landing",
+  "famille_nom": "Landing & conversion",
+  "numero": "12",
+  "variante": "12-parallaxe",
+  "archetype": "parallaxe",
+  "pages": [
+    "index.html",
+    "merci.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

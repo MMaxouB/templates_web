@@ -1,0 +1,14 @@
+{
+  "famille": "01-vitrine",
+  "famille_nom": "Vitrine",
+  "numero": "14",
+  "variante": "14-mega-menu",
+  "archetype": "mega-menu",
+  "pages": [
+    "index.html",
+    "page.html",
+    "contact.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

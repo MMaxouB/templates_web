@@ -1,0 +1,12 @@
+{
+  "famille": "12-systeme",
+  "famille_nom": "Pages système & tunnels",
+  "numero": "14",
+  "variante": "14-faq-accordeons",
+  "archetype": "accordeons",
+  "pages": [
+    "index.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

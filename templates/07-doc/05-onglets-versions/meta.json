@@ -1,0 +1,14 @@
+{
+  "famille": "07-doc",
+  "famille_nom": "Documentation & base de connaissances",
+  "numero": "05",
+  "variante": "05-onglets-versions",
+  "archetype": "onglets",
+  "pages": [
+    "index.html",
+    "article.html",
+    "recherche.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

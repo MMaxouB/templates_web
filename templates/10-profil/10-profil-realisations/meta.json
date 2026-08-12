@@ -1,0 +1,13 @@
+{
+  "famille": "10-profil",
+  "famille_nom": "Profil & page personnelle",
+  "numero": "10",
+  "variante": "10-profil-realisations",
+  "archetype": "grille-uniforme",
+  "pages": [
+    "index.html",
+    "page.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

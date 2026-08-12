@@ -1,0 +1,206 @@
+/* ==========================================================================
+   tokens.css — le contrat entre architecture et thème
+   --------------------------------------------------------------------------
+   Toutes les variantes parlent ce vocabulaire. Un fichier de thème ne fait
+   rien d'autre que redéfinir ces variables.
+
+   Les valeurs ci-dessous sont un repli NEUTRE, volontairement en noir et
+   blanc. Elles existent pour que la règle d'or soit vraie : si le fichier de
+   thème disparaît, la page reste lisible sans casser.
+
+   ⚠ Une variante ne doit JAMAIS écrire une couleur en dur. Uniquement
+     var(--quelque-chose).
+
+   --------------------------------------------------------------------------
+   CONTRAT DE CONTRASTE — ce qu'un thème doit garantir (WCAG AA, 4.5:1)
+
+     --fg, --fg-muted, --fg-subtle   sur --bg, --bg-elevated, --bg-sunken
+     --accent-text                   sur --bg et --bg-elevated
+     --accent-fg                     sur --accent
+     --success --warning --danger --info   sur --bg
+
+   `--accent` en revanche est une SURFACE : il n'a aucune obligation vis-à-vis
+   de --bg, uniquement vis-à-vis de --accent-fg. C'est ce qui permet à un thème
+   d'avoir un fond de bouton très vif sans sacrifier la lisibilité des liens.
+
+   Vérification : templates/12-systeme/16-style-guide
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------- COULEURS
+     Des rôles, jamais des noms de couleur. `--accent` peut être rouge dans un
+     thème et vert dans un autre : le nom ne le dit pas, et c'est voulu. */
+
+  --bg: #ffffff;          /* fond de page */
+  --bg-elevated: #f6f6f6; /* ce qui est au-dessus : cartes, menus, popovers */
+  --bg-sunken: #ececec;   /* ce qui est en creux : champs, puits, zones inertes */
+
+  --fg: #111111;          /* texte principal */
+  --fg-muted: #555555;    /* texte secondaire, légendes */
+  --fg-subtle: #6f6f6f;   /* texte tertiaire, méta, désactivé */
+
+  --accent: #111111;      /* SURFACE d'action : fond de bouton, élément plein */
+  --accent-fg: #ffffff;   /* ce qui se pose SUR --accent */
+  --accent-hover: #333333;
+
+  /* L'accent employé comme TEXTE sur --bg : liens, libellés, icônes.
+     Ce n'est pas toujours la même couleur que --accent. Un thème peut vouloir
+     un corail vif en fond de bouton et un rouge profond pour ses liens : le
+     premier n'a besoin de contraster qu'avec --accent-fg, le second doit
+     rester lisible sur le fond de page. Séparer les deux évite d'avoir à
+     choisir entre l'identité visuelle et la lisibilité. */
+  --accent-text: var(--accent);
+
+  --border: #dcdcdc;
+  --border-strong: #111111;
+
+  --success: #2f7a3f;
+  --warning: #8a6100;
+  --danger: #a62020;
+  --info: #1f5f8b;
+
+  /* Dérivés — un thème n'a normalement pas à les redéfinir. */
+  --focus-ring: 2px solid var(--accent);
+  --focus-offset: 2px;
+  --selection-bg: var(--accent);
+  --selection-fg: var(--accent-fg);
+
+  /* ----------------------------------------------------------- TYPOGRAPHIE
+     Piles système uniquement : aucune police distante, aucun CDN.
+     Un thème redéfinit ces piles pour changer complètement de caractère. */
+
+  --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-display: var(--font-body);
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  /* Toute l'échelle typographique découle de ce seul nombre.
+     1.2 discret · 1.333 standard · 1.618 spectaculaire */
+  --scale-ratio: 1.25;
+
+  --text-base: 1rem;
+  --text-sm: calc(var(--text-base) / var(--scale-ratio));
+  --text-xs: calc(var(--text-sm) / var(--scale-ratio));
+  --text-lg: calc(var(--text-base) * var(--scale-ratio));
+  --text-xl: calc(var(--text-lg) * var(--scale-ratio));
+  --text-2xl: calc(var(--text-xl) * var(--scale-ratio));
+  --text-3xl: calc(var(--text-2xl) * var(--scale-ratio));
+  --text-4xl: calc(var(--text-3xl) * var(--scale-ratio));
+  --text-5xl: calc(var(--text-4xl) * var(--scale-ratio));
+
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.55;
+  --leading-loose: 1.8;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.08em;
+
+  /* ---------------------------------------------------------------- FORMES */
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --border-width: 1px;
+
+  /* -------------------------------------------------------------- PROFONDEUR
+     `--shadow-style` est déclaratif : il dit au style-guide et à la galerie
+     quelle famille d'ombre le thème a choisie. Les valeurs réelles sont dans
+     --shadow-sm/md/lg. */
+
+  --shadow-style: soft; /* soft · hard-offset · inner · none */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.14);
+
+  /* -------------------------------------------------------------- ESPACEMENT
+     Toute l'échelle découle de --space-unit. Un thème dense la réduit,
+     un thème aéré l'augmente, et tous les écarts suivent. */
+
+  --space-unit: 0.5rem;
+  --space-1: var(--space-unit);
+  --space-2: calc(var(--space-unit) * 2);
+  --space-3: calc(var(--space-unit) * 3);
+  --space-4: calc(var(--space-unit) * 4);
+  --space-6: calc(var(--space-unit) * 6);
+  --space-8: calc(var(--space-unit) * 8);
+  --space-12: calc(var(--space-unit) * 12);
+  --space-16: calc(var(--space-unit) * 16);
+  --space-24: calc(var(--space-unit) * 24);
+
+  --container-max: 72rem;
+  --measure: 65ch; /* largeur de lecture confortable */
+
+  /* --------------------------------------------------------------- MOUVEMENT */
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-slow: 400ms;
+}
+
+/* ==========================================================================
+   Application des tokens aux éléments de base.
+   C'est le strict minimum : tout le reste appartient aux variantes.
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* --------------------------------------------------------------------------
+   Liens vers une page non livrée.
+   Convention du dépôt : href="#" + data-stub. Le pointillé n'apparaît que
+   pendant le développement — la classe .is-authoring se pose sur <html>.
+   -------------------------------------------------------------------------- */
+
+.is-authoring [data-stub] {
+  outline: 1px dashed currentColor;
+  outline-offset: 2px;
+  opacity: 0.65;
+}

@@ -1,0 +1,13 @@
+{
+  "famille": "11-media",
+  "famille_nom": "Média riche & immersif",
+  "numero": "02",
+  "variante": "02-lecteur-overlay",
+  "archetype": "drawer-modale",
+  "pages": [
+    "index.html",
+    "lecture.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

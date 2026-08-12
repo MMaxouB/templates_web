@@ -1,0 +1,13 @@
+{
+  "famille": "05-landing",
+  "famille_nom": "Landing & conversion",
+  "numero": "06",
+  "variante": "06-avant-apres",
+  "archetype": "split-screen",
+  "pages": [
+    "index.html",
+    "merci.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

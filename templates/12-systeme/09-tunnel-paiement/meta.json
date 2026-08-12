@@ -1,0 +1,12 @@
+{
+  "famille": "12-systeme",
+  "famille_nom": "Pages système & tunnels",
+  "numero": "09",
+  "variante": "09-tunnel-paiement",
+  "archetype": "multi-etapes",
+  "pages": [
+    "index.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

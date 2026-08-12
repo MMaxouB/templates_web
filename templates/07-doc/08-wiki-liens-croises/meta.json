@@ -1,0 +1,14 @@
+{
+  "famille": "07-doc",
+  "famille_nom": "Documentation & base de connaissances",
+  "numero": "08",
+  "variante": "08-wiki-liens-croises",
+  "archetype": "colonne-unique",
+  "pages": [
+    "index.html",
+    "article.html",
+    "recherche.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

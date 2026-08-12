@@ -1,0 +1,14 @@
+{
+  "famille": "06-app",
+  "famille_nom": "Application & tableau de bord",
+  "numero": "08",
+  "variante": "08-editeur-apercu",
+  "archetype": "split-screen",
+  "pages": [
+    "index.html",
+    "detail.html",
+    "reglages.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

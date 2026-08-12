@@ -1,0 +1,14 @@
+{
+  "famille": "08-evenement",
+  "famille_nom": "Événement & temporel",
+  "numero": "03",
+  "variante": "03-grille-horaire",
+  "archetype": "liste-dense",
+  "pages": [
+    "index.html",
+    "programme.html",
+    "inscription.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

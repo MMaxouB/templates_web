@@ -1,0 +1,14 @@
+{
+  "famille": "04-blog",
+  "famille_nom": "Blog & magazine",
+  "numero": "09",
+  "variante": "09-flux-masonry",
+  "archetype": "masonry",
+  "pages": [
+    "index.html",
+    "article.html",
+    "categorie.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

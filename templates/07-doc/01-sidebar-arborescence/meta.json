@@ -1,0 +1,14 @@
+{
+  "famille": "07-doc",
+  "famille_nom": "Documentation & base de connaissances",
+  "numero": "01",
+  "variante": "01-sidebar-arborescence",
+  "archetype": "sidebar",
+  "pages": [
+    "index.html",
+    "article.html",
+    "recherche.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

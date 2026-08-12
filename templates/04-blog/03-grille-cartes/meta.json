@@ -1,0 +1,14 @@
+{
+  "famille": "04-blog",
+  "famille_nom": "Blog & magazine",
+  "numero": "03",
+  "variante": "03-grille-cartes",
+  "archetype": "grille-uniforme",
+  "pages": [
+    "index.html",
+    "article.html",
+    "categorie.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

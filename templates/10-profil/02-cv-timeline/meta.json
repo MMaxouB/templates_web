@@ -1,0 +1,13 @@
+{
+  "famille": "10-profil",
+  "famille_nom": "Profil & page personnelle",
+  "numero": "02",
+  "variante": "02-cv-timeline",
+  "archetype": "timeline",
+  "pages": [
+    "index.html",
+    "page.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

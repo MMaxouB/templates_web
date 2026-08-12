@@ -1,0 +1,14 @@
+{
+  "famille": "08-evenement",
+  "famille_nom": "Événement & temporel",
+  "numero": "06",
+  "variante": "06-billetterie-etapes",
+  "archetype": "multi-etapes",
+  "pages": [
+    "index.html",
+    "programme.html",
+    "inscription.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

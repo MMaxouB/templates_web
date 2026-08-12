@@ -1,0 +1,14 @@
+{
+  "famille": "09-annuaire",
+  "famille_nom": "Annuaire, listing & recherche",
+  "numero": "08",
+  "variante": "08-scroll-infini",
+  "archetype": "scroll-infini",
+  "pages": [
+    "index.html",
+    "fiche.html",
+    "carte.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

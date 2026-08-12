@@ -1,0 +1,77 @@
+/* ==========================================================================
+   THÈME · neo-brutalism — « Néo-brutalisme »
+   Famille T3 · Bordures noires épaisses, ombres dures décalées, couleurs
+   criardes, zéro arrondi.
+   --------------------------------------------------------------------------
+   C'est le thème le plus utile du lot 0 : il casse tout ce qui suppose
+   des ombres douces, des arrondis ou des bordures fines. Si une architecture
+   tient sous neo-brutalism, elle tient partout.
+   ========================================================================== */
+
+:root {
+  --theme-name: 'Néo-brutalisme';
+  --theme-slug: 'neo-brutalism';
+
+  /* Couleurs */
+  --bg: #ffde59;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #f2d13f;
+
+  --fg: #000000;
+  --fg-muted: #000000;
+  --fg-subtle: #4a4a4a;
+
+  --accent: #ff5f5f;
+  --accent-fg: #000000;
+  --accent-hover: #ff8a8a;
+
+  /* Le corail ne passe pas AA comme texte sur le jaune (2.25:1). Il reste
+     la surface des boutons ; les liens prennent un rouge profond. */
+  --accent-text: #a3001f;
+
+  --border: #000000;
+  --border-strong: #000000;
+
+  --success: #00593a;
+  --warning: #6b3300;
+  --danger: #8f0018;
+  --info: #12358f;
+
+  --focus-ring: 4px solid #000000;
+  --focus-offset: 3px;
+  --selection-bg: #000000;
+  --selection-fg: #ffde59;
+
+  /* Typographie — grotesque grasse, serrée, très contrastée */
+  --font-body: ui-sans-serif, 'Arial Black', Arial, system-ui, sans-serif;
+  --font-display: var(--font-body);
+  --scale-ratio: 1.5;
+  --weight-normal: 500;
+  --weight-medium: 700;
+  --weight-bold: 900;
+  --leading-tight: 0.95;
+  --leading-normal: 1.45;
+  --tracking-tight: -0.04em;
+
+  /* Formes — aucun arrondi, bordures épaisses */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-pill: 0;
+  --border-width: 3px;
+
+  /* Profondeur — ombres pleines et décalées, jamais floues */
+  --shadow-style: hard-offset;
+  --shadow-sm: 3px 3px 0 var(--border-strong);
+  --shadow-md: 6px 6px 0 var(--border-strong);
+  --shadow-lg: 12px 12px 0 var(--border-strong);
+
+  /* Espacement — dense */
+  --space-unit: 0.45rem;
+  --container-max: 68rem;
+
+  /* Mouvement — sec, sans amorti */
+  --ease: steps(3, end);
+  --duration-fast: 90ms;
+  --duration-slow: 180ms;
+}

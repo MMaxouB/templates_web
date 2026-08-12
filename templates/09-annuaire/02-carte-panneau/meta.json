@@ -1,0 +1,14 @@
+{
+  "famille": "09-annuaire",
+  "famille_nom": "Annuaire, listing & recherche",
+  "numero": "02",
+  "variante": "02-carte-panneau",
+  "archetype": "carte-interactive",
+  "pages": [
+    "index.html",
+    "fiche.html",
+    "carte.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

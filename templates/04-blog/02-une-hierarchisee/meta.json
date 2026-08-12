@@ -1,0 +1,14 @@
+{
+  "famille": "04-blog",
+  "famille_nom": "Blog & magazine",
+  "numero": "02",
+  "variante": "02-une-hierarchisee",
+  "archetype": "multi-colonnes",
+  "pages": [
+    "index.html",
+    "article.html",
+    "categorie.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

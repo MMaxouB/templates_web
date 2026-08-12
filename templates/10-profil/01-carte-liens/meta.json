@@ -1,0 +1,13 @@
+{
+  "famille": "10-profil",
+  "famille_nom": "Profil & page personnelle",
+  "numero": "01",
+  "variante": "01-carte-liens",
+  "archetype": "colonne-unique",
+  "pages": [
+    "index.html",
+    "page.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

@@ -1,0 +1,14 @@
+{
+  "famille": "03-portfolio",
+  "famille_nom": "Portfolio & galerie",
+  "numero": "04",
+  "variante": "04-un-par-ecran",
+  "archetype": "scroll-snap",
+  "pages": [
+    "index.html",
+    "projet.html",
+    "contact.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

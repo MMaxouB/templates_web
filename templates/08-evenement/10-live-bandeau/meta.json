@@ -1,0 +1,14 @@
+{
+  "famille": "08-evenement",
+  "famille_nom": "Événement & temporel",
+  "numero": "10",
+  "variante": "10-live-bandeau",
+  "archetype": "nav-sticky",
+  "pages": [
+    "index.html",
+    "programme.html",
+    "inscription.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

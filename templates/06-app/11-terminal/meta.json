@@ -1,0 +1,14 @@
+{
+  "famille": "06-app",
+  "famille_nom": "Application & tableau de bord",
+  "numero": "11",
+  "variante": "11-terminal",
+  "archetype": "terminal",
+  "pages": [
+    "index.html",
+    "detail.html",
+    "reglages.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

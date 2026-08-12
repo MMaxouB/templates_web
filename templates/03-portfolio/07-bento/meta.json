@@ -1,0 +1,14 @@
+{
+  "famille": "03-portfolio",
+  "famille_nom": "Portfolio & galerie",
+  "numero": "07",
+  "variante": "07-bento",
+  "archetype": "bento",
+  "pages": [
+    "index.html",
+    "projet.html",
+    "contact.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

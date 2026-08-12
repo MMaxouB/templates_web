@@ -1,0 +1,13 @@
+{
+  "famille": "10-profil",
+  "famille_nom": "Profil & page personnelle",
+  "numero": "04",
+  "variante": "04-photo-fixe",
+  "archetype": "plein-ecran",
+  "pages": [
+    "index.html",
+    "page.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

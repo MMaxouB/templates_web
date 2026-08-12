@@ -1,0 +1,14 @@
+{
+  "famille": "02-boutique",
+  "famille_nom": "Boutique & catalogue",
+  "numero": "01",
+  "variante": "01-grille-classique",
+  "archetype": "grille-uniforme",
+  "pages": [
+    "index.html",
+    "listing.html",
+    "produit.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

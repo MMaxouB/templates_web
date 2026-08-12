@@ -1,0 +1,14 @@
+{
+  "famille": "08-evenement",
+  "famille_nom": "Événement & temporel",
+  "numero": "07",
+  "variante": "07-one-page-ancres",
+  "archetype": "one-page",
+  "pages": [
+    "index.html",
+    "programme.html",
+    "inscription.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

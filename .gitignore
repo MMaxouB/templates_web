@@ -1,0 +1,9 @@
+# Dossiers autonomes générés par _tools/build.js
+dist/
+
+# Captures générées par _tools/screenshot.js
+**/preview.png
+
+# Système
+.DS_Store
+Thumbs.db

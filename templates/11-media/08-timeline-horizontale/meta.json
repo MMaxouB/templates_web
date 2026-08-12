@@ -1,0 +1,13 @@
+{
+  "famille": "11-media",
+  "famille_nom": "Média riche & immersif",
+  "numero": "08",
+  "variante": "08-timeline-horizontale",
+  "archetype": "scroll-horizontal",
+  "pages": [
+    "index.html",
+    "lecture.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

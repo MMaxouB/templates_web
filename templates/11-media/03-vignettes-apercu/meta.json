@@ -1,0 +1,13 @@
+{
+  "famille": "11-media",
+  "famille_nom": "Média riche & immersif",
+  "numero": "03",
+  "variante": "03-vignettes-apercu",
+  "archetype": "grille-uniforme",
+  "pages": [
+    "index.html",
+    "lecture.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

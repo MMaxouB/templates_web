@@ -1,0 +1,63 @@
+/* ==========================================================================
+   THÈME · modern-light — « Moderne Clair »
+   Famille T2 · Blanc dominant, grandes marges, ombres douces.
+   Le passe-partout : c'est le thème contre lequel on juge les autres.
+   --------------------------------------------------------------------------
+   Un thème ne fait que redéfinir des tokens. Aucun sélecteur d'élément,
+   aucune règle de mise en page : ça, c'est le travail de l'architecture.
+   ========================================================================== */
+
+:root {
+  --theme-name: 'Moderne Clair';
+  --theme-slug: 'modern-light';
+
+  /* Couleurs */
+  --bg: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-sunken: #f4f7fb;
+
+  --fg: #10151c;
+  --fg-muted: #4d5866;
+  --fg-subtle: #616b77;
+
+  --accent: #0b5fff;
+  --accent-fg: #ffffff;
+  --accent-hover: #0847c4;
+
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --success: #0a7a43;
+  --warning: #9c5c00;
+  --danger: #d13438;
+  --info: #0b5fff;
+
+  /* Typographie — sans-serif géométrique, échelle standard */
+  --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-display: var(--font-body);
+  --scale-ratio: 1.333;
+  --leading-normal: 1.6;
+  --tracking-tight: -0.022em;
+
+  /* Formes — arrondis francs mais pas excessifs */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --border-width: 1px;
+
+  /* Profondeur — ombres diffuses et froides */
+  --shadow-style: soft;
+  --shadow-sm: 0 1px 2px rgb(16 21 28 / 0.06);
+  --shadow-md: 0 6px 20px rgb(16 21 28 / 0.08);
+  --shadow-lg: 0 20px 48px rgb(16 21 28 / 0.12);
+
+  /* Espacement — respiration généreuse */
+  --space-unit: 0.5rem;
+  --container-max: 72rem;
+
+  /* Mouvement */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 160ms;
+  --duration-slow: 420ms;
+}

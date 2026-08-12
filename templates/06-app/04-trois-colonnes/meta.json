@@ -1,0 +1,14 @@
+{
+  "famille": "06-app",
+  "famille_nom": "Application & tableau de bord",
+  "numero": "04",
+  "variante": "04-trois-colonnes",
+  "archetype": "trois-colonnes",
+  "pages": [
+    "index.html",
+    "detail.html",
+    "reglages.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

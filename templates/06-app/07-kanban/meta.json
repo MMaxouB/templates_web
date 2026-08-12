@@ -1,0 +1,14 @@
+{
+  "famille": "06-app",
+  "famille_nom": "Application & tableau de bord",
+  "numero": "07",
+  "variante": "07-kanban",
+  "archetype": "scroll-horizontal",
+  "pages": [
+    "index.html",
+    "detail.html",
+    "reglages.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

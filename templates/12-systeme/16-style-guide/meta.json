@@ -1,0 +1,16 @@
+{
+  "famille": "12-systeme",
+  "famille_nom": "Pages système & tunnels",
+  "numero": "16",
+  "variante": "16-style-guide",
+  "archetype": "trois-colonnes",
+  "pages": [
+    "index.html"
+  ],
+  "themes_valides": [
+    "modern-light",
+    "dark-neon",
+    "neo-brutalism"
+  ],
+  "statut": "fini"
+}

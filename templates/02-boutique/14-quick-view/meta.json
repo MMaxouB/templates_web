@@ -1,0 +1,14 @@
+{
+  "famille": "02-boutique",
+  "famille_nom": "Boutique & catalogue",
+  "numero": "14",
+  "variante": "14-quick-view",
+  "archetype": "drawer-modale",
+  "pages": [
+    "index.html",
+    "listing.html",
+    "produit.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

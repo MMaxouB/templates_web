@@ -1,0 +1,14 @@
+{
+  "famille": "02-boutique",
+  "famille_nom": "Boutique & catalogue",
+  "numero": "08",
+  "variante": "08-mono-produit",
+  "archetype": "one-page",
+  "pages": [
+    "index.html",
+    "listing.html",
+    "produit.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

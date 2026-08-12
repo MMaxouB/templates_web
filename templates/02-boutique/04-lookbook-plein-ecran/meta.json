@@ -1,0 +1,14 @@
+{
+  "famille": "02-boutique",
+  "famille_nom": "Boutique & catalogue",
+  "numero": "04",
+  "variante": "04-lookbook-plein-ecran",
+  "archetype": "plein-ecran",
+  "pages": [
+    "index.html",
+    "listing.html",
+    "produit.html"
+  ],
+  "themes_valides": [],
+  "statut": "vide"
+}

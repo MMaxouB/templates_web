@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style guide — validation des tokens</title>
+  <meta name="description" content="Toutes les variables du dépôt sur une seule page. Sert à valider un thème avant de l'appliquer ailleurs.">
+  <meta name="robots" content="noindex">
+
+  <!-- Convention d'en-tête, identique pour toutes les variantes :
+       reset → tokens → thème (data-theme-link) → layout de la variante.
+       _tools/build.js réécrit les trois premiers en assets/css/ à la génération. -->
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/themes/modern-light.css" data-theme-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="bar">
+  <div class="bar__id">
+    <strong>Style guide</strong>
+    <span class="bar__sep">/</span>
+    <span data-theme-label>modern-light</span>
+  </div>
+
+  <div class="bar__tools">
+    <label class="field field--inline">
+      <span class="field__label">Thème</span>
+      <select data-theme-select>
+        <option value="modern-light">Moderne Clair</option>
+        <option value="dark-neon">Sombre Néon</option>
+        <option value="neo-brutalism">Néo-brutalisme</option>
+      </select>
+    </label>
+
+    <label class="switch">
+      <input type="checkbox" data-authoring checked>
+      <span>Repérer les liens morts</span>
+    </label>
+  </div>
+</header>
+
+<main id="contenu" class="wrap">
+
+  <section class="intro">
+    <h1>Validation des tokens</h1>
+    <p class="lead">
+      Cette page n'est pas destinée aux clients. C'est l'outil qui vérifie qu'un thème
+      tient la route avant de l'appliquer aux 145 architectures. Change de thème dans
+      la barre du haut : rien ne doit casser, et tous les contrastes doivent rester au vert.
+    </p>
+  </section>
+
+  <!-- ================================================================ COULEURS -->
+  <section class="section">
+    <h2 class="section__title">Couleurs</h2>
+    <p class="section__note">
+      Le rapport de contraste est calculé sur les couleurs réellement rendues.
+      <strong>AA</strong> = 4.5 minimum pour du texte courant, 3 pour du grand texte.
+    </p>
+    <p class="section__note">
+      <code>--accent</code> est une <strong>surface</strong> : il n'a d'obligation que
+      vis-à-vis de <code>--accent-fg</code>. C'est <code>--accent-text</code> qui sert de
+      couleur de texte, et lui doit rester lisible sur le fond de page. Sur un thème comme
+      <code>neo-brutalism</code>, les deux diffèrent : corail vif en fond de bouton,
+      rouge profond pour les liens.
+    </p>
+
+    <div class="swatches" data-contrast-grid>
+      <div class="swatch" style="background: var(--bg); color: var(--fg);">
+        <span class="swatch__name">--fg sur --bg</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg); color: var(--fg-muted);">
+        <span class="swatch__name">--fg-muted sur --bg</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg); color: var(--fg-subtle);">
+        <span class="swatch__name">--fg-subtle sur --bg</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg-elevated); color: var(--fg);">
+        <span class="swatch__name">--fg sur --bg-elevated</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg-sunken); color: var(--fg);">
+        <span class="swatch__name">--fg sur --bg-sunken</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--accent); color: var(--accent-fg);">
+        <span class="swatch__name">--accent-fg sur --accent</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg); color: var(--accent-text);">
+        <span class="swatch__name">--accent-text sur --bg</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg-elevated); color: var(--accent-text);">
+        <span class="swatch__name">--accent-text sur --bg-elevated</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg); color: var(--success);">
+        <span class="swatch__name">--success sur --bg</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg); color: var(--warning);">
+        <span class="swatch__name">--warning sur --bg</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg); color: var(--danger);">
+        <span class="swatch__name">--danger sur --bg</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch" style="background: var(--bg); color: var(--info);">
+        <span class="swatch__name">--info sur --bg</span>
+        <span class="swatch__ratio" data-ratio></span>
+      </div>
+      <div class="swatch swatch--border">
+        <span class="swatch__name">--border / --border-strong</span>
+        <span class="swatch__ratio">bordures</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ TYPOGRAPHIE -->
+  <section class="section">
+    <h2 class="section__title">Typographie</h2>
+    <p class="section__note">
+      Toute l'échelle découle de <code>--scale-ratio</code>. Changer ce seul nombre
+      change les neuf tailles.
+    </p>
+
+    <div class="scale">
+      <p class="scale__row"><span class="scale__tag">--text-5xl</span><span style="font-size: var(--text-5xl); font-family: var(--font-display); font-weight: var(--weight-bold); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight);">Titre</span></p>
+      <p class="scale__row"><span class="scale__tag">--text-4xl</span><span style="font-size: var(--text-4xl); font-family: var(--font-display); font-weight: var(--weight-bold); line-height: var(--leading-tight);">Titre</span></p>
+      <p class="scale__row"><span class="scale__tag">--text-3xl</span><span style="font-size: var(--text-3xl); font-family: var(--font-display); font-weight: var(--weight-bold); line-height: var(--leading-tight);">Titre</span></p>
+      <p class="scale__row"><span class="scale__tag">--text-2xl</span><span style="font-size: var(--text-2xl); font-family: var(--font-display); font-weight: var(--weight-bold);">Titre</span></p>
+      <p class="scale__row"><span class="scale__tag">--text-xl</span><span style="font-size: var(--text-xl);">Sous-titre</span></p>
+      <p class="scale__row"><span class="scale__tag">--text-lg</span><span style="font-size: var(--text-lg);">Texte augmenté</span></p>
+      <p class="scale__row"><span class="scale__tag">--text-base</span><span style="font-size: var(--text-base);">Texte courant</span></p>
+      <p class="scale__row"><span class="scale__tag">--text-sm</span><span style="font-size: var(--text-sm);">Texte secondaire</span></p>
+      <p class="scale__row"><span class="scale__tag">--text-xs</span><span style="font-size: var(--text-xs);">Mention légale</span></p>
+    </div>
+
+    <div class="cols">
+      <div>
+        <h3 class="h3">Familles</h3>
+        <p style="font-family: var(--font-display);">--font-display · Lorem ipsum dolor sit amet</p>
+        <p style="font-family: var(--font-body);">--font-body · Lorem ipsum dolor sit amet</p>
+        <p style="font-family: var(--font-mono);">--font-mono · Lorem ipsum dolor sit</p>
+      </div>
+      <div>
+        <h3 class="h3">Graisses &amp; interlignes</h3>
+        <p style="font-weight: var(--weight-normal);">--weight-normal</p>
+        <p style="font-weight: var(--weight-medium);">--weight-medium</p>
+        <p style="font-weight: var(--weight-bold);">--weight-bold</p>
+        <p style="line-height: var(--leading-loose);">--leading-loose · Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+      </div>
+    </div>
+
+    <div class="measure">
+      <h3 class="h3">Largeur de lecture — <code>--measure</code></h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================= ESPACEMENT -->
+  <section class="section">
+    <h2 class="section__title">Espacement</h2>
+    <p class="section__note">
+      Tous les écarts découlent de <code>--space-unit</code>. Un thème dense le réduit,
+      un thème aéré l'augmente, et l'ensemble suit.
+    </p>
+    <ul class="bars" role="list">
+      <li><span class="bars__tag">--space-1</span><span class="bars__bar" style="inline-size: var(--space-1);"></span></li>
+      <li><span class="bars__tag">--space-2</span><span class="bars__bar" style="inline-size: var(--space-2);"></span></li>
+      <li><span class="bars__tag">--space-3</span><span class="bars__bar" style="inline-size: var(--space-3);"></span></li>
+      <li><span class="bars__tag">--space-4</span><span class="bars__bar" style="inline-size: var(--space-4);"></span></li>
+      <li><span class="bars__tag">--space-6</span><span class="bars__bar" style="inline-size: var(--space-6);"></span></li>
+      <li><span class="bars__tag">--space-8</span><span class="bars__bar" style="inline-size: var(--space-8);"></span></li>
+      <li><span class="bars__tag">--space-12</span><span class="bars__bar" style="inline-size: var(--space-12);"></span></li>
+      <li><span class="bars__tag">--space-16</span><span class="bars__bar" style="inline-size: var(--space-16);"></span></li>
+      <li><span class="bars__tag">--space-24</span><span class="bars__bar" style="inline-size: var(--space-24);"></span></li>
+    </ul>
+  </section>
+
+  <!-- ========================================================= FORMES & OMBRES -->
+  <section class="section">
+    <h2 class="section__title">Formes et profondeur</h2>
+
+    <div class="tiles">
+      <div class="tile" style="border-radius: var(--radius-sm);"><span>--radius-sm</span></div>
+      <div class="tile" style="border-radius: var(--radius-md);"><span>--radius-md</span></div>
+      <div class="tile" style="border-radius: var(--radius-lg);"><span>--radius-lg</span></div>
+      <div class="tile" style="border-radius: var(--radius-pill);"><span>--radius-pill</span></div>
+    </div>
+
+    <div class="tiles">
+      <div class="tile tile--plain" style="box-shadow: var(--shadow-sm);"><span>--shadow-sm</span></div>
+      <div class="tile tile--plain" style="box-shadow: var(--shadow-md);"><span>--shadow-md</span></div>
+      <div class="tile tile--plain" style="box-shadow: var(--shadow-lg);"><span>--shadow-lg</span></div>
+      <div class="tile tile--plain"><span>--shadow-style : <b data-shadow-style></b></span></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ COMPOSANTS -->
+  <section class="section">
+    <h2 class="section__title">Composants</h2>
+
+    <h3 class="h3">Boutons</h3>
+    <div class="row">
+      <button class="btn">Action principale</button>
+      <button class="btn btn--ghost">Action secondaire</button>
+      <button class="btn btn--quiet">Action tertiaire</button>
+      <button class="btn btn--danger">Action destructrice</button>
+      <button class="btn" disabled>Désactivé</button>
+    </div>
+
+    <h3 class="h3">Liens</h3>
+    <p>
+      Un <a href="#contenu">lien standard</a>, un
+      <a href="#" data-stub>lien vers une page non livrée</a>, et un
+      <a class="link-quiet" href="#contenu">lien discret</a>.
+      Le second est signalé tant que « repérer les liens morts » est actif.
+    </p>
+
+    <h3 class="h3">Champs</h3>
+    <div class="cols">
+      <label class="field">
+        <span class="field__label">Champ texte</span>
+        <input type="text" placeholder="Lorem ipsum">
+      </label>
+      <label class="field">
+        <span class="field__label">Liste déroulante</span>
+        <select>
+          <option>Première option</option>
+          <option>Deuxième option</option>
+        </select>
+      </label>
+      <label class="field field--error">
+        <span class="field__label">Champ en erreur</span>
+        <input type="email" value="pas-une-adresse" aria-invalid="true" aria-describedby="err">
+        <span class="field__msg" id="err">Le format attendu est une adresse électronique.</span>
+      </label>
+      <label class="field">
+        <span class="field__label">Zone de texte</span>
+        <textarea rows="3" placeholder="Lorem ipsum dolor sit amet"></textarea>
+      </label>
+    </div>
+
+    <h3 class="h3">Cartes</h3>
+    <div class="cards">
+      <article class="card">
+        <div class="card__media" aria-hidden="true"></div>
+        <h4 class="card__title">Titre de carte</h4>
+        <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+        <a class="card__link" href="#" data-stub>En savoir plus</a>
+      </article>
+      <article class="card">
+        <div class="card__media" aria-hidden="true"></div>
+        <h4 class="card__title">Titre de carte</h4>
+        <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+        <a class="card__link" href="#" data-stub>En savoir plus</a>
+      </article>
+      <article class="card">
+        <div class="card__media" aria-hidden="true"></div>
+        <h4 class="card__title">Titre de carte</h4>
+        <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+        <a class="card__link" href="#" data-stub>En savoir plus</a>
+      </article>
+    </div>
+
+    <h3 class="h3">Messages</h3>
+    <p class="alert alert--info">Message d'information. Lorem ipsum dolor sit amet.</p>
+    <p class="alert alert--success">Message de succès. Lorem ipsum dolor sit amet.</p>
+    <p class="alert alert--warning">Message d'avertissement. Lorem ipsum dolor sit amet.</p>
+    <p class="alert alert--danger">Message d'erreur. Lorem ipsum dolor sit amet.</p>
+
+    <h3 class="h3">Étiquettes</h3>
+    <div class="row">
+      <span class="badge">Neutre</span>
+      <span class="badge badge--accent">Accent</span>
+      <span class="badge badge--success">Succès</span>
+      <span class="badge badge--danger">Erreur</span>
+    </div>
+
+    <h3 class="h3">Tableau</h3>
+    <div class="table-wrap">
+      <table>
+        <caption class="visually-hidden">Exemple de tableau de données</caption>
+        <thead>
+          <tr><th scope="col">Colonne</th><th scope="col">Colonne</th><th scope="col">Valeur</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lorem ipsum</td><td>Dolor sit amet</td><td class="num">1 240</td></tr>
+          <tr><td>Consectetur</td><td>Adipiscing elit</td><td class="num">86</td></tr>
+          <tr><td>Sed do eiusmod</td><td>Tempor incididunt</td><td class="num">3 907</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="h3">Code</h3>
+    <pre><code>:root {
+  --accent: #0b5fff;
+  --radius-md: 10px;
+}</code></pre>
+  </section>
+
+  <!-- ================================================================= ÉTATS -->
+  <section class="section">
+    <h2 class="section__title">États</h2>
+    <p class="section__note">
+      Navigue au clavier avec <kbd>Tab</kbd> : l'anneau de focus doit rester visible
+      sur tous les thèmes, y compris sur fond coloré.
+    </p>
+    <div class="row">
+      <button class="btn">Focus au clavier</button>
+      <a class="btn btn--ghost" href="#contenu">Lien bouton</a>
+      <input type="text" value="Champ" style="max-inline-size: 12rem;">
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>
+    <strong data-theme-label>modern-light</strong> — variante
+    <code>12-systeme/16-style-guide</code>, archétype <code>trois-colonnes</code>.
+  </p>
+  <p class="foot__note">
+    Un thème est validé quand tous les rapports de contraste sont au vert et qu'aucun
+    composant ne devient illisible.
+  </p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

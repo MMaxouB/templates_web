@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Référence 04 — Système ancien</title>
+  <meta name="description" content="Diversity Benchmark, référence 04 : panneaux fixes, biseaux, menu plein écran, conventions d'un gestionnaire de fenêtres de 1995.">
+  <link rel="stylesheet" href="../../_core/reset.css">
+  <link rel="stylesheet" href="../../_core/tokens.css">
+  <link rel="stylesheet" href="../../_core/palettes/gris-systeme.css" data-palette-link>
+  <link rel="stylesheet" href="../../_core/directions/systeme-95.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Composition `panelled` : des zones fixes à défilement indépendant.
+       Le document ne défile pas globalement — c'est la logique d'un
+       gestionnaire de fenêtres. -->
+
+  <div class="bureau">
+
+    <!-- La fenêtre principale. Barre de titre, cadre biseauté, zone client. -->
+    <section class="fenetre" aria-labelledby="titre-fen">
+      <header class="titre">
+        <span class="titre__texte" id="titre-fen">LOREM.EXE — Référence 04</span>
+        <span class="titre__boutons">
+          <button class="tbtn" type="button" aria-label="Réduire">_</button>
+          <button class="tbtn" type="button" aria-label="Agrandir">□</button>
+          <button class="tbtn" type="button" aria-label="Fermer">×</button>
+        </span>
+      </header>
+
+      <!-- Barre de menus : `overlay-menu`, un seul déclencheur qui masque
+           entièrement la fenêtre à l'ouverture. -->
+      <div class="menus">
+        <button class="menu__declencheur" type="button" id="ouvrir-menu" aria-expanded="false" aria-controls="menu-plein">
+          <u>F</u>ichier
+        </button>
+        <span class="menus__inerte"><u>É</u>dition</span>
+        <span class="menus__inerte"><u>A</u>ffichage</span>
+        <span class="menus__inerte">&nbsp;?</span>
+      </div>
+
+      <div class="client">
+
+        <!-- Panneau gauche : arborescence, défilement propre. -->
+        <nav class="arbre" aria-label="Sommaire">
+          <p class="arbre__racine">▣ Sections</p>
+          <ul class="arbre__liste">
+            <li><a href="#s1">Sed do eiusmod</a></li>
+            <li><a href="#s2">Ut enim ad minim</a></li>
+            <li><a href="#s3">Duis aute irure</a></li>
+            <li><a href="#s4">Excepteur sint</a></li>
+          </ul>
+          <p class="arbre__racine">▤ Série</p>
+          <ul class="arbre__liste">
+            <li><button class="lien-faux" type="button" data-fiche="serie">Afficher…</button></li>
+          </ul>
+        </nav>
+
+        <!-- Panneau droit : le document, défilement propre. -->
+        <main class="doc">
+          <div class="groupe">
+            <h1 class="groupe__legende">Lorem ipsum dolor sit amet</h1>
+            <p class="doc__accroche">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <figure class="icone">
+              <svg viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Icône de document">
+                <rect x="4" y="2" width="24" height="28" fill="currentColor" opacity="0.25"/>
+                <rect x="7" y="6" width="18" height="2" fill="currentColor"/>
+                <rect x="7" y="11" width="18" height="2" fill="currentColor"/>
+                <rect x="7" y="16" width="12" height="2" fill="currentColor"/>
+              </svg>
+              <figcaption>doc.txt</figcaption>
+            </figure>
+          </div>
+
+          <section class="groupe" id="s1">
+            <h2 class="groupe__legende">Sed do eiusmod</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </section>
+
+          <section class="groupe" id="s2">
+            <h2 class="groupe__legende">Ut enim ad minim</h2>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.</p>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+          </section>
+
+          <section class="groupe" id="s3">
+            <h2 class="groupe__legende">Duis aute irure</h2>
+            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+            <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+          </section>
+
+          <section class="groupe" id="s4">
+            <h2 class="groupe__legende">Excepteur sint</h2>
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+            <p>Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore.</p>
+          </section>
+
+          <p class="doc__suite"><button class="bouton" type="button" data-fiche="serie">Poursuivre</button></p>
+        </main>
+      </div>
+
+      <footer class="statut">
+        <span class="statut__case">Prêt</span>
+        <span class="statut__case">5 entrées</span>
+        <span class="statut__case statut__case--large">Diversity Benchmark — douze références</span>
+      </footer>
+    </section>
+  </div>
+
+  <!-- Menu plein écran. C'est la navigation `overlay-menu` : l'ouverture
+       masque entièrement ce qu'il y a dessous. -->
+  <div class="plein" id="menu-plein" hidden>
+    <div class="plein__panneau" role="dialog" aria-modal="true" aria-label="Menu Fichier">
+      <p class="plein__titre">Fichier</p>
+      <ul class="plein__liste">
+        <li><a href="#s1">Sed do eiusmod<kbd>Ctrl+1</kbd></a></li>
+        <li><a href="#s2">Ut enim ad minim<kbd>Ctrl+2</kbd></a></li>
+        <li><a href="#s3">Duis aute irure<kbd>Ctrl+3</kbd></a></li>
+        <li><a href="#s4">Excepteur sint<kbd>Ctrl+4</kbd></a></li>
+      </ul>
+      <p class="plein__pied"><button class="bouton" type="button" data-fermer>Fermer</button></p>
+    </div>
+  </div>
+
+  <!-- Interaction `modal-layer` : le détail s'ouvre en boîte de dialogue,
+       piège de focus, retour au déclencheur à la fermeture. -->
+  <dialog class="boite" id="fiche-serie" aria-labelledby="fiche-titre">
+    <header class="titre titre--boite">
+      <span class="titre__texte" id="fiche-titre">Série — propriétés</span>
+      <span class="titre__boutons"><button class="tbtn" type="button" data-fermer aria-label="Fermer">×</button></span>
+    </header>
+    <div class="boite__corps">
+      <table class="tableau">
+        <thead><tr><th scope="col">Libellé</th><th scope="col">Valeur</th><th scope="col">Part</th></tr></thead>
+        <tbody>
+          <tr><td>Lorem ipsum</td><td>128</td><td>14 %</td></tr>
+          <tr><td>Dolor sit</td><td>64</td><td>7 %</td></tr>
+          <tr><td>Amet consectetur</td><td>256</td><td>28 %</td></tr>
+          <tr><td>Adipiscing elit</td><td>32</td><td>3 %</td></tr>
+          <tr><td>Sed eiusmod</td><td>512</td><td>48 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="boite__pied">
+      <button class="bouton bouton--defaut" type="button" data-fermer>OK</button>
+      <button class="bouton" type="button" data-fermer>Annuler</button>
+    </footer>
+  </dialog>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

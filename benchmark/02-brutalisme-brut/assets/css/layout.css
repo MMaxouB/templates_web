@@ -1,0 +1,166 @@
+/* ==========================================================================
+   benchmark/02-brutalisme-brut — structure
+   Composition : full-bleed · Densité : compact · Navigation : inline-contextual
+   --------------------------------------------------------------------------
+   Aucun conteneur centré, aucune gouttière, aucun arrondi, aucune ombre.
+   Les blocs touchent les bords de l'écran.
+   ========================================================================== */
+
+@layer structure {
+
+  .dalle {
+    /* Pas de max-inline-size, pas de margin auto : c'est ça, full-bleed. */
+    padding: 0;
+  }
+
+  /* ------------------------------------------------------------- le titre
+     Le titre occupe la page. `clamp` le laisse écraser tout le reste sans
+     jamais déborder horizontalement. */
+
+  .enorme {
+    font-size: clamp(3.5rem, 17vw, 15rem);
+    padding: var(--space-4) var(--space-4) var(--space-2);
+    border-block-end: var(--rule-width) solid var(--rule-color);
+    /* Le texte peut dépasser légèrement à gauche : le coffrage déborde. */
+    margin-inline-start: -0.06em;
+  }
+
+  /* ------------------------------------------------------------ le bandeau
+     Une bande pleine largeur en inverse. Le contraste vient de l'aplat,
+     pas d'une ombre. */
+
+  .bandeau {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2);
+    background: var(--fg);
+    color: var(--bg);
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+  }
+
+  /* ----------------------------------------------------------- l'accroche
+     La navigation vit ici, dans la phrase. */
+
+  .accroche {
+    font-size: clamp(1.05rem, 2.4vw, 1.6rem);
+    line-height: 1.4;
+    padding: var(--space-6) var(--space-4);
+    max-inline-size: 52ch;
+    border-block-end: var(--rule-width) solid var(--rule-color);
+  }
+
+  .accroche a {
+    text-decoration-thickness: 4px;
+    text-underline-offset: 0.08em;
+  }
+
+  /* -------------------------------------------------------------- les blocs
+     Deux colonnes inégales : le titre à gauche, le texte à droite. Le filet
+     épais entre les blocs est le joint de banche. */
+
+  .bloc {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border-block-end: var(--rule-width) solid var(--rule-color);
+  }
+
+  @media (min-width: 48rem) {
+    .bloc {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      gap: var(--space-6);
+    }
+  }
+
+  .bloc__titre {
+    font-size: clamp(1.6rem, 4.5vw, 3.2rem);
+  }
+
+  .bloc__texte {
+    columns: 1;
+    font-size: var(--text-sm);
+  }
+
+  @media (min-width: 72rem) {
+    .bloc__texte { columns: 2; column-gap: var(--space-6); }
+  }
+
+  .bloc__texte p { margin-block-end: var(--space-2); }
+
+  /* ------------------------------------------------------------- le média
+     Recadrage 5:1 : `preserveAspectRatio="none"` écrase délibérément le
+     dessin. Le sujet est coupé, et c'est le sujet. */
+
+  .coupe { margin: 0; }
+
+  .coupe__img {
+    display: block;
+    inline-size: 100%;
+    block-size: clamp(90px, 14vw, 200px);
+    color: var(--fg);
+    filter: var(--media-filter);
+    border-block-end: var(--rule-width) solid var(--rule-color);
+  }
+
+  /* -------------------------------------------------------------- la série
+     La donnée est la LARGEUR d'un aplat. Aucun axe, aucune légende, aucune
+     grille : une barre de béton dont la longueur signifie. */
+
+  .serie { padding: var(--space-4); }
+
+  .serie__titre {
+    font-size: clamp(1.6rem, 4.5vw, 3.2rem);
+    margin-block-end: var(--space-3);
+  }
+
+  .serie__blocs { list-style: none; padding: 0; margin: 0; }
+
+  .barre {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    margin-block-end: 3px;
+    color: var(--accent-fg);
+    background: var(--accent);
+    /* La largeur EST la donnée. Un minimum garantit la lisibilité du libellé. */
+    inline-size: max(26ch, calc(var(--part) * 1.9%));
+    font-family: var(--font-meta);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    font-size: var(--text-sm);
+  }
+
+  .barre__val { font-variant-numeric: tabular-nums; }
+
+  /* -------------------------------------------------------- l'action
+     Une bande pleine largeur. `no-standard-cta` : ni bouton, ni pilule,
+     ni centrage. */
+
+  .bande-action {
+    display: block;
+    background: var(--fg);
+    color: var(--bg);
+    text-decoration: none;
+    padding: var(--space-4);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: clamp(1.6rem, 6vw, 4rem);
+    line-height: 1;
+  }
+
+  .bande-action::after { content: ' \2192'; }
+
+  .bande-action:hover {
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
+
+} /* @layer structure */

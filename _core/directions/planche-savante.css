@@ -1,0 +1,136 @@
+/* ==========================================================================
+   DIRECTION · planche-savante
+   Benchmark 09 — « planche scientifique »
+   --------------------------------------------------------------------------
+   Logique interne : une planche d'ouvrage savant du XIXe.
+
+     · La grille est VISIBLE. Elle n'est pas un outil de conception caché,
+       c'est un élément graphique : filets de module, repères de coupe,
+       numérotation des cases.
+     · Tout est numéroté. Une planche renvoie à sa légende par des chiffres,
+       et la légende est aussi importante que l'illustration.
+     · La hiérarchie vient des filets et de la numérotation, pas du corps :
+       une légende et un titre de section ont presque la même taille.
+     · Chiffres elzéviriens dans le texte, chiffres alignés dans les tableaux.
+       C'est la convention de l'imprimé savant, et elle se déclare.
+     · Aucun mouvement. Une planche ne bouge pas.
+
+   Contraintes servies : visible-grid · editorial · no-rounded · no-shadow
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Planche Savante';
+    --direction-slug: 'planche-savante';
+
+    --type-system: rule-driven;
+    --font-body: 'Palatino Linotype', Palatino, 'URW Palladio L', 'Book Antiqua', Georgia, serif;
+    --font-display: var(--font-body);
+    --font-title: var(--font-body);
+    --font-lead: var(--font-body);
+    --font-meta: 'Arial Narrow', 'Liberation Sans Narrow', Arial, sans-serif;
+    --font-ui: var(--font-meta);
+
+    --scale-ratio: 1.12;
+    --leading-tight: 1.2;
+    --leading-normal: 1.44;
+
+    --case-title: none;
+    --case-meta: uppercase;
+    --tracking-title: 0.01em;
+    --tracking-meta: 0.14em;
+    --weight-title: 700;
+
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 1px;
+
+    --depth-model: flat;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    --rule-style: hairline;
+    --rule-line: solid;
+    --rule-width: 1px;
+    --rule-color: var(--fg);
+
+    --control-shape: rect;
+    --control-fill: outline;
+    --control-radius: 0;
+    --control-case: uppercase;
+    --control-tracking: 0.14em;
+
+    --focus-style: bracket;
+    --focus-ring: 2px solid var(--accent);
+    --focus-offset: 2px;
+
+    /* Surface — papier vergé : des vergeures fines et régulières. */
+    --surface-model: paper;
+    --surface-texture-image:
+      repeating-linear-gradient(0deg, rgb(0 0 0 / 0.028) 0 1px, transparent 1px 4px),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='v'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23v)' opacity='0.05'/%3E%3C/svg%3E");
+    --surface-texture-size: 4px 4px, 140px 140px;
+    --surface-texture-blend: multiply, multiply;
+
+    --media-model: framed-plate;
+    --media-filter: grayscale(1) contrast(1.15);
+    --media-frame: 1px solid var(--fg);
+    --media-radius: 0;
+
+    --density: 0.72;
+    --density-measure: 0.82;
+    --space-unit: 0.5rem;
+    --rhythm: regular;
+    --container-max: 74rem;
+
+    --motion-model: none;
+    --duration-fast: 0s;
+    --duration-slow: 0s;
+    --decor-level: 2;
+  }
+
+  body {
+    /* Convention de l'imprimé savant : elzéviriens dans le texte courant. */
+    font-variant-numeric: oldstyle-nums;
+    hyphens: auto;
+    orphans: 2;
+    widows: 2;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--weight-title);
+    letter-spacing: var(--tracking-title);
+  }
+
+  /* …mais alignés dans les tableaux, où l'on compare des colonnes. */
+  table { font-variant-numeric: lining-nums tabular-nums; border-collapse: collapse; }
+  th, td { border: 1px solid var(--border); padding: 0.3em 0.6em; text-align: start; }
+  th {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+  }
+
+  figcaption {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+  }
+
+  a { color: var(--accent-text); text-underline-offset: 0.16em; }
+}
+
+@layer overrides {
+  :where(main) :where(section, article, aside, li, div) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

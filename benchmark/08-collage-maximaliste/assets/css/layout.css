@@ -1,0 +1,214 @@
+/* ==========================================================================
+   benchmark/08-collage-maximaliste — structure
+   Composition : scattered · Densité : maximalist · Navigation : scroll-only
+   --------------------------------------------------------------------------
+   RÈGLE INTERNE, en une phrase :
+
+     tout élément est posé sur une grille de 12 colonnes, pivoté d'un angle
+     pris dans une suite de CINQ valeurs fixes, et chevauche au moins un
+     voisin par une marge négative.
+
+   Cette règle est reproductible : appliquée à un contenu nouveau, elle donne
+   le même résultat. C'est ce qui sépare le chaos contrôlé du bruit — et c'est
+   ce qu'exige la contrainte `controlled-chaos`.
+
+   Le maximalisme vient du RECOUVREMENT, pas d'un contenu ajouté : le contenu
+   est celui, identique, des onze autres références.
+   ========================================================================== */
+
+@layer structure {
+
+  .planche {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0;                        /* jointif : aucune gouttière */
+    padding: var(--space-4) var(--space-3) var(--space-16);
+    overflow-x: clip;              /* les angles ne créent jamais de scroll */
+    position: relative;
+  }
+
+  @media (min-width: 60rem) {
+    .planche { padding: var(--space-6) var(--space-6) var(--space-24); }
+  }
+
+  /* Tout enfant direct suit la règle : colonne, portée, angle, recouvrement. */
+  .planche > * {
+    grid-column: var(--col, 1) / span var(--span, 6);
+    transform: rotate(var(--angle));
+    /* Le recouvrement : chaque élément mord sur le précédent. */
+    margin-block-start: calc(var(--space-4) * -1);
+    position: relative;
+  }
+
+  /* La suite de cinq angles. Aucun autre angle n'existe dans la page. */
+  [data-a='1'] { --angle: var(--angle-1); }
+  [data-a='2'] { --angle: var(--angle-2); }
+  [data-a='3'] { --angle: var(--angle-3); }
+  [data-a='4'] { --angle: var(--angle-4); }
+  [data-a='5'] { --angle: var(--angle-5); }
+
+  /* Sous 48rem la grille se réduit à 6 colonnes et les angles s'atténuent :
+     le collage reste lisible sur un téléphone. */
+  @media (max-width: 48rem) {
+    .planche { grid-template-columns: repeat(6, 1fr); }
+    .planche > * {
+      grid-column: 1 / span 6;
+      transform: rotate(calc(var(--angle) * 0.45));
+      margin-block-start: calc(var(--space-2) * -1);
+    }
+  }
+
+  /* --------------------------------------------------------------- pièces */
+
+  .etiquette {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    background: var(--fg);
+    color: var(--bg);
+    padding: 0.2em 0.6em;
+    justify-self: start;
+    z-index: 4;
+  }
+
+  .titre {
+    font-size: clamp(2.6rem, 9vw, 6.5rem);
+    z-index: 3;
+    margin-block-start: var(--space-2);
+  }
+
+  .accroche {
+    font-family: var(--font-lead);     /* serif : famille n°2 */
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    background: var(--bg-elevated);
+    border: var(--border-width) solid var(--fg);
+    padding: var(--space-2);
+    z-index: 5;
+  }
+
+  /* La mosaïque : jointive, sans une seule gouttière. */
+  .mosaique {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    color: var(--border-strong);
+    z-index: 2;
+  }
+
+  .mosaique svg {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    filter: var(--media-filter);
+  }
+
+  .fragment {
+    font-family: var(--font-body);     /* mono : famille n°3 */
+    font-size: var(--text-sm);
+    background: var(--bg);
+    border: var(--border-width) solid var(--fg);
+    padding: var(--space-3);
+    z-index: 6;
+  }
+
+  /* Une pièce sur deux est en négatif : c'est le second passage d'encre. */
+  .fragment--inverse {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--border-strong);
+  }
+  .fragment--inverse .fragment__t { text-shadow: 3px 2px 0 var(--border-strong); }
+
+  .fragment__t {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    margin-block-end: var(--space-2);
+  }
+
+  .fragment p { margin-block-end: var(--space-2); }
+  .fragment p:last-child { margin-block-end: 0; }
+
+  /* Le chiffre isolé, énorme, en plein milieu du collage. */
+  .cri {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 18vw, 13rem);
+    line-height: 0.78;
+    color: var(--accent);
+    text-shadow: 5px 4px 0 var(--border-strong);
+    z-index: 1;
+    justify-self: end;
+  }
+
+  /* --------------------------------------------------------------- série
+     Cinq vignettes découpées, chacune à son propre angle, jointives. */
+
+  .serie {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    z-index: 7;
+  }
+
+  @media (max-width: 40rem) {
+    .serie { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .vignette {
+    background: var(--accent);
+    color: var(--accent-fg);
+    border: var(--border-width) solid var(--fg);
+    padding: var(--space-2) var(--space-1);
+    text-align: center;
+    transform: rotate(var(--angle));
+    font-family: var(--font-meta);
+  }
+
+  .vignette b {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    line-height: 1;
+  }
+
+  .vignette span {
+    display: block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-block-start: 0.3em;
+  }
+
+  /* Le « scotch » : l'action, collée de travers. Ni bouton ni pilule. */
+  .scotch {
+    background: var(--border-strong);
+    color: var(--bg-elevated);
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 3.5vw, 2rem);
+    text-transform: uppercase;
+    justify-self: start;
+    z-index: 8;
+  }
+  .scotch a { color: inherit; text-decoration: none; }
+  .scotch a::after { content: ' \2197'; }
+  .scotch a:hover { background: transparent; text-decoration: underline; }
+
+  /* --------------------------------------------------------- le mouvement
+     `continuous-loop` : la planche respire très lentement. Un collage n'est
+     jamais tout à fait posé. Un seul élément bouge — pas toute la page. */
+
+  .cri { animation: derive var(--duration-slow) var(--ease) infinite alternate; }
+
+  @keyframes derive {
+    from { transform: rotate(var(--angle)) translate3d(0, 0, 0); }
+    to   { transform: rotate(var(--angle)) translate3d(0, -0.5rem, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cri { animation: none; }
+  }
+
+} /* @layer structure */

@@ -1,0 +1,293 @@
+/* ==========================================================================
+   benchmark/12-spatial-experimental — structure
+   Composition : stacked-planes · Densité : airy · Navigation : map-spatial
+   --------------------------------------------------------------------------
+   La profondeur vient du RECOUVREMENT et de la translucidité — jamais d'une
+   ombre. Le cercle est le module : les repères, les découpes et la série sont
+   circulaires, ce qui rend une grille de cartes structurellement impossible.
+   ========================================================================== */
+
+@layer structure {
+
+  .espace {
+    position: relative;
+    overflow-x: clip;
+    min-block-size: 100svh;
+    padding: var(--space-8) var(--space-4) var(--space-24);
+  }
+
+  @media (min-width: 60rem) {
+    .espace { padding: var(--space-12) var(--space-12) var(--space-24); }
+  }
+
+  /* ----------------------------------------------------------- les halos
+     Les plans de fond. Ce sont eux qui créent l'espace : les panneaux de
+     verre posés dessus laissent voir ce qu'ils masquent. */
+
+  .halo {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(40px);
+    opacity: 0.5;
+  }
+
+  .halo--1 {
+    inline-size: 46vmax; block-size: 46vmax;
+    inset-block-start: -14vmax; inset-inline-start: -10vmax;
+    background: radial-gradient(circle, var(--accent), transparent 68%);
+  }
+  .halo--2 {
+    inline-size: 34vmax; block-size: 34vmax;
+    inset-block-start: 38%; inset-inline-end: -12vmax;
+    background: radial-gradient(circle, var(--info), transparent 66%);
+    opacity: 0.34;
+  }
+  .halo--3 {
+    inline-size: 28vmax; block-size: 28vmax;
+    inset-block-end: -8vmax; inset-inline-start: 22%;
+    background: radial-gradient(circle, var(--accent), transparent 70%);
+    opacity: 0.22;
+  }
+
+  /* ------------------------------------------------------------- la carte
+     Navigation `map-spatial` : un plan, pas une liste. Les repères sont
+     disposés comme les plans qu'ils désignent. */
+
+  .carte {
+    position: fixed;
+    inset-block-start: 50%;
+    inset-inline-end: var(--space-4);
+    transform: translateY(-50%);
+    inline-size: 6rem;
+    block-size: 9rem;
+    z-index: 20;
+    border: 1px solid var(--verre-bord);
+    border-radius: 50% / 30%;
+    background: var(--verre-fond);
+    backdrop-filter: blur(10px);
+  }
+
+  @media (max-width: 52rem) {
+    .carte {
+      position: static;
+      transform: none;
+      inline-size: 100%;
+      block-size: 4.5rem;
+      margin-block-end: var(--space-6);
+      border-radius: 999px;
+    }
+  }
+
+  .carte__t {
+    position: absolute;
+    inset-block-start: 0.35rem;
+    inset-inline: 0;
+    text-align: center;
+    font-size: 0.6rem;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+
+  .carte__pt {
+    position: absolute;
+    inset-block-start: var(--y);
+    inset-inline-start: var(--x);
+    transform: translate(-50%, -50%);
+    inline-size: 1.6rem;
+    block-size: 1.6rem;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    display: grid;
+    place-items: center;
+    font-size: 0.6rem;
+    color: var(--fg-muted);
+    text-decoration: none;
+    background: color-mix(in srgb, var(--bg) 60%, transparent);
+  }
+  .carte__pt:hover { background: var(--accent); color: var(--accent-fg); }
+  .carte__pt--s { border-style: dashed; }
+
+  /* -------------------------------------------------------------- plans */
+
+  .plans {
+    position: relative;
+    z-index: 2;
+    max-inline-size: var(--container-max);
+    margin-inline: auto;
+  }
+
+  .reperage {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+  .reperage--bas { margin-block-start: var(--space-12); }
+
+  .enorme {
+    font-size: clamp(4rem, 16vw, 12rem);
+    margin-block: var(--space-2) var(--space-4);
+    /* Décalé : la composition n'est pas axiale. */
+    margin-inline-start: -0.03em;
+  }
+
+  .accroche {
+    max-inline-size: 34ch;
+    color: var(--fg-muted);
+    /* Poussée à droite, sous le titre : asymétrie assumée. */
+    margin-inline-start: auto;
+    margin-block-end: var(--space-8);
+  }
+
+  @media (max-width: 48rem) {
+    .accroche { margin-inline-start: 0; }
+  }
+
+  /* ------------------------------------------------------------ le hublot
+     Média `masked` : révélé par une découpe circulaire, chevauchant les
+     plans voisins. */
+
+  .hublot {
+    margin: 0;
+    inline-size: min(20rem, 55%);
+    margin-inline-start: 8%;
+    /* Le recouvrement : le hublot mord sur le plan suivant. */
+    margin-block-end: calc(var(--space-8) * -1);
+    position: relative;
+    z-index: 3;
+    color: var(--accent);
+  }
+
+  .hublot svg {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    filter: var(--media-filter);
+  }
+
+  /* ------------------------------------------------------- panneaux de verre
+     Chaque plan est translucide et chevauche le précédent. La profondeur se
+     lit au recouvrement, pas à l'ombre. */
+
+  .plan {
+    position: relative;
+    max-inline-size: 40rem;
+    padding: var(--space-6);
+    margin-block-end: calc(var(--space-6) * -1);   /* recouvrement */
+    border: 1px solid var(--verre-bord);
+    border-radius: 2.5rem 2.5rem 2.5rem 0.5rem;    /* organique, pas une carte */
+    background: var(--verre-fond);
+    backdrop-filter: blur(14px);
+  }
+
+  .plan--droite {
+    margin-inline-start: auto;
+    border-radius: 2.5rem 2.5rem 0.5rem 2.5rem;
+  }
+
+  .plan__t {
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
+    margin-block-end: var(--space-3);
+  }
+
+  .plan p {
+    color: var(--fg-muted);
+    margin-block-end: var(--space-2);
+  }
+  .plan p:last-child { margin-block-end: 0; }
+
+  /* ----------------------------------------------------------- la série
+     Cinq disques dont le RAYON porte la donnée. Le module est le cercle. */
+
+  .serie {
+    position: relative;
+    margin-block-start: var(--space-12);
+    padding: var(--space-6);
+    border: 1px solid var(--verre-bord);
+    border-radius: 3rem;
+    background: var(--verre-fond);
+    backdrop-filter: blur(14px);
+  }
+
+  .serie__t {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+    margin-block-end: var(--space-6);
+  }
+
+  .disques {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--space-6);
+  }
+
+  .disque {
+    display: grid;
+    justify-items: center;
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  /* Le rayon EST la donnée. */
+  .disque__d {
+    inline-size: calc(2.2rem + var(--p) * 0.13rem);
+    block-size: calc(2.2rem + var(--p) * 0.13rem);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 26%, transparent);
+    border: 1px solid var(--accent);
+  }
+
+  .disque b {
+    font-size: var(--text-xs);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--fg-muted);
+    max-inline-size: 9ch;
+  }
+
+  .disque i {
+    font-style: normal;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-text);
+  }
+
+  .sortie {
+    margin-block-start: var(--space-8);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--control-tracking);
+  }
+
+  /* -------------------------------------------------- révélation au scroll
+     `progressive-reveal` piloté par le défilement. L'état par défaut est
+     VISIBLE : si le script ne tourne pas, tout reste lisible. C'est le JS qui
+     pose l'état masqué, jamais le CSS seul. */
+
+  .js-reveler [data-reveler] {
+    opacity: 0;
+    transform: translateY(1.2rem) scale(0.985);
+    transition:
+      opacity var(--duration-slow) var(--ease),
+      transform var(--duration-slow) var(--ease);
+  }
+
+  .js-reveler [data-reveler].est-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js-reveler [data-reveler] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+} /* @layer structure */

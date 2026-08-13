@@ -1,0 +1,39 @@
+/* ==========================================================================
+   PALETTE · riso-fluo
+   Risographie : deux encres fluo en surimpression sur un papier bon marché.
+   Le rose et le bleu ne se mélangent pas — ils se superposent, et c'est le
+   décalage de repérage qui fait l'image.
+   --------------------------------------------------------------------------
+   Difficulté propre à ce procédé : les encres fluo sont CLAIRES. Un rose riso
+   authentique ne passe pas AA en texte. On garde donc le fluo pour les
+   surfaces et on descend l'encre de texte — le procédé impose déjà ses
+   compromis dans la vraie vie.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Riso Fluo';
+    --palette-slug: 'riso-fluo';
+
+    --bg: #f4f1e4;
+    --bg-elevated: #ffffff;
+    --bg-sunken: #e6e2d2;
+
+    --fg: #14121a;
+    --fg-muted: #3f3a4a;
+    --fg-subtle: #4d4757;
+
+    --accent: #c2185b;
+    --accent-fg: #ffffff;
+    --accent-hover: #9c1348;
+    --accent-text: #a81250;
+
+    --border: #14121a;
+    --border-strong: #2233aa;
+
+    --success: #1f5c3a;
+    --warning: #6b4500;
+    --danger: #a81250;
+    --info: #2233aa;
+  }
+}

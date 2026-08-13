@@ -1,0 +1,266 @@
+/* ==========================================================================
+   benchmark/01-editorial-minimal — structure
+   Composition : editorial-columns · Densité : airy · Navigation : marginal-notes
+   --------------------------------------------------------------------------
+   Aucune couleur en dur. Aucune surface fermée : la structure est faite de
+   filets, de retraits et de blanc.
+   ========================================================================== */
+
+@layer structure {
+
+  .saut {
+    position: absolute;
+    inset-inline-start: -9999px;
+  }
+  .saut:focus {
+    inset-inline-start: var(--space-4);
+    inset-block-start: var(--space-4);
+    z-index: 10;
+    background: var(--bg);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  /* ------------------------------------------------------------------
+     Deux colonnes inégales : une marge étroite habitée, et le texte.
+     La marge n'est pas une barre latérale — elle n'a ni fond ni bordure,
+     elle est la marge d'une page imprimée. */
+
+  .revue {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    max-inline-size: var(--container-max);
+    margin-inline: auto;
+    padding: var(--space-8) var(--space-6) var(--space-24);
+  }
+
+  @media (min-width: 60rem) {
+    .revue {
+      grid-template-columns: 11rem 1fr;
+      gap: var(--space-12);
+      padding-block-start: var(--space-16);
+    }
+  }
+
+  /* ---------------------------------------------------------- la marge */
+
+  .marge {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    line-height: 1.5;
+  }
+
+  @media (min-width: 60rem) {
+    .marge {
+      position: sticky;
+      inset-block-start: var(--space-16);
+      align-self: start;
+      text-align: end;   /* la marge s'aligne sur le fer du texte */
+    }
+  }
+
+  .marge__surtitre {
+    color: var(--accent-text);
+    margin-block-end: var(--space-6);
+  }
+
+  .marge__liste {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: repere;
+  }
+
+  .marge__liste li {
+    counter-increment: repere;
+    margin-block-end: var(--space-2);
+  }
+
+  /* Le numéro est un repère de marge, pas une puce décorative. */
+  .marge__liste li::before {
+    content: counter(repere, decimal-leading-zero) '\2002';
+    color: var(--fg-subtle);
+  }
+
+  .marge__liste a {
+    color: var(--fg-muted);
+    text-decoration: none;
+  }
+  .marge__liste a:hover { color: var(--fg); text-decoration: underline; }
+
+  .marge__mention {
+    margin-block-start: var(--space-8);
+    color: var(--fg-subtle);
+    border-block-start: var(--rule-width) var(--rule-line) var(--rule-color);
+    padding-block-start: var(--space-2);
+  }
+
+  /* -------------------------------------------------------- l'ouverture */
+
+  .ouverture {
+    border-block-end: var(--rule-width) var(--rule-line) var(--rule-color);
+    padding-block-end: var(--space-6);
+    margin-block-end: var(--space-8);
+  }
+
+  .ouverture__titre {
+    font-size: var(--text-4xl);
+    max-inline-size: 18ch;   /* le titre se replie en deux ou trois lignes */
+  }
+
+  .ouverture__accroche {
+    margin-block-start: var(--space-4);
+    font-size: var(--text-lg);
+    line-height: var(--leading-loose);
+    color: var(--fg-muted);
+    max-inline-size: 46ch;
+  }
+
+  /* ------------------------------------------------------------- le flux
+     Colonnes de revue. Le texte coule d'une colonne à l'autre : c'est ce
+     que `column-count` fait et qu'une grille ne fait pas. */
+
+  .flux {
+    column-count: 1;
+    column-gap: var(--space-8);
+  }
+
+  @media (min-width: 48rem) {
+    .flux { column-count: 2; column-rule: var(--rule-width) var(--rule-line) var(--rule-color); }
+  }
+
+  .section {
+    break-inside: avoid-column;
+    margin-block-end: var(--space-6);
+  }
+
+  .section__titre {
+    font-size: var(--text-lg);
+    margin-block-end: var(--space-2);
+  }
+
+  /* Numérotation en chiffres romains bas de casse : un repère de revue. */
+  .section__num {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--accent-text);
+    margin-inline-end: 0.6em;
+  }
+
+  .section p {
+    margin-block-end: var(--space-3);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* La lettrine : un ornement d'imprimé, pas une décoration Web. */
+  .section:first-child p:first-of-type::first-letter {
+    float: inline-start;
+    font-size: 3.1em;
+    line-height: 0.82;
+    padding-inline-end: 0.08em;
+    padding-block-start: 0.06em;
+  }
+
+  /* ----------------------------------------------------------- la planche
+     Le média est encadré par le texte et systématiquement légendé. */
+
+  .planche {
+    break-inside: avoid-column;
+    margin-block: var(--space-6);
+  }
+
+  .planche__image {
+    inline-size: 100%;
+    block-size: auto;
+    display: block;
+    color: var(--fg);
+    filter: var(--media-filter);
+  }
+
+  .planche__legende {
+    margin-block-start: var(--space-2);
+    border-block-start: var(--rule-width) var(--rule-line) var(--rule-color);
+    padding-block-start: 0.4em;
+  }
+
+  /* ------------------------------------------------------------ la série
+     Traitée en liste de lecture, alignée sur des points de conduite —
+     comme un sommaire d'ouvrage. Aucun tableau, aucune surface. */
+
+  .serie {
+    margin-block-start: var(--space-12);
+    border-block-start: 3px solid var(--fg);
+    padding-block-start: var(--space-4);
+  }
+
+  .serie__titre {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+    margin-block-end: var(--space-4);
+  }
+
+  .serie__liste { margin: 0; }
+
+  .serie__ligne {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    padding-block: 0.45em;
+    border-block-end: var(--rule-width) var(--rule-line) var(--rule-color);
+  }
+
+  .serie__ligne dt { flex: 0 1 auto; }
+
+  /* Les points de conduite relient le libellé à sa valeur. */
+  .serie__ligne dt::after {
+    content: '';
+    display: inline-block;
+    inline-size: 100%;
+  }
+
+  .serie__ligne dd {
+    margin: 0;
+    margin-inline-start: auto;
+    flex: 0 0 auto;
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+  }
+
+  .serie__val { font-variant-numeric: lining-nums tabular-nums; }
+
+  .serie__part {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+    inline-size: 4ch;
+    text-align: end;
+  }
+
+  /* -------------------------------------------------------------- la suite
+     L'action est un renvoi typographique. Aucun bouton. */
+
+  .suite {
+    margin-block-start: var(--space-12);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+  }
+
+  .suite a {
+    color: var(--accent-text);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+  }
+  .suite a::after { content: '\2009\2192'; }
+
+} /* @layer structure */

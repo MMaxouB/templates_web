@@ -1,0 +1,33 @@
+/* ==========================================================================
+   PALETTE · papier-chaux
+   Papier de revue, encre presque noire, une seule terre cuite en accent.
+   Le fond n'est pas blanc : un blanc pur ne se rencontre pas en imprimerie.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Papier & Chaux';
+    --palette-slug: 'papier-chaux';
+
+    --bg: #f4f1ea;
+    --bg-elevated: #faf8f3;
+    --bg-sunken: #e8e3d8;
+
+    --fg: #1a1814;
+    --fg-muted: #4a4438;
+    --fg-subtle: #57503f;
+
+    --accent: #7a2418;
+    --accent-fg: #faf8f3;
+    --accent-hover: #5c1b12;
+    --accent-text: #7a2418;
+
+    --border: #b8b0a0;
+    --border-strong: #1a1814;
+
+    --success: #2f5d2f;
+    --warning: #6b4a00;
+    --danger: #8c1d18;
+    --info: #1f4a6b;
+  }
+}

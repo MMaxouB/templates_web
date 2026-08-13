@@ -79,6 +79,7 @@ const SONDE = `
 (function () {
   var vw = innerWidth, vh = innerHeight;
   var visibles = [];
+  var contenuTotal = 0;
   var tailles = {}, familles = {};
 
   function texteUtile(el) {
@@ -104,8 +105,11 @@ const SONDE = `
 
     // « Élément de contenu » : porte du texte propre, ou est un média.
     var estContenu = !!texteUtile(el) || /^(IMG|SVG|VIDEO|CANVAS|INPUT|SELECT|TEXTAREA|BUTTON|HR)$/.test(el.tagName);
-    if (estContenu && r.top < vh && r.bottom > 0) {
-      visibles.push({ tag: el.tagName, top: r.top, left: r.left, w: r.width, h: r.height, ts: ts });
+    if (estContenu) {
+      contenuTotal += 1;
+      if (r.top < vh && r.bottom > 0) {
+        visibles.push({ tag: el.tagName, top: r.top, left: r.left, w: r.width, h: r.height, ts: ts });
+      }
     }
   }
 
@@ -121,7 +125,19 @@ const SONDE = `
     h1Haut = rh.height / vh;
     var centreH1 = Math.abs((rh.left + rh.right) / 2 - vw / 2) < vw * 0.06;
     var texteCentre = ch.textAlign === 'center';
-    heroCentre = rh.top < vh * 0.6 && centreH1 && (texteCentre || rh.width < vw * 0.9);
+
+    // Un « hero centré » demande trois choses à la fois : un titre haut de
+    // page, réellement centré (texte centré OU bloc nettement plus étroit que
+    // l'écran), et assez grand pour dominer.
+    //
+    // Sans la troisième condition, tout h1 pleine largeur en haut de page
+    // était compté — y compris un cartouche de planche ou un titre aligné à
+    // gauche. Un bloc centré par sa grille n'est pas un hero : c'est juste un
+    // bloc.
+    heroCentre = rh.top < vh * 0.6
+      && centreH1
+      && (texteCentre || rh.width < vw * 0.7)
+      && (rh.height / vh) > 0.10;
 
     var prec = h1.previousElementSibling;
     if (prec) {
@@ -195,7 +211,16 @@ const SONDE = `
   var res = {
     viewport: { w: vw, h: vh },
     premier_ecran_elements: visibles.length,
+    contenu_total: contenuTotal,
     elements_total: tous.length,
+
+    // Densité réelle : éléments de contenu par écran, sur TOUT le document.
+    // premier_ecran_elements ne dit que la densité de l'OUVERTURE : une page
+    // dont le premier écran est un titre géant paraît vide alors que le
+    // document peut être très dense. C'est cette valeur-ci qui décrit l'axe
+    // density ; l'autre décrit l'ouverture.
+    // (Pas de backtick dans ce bloc : la sonde vit dans une chaîne gabarit.)
+    elements_par_ecran: +(contenuTotal / Math.max(1, document.documentElement.scrollHeight / vh)).toFixed(1),
     premier_h1_hauteur_relative: +h1Haut.toFixed(3),
     tailles_distinctes: listeTailles.length,
     taille_min: listeTailles[0] || 0,

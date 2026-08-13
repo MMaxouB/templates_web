@@ -1,0 +1,43 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "08",
+  "variante": "08-collage-maximaliste",
+  "role": "Référence de benchmark — collage maximaliste",
+  "archetype": "grille-cassee",
+  "intention": "Une planche de risographie découpée et recollée. Le maximalisme vient du recouvrement, pas d'un contenu ajouté — le contenu est celui, identique, des onze autres références. Trois familles délibérément mal assorties, et le décalage de repérage des encres rendu visible.",
+  "regle_interne": "Tout élément est posé sur une grille de 12 colonnes, pivoté d'un angle pris dans une suite de CINQ valeurs fixes (--angle-1 à --angle-5), et chevauche au moins un voisin par une marge négative. Appliquée à un contenu nouveau, la règle produit le même résultat : l'irrégularité est reproductible, donc ce n'est pas du bruit.",
+  "dna": {
+    "composition": "scattered",
+    "density": "balanced",
+    "typography": {
+      "system": "family-contrast",
+      "voice": "mixed-mismatch"
+    },
+    "geometry": "irregular",
+    "surface": "printed-halftone",
+    "navigation": "scroll-only",
+    "media": "mosaic",
+    "motion": "continuous-loop",
+    "interaction": "spatial-zoom"
+  },
+  "habillage_reference": "riso",
+  "creativeConstraints": [
+    "controlled-chaos",
+    "no-rounded",
+    "physical"
+  ],
+  "justifications": {
+    "controlled-chaos": "La règle interne est écrite ci-dessus et dans le README de la référence. Elle est reproductible sur un contenu nouveau — c'est la condition exigée par la contrainte.",
+    "density=maximalist": "Obtenue par recouvrement et superposition, jamais en ajoutant du contenu : le benchmark impose un contenu identique aux douze références.",
+    "density": "Visée « maximalist », mesurée « balanced » (17.2 éléments/écran). On déclare ce qui est mesuré."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 17.2,
+    "densite_classee": "balanced"
+  }
+}

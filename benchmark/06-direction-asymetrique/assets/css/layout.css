@@ -1,0 +1,247 @@
+/* ==========================================================================
+   benchmark/06-direction-asymetrique — structure
+   Composition : diagonal · Densité : balanced · Navigation : floating
+   --------------------------------------------------------------------------
+   La grille est inclinée de --biais et TOUT s'y rapporte. Le déséquilibre est
+   calculé : masse en bas à gauche, vide en haut à droite.
+
+   `overflow-x: clip` sur la racine : l'inclinaison fait dépasser des éléments,
+   et ce dépassement ne doit jamais produire de défilement horizontal.
+   ========================================================================== */
+
+@layer structure {
+
+  .affiche {
+    position: relative;
+    overflow-x: clip;
+    min-block-size: 100svh;
+    padding: var(--space-8) var(--space-4) var(--space-16);
+  }
+
+  @media (min-width: 60rem) {
+    .affiche { padding: var(--space-12) var(--space-8) var(--space-24); }
+  }
+
+  /* ----------------------------------------------------------- la diagonale
+     Le trait structurant. Il traverse toute la page et donne son axe. */
+
+  .affiche__biais {
+    position: absolute;
+    inset-block: -20%;
+    inset-inline-start: 38%;
+    inline-size: 4px;
+    background: var(--accent);
+    transform: rotate(var(--biais));
+    transform-origin: center;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  /* ---------------------------------------------------------------- le plan
+     Tout le contenu est incliné du même angle. C'est la grille qui penche. */
+
+  .plan {
+    position: relative;
+    transform: rotate(var(--biais));
+    transform-origin: 30% 0;
+    max-inline-size: 72rem;
+    /* Pas de margin auto : la masse appuie à gauche. */
+    margin-inline-end: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* L'inclinaison n'est pas du mouvement, elle reste. */
+    .plan { transform: rotate(var(--biais)); }
+  }
+
+  .rang {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+  }
+
+  .rang--haut { margin-block-end: var(--space-4); }
+  .rang--bas { margin-block-start: var(--space-16); }
+
+  /* ------------------------------------------------------------- le cri
+     900 sur une condensée. La hiérarchie est une affaire de graisse. */
+
+  .cri {
+    font-size: clamp(3.2rem, 13vw, 9rem);
+    font-weight: 900;
+    margin-block-end: var(--space-4);
+    /* Décalé vers la gauche : la masse déborde du bloc. */
+    margin-inline-start: -0.04em;
+  }
+
+  /* Le murmure : même famille, graisse 300. Rien d'autre ne change. */
+  .murmure {
+    font-weight: 300;
+    font-size: clamp(1rem, 2.2vw, 1.35rem);
+    max-inline-size: 34ch;
+    /* Poussé à droite : le déséquilibre est calculé, pas subi. */
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+    text-align: start;
+    margin-block-end: var(--space-8);
+  }
+
+  @media (max-width: 48rem) {
+    .murmure { margin-inline-start: 0; }
+  }
+
+  /* ------------------------------------------------------------- le débord
+     Média hors grille : il sort du conteneur et chevauche. */
+
+  .debord {
+    margin: 0 0 var(--space-8);
+    inline-size: min(30rem, 70%);
+    margin-inline-start: -8%;
+  }
+
+  .debord__img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    color: var(--accent);
+    filter: var(--media-filter);
+  }
+
+  /* ------------------------------------------------------------ les blocs
+     Deux colonnes, dont l'une décalée verticalement : le rythme est syncopé,
+     jamais aligné. */
+
+  .colonnes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    max-inline-size: 54rem;
+  }
+
+  @media (min-width: 48rem) {
+    .colonnes { grid-template-columns: 1.35fr 1fr; gap: var(--space-8); }
+    .bloc--decale { margin-block-start: var(--space-12); }
+  }
+
+  .bloc__t {
+    font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+    margin-block-end: var(--space-2);
+    border-block-start: var(--rule-width) solid var(--rule-color);
+    padding-block-start: var(--space-2);
+  }
+
+  .bloc__n {
+    color: var(--accent-text);
+    font-weight: 300;
+    margin-inline-end: 0.5em;
+  }
+
+  .bloc p {
+    font-weight: 300;
+    font-size: var(--text-sm);
+    margin-block-end: var(--space-2);
+  }
+
+  /* -------------------------------------------------------------- la série
+     Cinq pastilles à coins coupés, posées en escalier. La valeur se révèle
+     au survol et au focus. */
+
+  .serie { margin-block-start: var(--space-12); }
+
+  .serie__t {
+    font-size: var(--text-lg);
+    margin-block-end: var(--space-4);
+  }
+
+  .serie__liste { list-style: none; padding: 0; margin: 0; }
+
+  .pion {
+    /* L'escalier : chaque pion décalé de son index. */
+    margin-inline-start: calc(var(--i) * 2.6rem);
+    margin-block-end: var(--space-1);
+  }
+
+  @media (max-width: 40rem) {
+    .pion { margin-inline-start: calc(var(--i) * 0.8rem); }
+  }
+
+  .pion__b {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    background: var(--accent);
+    color: var(--accent-fg);
+    border: 0;
+    font: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    font-size: var(--text-xs);
+    padding: var(--control-pad-y) var(--control-pad-x);
+    cursor: pointer;
+    /* Coins coupés au massicot, jamais arrondis. */
+    clip-path: polygon(
+      var(--control-cut) 0, 100% 0,
+      100% calc(100% - var(--control-cut)), calc(100% - var(--control-cut)) 100%,
+      0 100%, 0 var(--control-cut)
+    );
+    transition: transform var(--duration-fast) var(--ease);
+  }
+
+  .pion__v {
+    font-variant-numeric: tabular-nums;
+    opacity: 0;
+    inline-size: 0;
+    overflow: hidden;
+    transition: opacity var(--duration-fast) var(--ease);
+  }
+
+  /* `hover-preview` avec équivalent clavier obligatoire. */
+  .pion__b:hover,
+  .pion__b:focus-visible {
+    transform: translateX(0.6rem);   /* directionnel : dans le sens du biais */
+  }
+  .pion__b:hover .pion__v,
+  .pion__b:focus-visible .pion__v {
+    opacity: 1;
+    inline-size: auto;
+  }
+
+  /* ----------------------------------------------------------- la volante
+     Navigation flottante, détachée des bords, non arrimée. */
+
+  .volante {
+    position: fixed;
+    inset-block-end: 8%;
+    inset-inline-end: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1);
+    transform: rotate(var(--biais));
+    z-index: 10;
+  }
+
+  .volante a {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+    text-decoration: none;
+  }
+  .volante a:hover { color: var(--accent-text); }
+
+  .volante__suite {
+    margin-block-start: var(--space-2);
+    color: var(--fg) !important;
+    border-block-start: var(--rule-width) solid var(--rule-color);
+    padding-block-start: var(--space-1);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 48rem) {
+    .volante { inset-block-end: 2%; inset-inline-end: 3%; }
+  }
+
+} /* @layer structure */

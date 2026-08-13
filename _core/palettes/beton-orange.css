@@ -1,0 +1,32 @@
+/* ==========================================================================
+   PALETTE · beton-orange
+   Béton et orange de sécurité. Deux couleurs de chantier, aucune douceur.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Béton & Orange';
+    --palette-slug: 'beton-orange';
+
+    --bg: #d6d4cd;
+    --bg-elevated: #e4e2dc;
+    --bg-sunken: #c2bfb6;
+
+    --fg: #0d0d0b;
+    --fg-muted: #33312c;
+    --fg-subtle: #403e38;
+
+    --accent: #a83200;
+    --accent-fg: #ffffff;
+    --accent-hover: #7d2500;
+    --accent-text: #8f2a00;
+
+    --border: #0d0d0b;
+    --border-strong: #0d0d0b;
+
+    --success: #1f5220;
+    --warning: #5c3d00;
+    --danger: #8f1414;
+    --info: #1a3f66;
+  }
+}

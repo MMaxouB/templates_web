@@ -1,0 +1,41 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "12",
+  "variante": "12-spatial-experimental",
+  "role": "Référence de benchmark — spatial expérimental",
+  "archetype": "parallaxe",
+  "intention": "Des plans de verre superposés dans un espace. La profondeur vient du recouvrement et de la translucidité, jamais d'une ombre. Le cercle est le module — ce qui rend une grille de cartes structurellement impossible.",
+  "dna": {
+    "composition": "stacked-planes",
+    "density": "airy",
+    "typography": {
+      "system": "display-dominant",
+      "voice": "geometric-sans"
+    },
+    "geometry": "circular",
+    "surface": "glass",
+    "navigation": "map-spatial",
+    "media": "masked",
+    "motion": "scroll-driven",
+    "interaction": "progressive-reveal"
+  },
+  "habillage_reference": "verre",
+  "creativeConstraints": [
+    "no-cards",
+    "asymmetry",
+    "no-standard-cta"
+  ],
+  "justifications": {
+    "backdrop-blur": "Le verre EST la direction artistique, pas un effet posé dessus. anti-llm.json exempte le réflexe pour surface:glass — c'est exactement la distinction que le budget doit permettre.",
+    "surface=glass": "Valeur marquée « réflexe » dans le schéma. Elle est ici le sujet de la référence : la seule des douze à l'employer, et la seule du dépôt."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 8.7,
+    "densite_classee": "airy"
+  }
+}

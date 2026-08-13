@@ -1,0 +1,42 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "09",
+  "variante": "09-planche-scientifique",
+  "role": "Référence de benchmark — planche scientifique",
+  "archetype": "multi-colonnes",
+  "intention": "Une planche d'ouvrage savant du XIXe. La grille n'est pas un outil de conception caché : elle est dessinée, avec ses filets de module et ses repères de coupe. Tout est numéroté, et la légende compte autant que l'illustration.",
+  "dna": {
+    "composition": "modular-grid",
+    "density": "dense",
+    "typography": {
+      "system": "rule-driven",
+      "voice": "oldstyle-serif"
+    },
+    "geometry": "frames",
+    "surface": "paper",
+    "navigation": "alphabetic-index",
+    "media": "framed-plate",
+    "motion": "none",
+    "interaction": "expand-collapse"
+  },
+  "habillage_reference": "planche",
+  "creativeConstraints": [
+    "dense",
+    "visible-grid",
+    "editorial",
+    "no-rounded",
+    "no-shadow"
+  ],
+  "justifications": {
+    "dense": "35.2 éléments/écran : la planche est réellement dense, et c'est la contrainte structurelle qui répond de sa composition en grille visible."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 35.2,
+    "densite_classee": "dense"
+  }
+}

@@ -1,0 +1,204 @@
+/* ==========================================================================
+   benchmark/03-interface-donnees — structure
+   Composition : tabular · Densité : information-heavy · Navigation : tab-panel
+   --------------------------------------------------------------------------
+   La page est une matrice, pas un document. Elle occupe exactement la hauteur
+   de l'écran : ce sont les zones internes qui défilent, pas la page.
+   ========================================================================== */
+
+@layer structure {
+
+  /* L'outil occupe l'écran et ne défile pas lui-même : c'est ce qui distingue
+     une interface d'un document. */
+  .outil {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    block-size: 100svh;
+  }
+
+  /* ------------------------------------------------------- barre supérieure */
+
+  .barre {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-2);
+    min-block-size: 2rem;
+    background: var(--bg-sunken);
+    border-block-end: 1px solid var(--border);
+  }
+
+  .barre__id {
+    color: var(--accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+
+  .barre__meta {
+    margin-inline-start: auto;
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+
+  @media (max-width: 46rem) { .barre__meta { display: none; } }
+
+  /* Onglets : pas de fond arrondi, un simple filet actif dessous. */
+  .onglets { display: flex; }
+
+  .onglet {
+    background: none;
+    border: 0;
+    color: var(--fg-muted);
+    font: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 0.35rem var(--space-2);
+    border-block-end: 2px solid transparent;
+    cursor: pointer;
+  }
+
+  .onglet[aria-selected='true'] {
+    color: var(--fg);
+    border-block-end-color: var(--accent);
+  }
+
+  /* ------------------------------------------------------------- filtres */
+
+  .filtres {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    border-block-end: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+
+  .champ { display: flex; align-items: center; gap: var(--space-1); }
+
+  .champ__lbl {
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+
+  .champ__saisie {
+    background: var(--bg-sunken);
+    color: var(--fg);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    font: inherit;
+    padding: 0.15rem 0.4rem;
+    inline-size: 16ch;
+  }
+
+  .compteur {
+    color: var(--accent-text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* L'accroche est reléguée au rang d'annotation : dans un outil, la prose
+     n'est jamais le sujet. */
+  .legende {
+    margin-inline-start: auto;
+    color: var(--fg-subtle);
+    max-inline-size: 62ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 64rem) { .legende { display: none; } }
+
+  /* --------------------------------------------------------------- zone
+     Seule la zone défile. L'en-tête de tableau reste collé. */
+
+  .zone { overflow: auto; }
+
+  .grille__titre {
+    text-align: start;
+    padding: var(--space-1) var(--space-2);
+    color: var(--fg-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    border-block-end: 1px solid var(--border);
+  }
+
+  /* Le bouton de tri n'est pas un bouton : c'est l'en-tête lui-même. */
+  .tri {
+    background: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    text-transform: inherit;
+    letter-spacing: inherit;
+    padding: 0;
+    cursor: pointer;
+    inline-size: 100%;
+    text-align: inherit;
+  }
+
+  .tri[data-sens='asc']::after { content: ' \25B2'; }
+  .tri[data-sens='desc']::after { content: ' \25BC'; }
+
+  .grille td:nth-child(2),
+  .grille td:nth-child(3),
+  .grille th:nth-child(2),
+  .grille th:nth-child(3) { text-align: end; }
+
+  .grille th:last-child, .grille td:last-child { text-align: start; }
+
+  /* Jauge en ligne : la donnée dans la cellule, pas dans un graphique à part. */
+  .jauge {
+    display: block;
+    block-size: 0.55rem;
+    inline-size: calc(var(--p) * 1.6%);
+    min-inline-size: 2px;
+    background: var(--accent);
+  }
+
+  tfoot th, tfoot td {
+    border-block-start: 2px solid var(--border-strong);
+    border-block-end: 0;
+    font-weight: 600;
+  }
+
+  /* Colonne « corps » : la prose est tronquée, comme dans tout outil. */
+  #vue-notes td:last-child {
+    max-inline-size: 90ch;
+    color: var(--fg-muted);
+  }
+
+  /* ------------------------------------------------------- barre d'état */
+
+  .etat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0 var(--space-2);
+    min-block-size: 1.8rem;
+    background: var(--bg-sunken);
+    border-block-start: 1px solid var(--border);
+    color: var(--fg-muted);
+  }
+
+  .etat__pastille {
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: 50%;      /* seul arrondi de la page : un voyant EST rond */
+    background: var(--success);
+  }
+
+  .etat__sep { color: var(--border-strong); }
+
+  .etat__cmd {
+    margin-inline-start: auto;
+    color: var(--accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+  .etat__cmd::before { content: '\2318\2009'; }
+
+  .ligne-masquee { display: none; }
+
+} /* @layer structure */

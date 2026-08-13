@@ -1,0 +1,42 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "02",
+  "variante": "02-brutalisme-brut",
+  "role": "Référence de benchmark — brutalisme brut",
+  "archetype": "plein-ecran",
+  "intention": "Le béton banché. On montre le matériau et le procédé sans chercher à les adoucir : bord à bord, un seul geste typographique énorme, des joints de banche visibles, et le mouvement réduit à une coupe.",
+  "dna": {
+    "composition": "full-bleed",
+    "density": "airy",
+    "typography": {
+      "system": "display-dominant",
+      "voice": "poster-heavy"
+    },
+    "geometry": "hard-rectilinear",
+    "surface": "concrete",
+    "navigation": "inline-contextual",
+    "media": "aggressive-crop",
+    "motion": "brutal-cut",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "chantier",
+  "creativeConstraints": [
+    "no-cards",
+    "no-rounded",
+    "no-shadow",
+    "no-centered-text",
+    "no-standard-cta"
+  ],
+  "justifications": {
+    "density": "Visée « compact », mesurée « airy » (11.9 éléments/écran). On déclare ce qui est mesuré."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 11.9,
+    "densite_classee": "airy"
+  }
+}

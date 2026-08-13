@@ -1,0 +1,43 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "03",
+  "variante": "03-interface-donnees",
+  "role": "Référence de benchmark — interface de données",
+  "archetype": "liste-dense",
+  "intention": "Un outil professionnel, pas un site. La page est une matrice qui occupe l'écran sans défiler ; ce sont les zones internes qui bougent. Chiffres tabulaires, en-têtes collants, tri et filtre réels, aucune transition.",
+  "dna": {
+    "composition": "tabular",
+    "density": "dense",
+    "typography": {
+      "system": "rule-driven",
+      "voice": "system-mono"
+    },
+    "geometry": "modular-blocks",
+    "surface": "flat-paint",
+    "navigation": "tab-panel",
+    "media": "none",
+    "motion": "instant",
+    "interaction": "filter-sort"
+  },
+  "habillage_reference": "donnees",
+  "creativeConstraints": [
+    "data-first",
+    "no-rounded",
+    "no-shadow",
+    "no-images"
+  ],
+  "justifications": {
+    "no-rounded": "Une seule exception : la pastille de voyant en barre d'état est en border-radius 50 %. La contrainte autorise explicitement les éléments réellement circulaires.",
+    "density=compact": "Déclarée `information-heavy` à la conception, ramenée à `compact` après mesure : la sonde relève 37 éléments dans le premier écran, ce qui est la plage `compact`. Le contenu commun du benchmark (5 lignes, 4 sections) plafonne la densité atteignable. On déclare ce qui est mesuré, pas ce qui était visé.",
+    "density": "Visée « compact », mesurée « dense » (37.0 éléments/écran). On déclare ce qui est mesuré."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 37.0,
+    "densite_classee": "dense"
+  }
+}

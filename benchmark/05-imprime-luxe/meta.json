@@ -1,0 +1,40 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "05",
+  "variante": "05-imprime-luxe",
+  "role": "Référence de benchmark — imprimé de luxe",
+  "archetype": "colonne-unique",
+  "intention": "Le vide est le matériau. Le luxe ne s'obtient pas en ajoutant de l'or mais en retirant, et ce qui reste doit être placé au millimètre parce qu'il n'y a rien d'autre pour rattraper une erreur. La hiérarchie vient de l'interlettrage, jamais de la taille ni de la graisse.",
+  "dna": {
+    "composition": "narrow-measure",
+    "density": "void",
+    "typography": {
+      "system": "spacing-driven",
+      "voice": "didone"
+    },
+    "geometry": "borderless",
+    "surface": "textile",
+    "navigation": "numeric-index",
+    "media": "uncropped-object",
+    "motion": "physical",
+    "interaction": "page-turn"
+  },
+  "habillage_reference": "silence",
+  "creativeConstraints": [
+    "empty",
+    "no-cards",
+    "no-shadow",
+    "no-rounded",
+    "no-standard-cta"
+  ],
+  "justifications": {},
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 3.8,
+    "densite_classee": "void"
+  }
+}

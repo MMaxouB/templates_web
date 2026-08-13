@@ -95,11 +95,20 @@ const usage = () => {
 
 if (!target || target.startsWith('--')) usage();
 
-const [family, variant] = target.split('/');
+const [family, variant] = target.replace(/\/+$/, '').split('/');
 if (!family || !variant) die(`cible attendue au format <famille>/<variante> — reçu « ${target} »`);
 
-const srcDir = path.join(ROOT, 'templates', family, variant);
-if (!fs.existsSync(srcDir)) die(`variante introuvable : templates/${family}/${variant}`);
+/* Les références du Diversity Benchmark vivent à plat dans benchmark/ et se
+   construisent avec le même outil que le catalogue : un banc d'essai bâti
+   par un chemin de traverse ne prouverait rien sur le système réel. */
+const estBenchmark = family === 'benchmark';
+const srcDir = estBenchmark
+  ? path.join(ROOT, 'benchmark', variant)
+  : path.join(ROOT, 'templates', family, variant);
+
+if (!fs.existsSync(srcDir)) {
+  die(`variante introuvable : ${path.relative(ROOT, srcDir)}`);
+}
 
 /**
  * Un habillage résolu :
@@ -160,7 +169,7 @@ if (fs.existsSync(metaPath)) {
   }
 }
 
-const label = family.replace(/^\d+-/, '');
+const label = estBenchmark ? "bench" : family.replace(/^\d+-/, "");
 const num = meta.numero || variant.split('-')[0];
 
 /* ----------------------------------------------------------------- génération */

@@ -1,0 +1,33 @@
+/* ==========================================================================
+   PALETTE · acier-cuivre
+   Acier brossé et cuivre. Deux métaux, deux températures : le froid porte la
+   surface, le chaud porte l'action.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Acier & Cuivre';
+    --palette-slug: 'acier-cuivre';
+
+    --bg: #d9dbdc;
+    --bg-elevated: #e8eaeb;
+    --bg-sunken: #c2c5c7;
+
+    --fg: #14181a;
+    --fg-muted: #3a4145;
+    --fg-subtle: #474e52;
+
+    --accent: #8a4420;
+    --accent-fg: #f5f2ee;
+    --accent-hover: #6b3418;
+    --accent-text: #7a3c1c;
+
+    --border: #9aa0a3;
+    --border-strong: #14181a;
+
+    --success: #245c33;
+    --warning: #6b4400;
+    --danger: #8c1f1f;
+    --info: #1f4a66;
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "11",
+  "variante": "11-tactile",
+  "role": "Référence de benchmark — tactile",
+  "archetype": "plein-ecran",
+  "intention": "Un panneau de commande en acier brossé. On doit avoir envie de toucher, ce qui demande une matière, une épaisseur et une réponse : les objets s'enfoncent sous le doigt. Les dégradés ne sont pas décoratifs, ils sont la lumière sur du métal.",
+  "dna": {
+    "composition": "banded",
+    "density": "balanced",
+    "typography": {
+      "system": "size-driven",
+      "voice": "rounded"
+    },
+    "geometry": "organic",
+    "surface": "metal",
+    "navigation": "bottom-bar",
+    "media": "background-texture",
+    "motion": "physical",
+    "interaction": "drag-manipulate"
+  },
+  "habillage_reference": "atelier",
+  "creativeConstraints": [
+    "no-cards",
+    "no-centered-text",
+    "physical",
+    "no-hero",
+    "no-standard-cta"
+  ],
+  "justifications": {
+    "density=balanced": "Un panneau de commande n'est ni dense comme un tableur ni vide comme une affiche : chaque commande doit rester atteignable au doigt, ce qui impose des cibles larges et donc une densité moyenne.",
+    "degrade-decoratif": "Les dégradés portent le matériau — brossage, arête, gorge usinée. anti-llm.json les exempte explicitement pour surface:metal.",
+    "refonte": "Premier jet REFUSÉ par le benchmark : la bande 3 était une grille 2 × 2 de cartes arrondies et ombrées sous un titre centré — le réflexe même que le dépôt combat. Symétrie mesurée à 0.86, la pire des douze. Redessinée en quatre barres pleine largeur et plaque au fer à gauche. `no-cards` et `no-centered-text` ont été ajoutées pour que l'outil interdise la rechute."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 19.6,
+    "densite_classee": "balanced"
+  }
+}

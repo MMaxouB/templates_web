@@ -1,0 +1,132 @@
+/* ==========================================================================
+   benchmark/07-terminal — structure
+   Composition : flush-left-ragged · Densité : compact · Navigation : command-line
+   --------------------------------------------------------------------------
+   Tout pend d'un unique axe gauche. Aucun centrage, aucune surface, aucune
+   bordure : ce qui délimite est un caractère.
+
+   La direction `terminal-phosphore` fournit déjà l'essentiel (mono, échelle
+   plate, inversion des titres, scanlines). La structure ne fait que poser la
+   grille de caractères.
+   ========================================================================== */
+
+@layer structure {
+
+  .ecran {
+    /* Mesure en colonnes de caractères : 80, comme un vrai terminal. */
+    max-inline-size: 80ch;
+    margin-inline: 0;           /* jamais auto : l'axe est à gauche */
+    padding: var(--space-3) var(--space-3) var(--space-12);
+    min-block-size: 100svh;
+  }
+
+  .entete,
+  .pied {
+    color: var(--fg-subtle);
+    white-space: pre-wrap;
+    word-break: break-all;      /* les filets de tirets ne débordent jamais */
+    margin-block-end: var(--space-3);
+  }
+
+  .pied { margin-block: var(--space-6) 0; }
+
+  /* --------------------------------------------------------------- lignes
+     Chaque commande est précédée de son invite. C'est le rythme de la page. */
+
+  .ligne {
+    color: var(--fg-muted);
+    margin-block-start: var(--space-3);
+  }
+
+  .invite {
+    color: var(--accent-text);
+    font-weight: 700;
+    margin-inline-end: 1ch;
+  }
+
+  /* La sortie est indentée d'un caractère : la hiérarchie est un retrait,
+     pas une taille. */
+  .sortie {
+    margin-inline-start: 2ch;
+    max-inline-size: 78ch;
+  }
+
+  p.sortie { margin-block-end: var(--space-1); }
+
+  /* Les titres : voir la direction, qui les passe en vidéo inverse.
+     Ici on ne fait que gérer le retrait et la marge. */
+  h1.sortie { margin-block: var(--space-1) var(--space-2); }
+  .titre2 { margin-block: var(--space-1) var(--space-2); }
+
+  .liste {
+    list-style: none;
+    padding: 0;
+    margin-inline-start: 2ch;
+  }
+  .liste li::before { content: '  '; }
+
+  /* La table alignée à l'espace, dans un <pre>. Un terminal n'a pas de
+     colonnes CSS : il a des caractères. */
+  .table {
+    white-space: pre;
+    overflow-x: auto;
+    margin-block: var(--space-1) var(--space-2);
+  }
+
+  /* ------------------------------------------------------------- l'invite
+     `command-input` : saisie libre, interprétée, avec historique. */
+
+  .invite-form {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    margin-block-start: var(--space-4);
+  }
+
+  .invite-form__lbl { flex: 0 0 auto; }
+
+  .invite-form__in {
+    flex: 1 1 auto;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    color: var(--fg);
+    font: inherit;
+    padding: 0;
+    caret-color: var(--fg);
+    text-shadow: inherit;
+  }
+  .invite-form__in:focus { outline: none; }
+  .invite-form__in:focus-visible { outline: none; }
+
+  /* Le curseur clignotant : le seul mouvement de la page. */
+  .curseur {
+    inline-size: 1ch;
+    block-size: 1.1em;
+    background: var(--fg);
+    flex: 0 0 auto;
+    animation: clignote 1s steps(1, end) infinite;
+  }
+
+  @keyframes clignote {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .curseur { animation: none; opacity: 1; }
+  }
+
+  /* Le focus de l'invite est porté par le formulaire entier : un terminal
+     n'entoure pas son champ d'un anneau. */
+  .invite-form:focus-within .curseur { background: var(--accent); }
+
+  .journal {
+    margin-block-start: var(--space-2);
+    margin-inline-start: 2ch;
+    color: var(--fg-muted);
+    white-space: pre-wrap;
+    min-block-size: 1.2em;
+  }
+
+} /* @layer structure */

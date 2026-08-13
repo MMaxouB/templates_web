@@ -1,0 +1,111 @@
+/* ==========================================================================
+   DIRECTION · plans-verre
+   Benchmark 12 — « spatial expérimental »
+   --------------------------------------------------------------------------
+   Logique interne : des plans de verre superposés dans un espace.
+
+     · La profondeur ne vient PAS d'une ombre : elle vient du RECOUVREMENT et
+       de la translucidité. Un plan devant un autre se voit parce qu'il le
+       masque partiellement, pas parce qu'il projette une ombre.
+     · Le cercle est le module. Pas le rectangle : les zones, les repères et
+       les découpes sont circulaires, ce qui interdit la grille de cartes.
+     · Un seul élément typographique est énorme ; tout le reste est petit.
+     · Le défilement pilote tout. Rien ne bouge sans lui.
+
+   ⚠ C'est la seule direction du benchmark qui emploie `backdrop-filter`.
+     Le réflexe « glassmorphisme » coûte 3 points — il est ici EXEMPTÉ par
+     anti-llm.json (`gratuit_si: surface:glass`) parce que le verre est la
+     direction elle-même et non un effet posé dessus. C'est exactement la
+     distinction que le budget doit permettre.
+
+   Contraintes servies : no-cards · asymmetry · no-standard-cta
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Plans de Verre';
+    --direction-slug: 'plans-verre';
+
+    --type-system: display-dominant;
+    --font-body: Futura, 'Century Gothic', 'URW Gothic L', 'Avant Garde', 'Trebuchet MS', sans-serif;
+    --font-display: var(--font-body);
+    --font-title: var(--font-body);
+    --font-lead: var(--font-body);
+    --font-meta: var(--font-body);
+    --font-ui: var(--font-body);
+
+    --scale-ratio: 1.6;
+    --leading-tight: 0.94;
+    --leading-normal: 1.62;
+
+    --case-title: uppercase;
+    --case-meta: uppercase;
+    --tracking-title: 0.02em;
+    --tracking-meta: 0.28em;
+    --weight-title: 400;
+
+    /* Le cercle est le module. */
+    --radius-sm: 50%;
+    --radius-md: 50%;
+    --radius-lg: 50%;
+    --radius-pill: 999px;
+    --border-width: 1px;
+
+    /* Profondeur par recouvrement, pas par ombre. */
+    --depth-model: overlap;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    --rule-style: hairline;
+    --rule-line: solid;
+    --rule-width: 1px;
+    --rule-color: var(--border);
+
+    --control-shape: pill;
+    --control-fill: outline;
+    --control-radius: 999px;
+    --control-case: uppercase;
+    --control-tracking: 0.28em;
+
+    --focus-style: ring;
+    --focus-ring: 2px solid var(--accent);
+    --focus-offset: 4px;
+
+    /* Surface — verre. Le seul emploi justifié du dépôt. */
+    --surface-model: glass;
+    --verre-fond: color-mix(in srgb, var(--bg-elevated) 55%, transparent);
+    --verre-bord: color-mix(in srgb, var(--fg) 14%, transparent);
+    --surface-texture-image:
+      radial-gradient(60% 45% at 20% 12%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%);
+    --surface-texture-size: 100% 100%;
+
+    --media-model: masked;
+    --media-filter: grayscale(0.4) contrast(1.1);
+    --media-radius: 50%;
+
+    --density: 1.35;
+    --density-measure: 0.85;
+    --space-unit: 0.5rem;
+    --rhythm: expanding;
+    --container-max: 70rem;
+
+    --motion-model: scroll-driven;
+    --ease: cubic-bezier(0.33, 1, 0.68, 1);
+    --duration-fast: 220ms;
+    --duration-slow: 700ms;
+    --decor-level: 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--weight-title);
+    text-transform: var(--case-title);
+    letter-spacing: var(--tracking-title);
+    line-height: var(--leading-tight);
+  }
+
+  a { color: var(--accent-text); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 0.3em; }
+}

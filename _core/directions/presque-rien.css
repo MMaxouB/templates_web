@@ -1,0 +1,119 @@
+/* ==========================================================================
+   DIRECTION · presque-rien
+   Benchmark 10 — « ultra-minimal »
+   --------------------------------------------------------------------------
+   Logique interne : retirer jusqu'à ce qu'il ne reste que le nécessaire.
+
+     · UNE SEULE taille de texte. Pas deux. La hiérarchie ne vient ni du
+       corps, ni de la graisse, ni de la couleur : elle vient de l'ORDRE et
+       de la POSITION. C'est le système `flat`, et c'est la contrainte la plus
+       difficile du benchmark parce qu'elle retire tous les outils habituels.
+     · Deux valeurs de couleur. Un fond, une encre.
+     · Aucune surface, aucune bordure, aucune ombre, aucun arrondi, aucune
+       animation, aucun média.
+     · Le minimalisme est une DISCIPLINE, pas une absence de travail : ce qui
+       reste doit être placé exactement, puisqu'il n'y a rien pour distraire
+       d'une erreur.
+
+   Contraintes servies : empty · no-images · no-cards · no-shadow ·
+                         no-rounded · no-animation · single-type-size
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Presque Rien';
+    --direction-slug: 'presque-rien';
+
+    --type-system: flat;
+    --font-body: Helvetica, 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif;
+    --font-display: var(--font-body);
+    --font-title: var(--font-body);
+    --font-lead: var(--font-body);
+    --font-meta: var(--font-body);
+    --font-ui: var(--font-body);
+
+    /* Échelle plate à 1.0 : toutes les tailles dérivées valent --text-base.
+       C'est littéralement `single-type-size`. */
+    --scale-ratio: 1;
+    --text-base: 1rem;
+    --leading-tight: 1.5;
+    --leading-normal: 1.5;
+    --leading-loose: 1.5;
+
+    /* Une seule graisse. */
+    --weight-normal: 400;
+    --weight-medium: 400;
+    --weight-bold: 400;
+    --weight-title: 400;
+
+    --case-title: none;
+    --case-meta: none;
+    --tracking-title: 0em;
+    --tracking-meta: 0em;
+    --tracking-tight: 0em;
+
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 1px;
+
+    --depth-model: flat;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    --rule-style: none;
+    --rule-line: none;
+    --rule-width: 0;
+
+    --control-shape: none;
+    --control-fill: underline;
+    --control-radius: 0;
+    --control-case: none;
+    --control-pad-x: 0;
+    --control-pad-y: 0;
+
+    --focus-style: underline;
+    --focus-ring: 1px solid var(--fg);
+    --focus-offset: 3px;
+
+    /* Aucune matière. */
+    --surface-model: void;
+    --surface-texture-image: none;
+    --media-model: none;
+
+    --density: 1.9;
+    --density-measure: 0.55;
+    --space-unit: 0.5rem;
+    --rhythm: regular;
+    --container-max: 34rem;
+
+    --motion-model: none;
+    --duration-fast: 0s;
+    --duration-slow: 0s;
+    --decor-level: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-body);
+    font-size: var(--text-base);     /* aucun titre n'est plus gros */
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  a { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
+}
+
+@layer overrides {
+  /* Rien. Vraiment rien. */
+  :where(main) :where(section, article, aside, li, div, p, h1, h2, h3) {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  :where(main) :where(h1, h2, h3, p, li) { text-align: start; }
+}

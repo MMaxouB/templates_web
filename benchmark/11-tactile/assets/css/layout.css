@@ -1,0 +1,293 @@
+/* ==========================================================================
+   benchmark/11-tactile — structure
+   Composition : banded · Densité : balanced · Navigation : bottom-bar
+   --------------------------------------------------------------------------
+   Des bandes horizontales pleine largeur. Chaque bande change de FOND, de
+   DENSITÉ et d'ALIGNEMENT interne — sans quoi ce ne sont pas des bandes mais
+   des sections empilées.
+
+   Le relief vient des biseaux et des dégradés fournis par la direction : ici
+   les dégradés ne sont pas décoratifs, ils sont la lumière sur du métal.
+   ========================================================================== */
+
+@layer structure {
+
+  .panneau { padding-block-end: 5.5rem; }   /* place pour la barre basse */
+
+  .bande {
+    padding: var(--space-6) var(--space-4);
+    border-block-end: 1px solid var(--border);
+  }
+
+  @media (min-width: 60rem) {
+    .bande { padding: var(--space-8) var(--space-12); }
+  }
+
+  /* --------------------------------------------- bande 1 : plaque gravée
+     Dense, centrée sur son propre axe, texte gravé dans la tôle. */
+
+  .bande--plaque {
+    position: relative;
+    background: var(--bg-sunken);
+    box-shadow: inset 0 -2px 4px rgb(0 0 0 / 0.18);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    /* Au fer à gauche. Une plaque signalétique n'est pas un hero : elle est
+       vissée en haut de la machine et porte sa référence à l'autre bout. */
+    text-align: start;
+  }
+
+  /* Les rivets qui la fixent. Ronds parce que c'est fonctionnel. */
+  .rivet {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: var(--space-2);
+    transform: translateY(-50%);
+    inline-size: 0.7rem;
+    block-size: 0.7rem;
+    border-radius: 50%;
+    background: var(--bg-sunken);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.6),
+      inset 0 -1px 0 rgb(0 0 0 / 0.35),
+      0 0 0 1px rgb(0 0 0 / 0.18);
+  }
+  .rivet--d { inset-inline-start: auto; inset-inline-end: var(--space-2); }
+
+  /* La gravure : un liseré clair sous le trait, une ombre au-dessus. */
+  .grave {
+    color: var(--fg-muted);
+    text-shadow:
+      0 1px 0 rgb(255 255 255 / 0.5),
+      0 -1px 0 rgb(0 0 0 / 0.28);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+  }
+
+  .grave--titre {
+    font-size: clamp(1.5rem, 3.6vw, 2.3rem);
+    text-transform: none;
+    letter-spacing: var(--tracking-title);
+    color: var(--fg);
+    margin-inline-start: var(--space-4);
+  }
+
+  .grave--serie {
+    margin-inline-end: var(--space-4);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ------------------------------------------------ bande 2 : gorge usinée
+     Aérée, alignée à gauche, en creux. */
+
+  .bande--creux {
+    background: var(--bg-sunken);
+    box-shadow:
+      inset 0 3px 6px rgb(0 0 0 / 0.24),
+      inset 0 -1px 0 rgb(255 255 255 / 0.35);
+    text-align: start;
+  }
+
+  .accroche {
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    max-inline-size: 46ch;
+    color: var(--fg-muted);
+  }
+
+  /* ------------------------------------------------ bande 3 : les barres
+     Quatre barres PLEINE LARGEUR, pas des cartes : aucune surface flottante,
+     aucun coin arrondi qui les détache. Chacune est une lame de tôle, en
+     relief ou en creux, avec son libellé gravé à gauche.
+
+     C'est la correction du premier jet : la bande 3 était une grille 2 × 2 de
+     cartes arrondies et ombrées — exactement le réflexe que ce dépôt combat.
+     Le benchmark l'a signalée (symétrie 0.86, la pire des douze). */
+
+  .bande--barres { padding-inline: 0; }
+
+  .barre {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-1) var(--space-4);
+    padding: var(--space-4) var(--space-4);
+    background: var(--bg-elevated);
+    border-block-end: 1px solid var(--border);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), inset 0 -1px 0 rgb(0 0 0 / 0.14);
+  }
+
+  @media (min-width: 60rem) {
+    .barre {
+      grid-template-columns: 4rem 14rem minmax(0, 1fr);
+      align-items: start;
+      padding-inline: var(--space-12);
+    }
+  }
+
+  /* Une lame sur deux est enfoncée : le rythme vient de la tôle, pas d'une
+     alternance de couleur. */
+  .barre--creuse {
+    background: var(--bg-sunken);
+    box-shadow: inset 0 3px 6px rgb(0 0 0 / 0.2), inset 0 -1px 0 rgb(255 255 255 / 0.3);
+  }
+
+  .barre__lbl {
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-text);
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgb(255 255 255 / 0.45);
+  }
+
+  .barre__t {
+    font-size: var(--text-lg);
+    text-shadow: 0 1px 0 rgb(255 255 255 / 0.45);
+  }
+
+  .barre__c p {
+    font-size: var(--text-sm);
+    color: var(--fg-muted);
+    margin-block-end: var(--space-2);
+    max-inline-size: 68ch;
+  }
+  .barre__c p:last-child { margin-block-end: 0; }
+
+  /* ------------------------------------------- bande 4 : les commandes
+     `drag-manipulate` : des curseurs réels. Le clavier fonctionne
+     nativement sur input[type=range] — c'est la raison de ce choix. */
+
+  .bande--commandes { background: var(--bg); }
+
+  .commandes__t {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+    margin-block-end: var(--space-3);
+  }
+
+  .commandes { list-style: none; padding: 0; margin: 0; }
+
+  .cmd {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+    padding-block: var(--space-2);
+    border-block-end: 1px solid var(--border);
+  }
+
+  @media (min-width: 48rem) {
+    .cmd {
+      grid-template-columns: 12rem minmax(0, 1fr) 4rem;
+      align-items: center;
+      gap: var(--space-3);
+    }
+  }
+
+  .cmd label { font-size: var(--text-sm); }
+
+  .cmd output {
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+    font-weight: 700;
+    color: var(--accent-text);
+  }
+
+  /* La glissière : une gorge usinée dans la tôle. */
+  .cmd input[type='range'] {
+    inline-size: 100%;
+    appearance: none;
+    background: transparent;
+    cursor: grab;
+  }
+  .cmd input[type='range']:active { cursor: grabbing; }
+
+  .cmd input[type='range']::-webkit-slider-runnable-track {
+    block-size: 0.6rem;
+    border-radius: 999px;
+    background: var(--bg-sunken);
+    box-shadow: inset 0 2px 3px rgb(0 0 0 / 0.32), inset 0 -1px 0 rgb(255 255 255 / 0.4);
+  }
+  .cmd input[type='range']::-moz-range-track {
+    block-size: 0.6rem;
+    border-radius: 999px;
+    background: var(--bg-sunken);
+    box-shadow: inset 0 2px 3px rgb(0 0 0 / 0.32);
+  }
+
+  /* Le bouton : une molette de cuivre. Rond — c'est fonctionnel. */
+  .cmd input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    margin-block-start: -0.45rem;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 1px solid var(--border-strong);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), 0 2px 3px rgb(0 0 0 / 0.35);
+  }
+  .cmd input[type='range']::-moz-range-thumb {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 1px solid var(--border-strong);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.45), 0 2px 3px rgb(0 0 0 / 0.35);
+  }
+
+  .commandes__total {
+    margin-block-start: var(--space-3);
+    text-align: end;
+    font-size: var(--text-lg);
+  }
+  .commandes__total b { font-variant-numeric: tabular-nums; }
+
+  .mention {
+    padding: var(--space-4);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+
+  /* ---------------------------------------------------------- barre basse
+     Ancrée en bas, à portée du pouce. Ce n'est pas une barre de navigation
+     de site : c'est un bandeau de commande. */
+
+  .barre-basse {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    background: var(--bg-elevated);
+    border-block-start: 1px solid var(--border-strong);
+    box-shadow: 0 -2px 8px rgb(0 0 0 / 0.22), inset 0 1px 0 rgb(255 255 255 / 0.5);
+    z-index: 10;
+  }
+
+  .barre-basse a {
+    padding: var(--space-2) var(--space-2);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--fg-muted);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+    min-inline-size: 2.75rem;      /* cible tactile confortable */
+  }
+  .barre-basse a:hover { background: var(--bg-sunken); color: var(--fg); }
+
+  .barre-basse__suite {
+    background: var(--accent);
+    color: var(--accent-fg) !important;
+    /* Aucune ombre portée : ce n'est pas une carte posée sur la barre, c'est
+       une zone de la barre. Le relief vient du biseau de la barre elle-même. */
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28);
+  }
+
+} /* @layer structure */

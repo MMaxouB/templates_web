@@ -242,20 +242,44 @@ function couvertureEncre(img, fond) {
 /**
  * Ressemblance de la moitié gauche au miroir de la moitié droite.
  * 1 = parfaitement symétrique. C'est la mesure directe du réflexe de
- * centrage : une page composée sur un axe central monte au-dessus de 0.85.
+ * centrage : une page composée sur un axe central dépasse 0.80.
+ *
+ * Attention au nom : la mesure est un ÉQUILIBRE MIROIR de la matière, pas un
+ * alignement de texte. Un tableau pleine largeur aligné à gauche est
+ * horizontalement équilibré et obtient une valeur moyenne ; c'est correct.
+ * Au-delà de 0.80, en revanche, la page est bien composée sur un axe.
  */
 function scoreSymetrie(g, gw, gh) {
-  let diff = 0, n = 0;
+  let diff = 0, total = 0, n = 0;
   const demi = gw >> 1;
+
+  // Seuil de « case marquée » : 6 % de l'intensité maximale de la carte.
+  const seuil = 255 * 0.06;
+
   for (let y = 0; y < gh; y++) {
     for (let x = 0; x < demi; x++) {
       const gauche = g[y * gw + x];
       const droite = g[y * gw + (gw - 1 - x)];
+
+      // On n'évalue QUE les paires où il y a quelque chose d'au moins un côté.
+      // Sans ce filtre, la mesure évalue le vide : deux moitiés vides se
+      // ressemblent parfaitement, et toute page aérée passait pour centrée —
+      // un tableau aligné à gauche obtenait 0.93 au même titre qu'un hero.
+      const fort = Math.max(gauche, droite);
+      if (fort < seuil) continue;
+
       diff += Math.abs(gauche - droite);
-      n++;
+      total += fort;
+      n += 1;
     }
   }
-  return +(1 - (diff / n) / 255).toFixed(4);
+
+  // Aucune case marquée : page vide, la question du centrage n'a pas de sens.
+  if (!n || total === 0) return 0;
+
+  // Normalisé par l'intensité présente, pas par le nombre de cases : une
+  // différence de 10 sur une case faible pèse autant qu'elle le mérite.
+  return +(1 - diff / total).toFixed(4);
 }
 
 /**
@@ -338,7 +362,17 @@ const SEUIL = parseFloat(opt('seuil', '0.20'));
    ressemblances réelles, vérifiées à l'œil sur les captures. */
 const SORTIE_JSON = opt('json', null);
 
-const GW = 16, GH = 16;
+/* Résolution de la grille d'analyse. 16×16 s'est révélé trop grossier pour
+   des pages très textuelles : deux mises en page pourtant opposées y donnaient
+   des cartes de marquage voisines. Réglable pour pouvoir le vérifier plutôt
+   que d'en débattre. */
+const GRILLE = parseInt(opt('grille', '32'), 10);
+const GW = GRILLE, GH = GRILLE;
+
+/* Seuil d'équilibre miroir au-delà duquel on considère la composition axiale.
+   Calibré sur des cas de vérité connue : une carte de connexion centrée sort à
+   0.98, un écran coupé en deux à 0.05–0.18, un tableau pleine largeur à 0.67. */
+const SEUIL_AXE = 0.80;
 
 if (!fs.existsSync(PREVIEWS)) die('previews/ absent — lancer d\'abord node _tools/screenshot.js');
 
@@ -388,7 +422,7 @@ for (const d of dossiers) {
 console.log('  ' + 'variante'.padEnd(38) + 'symétrie  encre   teintes');
 console.log('  ' + '─'.repeat(66));
 for (const f of fiches) {
-  const alerte = f.symetrie > 0.88 ? ' ⚑ axe central' : '';
+  const alerte = f.symetrie > SEUIL_AXE ? ' ⚑ axe central' : '';
   console.log(
     '  ' + f.nom.padEnd(38)
     + String(f.symetrie.toFixed(2)).padStart(6)
@@ -475,7 +509,7 @@ if (collisions.length === 0) {
 
 /* -------------------------------------------------------- réflexes collectifs */
 
-const centres = fiches.filter((f) => f.symetrie > 0.88).length;
+const centres = fiches.filter((f) => f.symetrie > SEUIL_AXE).length;
 const partCentre = fiches.length ? centres / fiches.length : 0;
 console.log(`\n  Composition sur axe central : ${centres}/${fiches.length} (${(partCentre * 100).toFixed(0)} %)`);
 if (partCentre > 0.35) {

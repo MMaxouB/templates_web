@@ -1,0 +1,115 @@
+/* ==========================================================================
+   benchmark/10-ultra-minimal — structure
+   Composition : marginal · Densité : void · Navigation : none
+   --------------------------------------------------------------------------
+   Le contenu occupe les MARGES ; le centre reste vide. C'est la composition
+   `marginal`, et c'est l'exact contraire du conteneur centré par défaut.
+
+   Une seule taille de texte dans toute la page — la direction s'en charge.
+   Il ne reste donc, pour hiérarchiser, que l'ordre et la position. C'est la
+   contrainte la plus sévère du benchmark.
+   ========================================================================== */
+
+@layer structure {
+
+  .page {
+    min-block-size: 100svh;
+    padding: var(--space-6);
+    display: grid;
+    /* Trois rangées : haut, milieu (vide), bas. */
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 60rem) {
+    .page { padding: var(--space-8); }
+  }
+
+  /* Les quatre coins. La page se lit par ses bords. */
+
+  .coin { color: var(--fg-muted); }
+  .coin--hg { grid-column: 1; grid-row: 1; }
+  .coin--hd { grid-column: 2; grid-row: 1; text-align: end; }
+  .coin--bg { grid-column: 1; grid-row: 3; align-self: end; }
+  .coin--bd { grid-column: 2; grid-row: 3; align-self: end; text-align: end; color: var(--fg-subtle); }
+
+  /* ------------------------------------------------------------- le bloc
+     Le contenu s'appuie sur le bord gauche de la rangée du milieu et laisse
+     la droite vide. Mesure très courte. */
+
+  .bloc {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-self: center;
+    max-inline-size: 30rem;
+  }
+
+  @media (min-width: 60rem) {
+    .bloc { grid-column: 1; }
+  }
+
+  .bloc h1 { margin-block-end: var(--space-2); }
+
+  /* Le seul marqueur de hiérarchie : un retrait. Pas une taille, pas une
+     graisse, pas une couleur. */
+  .bloc--second {
+    display: none;
+  }
+
+  @media (min-width: 60rem) {
+    .bloc--second {
+      display: block;
+      grid-column: 2;
+      grid-row: 2;
+      align-self: center;
+      justify-self: end;
+      max-inline-size: 24rem;
+      padding-inline-start: var(--space-4);
+    }
+    .bloc--second h2 { margin-block-start: var(--space-3); }
+    .bloc--second p { color: var(--fg-muted); }
+  }
+
+  /* Sous 60rem, le second bloc réapparaît sous le premier : on ne masque
+     jamais du contenu, on le replace. */
+  @media (max-width: 59.99rem) {
+    .bloc--second {
+      display: block;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      align-self: end;
+      margin-block-start: var(--space-6);
+    }
+    .bloc { align-self: start; }
+    .page { grid-template-rows: auto auto auto; }
+  }
+
+  /* ------------------------------------------------------------- la série
+     Cinq lignes, alignées sur une colonne de chiffres. Aucun filet. */
+
+  .serie {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-self: end;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-inline-size: 20rem;
+    color: var(--fg-muted);
+  }
+
+  @media (min-width: 60rem) {
+    .serie { grid-column: 1; justify-self: start; }
+  }
+
+  .serie li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-block: 0.15em;
+  }
+
+  .serie span { font-variant-numeric: tabular-nums; color: var(--fg); }
+
+} /* @layer structure */

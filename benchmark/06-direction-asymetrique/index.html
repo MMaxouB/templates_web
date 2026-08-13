@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Référence 06 — Direction asymétrique</title>
+  <meta name="description" content="Diversity Benchmark, référence 06 : composition en biais, masse en bas à gauche, navigation flottante, coins coupés.">
+  <link rel="stylesheet" href="../../_core/reset.css">
+  <link rel="stylesheet" href="../../_core/tokens.css">
+  <link rel="stylesheet" href="../../_core/palettes/ocre-encre.css" data-palette-link>
+  <link rel="stylesheet" href="../../_core/directions/affiche-diagonale.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Composition `diagonal` : la grille elle-même est inclinée. Ce n'est pas
+       un élément penché posé sur une grille droite. -->
+
+  <div class="affiche">
+
+    <!-- La diagonale structurante, dessinée. -->
+    <div class="affiche__biais" aria-hidden="true"></div>
+
+    <main class="plan">
+
+      <p class="rang rang--haut">Référence 06</p>
+
+      <!-- La masse est en bas à gauche, le vide en haut à droite. -->
+      <h1 class="cri">Lorem<br>ipsum<br>dolor</h1>
+
+      <p class="murmure">
+        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua.
+      </p>
+
+      <!-- Média `out-of-grid` : il déborde du conteneur et chevauche le texte. -->
+      <figure class="debord">
+        <svg class="debord__img" viewBox="0 0 300 200" role="img" aria-label="Forme neutre hors grille">
+          <polygon points="0,200 110,20 210,120 300,0 300,200" fill="currentColor" opacity="0.85"/>
+        </svg>
+      </figure>
+
+      <div class="colonnes">
+        <section class="bloc" id="s1">
+          <h2 class="bloc__t"><span class="bloc__n">01</span> Sed do eiusmod</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </section>
+
+        <section class="bloc bloc--decale" id="s2">
+          <h2 class="bloc__t"><span class="bloc__n">02</span> Ut enim ad minim</h2>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.</p>
+          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+        </section>
+
+        <section class="bloc" id="s3">
+          <h2 class="bloc__t"><span class="bloc__n">03</span> Duis aute irure</h2>
+          <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+          <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+        </section>
+
+        <section class="bloc bloc--decale" id="s4">
+          <h2 class="bloc__t"><span class="bloc__n">04</span> Excepteur sint</h2>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+          <p>Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore.</p>
+        </section>
+      </div>
+
+      <!-- La série : cinq pastilles à coins coupés, posées en escalier.
+           Interaction `hover-preview` : la valeur se révèle au survol
+           ET au focus clavier. -->
+      <section class="serie">
+        <h2 class="serie__t">Série</h2>
+        <ul class="serie__liste">
+          <li class="pion" style="--i:0"><button type="button" class="pion__b">Lorem ipsum<span class="pion__v">128</span></button></li>
+          <li class="pion" style="--i:1"><button type="button" class="pion__b">Dolor sit<span class="pion__v">64</span></button></li>
+          <li class="pion" style="--i:2"><button type="button" class="pion__b">Amet consectetur<span class="pion__v">256</span></button></li>
+          <li class="pion" style="--i:3"><button type="button" class="pion__b">Adipiscing elit<span class="pion__v">32</span></button></li>
+          <li class="pion" style="--i:4"><button type="button" class="pion__b">Sed eiusmod<span class="pion__v">512</span></button></li>
+        </ul>
+      </section>
+
+      <p class="rang rang--bas">Diversity Benchmark — douze références</p>
+    </main>
+
+    <!-- Navigation `floating` : détachée des bords, sans arrimage. -->
+    <nav class="volante" aria-label="Sections">
+      <a href="#s1">01</a><a href="#s2">02</a><a href="#s3">03</a><a href="#s4">04</a>
+      <a class="volante__suite" href="#" data-stub>Poursuivre</a>
+    </nav>
+
+  </div>
+</body>
+</html>

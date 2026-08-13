@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Référence 11 — Tactile</title>
+  <meta name="description" content="Diversity Benchmark, référence 11 : bandes horizontales, acier brossé, formes organiques, barre basse, curseurs manipulables.">
+  <link rel="stylesheet" href="../../_core/reset.css">
+  <link rel="stylesheet" href="../../_core/tokens.css">
+  <link rel="stylesheet" href="../../_core/palettes/acier-cuivre.css" data-palette-link>
+  <link rel="stylesheet" href="../../_core/directions/metal-brosse.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Composition `banded` : des bandes horizontales pleine largeur, chacune
+       changeant de fond, de densité et d'alignement interne. -->
+
+  <main class="panneau">
+
+    <!-- Bande 1 — plaque signalétique rivetée. Au fer à gauche, avec le
+         numéro de série à droite : une plaque n'est pas un hero. -->
+    <section class="bande bande--plaque">
+      <span class="rivet" aria-hidden="true"></span>
+      <span class="rivet rivet--d" aria-hidden="true"></span>
+      <h1 class="grave grave--titre">Lorem ipsum dolor sit amet</h1>
+      <p class="grave grave--serie">Réf. 11 — 992 u.</p>
+    </section>
+
+    <!-- Bande 2 — en creux : le texte est dans une gorge usinée. -->
+    <section class="bande bande--creux">
+      <p class="accroche">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </section>
+
+    <!-- Bande 3 — quatre barres pleine largeur, pas des cartes : libellé
+         gravé à gauche, texte à droite, alternance relief / creux. -->
+    <section class="bande bande--barres">
+      <div class="barre" id="s1">
+        <p class="barre__lbl">01</p>
+        <h2 class="barre__t">Sed do eiusmod</h2>
+        <div class="barre__c">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+      </div>
+      <div class="barre barre--creuse" id="s2">
+        <p class="barre__lbl">02</p>
+        <h2 class="barre__t">Ut enim ad minim</h2>
+        <div class="barre__c">
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.</p>
+          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+        </div>
+      </div>
+      <div class="barre" id="s3">
+        <p class="barre__lbl">03</p>
+        <h2 class="barre__t">Duis aute irure</h2>
+        <div class="barre__c">
+          <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+          <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+        </div>
+      </div>
+      <div class="barre barre--creuse" id="s4">
+        <p class="barre__lbl">04</p>
+        <h2 class="barre__t">Excepteur sint</h2>
+        <div class="barre__c">
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+          <p>Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bande 4 — les commandes. Interaction `drag-manipulate` : cinq
+         curseurs réels, manipulables à la souris ET au clavier. -->
+    <section class="bande bande--commandes" id="serie">
+      <h2 class="commandes__t">Série</h2>
+      <ul class="commandes">
+        <li class="cmd">
+          <label for="c1">Lorem ipsum</label>
+          <input type="range" id="c1" min="0" max="512" value="128" step="8">
+          <output for="c1">128</output>
+        </li>
+        <li class="cmd">
+          <label for="c2">Dolor sit</label>
+          <input type="range" id="c2" min="0" max="512" value="64" step="8">
+          <output for="c2">64</output>
+        </li>
+        <li class="cmd">
+          <label for="c3">Amet consectetur</label>
+          <input type="range" id="c3" min="0" max="512" value="256" step="8">
+          <output for="c3">256</output>
+        </li>
+        <li class="cmd">
+          <label for="c4">Adipiscing elit</label>
+          <input type="range" id="c4" min="0" max="512" value="32" step="8">
+          <output for="c4">32</output>
+        </li>
+        <li class="cmd">
+          <label for="c5">Sed eiusmod</label>
+          <input type="range" id="c5" min="0" max="512" value="512" step="8">
+          <output for="c5">512</output>
+        </li>
+      </ul>
+      <p class="commandes__total">Total <b id="total">992</b></p>
+    </section>
+
+    <p class="mention">Diversity Benchmark — douze références</p>
+  </main>
+
+  <!-- Navigation `bottom-bar` : ancrée en bas, à portée du pouce. -->
+  <nav class="barre-basse" aria-label="Sections">
+    <a href="#s1">01</a>
+    <a href="#s2">02</a>
+    <a href="#s3">03</a>
+    <a href="#s4">04</a>
+    <a href="#serie">Série</a>
+    <a class="barre-basse__suite" href="#" data-stub>Poursuivre</a>
+  </nav>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+/* ==========================================================================
+   PALETTE · ocre-encre
+   Affiche sérigraphiée : papier journal, encre noire, un ocre de repérage.
+   Deux passages d'encre, pas trois — c'est la contrainte du procédé.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Ocre & Encre';
+    --palette-slug: 'ocre-encre';
+
+    --bg: #e8e3d6;
+    --bg-elevated: #f2eee4;
+    --bg-sunken: #d6d0c0;
+
+    --fg: #17150f;
+    --fg-muted: #3d382c;
+    --fg-subtle: #4b4536;
+
+    --accent: #a34a00;
+    --accent-fg: #f2eee4;
+    --accent-hover: #7d3900;
+    --accent-text: #8a3f00;
+
+    --border: #17150f;
+    --border-strong: #17150f;
+
+    --success: #2c5230;
+    --warning: #6b4400;
+    --danger: #8a2020;
+    --info: #1f4257;
+  }
+}

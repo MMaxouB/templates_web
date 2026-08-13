@@ -1,0 +1,330 @@
+/* ==========================================================================
+   benchmark/04-systeme-ancien — structure
+   Composition : panelled · Densité : balanced · Navigation : overlay-menu
+   --------------------------------------------------------------------------
+   Des panneaux fixes à défilement indépendant. Le document ne défile jamais
+   globalement : c'est la logique d'un gestionnaire de fenêtres, et c'est la
+   différence structurelle avec une page Web.
+
+   Le relief vient des biseaux fournis par la direction (--shadow-sm/md), pas
+   d'ombres portées.
+   ========================================================================== */
+
+@layer structure {
+
+  .bureau {
+    block-size: 100svh;
+    padding: var(--space-2);
+    display: grid;
+  }
+
+  @media (min-width: 60rem) {
+    .bureau { padding: var(--space-4); }
+  }
+
+  /* ------------------------------------------------------------ la fenêtre */
+
+  .fenetre {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    min-block-size: 0;
+    background: var(--bg);
+    box-shadow: var(--shadow-md);   /* biseau, pas ombre : voir la direction */
+    border: 1px solid var(--bevel-tres-sombre);
+  }
+
+  /* --------------------------------------------------------- barre de titre */
+
+  .titre {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--accent);
+    color: var(--accent-fg);
+    padding: 3px 3px 3px var(--space-1);
+    font-weight: 700;
+  }
+
+  .titre__texte {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .titre__boutons {
+    margin-inline-start: auto;
+    display: flex;
+    gap: 2px;
+  }
+
+  .tbtn {
+    inline-size: 1.35rem;
+    block-size: 1.15rem;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--bevel-tres-sombre);
+    box-shadow: inset 1px 1px 0 var(--bevel-clair), inset -1px -1px 0 var(--bevel-sombre);
+    cursor: pointer;
+  }
+  .tbtn:active {
+    box-shadow: inset -1px -1px 0 var(--bevel-clair), inset 1px 1px 0 var(--bevel-sombre);
+  }
+
+  /* -------------------------------------------------------- barre de menus */
+
+  .menus {
+    display: flex;
+    gap: var(--space-2);
+    padding: 2px var(--space-1);
+    border-block-end: 1px solid var(--bevel-sombre);
+    box-shadow: 0 1px 0 var(--bevel-clair);
+  }
+
+  .menu__declencheur,
+  .menus__inerte {
+    background: none;
+    border: 0;
+    font: inherit;
+    color: var(--fg);
+    padding: 2px var(--space-1);
+    cursor: pointer;
+  }
+
+  .menu__declencheur:hover,
+  .menu__declencheur[aria-expanded='true'] {
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
+
+  .menus__inerte { color: var(--fg-subtle); cursor: default; }
+
+  /* ------------------------------------------------------- la zone client
+     Deux panneaux à défilement INDÉPENDANT. C'est `panelled`. */
+
+  .client {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    min-block-size: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .client { grid-template-columns: 15rem minmax(0, 1fr); }
+  }
+
+  .arbre,
+  .doc {
+    overflow: auto;
+    min-block-size: 0;
+    background: var(--bg-elevated);
+    /* Biseau inversé : les zones de contenu sont EN CREUX. */
+    box-shadow: inset 1px 1px 0 var(--bevel-sombre), inset -1px -1px 0 var(--bevel-clair);
+    border: 1px solid var(--bevel-sombre);
+    padding: var(--space-2);
+  }
+
+  @media (max-width: 47.99rem) {
+    .arbre { max-block-size: 9rem; }
+  }
+
+  /* ------------------------------------------------------------ l'arbre */
+
+  .arbre__racine { font-weight: 700; margin-block: var(--space-1) 2px; }
+
+  .arbre__liste {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-2);
+  }
+
+  .arbre__liste li {
+    padding-inline-start: var(--space-3);
+    position: relative;
+  }
+
+  /* Les traits de l'arborescence, dessinés en CSS. */
+  .arbre__liste li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 6px;
+    inset-block: 0 50%;
+    border-inline-start: 1px dotted var(--fg-subtle);
+    border-block-end: 1px dotted var(--fg-subtle);
+    inline-size: 7px;
+  }
+
+  .arbre a,
+  .lien-faux {
+    color: var(--fg);
+    text-decoration: none;
+    background: none;
+    border: 0;
+    font: inherit;
+    padding: 1px 3px;
+    cursor: pointer;
+  }
+  .arbre a:hover,
+  .lien-faux:hover { background: var(--accent); color: var(--accent-fg); }
+
+  /* -------------------------------------------------------- le document
+     Chaque section est un « groupe » encadré et légendé — la convention de
+     regroupement de l'époque. C'est la géométrie `frames`. */
+
+  .groupe {
+    border: 1px solid var(--bevel-sombre);
+    box-shadow: 0 1px 0 var(--bevel-clair), 1px 0 0 var(--bevel-clair);
+    padding: var(--space-3) var(--space-2) var(--space-2);
+    margin-block-end: var(--space-4);
+    position: relative;
+  }
+
+  /* La légende du groupe chevauche le cadre, comme un <fieldset>. */
+  .groupe__legende {
+    position: absolute;
+    inset-block-start: -0.62em;
+    inset-inline-start: var(--space-2);
+    background: var(--bg-elevated);
+    padding-inline: 4px;
+    font-size: var(--text-base);
+    font-weight: 700;
+  }
+
+  .groupe p { margin-block-end: var(--space-2); max-inline-size: 68ch; }
+  .groupe p:last-child { margin-block-end: 0; }
+
+  .doc__accroche { color: var(--fg-muted); }
+
+  .icone {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-block-start: var(--space-2);
+    color: var(--accent-text);
+  }
+  .icone figcaption { color: var(--fg-muted); }
+
+  .doc__suite { margin-block-start: var(--space-4); }
+
+  /* ------------------------------------------------------------- boutons */
+
+  .bouton {
+    min-inline-size: 6rem;
+    cursor: pointer;
+  }
+  .bouton--defaut { outline: 1px solid var(--bevel-tres-sombre); outline-offset: 1px; }
+
+  /* -------------------------------------------------------- barre d'état */
+
+  .statut {
+    display: flex;
+    gap: 2px;
+    padding: 2px;
+    border-block-start: 1px solid var(--bevel-clair);
+  }
+
+  .statut__case {
+    padding: 1px var(--space-1);
+    box-shadow: inset 1px 1px 0 var(--bevel-sombre), inset -1px -1px 0 var(--bevel-clair);
+    color: var(--fg-muted);
+  }
+  .statut__case--large {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* --------------------------------------------------------- menu plein
+     `overlay-menu` : l'ouverture masque entièrement la fenêtre. */
+
+  .plein {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-sunken);
+    display: grid;
+    place-items: center;
+    padding: var(--space-4);
+    z-index: 20;
+  }
+  .plein[hidden] { display: none; }
+
+  .plein__panneau {
+    inline-size: min(24rem, 100%);
+    background: var(--bg);
+    border: 1px solid var(--bevel-tres-sombre);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-2);
+  }
+
+  .plein__titre {
+    background: var(--accent);
+    color: var(--accent-fg);
+    font-weight: 700;
+    padding: 2px var(--space-1);
+    margin-block-end: var(--space-2);
+  }
+
+  .plein__liste { list-style: none; padding: 0; margin: 0; }
+
+  .plein__liste a {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: 3px var(--space-1);
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .plein__liste a:hover { background: var(--accent); color: var(--accent-fg); }
+
+  .plein__liste kbd { color: var(--fg-subtle); font-family: inherit; }
+  .plein__liste a:hover kbd { color: var(--accent-fg); }
+
+  .plein__pied { margin-block-start: var(--space-2); text-align: end; }
+
+  /* ------------------------------------------------------------ la boîte
+     `modal-layer` : le détail s'ouvre par-dessus, la page de fond ne bouge
+     pas. <dialog> fournit le piège de focus nativement. */
+
+  .boite {
+    inline-size: min(30rem, calc(100% - 2rem));
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--bevel-tres-sombre);
+    box-shadow: var(--shadow-md);
+  }
+  /* Règle d'or du dépôt : aucune couleur en dur, pas même dans un voile de
+     modale. `color-mix` dérive le voile du texte de la palette, ce qui le
+     rend correct sur une palette claire comme sur une palette sombre. */
+  .boite::backdrop { background: color-mix(in srgb, var(--fg) 35%, transparent); }
+
+  .titre--boite { margin: 0; }
+
+  .boite__corps {
+    padding: var(--space-3);
+    box-shadow: inset 1px 1px 0 var(--bevel-sombre);
+  }
+
+  .tableau { inline-size: 100%; border-collapse: collapse; }
+  .tableau th, .tableau td {
+    padding: 2px var(--space-1);
+    text-align: start;
+    border: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+  .tableau th { background: var(--bg-sunken); }
+  .tableau td:nth-child(2), .tableau td:nth-child(3),
+  .tableau th:nth-child(2), .tableau th:nth-child(3) { text-align: end; }
+
+  .boite__pied {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-1);
+    padding: var(--space-2);
+  }
+
+} /* @layer structure */

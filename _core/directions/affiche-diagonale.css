@@ -1,0 +1,125 @@
+/* ==========================================================================
+   DIRECTION · affiche-diagonale
+   Benchmark 06 — « direction artistique asymétrique »
+   --------------------------------------------------------------------------
+   Logique interne : une affiche sérigraphiée, composée en biais.
+
+     · L'axe dominant n'est ni horizontal ni vertical. Une diagonale traverse
+       la page et TOUT s'y rapporte — ce n'est pas un élément penché posé sur
+       une grille droite, c'est la grille elle-même qui est inclinée.
+     · Le déséquilibre est calculé : la masse est en bas à gauche, le vide en
+       haut à droite. Une affiche équilibrée est une affiche morte.
+     · La hiérarchie vient de la GRAISSE, sur une condensée : 300 pour le
+       murmure, 900 pour le cri, une seule famille. C'est `weight-driven`.
+     · Les coins sont coupés, jamais arrondis — le massicot, pas le rayon.
+     · Deux passages d'encre seulement, et le décalage de repérage est visible.
+
+   Contraintes servies : asymmetry · no-cards · no-rounded · no-centered-text
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Affiche Diagonale';
+    --direction-slug: 'affiche-diagonale';
+
+    /* L'inclinaison est un token : toute la structure s'y réfère. */
+    --biais: -6.5deg;
+
+    /* Typographie — une famille condensée, la graisse fait tout */
+    --type-system: weight-driven;
+    --font-body: 'Arial Narrow', 'Liberation Sans Narrow', 'Helvetica Neue', Arial, sans-serif;
+    --font-display: var(--font-body);
+    --font-title: var(--font-body);
+    --font-lead: var(--font-body);
+    --font-meta: var(--font-body);
+    --font-ui: var(--font-body);
+
+    --scale-ratio: 1.2;
+    --leading-tight: 0.94;
+    --leading-normal: 1.42;
+
+    --weight-normal: 300;
+    --weight-medium: 600;
+    --weight-bold: 900;
+    --weight-title: 900;
+
+    --case-title: uppercase;
+    --case-meta: uppercase;
+    --tracking-title: -0.02em;
+    --tracking-meta: 0.2em;
+
+    /* Formes — coins coupés au massicot */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 2px;
+    --control-cut: 0.7rem;
+
+    --depth-model: overlap;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    --rule-style: thick;
+    --rule-line: solid;
+    --rule-width: 3px;
+    --rule-color: var(--fg);
+
+    --control-shape: cut;
+    --control-fill: solid;
+    --control-radius: 0;
+    --control-case: uppercase;
+    --control-tracking: 0.2em;
+    --control-pad-x: var(--space-4);
+    --control-pad-y: var(--space-2);
+
+    --focus-style: block;
+    --focus-ring: 3px solid var(--fg);
+    --focus-offset: 2px;
+
+    /* Surface — papier journal et trame de sérigraphie */
+    --surface-model: newsprint;
+    --surface-texture-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+    --surface-texture-size: 150px 150px;
+    --surface-texture-blend: multiply;
+
+    --media-model: out-of-grid;
+    --media-filter: grayscale(1) contrast(1.45);
+    --media-radius: 0;
+
+    --density: 1;
+    --density-measure: 0.85;
+    --space-unit: 0.5rem;
+    --rhythm: syncopated;
+    --container-max: 76rem;
+
+    /* Mouvement — directionnel : tout arrive dans le sens de la diagonale */
+    --motion-model: directional;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --duration-fast: 180ms;
+    --duration-slow: 460ms;
+    --decor-level: 2;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--weight-title);
+    text-transform: var(--case-title);
+    letter-spacing: var(--tracking-title);
+    line-height: var(--leading-tight);
+  }
+
+  a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 0.15em; }
+}
+
+@layer overrides {
+  :where(main) :where(section, article, aside, li, div) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  /* Une affiche ne centre pas : elle appuie d'un côté. */
+  :where(main) :where(h1, h2, h3, h4, p, li) { text-align: start; }
+}

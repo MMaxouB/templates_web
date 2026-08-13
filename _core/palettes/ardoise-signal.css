@@ -1,0 +1,38 @@
+/* ==========================================================================
+   PALETTE · ardoise-signal
+   Interface de données. L'accent est ambre et non bleu : le bleu est facturé
+   2 points par anti-llm.json, et sur un outil il désigne mal l'urgence.
+   Les quatre couleurs sémantiques doivent rester distinguables entre elles,
+   pas seulement lisibles sur le fond — c'est la contrainte propre aux
+   interfaces de données.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    color-scheme: dark;
+
+    --palette-name: 'Ardoise & Signal';
+    --palette-slug: 'ardoise-signal';
+
+    --bg: #12161c;
+    --bg-elevated: #1a2029;
+    --bg-sunken: #0c0f14;
+
+    --fg: #e6ebf2;
+    --fg-muted: #a3b0c0;
+    --fg-subtle: #94a2b3;
+
+    --accent: #f5a524;
+    --accent-fg: #12161c;
+    --accent-hover: #ffc45c;
+    --accent-text: #f5a524;
+
+    --border: #2a3441;
+    --border-strong: #55647a;
+
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --info: #2dd4bf;
+  }
+}

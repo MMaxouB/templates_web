@@ -1,0 +1,42 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "06",
+  "variante": "06-direction-asymetrique",
+  "role": "Référence de benchmark — direction artistique asymétrique",
+  "archetype": "grille-cassee",
+  "intention": "Une affiche sérigraphiée composée en biais. Ce n'est pas un élément penché posé sur une grille droite : la grille elle-même est inclinée, et tout s'y rapporte. La masse est en bas à gauche, le vide en haut à droite — une affiche équilibrée est une affiche morte.",
+  "dna": {
+    "composition": "diagonal",
+    "density": "airy",
+    "typography": {
+      "system": "weight-driven",
+      "voice": "condensed"
+    },
+    "geometry": "angular-cut",
+    "surface": "newsprint",
+    "navigation": "floating",
+    "media": "out-of-grid",
+    "motion": "directional",
+    "interaction": "hover-preview"
+  },
+  "habillage_reference": "affiche",
+  "creativeConstraints": [
+    "asymmetry",
+    "no-cards",
+    "no-rounded",
+    "no-centered-text"
+  ],
+  "justifications": {
+    "density=balanced": "Une affiche n'est ni dense ni vide : elle tient en un coup d'œil. La densité moyenne est le bon réglage, et le caractère vient de la composition, pas de la quantité.",
+    "density": "Visée « balanced », mesurée « airy » (9.9 éléments/écran). On déclare ce qui est mesuré."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 9.9,
+    "densite_classee": "airy"
+  }
+}

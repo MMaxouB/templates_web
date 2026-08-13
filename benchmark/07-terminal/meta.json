@@ -1,0 +1,43 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "07",
+  "variante": "07-terminal",
+  "role": "Référence de benchmark — terminal",
+  "archetype": "terminal",
+  "intention": "Une grille de caractères. Une seule famille, une seule taille : la hiérarchie ne peut donc venir ni du corps ni de la police, elle vient de l'inversion vidéo et du retrait. Tout pend d'un unique axe gauche, et l'on navigue en tapant.",
+  "dna": {
+    "composition": "flush-left-ragged",
+    "density": "compact",
+    "typography": {
+      "system": "case-driven",
+      "voice": "typewriter-mono"
+    },
+    "geometry": "borderless",
+    "surface": "screen-phosphor",
+    "navigation": "command-line",
+    "media": "none",
+    "motion": "brutal-cut",
+    "interaction": "command-input"
+  },
+  "habillage_reference": "console",
+  "creativeConstraints": [
+    "monochrome",
+    "no-cards",
+    "no-rounded",
+    "no-images",
+    "no-sans-serif",
+    "single-type-size"
+  ],
+  "justifications": {
+    "single-type-size": "L'échelle est à 1.06 : le rapport entre le plus grand et le plus petit corps de la page reste sous 1.4. Un terminal n'a qu'un corps de texte, et c'est cette contrainte qui oblige à hiérarchiser autrement."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 23.1,
+    "densite_classee": "compact"
+  }
+}

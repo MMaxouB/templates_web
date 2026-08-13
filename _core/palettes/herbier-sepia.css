@@ -1,0 +1,32 @@
+/* ==========================================================================
+   PALETTE · herbier-sepia
+   Planche d'ouvrage savant : papier vergé, encre brune, un rouge de cartouche.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Herbier Sépia';
+    --palette-slug: 'herbier-sepia';
+
+    --bg: #f2ecdc;
+    --bg-elevated: #f8f4e8;
+    --bg-sunken: #e4dcc6;
+
+    --fg: #1f1a12;
+    --fg-muted: #463d2c;
+    --fg-subtle: #544936;
+
+    --accent: #7d2118;
+    --accent-fg: #f8f4e8;
+    --accent-hover: #5e1811;
+    --accent-text: #7d2118;
+
+    --border: #a8977a;
+    --border-strong: #1f1a12;
+
+    --success: #2f5230;
+    --warning: #6b4a00;
+    --danger: #7d2118;
+    --info: #24455c;
+  }
+}

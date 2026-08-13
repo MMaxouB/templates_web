@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Référence 02 — Brutalisme brut</title>
+  <meta name="description" content="Diversity Benchmark, référence 02 : bord à bord, typographie énorme, béton, aucune navigation séparée.">
+  <link rel="stylesheet" href="../../_core/reset.css">
+  <link rel="stylesheet" href="../../_core/tokens.css">
+  <link rel="stylesheet" href="../../_core/palettes/beton-orange.css" data-palette-link>
+  <link rel="stylesheet" href="../../_core/directions/beton-brut.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Composition `full-bleed` : aucun conteneur centré. Les blocs touchent
+       les bords comme le béton touche le coffrage. -->
+
+  <main class="dalle">
+
+    <!-- Le bloc-titre EST la page. Rapport de taille > 20:1 avec le corps :
+         c'est le système `display-dominant`. -->
+    <h1 class="enorme">Lorem<br>ipsum<br>dolor<br>sit amet</h1>
+
+    <div class="bandeau">
+      <p class="bandeau__ref">Référence 02</p>
+      <p class="bandeau__mention">Diversity Benchmark — douze références</p>
+    </div>
+
+    <!-- Navigation `inline-contextual` : il n'y a AUCUN bloc de navigation.
+         Les liens sont des mots de la phrase. -->
+    <p class="accroche">
+      Consectetur adipiscing elit, sed do
+      <a href="#s1">eiusmod tempor</a> incididunt ut
+      <a href="#s2">labore et dolore</a> magna aliqua, puis
+      <a href="#s3">duis aute irure</a> et enfin
+      <a href="#s4">excepteur sint</a>.
+    </p>
+
+    <section class="bloc" id="s1">
+      <h2 class="bloc__titre">Sed do eiusmod</h2>
+      <div class="bloc__texte">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+    </section>
+
+    <!-- Média `aggressive-crop` : ratio 5:1, sujet coupé, cadrage désinvolte. -->
+    <figure class="coupe">
+      <svg class="coupe__img" viewBox="0 0 200 40" preserveAspectRatio="none" role="img" aria-label="Bloc neutre recadré">
+        <rect width="200" height="40" fill="currentColor" opacity="0.14"/>
+        <path d="M0 30 L40 8 L78 24 L120 4 L200 20 L200 40 L0 40 Z" fill="currentColor" opacity="0.4"/>
+      </svg>
+    </figure>
+
+    <section class="bloc" id="s2">
+      <h2 class="bloc__titre">Ut enim ad minim</h2>
+      <div class="bloc__texte">
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+      </div>
+    </section>
+
+    <section class="bloc" id="s3">
+      <h2 class="bloc__titre">Duis aute irure</h2>
+      <div class="bloc__texte">
+        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+      </div>
+    </section>
+
+    <section class="bloc" id="s4">
+      <h2 class="bloc__titre">Excepteur sint</h2>
+      <div class="bloc__texte">
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore.</p>
+      </div>
+    </section>
+
+    <!-- La série : cinq aplats pleins dont la LARGEUR est la donnée.
+         Pas un tableau, pas un graphique — des blocs de béton. -->
+    <section class="serie">
+      <h2 class="serie__titre">Série</h2>
+      <ul class="serie__blocs">
+        <li class="barre" style="--part:14"><span class="barre__nom">Lorem ipsum</span><span class="barre__val">128</span></li>
+        <li class="barre" style="--part:7"><span class="barre__nom">Dolor sit</span><span class="barre__val">64</span></li>
+        <li class="barre" style="--part:28"><span class="barre__nom">Amet consectetur</span><span class="barre__val">256</span></li>
+        <li class="barre" style="--part:3"><span class="barre__nom">Adipiscing elit</span><span class="barre__val">32</span></li>
+        <li class="barre" style="--part:48"><span class="barre__nom">Sed eiusmod</span><span class="barre__val">512</span></li>
+      </ul>
+    </section>
+
+    <!-- L'action : une bande pleine largeur. Ni bouton, ni pilule. -->
+    <a class="bande-action" href="#" data-stub>Poursuivre</a>
+
+  </main>
+</body>
+</html>

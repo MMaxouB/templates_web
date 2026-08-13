@@ -1,0 +1,132 @@
+/* ==========================================================================
+   DIRECTION · beton-brut
+   Benchmark 02 — « brutalisme brut »
+   --------------------------------------------------------------------------
+   Logique interne : le béton banché, et rien d'autre.
+
+     · Le brutalisme architectural ne décore pas : il montre le matériau et le
+       procédé. Ici, on montre la matière du Web — le bloc, le bord, le texte
+       trop grand — sans chercher à l'adoucir.
+     · Un seul geste typographique : ÉNORME ou petit. Rien entre les deux.
+       Le rapport dépasse 20:1, ce qui rend toute hiérarchie intermédiaire
+       inutile.
+     · Bord à bord. Aucun conteneur centré, aucune gouttière : les blocs
+       touchent les bords de l'écran comme le béton touche le coffrage.
+     · Les joints de banche et les trous de banche sont dessinés. C'est le
+       procédé rendu visible.
+     · Le mouvement est une coupe. Rien ne s'interpole.
+
+   Distinction avec `neo-brutaliste` : celle-là est le style WEB néo-brutaliste
+   (jaune criard, bordures 3px, ombres décalées) — un style de 2020 qui cite le
+   brutalisme. Celle-ci vise le MATÉRIAU. L'une est une citation, l'autre une
+   construction.
+
+   Contraintes servies : no-cards · no-rounded · no-shadow · no-centered-text
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Béton Brut';
+    --direction-slug: 'beton-brut';
+
+    /* Typographie — deux tailles, rien entre les deux */
+    --type-system: display-dominant;
+    --font-body: 'Arial Narrow', 'Liberation Sans Narrow', Arial, sans-serif;
+    --font-display: Impact, Haettenschweiler, 'Arial Black', 'Franklin Gothic Heavy', sans-serif;
+    --font-title: var(--font-display);
+    --font-lead: var(--font-body);
+    --font-meta: var(--font-body);
+    --font-ui: var(--font-display);
+
+    --scale-ratio: 1.2;
+    --leading-tight: 0.82;   /* les capitales se touchent presque */
+    --leading-normal: 1.35;
+    --leading-loose: 1.4;
+
+    --case-title: uppercase;
+    --case-meta: uppercase;
+    --tracking-title: -0.03em;
+    --tracking-meta: 0.1em;
+    --weight-title: 400;     /* Impact est déjà lourd : pas de gras par-dessus */
+
+    /* Formes — angles vifs uniquement */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 2px;
+
+    --depth-model: flat;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    --rule-style: thick;
+    --rule-line: solid;
+    --rule-width: 6px;
+    --rule-color: var(--fg);
+
+    --control-shape: rect;
+    --control-fill: solid;
+    --control-radius: 0;
+    --control-case: uppercase;
+    --control-tracking: 0.06em;
+    --control-pad-x: var(--space-3);
+    --control-pad-y: var(--space-2);
+
+    --focus-style: block;
+    --focus-ring: 4px solid var(--fg);
+    --focus-offset: 0;
+
+    /* Surface — grain minéral + joints de banche horizontaux */
+    --surface-model: concrete;
+    --surface-texture-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.62' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23c)' opacity='0.13'/%3E%3C/svg%3E"),
+      repeating-linear-gradient(to bottom, transparent 0 118px, rgb(0 0 0 / 0.14) 118px 120px);
+    --surface-texture-size: 180px 180px, 100% 120px;
+    --surface-texture-blend: multiply, normal;
+
+    --media-model: aggressive-crop;
+    --media-filter: grayscale(1) contrast(1.6);
+    --media-radius: 0;
+
+    --density: 0.85;
+    --density-measure: 1.15;
+    --space-unit: 0.5rem;
+    --rhythm: interrupted;
+    --container-max: none;
+
+    --motion-model: brutal-cut;
+    --ease: steps(1, end);
+    --duration-fast: 0s;
+    --duration-slow: 0s;
+    --decor-level: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--weight-title);
+    text-transform: var(--case-title);
+    letter-spacing: var(--tracking-title);
+    line-height: var(--leading-tight);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.1em;
+  }
+  a:hover { background: var(--fg); color: var(--bg); text-decoration: none; }
+}
+
+@layer overrides {
+  /* Aucun arrondi, aucune ombre, aucune surface flottante. */
+  :where(main) :where(section, article, aside, li, div, a, button) {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  /* Le béton ne centre pas. */
+  :where(main) :where(h1, h2, h3, h4, p, li) { text-align: start; }
+}

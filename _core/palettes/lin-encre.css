@@ -1,0 +1,35 @@
+/* ==========================================================================
+   PALETTE · lin-encre
+   Luxe discret : pas d'or, pas de noir profond. Un lin cassé et une encre
+   grise. Ce sont les écarts FAIBLES qui font le luxe — un contraste maximal
+   crie, et le luxe ne crie pas.
+   Les couleurs sémantiques sont désaturées au strict minimum réglementaire.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    --palette-name: 'Lin & Encre';
+    --palette-slug: 'lin-encre';
+
+    --bg: #efece7;
+    --bg-elevated: #f6f4f0;
+    --bg-sunken: #e4e0d8;
+
+    --fg: #23211d;
+    --fg-muted: #4f4b43;
+    --fg-subtle: #5c574d;
+
+    --accent: #23211d;
+    --accent-fg: #f6f4f0;
+    --accent-hover: #3d3a34;
+    --accent-text: #23211d;
+
+    --border: #c4bfb4;
+    --border-strong: #23211d;
+
+    --success: #3a5442;
+    --warning: #6b5218;
+    --danger: #7a3028;
+    --info: #34495c;
+  }
+}

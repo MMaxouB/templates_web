@@ -1,0 +1,140 @@
+/* ==========================================================================
+   DIRECTION · metal-brosse
+   Benchmark 11 — « tactile »
+   --------------------------------------------------------------------------
+   Logique interne : un panneau de commande en acier brossé et cuivre.
+
+     · On doit avoir envie de TOUCHER. Cela demande trois choses : une matière
+       (le brossage, des stries fines et régulières), une épaisseur (les
+       arêtes captent la lumière en haut et l'ombre en bas), et une réponse
+       (l'objet s'enfonce sous le doigt).
+     · Les dégradés ne sont pas décoratifs : ils sont la lumière sur du métal.
+       C'est pourquoi cette direction en emploie alors que la moitié du
+       benchmark les interdit — ici ils portent le matériau.
+     · Les formes sont organiques : rayons asymétriques, jamais un rectangle
+       à coins égaux. Un objet fabriqué a des congés inégaux.
+     · Le mouvement est physique : de la masse et de l'inertie, pas des
+       fondus.
+
+   Contraintes servies : physical · no-hero · no-standard-cta
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Métal Brossé';
+    --direction-slug: 'metal-brosse';
+
+    --type-system: size-driven;
+    --font-body: ui-rounded, 'Varela Round', 'Trebuchet MS', 'Lucida Grande', sans-serif;
+    --font-display: var(--font-body);
+    --font-title: var(--font-body);
+    --font-lead: var(--font-body);
+    --font-meta: var(--font-body);
+    --font-ui: var(--font-body);
+
+    --scale-ratio: 1.28;
+    --leading-tight: 1.15;
+    --leading-normal: 1.5;
+
+    --case-title: none;
+    --case-meta: uppercase;
+    --tracking-title: -0.01em;
+    --tracking-meta: 0.12em;
+    --weight-title: 700;
+
+    /* Formes organiques : rayons volontairement inégaux. */
+    --radius-sm: 4px 6px 5px 7px;
+    --radius-md: 10px 14px 11px 13px;
+    --radius-lg: 20px 26px 22px 24px;
+    --radius-pill: 999px;
+    --border-width: 1px;
+
+    /* Profondeur — l'épaisseur d'une pièce usinée : lumière en haut,
+       ombre en bas, et un liseré sombre pour l'arête. */
+    --depth-model: inset;
+    --shadow-style: soft;
+    --shadow-sm:
+      inset 0 1px 0 rgb(255 255 255 / 0.55),
+      inset 0 -1px 0 rgb(0 0 0 / 0.22),
+      0 1px 2px rgb(0 0 0 / 0.28);
+    --shadow-md:
+      inset 0 1px 0 rgb(255 255 255 / 0.6),
+      inset 0 -2px 0 rgb(0 0 0 / 0.25),
+      0 2px 4px rgb(0 0 0 / 0.3);
+    --shadow-lg:
+      inset 0 2px 0 rgb(255 255 255 / 0.5),
+      inset 0 -3px 0 rgb(0 0 0 / 0.3),
+      0 4px 10px rgb(0 0 0 / 0.35);
+
+    --rule-style: hairline;
+    --rule-line: solid;
+    --rule-width: 1px;
+    --rule-color: var(--border);
+
+    --control-shape: soft;
+    --control-fill: solid;
+    --control-radius: var(--radius-md);
+    --control-case: none;
+    --control-pad-x: var(--space-4);
+    --control-pad-y: var(--space-2);
+
+    --focus-style: ring;
+    --focus-ring: 3px solid var(--accent);
+    --focus-offset: 3px;
+
+    /* Surface — brossage : des stries verticales fines et régulières. */
+    --surface-model: metal;
+    --surface-texture-image:
+      repeating-linear-gradient(
+        90deg,
+        rgb(255 255 255 / 0.16) 0 1px,
+        rgb(0 0 0 / 0.05) 1px 2px,
+        transparent 2px 3px
+      ),
+      linear-gradient(180deg, rgb(255 255 255 / 0.18), transparent 42%, rgb(0 0 0 / 0.12));
+    --surface-texture-size: 3px 100%, 100% 100%;
+    --surface-texture-blend: overlay, normal;
+
+    --media-model: background-texture;
+    --media-radius: var(--radius-md);
+
+    --density: 1.05;
+    --density-measure: 0.9;
+    --space-unit: 0.5rem;
+    --rhythm: regular;
+    --container-max: 60rem;
+
+    /* Mouvement physique : décélération franche, comme une pièce qui bute. */
+    --motion-model: physical;
+    --ease: cubic-bezier(0.2, 0.9, 0.25, 1);
+    --duration-fast: 140ms;
+    --duration-slow: 380ms;
+    --decor-level: 2;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--weight-title);
+    letter-spacing: var(--tracking-title);
+  }
+
+  /* Les contrôles sont des objets : ils s'enfoncent sous le doigt. */
+  button {
+    font: inherit;
+    color: var(--fg);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--control-radius);
+    padding: var(--control-pad-y) var(--control-pad-x);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: transform var(--duration-fast) var(--ease),
+                box-shadow var(--duration-fast) var(--ease);
+  }
+  button:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.3);
+  }
+
+  a { color: var(--accent-text); }
+}

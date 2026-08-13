@@ -1,0 +1,136 @@
+/* ==========================================================================
+   DIRECTION · systeme-95
+   Benchmark 04 — « système d'exploitation ancien »
+   --------------------------------------------------------------------------
+   Logique interne : un gestionnaire de fenêtres de 1995.
+
+     · La profondeur n'est ni une ombre ni un halo : c'est un BISEAU. Deux
+       traits d'un pixel — un clair en haut à gauche, un sombre en bas à
+       droite — et le bloc paraît sorti de l'écran. Inverser les deux traits
+       le fait paraître enfoncé. C'est tout le vocabulaire de relief de
+       l'époque, et il ne coûte aucun flou.
+     · Tout est encadré. Le cadre n'est pas décoratif : il délimite une zone
+       de responsabilité — une fenêtre, un groupe de champs, une barre d'état.
+     · La police est celle du système, à une seule taille. C'est le seul cas
+       du benchmark où `ui-native` est justifié : ces interfaces employaient
+       littéralement la police système, sans choix possible.
+     · Le mouvement est mécanique et sans interpolation : une fenêtre s'ouvre,
+       elle n'apparaît pas en fondu.
+
+   Le respect des conventions d'époque prime sur le goût contemporain : un
+   template rétro qui « améliore » son modèle rate ce qu'il imite.
+
+   Contraintes servies : no-rounded · raw-web
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Système 95';
+    --direction-slug: 'systeme-95';
+
+    --type-system: size-driven;
+    --font-body: 'Segoe UI', Tahoma, Verdana, system-ui, sans-serif;
+    --font-display: var(--font-body);
+    --font-title: var(--font-body);
+    --font-lead: var(--font-body);
+    --font-meta: var(--font-body);
+    --font-ui: var(--font-body);
+
+    --scale-ratio: 1.15;
+    --text-base: 0.75rem;    /* 12px — la taille d'interface de l'époque */
+    --leading-tight: 1.2;
+    --leading-normal: 1.4;
+
+    --case-title: none;
+    --case-meta: none;
+    --tracking-title: 0em;
+    --tracking-meta: 0em;
+    --weight-title: 700;
+
+    /* Formes — le pixel est carré */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 1px;
+
+    /* Profondeur — biseau, pas ombre */
+    --depth-model: offset;
+    --shadow-style: none;
+    --bevel-clair: #ffffff;
+    --bevel-sombre: #4a4a4a;
+    --bevel-tres-sombre: #000000;
+    --shadow-sm: inset 1px 1px 0 var(--bevel-clair), inset -1px -1px 0 var(--bevel-sombre);
+    --shadow-md: inset 1px 1px 0 var(--bevel-clair), inset -1px -1px 0 var(--bevel-sombre),
+                 inset 2px 2px 0 var(--bg-elevated), inset -2px -2px 0 var(--bevel-tres-sombre);
+    --shadow-lg: var(--shadow-md);
+
+    --rule-style: double;
+    --rule-line: solid;
+    --rule-width: 1px;
+    --rule-color: var(--bevel-sombre);
+
+    --control-shape: rect;
+    --control-fill: solid;
+    --control-radius: 0;
+    --control-case: none;
+    --control-pad-x: var(--space-2);
+    --control-pad-y: var(--space-1);
+
+    /* Focus — le rectangle pointillé d'époque, toujours visible */
+    --focus-style: bracket;
+    --focus-ring: 1px dotted var(--fg);
+    --focus-offset: -4px;
+
+    /* Surface — plastique gris moulé */
+    --surface-model: plastic;
+    --media-model: tiny-inset;
+    --media-radius: 0;
+
+    --density: 0.85;
+    --density-measure: 1.1;
+    --space-unit: 0.5rem;
+    --rhythm: regular;
+    --container-max: none;
+
+    --motion-model: mechanical;
+    --ease: steps(2, end);
+    --duration-fast: 60ms;
+    --duration-slow: 120ms;
+    --decor-level: 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--weight-title);
+    letter-spacing: 0;
+  }
+
+  /* Les contrôles natifs reprennent le biseau : c'est la direction qui
+     s'applique aux éléments, pas la structure. */
+  button, input, select, textarea {
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    border: 1px solid var(--bevel-tres-sombre);
+    border-radius: 0;
+  }
+  button {
+    background: var(--bg);
+    box-shadow: inset 1px 1px 0 var(--bevel-clair), inset -1px -1px 0 var(--bevel-sombre);
+    padding: var(--control-pad-y) var(--control-pad-x);
+  }
+  button:active {
+    /* Le biseau s'inverse : le bouton est enfoncé. */
+    box-shadow: inset -1px -1px 0 var(--bevel-clair), inset 1px 1px 0 var(--bevel-sombre);
+  }
+  input, textarea, select {
+    background: var(--bg-elevated);
+    box-shadow: inset 1px 1px 0 var(--bevel-sombre), inset -1px -1px 0 var(--bevel-clair);
+  }
+
+  a { color: var(--accent-text); }
+}
+
+@layer overrides {
+  :where(main) :where(section, article, aside, li, div) { border-radius: 0; }
+}

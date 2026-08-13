@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Référence 01 — Editorial minimal</title>
+  <meta name="description" content="Diversity Benchmark, référence 01 : composition en colonnes éditoriales, marge habitée, aucune surface.">
+  <link rel="stylesheet" href="../../_core/reset.css">
+  <link rel="stylesheet" href="../../_core/tokens.css">
+  <link rel="stylesheet" href="../../_core/palettes/papier-chaux.css" data-palette-link>
+  <link rel="stylesheet" href="../../_core/directions/revue-papier.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+  <a class="saut" href="#texte">Aller au texte</a>
+
+  <!-- Navigation `marginal-notes` : les repères vivent dans la marge, comme
+       l'apparat critique d'une édition savante. Aucun bloc de navigation. -->
+  <div class="revue">
+
+    <aside class="marge" aria-label="Repères">
+      <p class="marge__surtitre">Référence 01</p>
+      <nav class="marge__nav" aria-label="Sections">
+        <ol class="marge__liste">
+          <li><a href="#s1">Sed do eiusmod</a></li>
+          <li><a href="#s2">Ut enim ad minim</a></li>
+          <li><a href="#s3">Duis aute irure</a></li>
+          <li><a href="#s4">Excepteur sint</a></li>
+          <li><a href="#serie">Série</a></li>
+        </ol>
+      </nav>
+      <p class="marge__mention">Diversity&nbsp;Benchmark<br>douze références</p>
+    </aside>
+
+    <main class="corps" id="texte">
+
+      <header class="ouverture">
+        <h1 class="ouverture__titre">Lorem ipsum dolor sit amet</h1>
+        <p class="ouverture__accroche">
+          Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore et dolore magna aliqua.
+        </p>
+      </header>
+
+      <!-- Le texte coule en colonnes : c'est la composition `editorial-columns`.
+           Les titres de section restent dans le flux, séparés par un filet. -->
+      <div class="flux">
+
+        <section class="section" id="s1">
+          <h2 class="section__titre"><span class="section__num">i</span> Sed do eiusmod</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </section>
+
+        <figure class="planche">
+          <svg class="planche__image" viewBox="0 0 320 200" role="img" aria-labelledby="pl1">
+            <title id="pl1">Bloc neutre de démonstration</title>
+            <rect width="320" height="200" fill="currentColor" opacity="0.08"/>
+            <path d="M0 148 L84 92 L150 128 L226 62 L320 116 L320 200 L0 200 Z" fill="currentColor" opacity="0.22"/>
+            <circle cx="252" cy="46" r="17" fill="currentColor" opacity="0.3"/>
+          </svg>
+          <figcaption class="planche__legende">Fig. 1 — Bloc neutre, sans échelle</figcaption>
+        </figure>
+
+        <section class="section" id="s2">
+          <h2 class="section__titre"><span class="section__num">ii</span> Ut enim ad minim</h2>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.</p>
+          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+        </section>
+
+        <section class="section" id="s3">
+          <h2 class="section__titre"><span class="section__num">iii</span> Duis aute irure</h2>
+          <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+          <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+        </section>
+
+        <section class="section" id="s4">
+          <h2 class="section__titre"><span class="section__num">iv</span> Excepteur sint</h2>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+          <p>Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore.</p>
+        </section>
+
+      </div>
+
+      <!-- La série chiffrée traitée en LISTE DE LECTURE, pas en tableau :
+           une revue ne montre pas des données, elle les commente. -->
+      <section class="serie" id="serie">
+        <h2 class="serie__titre">Série</h2>
+        <dl class="serie__liste">
+          <div class="serie__ligne">
+            <dt>Lorem ipsum</dt><dd><span class="serie__val">128</span> <span class="serie__part">14 %</span></dd>
+          </div>
+          <div class="serie__ligne">
+            <dt>Dolor sit</dt><dd><span class="serie__val">64</span> <span class="serie__part">7 %</span></dd>
+          </div>
+          <div class="serie__ligne">
+            <dt>Amet consectetur</dt><dd><span class="serie__val">256</span> <span class="serie__part">28 %</span></dd>
+          </div>
+          <div class="serie__ligne">
+            <dt>Adipiscing elit</dt><dd><span class="serie__val">32</span> <span class="serie__part">3 %</span></dd>
+          </div>
+          <div class="serie__ligne">
+            <dt>Sed eiusmod</dt><dd><span class="serie__val">512</span> <span class="serie__part">48 %</span></dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Contrainte `no-standard-cta` : l'action est un mot souligné en fin
+           de texte, comme un renvoi de bas de page. Pas un bouton. -->
+      <p class="suite"><a href="#" data-stub>Poursuivre</a></p>
+
+    </main>
+  </div>
+</body>
+</html>

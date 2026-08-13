@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Référence 12 — Spatial expérimental</title>
+  <meta name="description" content="Diversity Benchmark, référence 12 : plans de verre superposés, module circulaire, navigation par plan, révélation au défilement.">
+  <link rel="stylesheet" href="../../_core/reset.css">
+  <link rel="stylesheet" href="../../_core/tokens.css">
+  <link rel="stylesheet" href="../../_core/palettes/nuit-verre.css" data-palette-link>
+  <link rel="stylesheet" href="../../_core/directions/plans-verre.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Composition `stacked-planes` : la profondeur vient du RECOUVREMENT et de
+       la translucidité, jamais d'une ombre. Géométrie `circular` : le cercle
+       est le module, ce qui interdit la grille de cartes. -->
+
+  <div class="espace">
+
+    <!-- Les plans de fond, circulaires, qui donnent la profondeur. -->
+    <div class="halo halo--1" aria-hidden="true"></div>
+    <div class="halo halo--2" aria-hidden="true"></div>
+    <div class="halo halo--3" aria-hidden="true"></div>
+
+    <!-- Navigation `map-spatial` : un plan de la page, pas une liste.
+         Les repères sont disposés comme les plans qu'ils désignent. -->
+    <nav class="carte" aria-label="Plan de la page">
+      <span class="carte__t">Plan</span>
+      <a class="carte__pt" style="--x:16%; --y:22%" href="#p1"><span>01</span></a>
+      <a class="carte__pt" style="--x:62%; --y:38%" href="#p2"><span>02</span></a>
+      <a class="carte__pt" style="--x:30%; --y:60%" href="#p3"><span>03</span></a>
+      <a class="carte__pt" style="--x:74%; --y:78%" href="#p4"><span>04</span></a>
+      <a class="carte__pt carte__pt--s" style="--x:48%; --y:92%" href="#serie"><span>S</span></a>
+    </nav>
+
+    <main class="plans">
+
+      <p class="reperage">Référence 12</p>
+
+      <!-- Un seul élément typographique énorme : `display-dominant`. -->
+      <h1 class="enorme">Lorem<br>ipsum</h1>
+
+      <p class="accroche">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+      <!-- Média `masked` : révélé à travers une découpe circulaire. -->
+      <figure class="hublot">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Fragment révélé par une découpe circulaire">
+          <defs><clipPath id="rond"><circle cx="100" cy="100" r="100"/></clipPath></defs>
+          <g clip-path="url(#rond)">
+            <rect width="200" height="200" fill="currentColor" opacity="0.18"/>
+            <path d="M-10 150 L60 70 L120 130 L200 40 L200 210 L-10 210 Z" fill="currentColor" opacity="0.5"/>
+            <circle cx="150" cy="52" r="26" fill="currentColor" opacity="0.7"/>
+          </g>
+        </svg>
+      </figure>
+
+      <section class="plan" id="p1" data-reveler>
+        <h2 class="plan__t">Sed do eiusmod</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </section>
+
+      <section class="plan plan--droite" id="p2" data-reveler>
+        <h2 class="plan__t">Ut enim ad minim</h2>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+      </section>
+
+      <section class="plan" id="p3" data-reveler>
+        <h2 class="plan__t">Duis aute irure</h2>
+        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+      </section>
+
+      <section class="plan plan--droite" id="p4" data-reveler>
+        <h2 class="plan__t">Excepteur sint</h2>
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+        <p>Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore.</p>
+      </section>
+
+      <!-- La série : cinq disques dont le RAYON est la donnée. Pas de barres :
+           le module de cette direction est le cercle. -->
+      <section class="serie" id="serie" data-reveler>
+        <h2 class="serie__t">Série</h2>
+        <ul class="disques">
+          <li class="disque" style="--p:14"><span class="disque__d" aria-hidden="true"></span><b>Lorem ipsum</b><i>128</i></li>
+          <li class="disque" style="--p:7"><span class="disque__d" aria-hidden="true"></span><b>Dolor sit</b><i>64</i></li>
+          <li class="disque" style="--p:28"><span class="disque__d" aria-hidden="true"></span><b>Amet consectetur</b><i>256</i></li>
+          <li class="disque" style="--p:3"><span class="disque__d" aria-hidden="true"></span><b>Adipiscing elit</b><i>32</i></li>
+          <li class="disque" style="--p:48"><span class="disque__d" aria-hidden="true"></span><b>Sed eiusmod</b><i>512</i></li>
+        </ul>
+      </section>
+
+      <p class="sortie"><a href="#" data-stub>Poursuivre</a></p>
+      <p class="reperage reperage--bas">Diversity Benchmark — douze références</p>
+
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -36,6 +36,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const TEMPLATES = path.join(ROOT, 'templates');
+const BENCHMARK = path.join(ROOT, 'benchmark');
 const SCHEMA = path.join(ROOT, '_core', 'dna', 'schema.json');
 
 const die = (m) => { console.error(`✗ ${m}`); process.exit(1); };
@@ -60,35 +61,57 @@ const valeursDe = (axe) => {
 const variantes = [];
 const sansAdn = [];
 
+/**
+ * Balaie `templates/` (deux niveaux) et `benchmark/` (à plat). Le benchmark est
+ * mesuré avec le même outil et les mêmes seuils que le catalogue : un banc
+ * d'essai jugé par une règle spéciale ne prouverait rien.
+ */
+const ajouter = (dir, famille, variante) => {
+  const metaPath = path.join(dir, 'meta.json');
+  if (!fs.existsSync(metaPath)) return;
+
+  let meta;
+  try {
+    const raw = fs.readFileSync(metaPath, 'utf8').trim();
+    if (!raw) return;
+    meta = JSON.parse(raw);
+  } catch {
+    console.error(`  ⚠ meta.json illisible : ${famille}/${variante}`);
+    return;
+  }
+
+  const id = famille === 'benchmark'
+    ? `bench/${variante.split('-')[0]}`
+    : `${famille.replace(/^\d+-/, '')}/${variante.split('-')[0]}`;
+
+  if (!meta.dna) {
+    // Seules les variantes réellement écrites sont un manque : un dossier
+    // encore vide n'a pas à porter d'ADN.
+    if (meta.statut === 'fini') sansAdn.push(id);
+    return;
+  }
+  variantes.push({
+    id, famille, variante,
+    archetype: meta.archetype,
+    dna: meta.dna,
+    meta,
+    benchmark: famille === 'benchmark',
+  });
+};
+
 for (const famille of fs.readdirSync(TEMPLATES).sort()) {
   const dirFamille = path.join(TEMPLATES, famille);
   if (!fs.statSync(dirFamille).isDirectory()) continue;
-
   for (const variante of fs.readdirSync(dirFamille).sort()) {
     const dir = path.join(dirFamille, variante);
-    if (!fs.statSync(dir).isDirectory()) continue;
+    if (fs.statSync(dir).isDirectory()) ajouter(dir, famille, variante);
+  }
+}
 
-    const metaPath = path.join(dir, 'meta.json');
-    if (!fs.existsSync(metaPath)) continue;
-
-    let meta;
-    try {
-      const raw = fs.readFileSync(metaPath, 'utf8').trim();
-      if (!raw) continue;
-      meta = JSON.parse(raw);
-    } catch {
-      console.error(`  ⚠ meta.json illisible : ${famille}/${variante}`);
-      continue;
-    }
-
-    const id = `${famille.replace(/^\d+-/, '')}/${variante.split('-')[0]}`;
-    if (!meta.dna) {
-      // Seules les variantes réellement écrites sont un manque : un dossier
-      // encore vide n'a pas à porter d'ADN.
-      if (meta.statut === 'fini') sansAdn.push(id);
-      continue;
-    }
-    variantes.push({ id, famille, variante, archetype: meta.archetype, dna: meta.dna, meta });
+if (fs.existsSync(BENCHMARK)) {
+  for (const ref of fs.readdirSync(BENCHMARK).sort()) {
+    const dir = path.join(BENCHMARK, ref);
+    if (fs.statSync(dir).isDirectory()) ajouter(dir, 'benchmark', ref);
   }
 }
 

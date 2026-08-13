@@ -1,0 +1,36 @@
+/* ==========================================================================
+   PALETTE · nuit-verre
+   Panneaux translucides sur fond nocturne. L'accent est un vert d'eau, pas
+   un violet : le halo violet est le réflexe le plus reconnaissable des
+   interfaces générées, et cette référence n'a pas besoin de le payer.
+   ========================================================================== */
+
+@layer palette {
+  :root {
+    color-scheme: dark;
+
+    --palette-name: 'Nuit & Verre';
+    --palette-slug: 'nuit-verre';
+
+    --bg: #0d1418;
+    --bg-elevated: #16212a;
+    --bg-sunken: #080d10;
+
+    --fg: #e8f0f2;
+    --fg-muted: #a2b4ba;
+    --fg-subtle: #93a7ae;
+
+    --accent: #5fd3b2;
+    --accent-fg: #06110d;
+    --accent-hover: #8ae5ca;
+    --accent-text: #5fd3b2;
+
+    --border: #26333c;
+    --border-strong: #5fd3b2;
+
+    --success: #5fd3b2;
+    --warning: #e8c86a;
+    --danger: #ef8a7a;
+    --info: #7fc4dd;
+  }
+}

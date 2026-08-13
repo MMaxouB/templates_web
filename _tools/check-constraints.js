@@ -32,6 +32,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const TEMPLATES = path.join(ROOT, 'templates');
+const BENCHMARK = path.join(ROOT, 'benchmark');
 const PREVIEWS = path.join(ROOT, 'previews');
 const DNA = path.join(ROOT, '_core', 'dna');
 
@@ -50,35 +51,89 @@ const argv = process.argv.slice(2);
 const cibles = argv.filter((a) => !a.startsWith('--'));
 const budgetSeul = argv.includes('--budget');
 
-const variantes = [];
-for (const famille of fs.readdirSync(TEMPLATES).sort()) {
-  const df = path.join(TEMPLATES, famille);
-  if (!fs.statSync(df).isDirectory()) continue;
-  for (const variante of fs.readdirSync(df).sort()) {
-    const dir = path.join(df, variante);
-    if (!fs.statSync(dir).isDirectory()) continue;
+/**
+ * Deux arborescences à balayer :
+ *   templates/<famille>/<variante>/   — le catalogue, sur deux niveaux
+ *   benchmark/<reference>/            — le Diversity Benchmark, à plat
+ * Les références du benchmark passent exactement les mêmes contrôles que les
+ * variantes : c'est tout l'intérêt d'un banc d'essai construit avec le système
+ * réel plutôt qu'à côté de lui.
+ */
+const collecter = () => {
+  const out = [];
+
+  const ajouter = (dir, famille, variante) => {
     const metaPath = path.join(dir, 'meta.json');
-    if (!fs.existsSync(metaPath)) continue;
+    if (!fs.existsSync(metaPath)) return;
     let meta;
-    try { meta = JSON.parse(fs.readFileSync(metaPath, 'utf8').trim() || '{}'); } catch { continue; }
-    if (meta.statut !== 'fini') continue;
-    const rel = `${famille}/${variante}`;
-    if (cibles.length && !cibles.some((c) => rel.includes(c))) continue;
-    variantes.push({ rel, dir, famille, variante, meta });
+    try { meta = JSON.parse(fs.readFileSync(metaPath, 'utf8').trim() || '{}'); } catch { return; }
+    if (meta.statut !== 'fini') return;
+    const rel = famille ? `${famille}/${variante}` : `benchmark/${variante}`;
+    if (cibles.length && !cibles.some((c) => rel.includes(c))) return;
+    out.push({ rel, dir, famille: famille || 'benchmark', variante, meta });
+  };
+
+  if (fs.existsSync(TEMPLATES)) {
+    for (const famille of fs.readdirSync(TEMPLATES).sort()) {
+      const df = path.join(TEMPLATES, famille);
+      if (!fs.statSync(df).isDirectory()) continue;
+      for (const variante of fs.readdirSync(df).sort()) {
+        const dir = path.join(df, variante);
+        if (fs.statSync(dir).isDirectory()) ajouter(dir, famille, variante);
+      }
+    }
   }
-}
+
+  if (fs.existsSync(BENCHMARK)) {
+    for (const ref of fs.readdirSync(BENCHMARK).sort()) {
+      const dir = path.join(BENCHMARK, ref);
+      if (fs.statSync(dir).isDirectory()) ajouter(dir, null, ref);
+    }
+  }
+
+  return out;
+};
+
+const variantes = collecter();
 
 if (!variantes.length) die('aucune variante finie ne correspond');
 
 /* ------------------------------------------------------------------ lecture */
 
-const lireCss = (dir) => {
+/**
+ * Le CSS d'une variante, c'est sa structure ET l'habillage qu'elle référence.
+ *
+ * Une contrainte comme `physical`, `no-shadow` ou `editorial` porte sur ce que
+ * la page REND, pas sur le fichier où la déclaration se trouve. Or la matière,
+ * les ombres et les règles de composition d'imprimé vivent dans la direction
+ * artistique, par construction. Ne lire que `layout.css` faisait échouer des
+ * contraintes pourtant tenues — le motif était bien là, dans l'autre fichier.
+ */
+const lireCss = (dir, { avecPalette = true } = {}) => {
+  const morceaux = [];
+
   const cssDir = path.join(dir, 'assets', 'css');
-  if (!fs.existsSync(cssDir)) return '';
-  return fs.readdirSync(cssDir)
-    .filter((f) => f.endsWith('.css'))
-    .map((f) => fs.readFileSync(path.join(cssDir, f), 'utf8'))
-    .join('\n');
+  if (fs.existsSync(cssDir)) {
+    for (const f of fs.readdirSync(cssDir).filter((x) => x.endsWith('.css'))) {
+      morceaux.push(fs.readFileSync(path.join(cssDir, f), 'utf8'));
+    }
+  }
+
+  // Palette et direction, résolues depuis les <link> des pages de la variante.
+  const vus = new Set();
+  for (const page of fs.readdirSync(dir).filter((f) => f.endsWith('.html'))) {
+    const html = fs.readFileSync(path.join(dir, page), 'utf8');
+    for (const m of html.matchAll(/(?:\.\.\/)+_core\/(palettes|directions)\/([a-z0-9-]+)\.css/g)) {
+      if (m[1] === 'palettes' && !avecPalette) continue;
+      const rel = `_core/${m[1]}/${m[2]}.css`;
+      if (vus.has(rel)) continue;
+      vus.add(rel);
+      const abs = path.join(ROOT, rel);
+      if (fs.existsSync(abs)) morceaux.push(fs.readFileSync(abs, 'utf8'));
+    }
+  }
+
+  return morceaux.join('\n');
 };
 
 const lireHtml = (dir) =>
@@ -90,10 +145,35 @@ const lireHtml = (dir) =>
 /** Retire les commentaires CSS : un motif cité en commentaire n'est pas du style. */
 const sansCommentaires = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '');
 
+/**
+ * Remplace les `var(--x)` par leur valeur, quand elle est déclarée dans le même
+ * CSS. Deux passes suffisent : les tokens du dépôt ne s'imbriquent pas plus.
+ *
+ * Sans cela, un contrôle textuel juge `box-shadow: var(--shadow-md)` sans jamais
+ * voir ce que vaut --shadow-md. Une direction dont les ombres sont des biseaux
+ * internes était donc accusée de poser des cartes — le motif cherchait le mot
+ * `inset` dans un nom de variable. Le contrôle doit porter sur ce qui est
+ * RENDU, pas sur la façon dont c'est écrit.
+ */
+const resoudreVars = (css) => {
+  const defs = new Map();
+  for (const m of css.matchAll(/(--[a-z0-9-]+)\s*:\s*([^;{}]+);/gi)) {
+    if (!defs.has(m[1])) defs.set(m[1], m[2].trim());
+  }
+  let out = css;
+  for (let passe = 0; passe < 2; passe++) {
+    out = out.replace(/var\(\s*(--[a-z0-9-]+)\s*(?:,[^)]*)?\)/gi,
+      (tout, nom) => (defs.has(nom) ? defs.get(nom) : tout));
+  }
+  return out;
+};
+
 const probePour = (v) => {
   if (!fs.existsSync(PREVIEWS)) return null;
   const num = v.variante.split('-')[0];
-  const prefixe = `${v.famille.replace(/^\d+-/, '')}-${num}--`;
+  // build.js nomme les dossiers du benchmark `bench-NN--…`, pas `benchmark-NN--`.
+  const label = v.famille === 'benchmark' ? 'bench' : v.famille.replace(/^\d+-/, '');
+  const prefixe = `${label}-${num}--`;
   const d = fs.readdirSync(PREVIEWS).find((x) => x.startsWith(prefixe));
   if (!d) return null;
   const p = path.join(PREVIEWS, d, 'probe.json');
@@ -177,8 +257,9 @@ const resume = [];
 for (const v of variantes) {
   const cssBrut = lireCss(v.dir);
   const ctx = {
-    css: sansCommentaires(cssBrut),
+    css: resoudreVars(sansCommentaires(cssBrut)),
     cssBrut,
+    cssHorsPalette: sansCommentaires(lireCss(v.dir, { avecPalette: false })),
     html: lireHtml(v.dir),
     meta: v.meta,
     probe: probePour(v),
@@ -218,8 +299,34 @@ for (const v of variantes) {
 
   /* 4 — hygiène */
   if (!budgetSeul) {
-    const couleursDures = (ctx.css.match(/(?<!-)#[0-9a-f]{3,8}\b|rgba?\(\s*\d+/gi) || [])
-      .filter((s) => !/^#(fff|000)\b/i.test(s));
+    /* Règle d'or : aucune couleur en dur HORS de _core/palettes/. On exclut
+       donc la palette de la portée — elle ne contient que des couleurs, c'est
+       sa raison d'être. Structure et direction doivent tout tirer des tokens.
+       --------------------------------------------------------------------
+       Ce qui est traqué, c'est une TEINTE codée en dur : elle survit au
+       changement de palette et casse la promesse du dépôt. Les valeurs
+       ACHROMATIQUES (noir, blanc, gris, avec ou sans alpha) ne sont pas des
+       couleurs au sens du contrat : ce sont des modificateurs de luminance —
+       une ombre, un éclat d'arête, un grain de papier. Elles fonctionnent
+       sous n'importe quelle palette, et une texture SVG en data-uri ne peut
+       de toute façon pas lire une variable CSS. */
+    const achromatique = (s) => {
+      const hex = s.match(/^#([0-9a-f]{3,8})$/i);
+      if (hex) {
+        let h = hex[1];
+        if (h.length === 3 || h.length === 4) h = [...h].map((c) => c + c).join('');
+        const [r, g, b] = [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
+        return r === g && g === b;
+      }
+      const nums = s.match(/\d+(?:\.\d+)?/g);
+      if (!nums || nums.length < 3) return false;
+      const [r, g, b] = nums.slice(0, 3).map(Number);
+      return r === g && g === b;
+    };
+
+    const couleursDures = (
+      ctx.cssHorsPalette.match(/(?<!-)#[0-9a-f]{3,8}\b|rgba?\([^)]*\)/gi) || []
+    ).filter((s) => !achromatique(s.trim()));
     if (couleursDures.length) {
       lignes.push({ niveau: 'echec', texte: `${couleursDures.length} couleur(s) en dur hors thème : ${[...new Set(couleursDures)].slice(0, 4).join(', ')}` });
     }

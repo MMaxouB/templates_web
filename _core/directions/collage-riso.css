@@ -1,0 +1,126 @@
+/* ==========================================================================
+   DIRECTION · collage-riso
+   Benchmark 08 — « collage maximaliste »
+   --------------------------------------------------------------------------
+   Logique interne : une planche de risographie, découpée et recollée.
+
+     · Maximalisme ≠ désordre. La règle interne est stricte et s'énonce en une
+       phrase : TOUT élément est posé sur une grille de 12 colonnes, pivoté
+       d'un angle pris dans une suite de cinq valeurs fixes, et chevauche au
+       moins un voisin. Appliquée à un contenu nouveau, elle produit le même
+       résultat — c'est ce qui sépare le chaos contrôlé du bruit.
+     · Trois familles délibérément mal assorties. Le mauvais assortiment est
+       le sujet, pas un accident.
+     · Le décalage de repérage des encres est visible : c'est le procédé.
+     · Quelque chose bouge en permanence, lentement. Un collage n'est jamais
+       tout à fait posé.
+
+   ⚠ Cette direction est la plus facile à rater. Sans la règle des cinq
+     angles, on obtient du bruit — et « faire bizarre pour être différent »
+     est exactement le piège que le catalogue doit éviter.
+
+   Contraintes servies : controlled-chaos · no-rounded
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Collage Riso';
+    --direction-slug: 'collage-riso';
+
+    /* La suite d'angles. Cinq valeurs, pas une de plus. */
+    --angle-1: -7deg;
+    --angle-2: 3.5deg;
+    --angle-3: -2deg;
+    --angle-4: 8deg;
+    --angle-5: -4.5deg;
+
+    /* Typographie — trois familles qui ne vont pas ensemble */
+    --type-system: family-contrast;
+    --font-body: 'Courier New', Courier, monospace;
+    --font-display: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+    --font-title: var(--font-display);
+    --font-lead: Georgia, 'Liberation Serif', 'Times New Roman', serif;
+    --font-meta: 'Arial Narrow', 'Liberation Sans Narrow', Arial, sans-serif;
+    --font-ui: var(--font-meta);
+
+    --scale-ratio: 1.5;
+    --leading-tight: 0.9;
+    --leading-normal: 1.35;
+
+    --case-title: uppercase;
+    --case-meta: uppercase;
+    --tracking-title: -0.03em;
+    --tracking-meta: 0.14em;
+    --weight-title: 400;
+
+    /* Formes — irrégulières, jamais arrondies */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 3px;
+
+    --depth-model: overlap;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    --rule-style: thick;
+    --rule-line: solid;
+    --rule-width: 4px;
+    --rule-color: var(--fg);
+
+    --control-shape: rect;
+    --control-fill: solid;
+    --control-radius: 0;
+    --control-case: uppercase;
+    --control-tracking: 0.14em;
+
+    --focus-style: block;
+    --focus-ring: 4px solid var(--border-strong);
+    --focus-offset: 3px;
+
+    /* Surface — trame de points + grain de papier bon marché */
+    --surface-model: printed-halftone;
+    --surface-texture-image:
+      radial-gradient(circle at 50% 50%, rgb(0 0 0 / 0.16) 0.9px, transparent 1.1px),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23r)' opacity='0.08'/%3E%3C/svg%3E");
+    --surface-texture-size: 5px 5px, 120px 120px;
+    --surface-texture-blend: multiply, multiply;
+
+    --media-model: mosaic;
+    --media-filter: grayscale(1) contrast(1.9);
+    --media-radius: 0;
+
+    --density: 0.7;
+    --density-measure: 0.75;
+    --space-unit: 0.5rem;
+    --rhythm: interrupted;
+    --container-max: none;
+
+    --motion-model: continuous-loop;
+    --ease: linear;
+    --duration-fast: 200ms;
+    --duration-slow: 9s;
+    --decor-level: 3;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--weight-title);
+    text-transform: var(--case-title);
+    letter-spacing: var(--tracking-title);
+    line-height: var(--leading-tight);
+  }
+
+  /* Le décalage de repérage : une ombre de texte colorée, non floue. */
+  h1, h2 { text-shadow: 3px 2px 0 var(--accent); }
+
+  a { color: inherit; text-decoration-thickness: 3px; }
+  a:hover { background: var(--accent); color: var(--accent-fg); }
+}
+
+@layer overrides {
+  :where(main) :where(section, article, aside, li, div) { border-radius: 0; }
+}

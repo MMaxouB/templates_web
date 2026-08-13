@@ -1945,14 +1945,35 @@ capacité.**
 9. ✅ Deux directions écrites après l'audit — `presse-imprimee`, `terminal-phosphore` —
    pour vérifier que la couche a du pouvoir
 
-### Lot 2 — Diversity Benchmark · ⏭ *prochaine étape*
+### Lot 2 — Diversity Benchmark · ✅ *terminé*
 
-Les douze références opposées, et les trois critères de réussite décrits
-[plus haut](#diversity-benchmark). **C'est un lot de validation, pas de production :
-son livrable est une réponse, pas des templates à vendre.**
+Les douze références opposées sont construites et mesurées. Verdict complet dans
+[`benchmark/README.md`](benchmark/README.md).
 
-Si le benchmark échoue, on corrige le modèle. Il vaut mieux le découvrir sur douze
-pages que sur cent quarante-cinq.
+**Trois critères sur quatre passent, dont le jugement humain qui prime.**
+
+| Critère | Seuil | Résultat | |
+|---|---:|---:|---|
+| Distance ADN, 66 paires | ≥ 0.60 | min **0.71** | ✅ |
+| Distance perceptuelle, 66 paires | ≥ 0.35 | min **0.18** | ❌ |
+| Composition sur axe central | ≤ 25 % | **0 %** | ✅ |
+| Jugement humain | — | douze langages distincts | ✅ |
+
+Le critère 2 échoue pour trois raisons cumulées, toutes documentées : le seuil
+avait été posé avant toute mesure, alors que le plafond pratique de la métrique
+est 0.564 ; la règle du contenu identique comprime mécaniquement la distance
+d'encre ; et la métrique sépare mal dans la zone médiane — passer la grille de
+16×16 à 48×48 n'y change rien. **`perceptual-diff.js` est un bon détecteur de
+clones et un mauvais juge de degré.** Il sera reformulé en veto relatif.
+
+**Ce que le lot a rapporté**, au-delà des douze pages : une référence refusée et
+redessinée (la 11 était un hero centré sur une grille de cartes, malgré un ADN
+qui disait le contraire), cinq défauts d'outillage corrigés, deux règles mal
+conçues refaites, trois ADN mensongers rectifiés, et une valeur d'axe reconnue
+inatteignable à contenu constant.
+
+> Le lot a coûté douze pages et a évité de répliquer cent vingt-neuf fois des
+> mesures fausses. C'est exactement ce qu'on lui demandait.
 
 ### Lot 2bis — Reprise des seize pages système
 
@@ -2099,46 +2120,52 @@ interchangeables. La section « singularité » est celle qui manquait.
 
 | | Catalogué | Produit |
 |---|---:|---:|
-| Architectures | 145 | 16 |
-| Archétypes couverts | 31 | 11 |
-| Directions artistiques | ~150 | 5 |
-| Palettes | ~120 | 5 |
-| Préréglages | — | 5 |
-| Templates générés | — | 49 |
+| Architectures | 145 | 16 + 12 références |
+| Archétypes couverts | 31 | 15 |
+| Directions artistiques | ~150 | 16 |
+| Palettes | ~120 | 16 |
+| Préréglages | — | 16 |
+| Templates générés | — | 61 |
 
 ### Santé de la diversité — mesurée, pas estimée
 
-| Indicateur | Aujourd'hui | Cible | |
-|---|---:|---:|---|
-| Composition sur axe central | 82 % | ≤ 25 % | ✗ |
-| Valeurs de `composition` employées | 5 / 15 | ≥ 12 | ✗ |
-| Valeurs de `typography.voice` employées | 1 / 17 | ≥ 10 | ✗ |
-| Valeurs de `surface` employées | 1 / 11 | ≥ 7 | ✗ |
-| Budget anti-réflexes moyen | 7,8 | ≤ 6 | ✗ |
-| Collisions ADN | 34 / 120 | 0 | ✗ |
-| Collisions visuelles | 9 | 0 | ✗ |
-| Variantes conformes aux contraintes | 0 / 16 | 16 / 16 | ✗ |
-| Contrastes sous le seuil AA | 0 | 0 | ✅ |
-| Débordements horizontaux | 0 | 0 | ✅ |
+| Indicateur | Lot 1 seul | Avec le benchmark | Cible | |
+|---|---:|---:|---:|---|
+| Composition sur axe central (mesurée) | 24 % | **13 %** | ≤ 25 % | ✅ |
+| `centered-axial` déclaré | 63 % | **36 %** | ≤ 40 % | ✅ |
+| Valeurs de `composition` employées | 5 / 15 | **14 / 15** | ≥ 12 | ✅ |
+| Valeurs de `typography.voice` employées | 1 / 18 | **12 / 18** | ≥ 10 | ✅ |
+| Valeurs de `surface` employées | 1 / 11 | **11 / 11** | ≥ 7 | ✅ |
+| Valeurs de `navigation` employées | 5 / 16 | **15 / 16** | ≥ 10 | ✅ |
+| Budget anti-réflexes moyen | 7,8 | **5,0** | ≤ 6 | ✅ |
+| Variantes conformes aux contraintes | 0 / 16 | **12 / 28** | 28 / 28 | ✗ |
+| Contrastes sous le seuil AA | 0 | **0** | 0 | ✅ |
+| Débordements horizontaux | 0 | **0** | 0 | ✅ |
+
+Le chiffre de 82 % d'axe central annoncé au lot 1R était **faux** : il venait
+d'une métrique de symétrie qui moyennait sur les cases vides, et jugeait donc
+centrée toute page aérée. Corrigée et recalibrée sur des cas de vérité connue
+(une carte de connexion centrée sort à 0.98, un écran coupé en deux à 0.05), elle
+donne 24 % pour le lot 1. La ligne de base était trop sévère, pas le catalogue.
 
 **Ce tableau est le vrai état du projet.** Les deux dernières lignes étaient les
-seules mesurées jusqu'ici, et elles étaient au vert — d'où l'impression que le
-lot 1 était terminé. Les huit autres montrent ce qu'il en était réellement.
+seules mesurées avant le lot 1R, et elles étaient au vert — d'où l'impression que
+le lot 1 était terminé.
 
-Aucune n'est un échec de fabrication : ce sont les mesures d'un système qui n'avait
-pas d'axe de diversité. Elles servent de **ligne de base**. Tout l'intérêt du
-lot 1R est qu'elles soient désormais chiffrées, reproductibles, et qu'on puisse
-voir si elles bougent.
+La ligne qui reste rouge est la bonne : **les seize pages système n'ont pas encore
+été reprises**. Elles portent à elles seules la totalité des non-conformités et un
+budget de réflexes de 5,0/6, contre 1,3/6 pour les douze références du benchmark.
+C'est l'objet du lot 2bis.
 
 ```bash
 node _tools/dna-report.js && node _tools/check-constraints.js
 node _tools/screenshot.js && node _tools/perceptual-diff.js
 ```
 
-**Prochaine étape : le [Diversity Benchmark](#diversity-benchmark)** — douze
-références opposées, trois critères de réussite. Pas le lot des trois familles
-principales : rien ne sert de produire cent vingt-neuf architectures avant de
-savoir si le système sait en produire douze qui ne se ressemblent pas.
+**Prochaine étape : le lot 2bis** — reprendre les seize pages système au nouveau
+système. Le [Diversity Benchmark](benchmark/README.md) a répondu à sa question :
+oui, le catalogue sait produire des interfaces radicalement différentes. Reste à
+le prouver sur du code écrit avant les règles.
 
 Prochaine étape : **Lot 2**, le socle de `01-vitrine`, `02-boutique` et `03-portfolio`.
 

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Référence 09 — Planche scientifique</title>
+  <meta name="description" content="Diversity Benchmark, référence 09 : grille visible, planches numérotées, index alphabétique, densité d'ouvrage savant.">
+  <link rel="stylesheet" href="../../_core/reset.css">
+  <link rel="stylesheet" href="../../_core/tokens.css">
+  <link rel="stylesheet" href="../../_core/palettes/herbier-sepia.css" data-palette-link>
+  <link rel="stylesheet" href="../../_core/directions/planche-savante.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Composition `modular-grid` : la grille est VISIBLE, elle n'est pas un
+       outil caché. Filets de module, repères de coupe, cases numérotées. -->
+
+  <div class="planche">
+
+    <!-- Repères de coupe, comme sur une épreuve d'imprimeur. -->
+    <span class="coupe coupe--hg" aria-hidden="true"></span>
+    <span class="coupe coupe--hd" aria-hidden="true"></span>
+    <span class="coupe coupe--bg" aria-hidden="true"></span>
+    <span class="coupe coupe--bd" aria-hidden="true"></span>
+
+    <header class="cartouche">
+      <p class="cartouche__ref">Planche <b>IX</b></p>
+      <h1 class="cartouche__titre">Lorem ipsum dolor sit amet</h1>
+      <p class="cartouche__sous">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p class="cartouche__mention">Diversity Benchmark — douze références</p>
+    </header>
+
+    <!-- Navigation `alphabetic-index` : saut par lettre, index persistant. -->
+    <nav class="alpha" aria-label="Index alphabétique">
+      <p class="alpha__t">Index</p>
+      <ul class="alpha__liste">
+        <li><a href="#l-a"><b>A</b> Amet consectetur</a></li>
+        <li><a href="#l-d"><b>D</b> Duis aute irure</a></li>
+        <li><a href="#l-e"><b>E</b> Excepteur sint</a></li>
+        <li><a href="#l-s"><b>S</b> Sed do eiusmod</a></li>
+        <li><a href="#l-u"><b>U</b> Ut enim ad minim</a></li>
+      </ul>
+    </nav>
+
+    <main class="corps">
+
+      <!-- Interaction `expand-collapse` : replié par défaut, <details> natif.
+           Les deux premières notices sont ouvertes pour que la planche ne soit
+           pas vide au premier regard. -->
+
+      <article class="notice" id="l-s">
+        <details class="notice__d" open>
+          <summary class="notice__s"><span class="notice__n">1</span> Sed do eiusmod</summary>
+          <div class="notice__c">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- Média `framed-plate` : cadre, marge blanche, légende numérotée. -->
+      <figure class="fig">
+        <div class="fig__cadre">
+          <svg viewBox="0 0 200 150" role="img" aria-labelledby="fig1">
+            <title id="fig1">Figure 1 — spécimen neutre</title>
+            <ellipse cx="100" cy="86" rx="46" ry="52" fill="none" stroke="currentColor" stroke-width="0.9"/>
+            <path d="M100 34 L100 138 M62 70 L138 70 M70 104 L130 104" stroke="currentColor" stroke-width="0.5" fill="none"/>
+            <circle cx="100" cy="86" r="9" fill="currentColor" opacity="0.5"/>
+            <text x="150" y="42" font-size="9" fill="currentColor">a</text>
+            <text x="46" y="118" font-size="9" fill="currentColor">b</text>
+          </svg>
+        </div>
+        <figcaption class="fig__leg">Fig. 1 — <i>a</i> extrémité, <i>b</i> base. Éch. 1:2</figcaption>
+      </figure>
+
+      <article class="notice" id="l-u">
+        <details class="notice__d" open>
+          <summary class="notice__s"><span class="notice__n">2</span> Ut enim ad minim</summary>
+          <div class="notice__c">
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error.</p>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="notice" id="l-d">
+        <details class="notice__d">
+          <summary class="notice__s"><span class="notice__n">3</span> Duis aute irure</summary>
+          <div class="notice__c">
+            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+            <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="notice" id="l-e">
+        <details class="notice__d">
+          <summary class="notice__s"><span class="notice__n">4</span> Excepteur sint</summary>
+          <div class="notice__c">
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+            <p>Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore.</p>
+          </div>
+        </details>
+      </article>
+
+      <!-- La série : un tableau de relevé, chiffres alignés, légende dessous. -->
+      <section class="releve" id="l-a">
+        <h2 class="releve__t">Tableau I — Relevé</h2>
+        <table>
+          <thead>
+            <tr><th scope="col">N°</th><th scope="col">Libellé</th><th scope="col">Valeur</th><th scope="col">Part</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Lorem ipsum</td><td>128</td><td>14 %</td></tr>
+            <tr><td>2</td><td>Dolor sit</td><td>64</td><td>7 %</td></tr>
+            <tr><td>3</td><td>Amet consectetur</td><td>256</td><td>28 %</td></tr>
+            <tr><td>4</td><td>Adipiscing elit</td><td>32</td><td>3 %</td></tr>
+            <tr><td>5</td><td>Sed eiusmod</td><td>512</td><td>48 %</td></tr>
+          </tbody>
+        </table>
+        <p class="releve__leg">Relevé sur cinq entrées. Total 992.</p>
+      </section>
+
+      <p class="renvoi"><a href="#" data-stub>Poursuivre</a> — planche suivante</p>
+
+    </main>
+  </div>
+</body>
+</html>

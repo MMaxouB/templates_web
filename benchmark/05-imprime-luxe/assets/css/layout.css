@@ -1,0 +1,167 @@
+/* ==========================================================================
+   benchmark/05-imprime-luxe — structure
+   Composition : narrow-measure · Densité : void · Navigation : numeric-index
+   --------------------------------------------------------------------------
+   Le vide occupe la majorité de la surface et il est STRUCTUREL : il n'est
+   pas du padding, il porte le rythme. Rien ne délimite rien.
+   ========================================================================== */
+
+@layer structure {
+
+  .ouvrage {
+    /* Mesure très étroite, marges immenses : plus de 60 % de la largeur reste
+       vide à partir de 60rem. C'est le sujet, pas un effet de bord. */
+    max-inline-size: 34rem;
+    margin-inline: auto;
+    padding: var(--space-16) var(--space-6) var(--space-24);
+  }
+
+  @media (min-width: 60rem) {
+    .ouvrage {
+      padding-block-start: var(--space-24);
+      padding-inline: 0;
+    }
+  }
+
+  /* ------------------------------------------------------------- l'index
+     Navigation par numéros. Verticale, en marge, discrète au point d'être
+     presque invisible — ce qui est le propos. */
+
+  .index {
+    position: fixed;
+    inset-inline-start: var(--space-4);
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+  }
+
+  @media (max-width: 74rem) {
+    /* Sous cette largeur il n'y a plus de marge pour l'accueillir :
+       il repasse en ligne, au-dessus du contenu. */
+    .index {
+      position: static;
+      transform: none;
+      margin-block-end: var(--space-16);
+    }
+  }
+
+  .index__liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  @media (max-width: 74rem) {
+    .index__liste { flex-direction: row; gap: var(--space-4); }
+  }
+
+  .index__liste a {
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+    border-block-end: 0;
+    text-decoration: none;
+  }
+  .index__liste a:hover { color: var(--fg); }
+
+  /* ---------------------------------------------------------- les feuillets
+     Un feuillet = une idée. L'écart entre deux feuillets est énorme et
+     croissant : c'est le rythme `expanding`. */
+
+  .feuillet { margin-block-end: var(--space-24); }
+  .feuillet:last-of-type { margin-block-end: var(--space-16); }
+
+  .surtitre {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);   /* 0.42em — l'écart fait le rang */
+    color: var(--fg-subtle);
+    margin-block-end: var(--space-8);
+  }
+
+  .titre {
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    margin-block-end: var(--space-8);
+  }
+
+  .accroche {
+    font-size: var(--text-lg);
+    line-height: var(--leading-loose);
+    color: var(--fg-muted);
+  }
+
+  .corps { margin-block-end: var(--space-6); }
+  .corps:last-child { margin-block-end: 0; }
+
+  /* -------------------------------------------------------------- l'objet
+     Média jamais recadré : ratio d'origine préservé, `contain`, et beaucoup
+     de vide autour. */
+
+  .objet {
+    margin-block: var(--space-24);
+    display: grid;
+    justify-items: center;
+  }
+
+  .objet__img {
+    inline-size: min(15rem, 60%);
+    block-size: auto;
+    object-fit: contain;
+    color: var(--fg-subtle);
+    filter: var(--media-filter);
+  }
+
+  .objet__legende {
+    margin-block-start: var(--space-6);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+
+  /* -------------------------------------------------------------- la série
+     Cinq lignes. Aucun filet, aucun fond, aucune alternance. Les chiffres
+     sont alignés sur une colonne unique et le blanc fait le reste. */
+
+  .serie { margin: 0; }
+
+  .serie > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding-block: var(--space-3);
+  }
+
+  .serie dt { color: var(--fg-muted); }
+
+  .serie dd {
+    margin: 0;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: 0.06em;
+  }
+
+  /* ------------------------------------------------------------ tourner
+     `page-turn` : un seul geste, discret, sans bouton. */
+
+  .tourne { margin-block-start: var(--space-24); }
+
+  .tourne__lien {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--control-tracking);
+    color: var(--fg);
+  }
+
+  .colophon {
+    margin-block-start: var(--space-24);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+
+} /* @layer structure */

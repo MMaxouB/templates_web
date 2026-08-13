@@ -1,7 +1,6 @@
 {
   "$comment": "Un préréglage associe une direction artistique et une palette sous un nom unique. C'est ce qu'on montre au client — il choisit « une architecture et un habillage », le découpage interne ne le concerne pas. Les anciens thèmes monolithiques de _core/themes/ restent lisibles par build.js pendant la migration.",
   "version": 1,
-
   "presets": {
     "moderne-clair": {
       "nom": "Moderne Clair",
@@ -34,6 +33,72 @@
       "direction": "terminal-phosphore",
       "palette": "phosphore-vert",
       "note": "Borne opposée à `quotidien` dans le Diversity Benchmark."
+    },
+    "revue": {
+      "nom": "Revue",
+      "direction": "revue-papier",
+      "palette": "papier-chaux",
+      "note": "Benchmark 01 — éditorial minimal."
+    },
+    "chantier": {
+      "nom": "Chantier",
+      "direction": "beton-brut",
+      "palette": "beton-orange",
+      "note": "Benchmark 02 — brutalisme brut."
+    },
+    "donnees": {
+      "nom": "Données",
+      "direction": "console-donnees",
+      "palette": "ardoise-signal",
+      "note": "Benchmark 03 — interface de données."
+    },
+    "systeme-ancien": {
+      "nom": "Système Ancien",
+      "direction": "systeme-95",
+      "palette": "gris-systeme",
+      "note": "Benchmark 04 — OS historique."
+    },
+    "silence": {
+      "nom": "Silence",
+      "direction": "luxe-silence",
+      "palette": "lin-encre",
+      "note": "Benchmark 05 — imprimé de luxe."
+    },
+    "affiche": {
+      "nom": "Affiche",
+      "direction": "affiche-diagonale",
+      "palette": "ocre-encre",
+      "note": "Benchmark 06 — direction asymétrique."
+    },
+    "riso": {
+      "nom": "Riso",
+      "direction": "collage-riso",
+      "palette": "riso-fluo",
+      "note": "Benchmark 08 — collage maximaliste."
+    },
+    "planche": {
+      "nom": "Planche",
+      "direction": "planche-savante",
+      "palette": "herbier-sepia",
+      "note": "Benchmark 09 — planche scientifique."
+    },
+    "rien": {
+      "nom": "Rien",
+      "direction": "presque-rien",
+      "palette": "blanc-graphite",
+      "note": "Benchmark 10 — ultra-minimal."
+    },
+    "atelier": {
+      "nom": "Atelier",
+      "direction": "metal-brosse",
+      "palette": "acier-cuivre",
+      "note": "Benchmark 11 — tactile."
+    },
+    "verre": {
+      "nom": "Verre",
+      "direction": "plans-verre",
+      "palette": "nuit-verre",
+      "note": "Benchmark 12 — spatial expérimental."
     }
   }
 }

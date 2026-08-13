@@ -1,0 +1,135 @@
+/* ==========================================================================
+   DIRECTION · luxe-silence
+   Benchmark 05 — « imprimé de luxe »
+   --------------------------------------------------------------------------
+   Logique interne : le vide est le matériau.
+
+     · Le luxe ne s'obtient pas en ajoutant de l'or, mais en RETIRANT. Ce qui
+       reste doit être placé au millimètre, parce qu'il n'y a rien d'autre pour
+       rattraper une erreur de placement.
+     · La hiérarchie ne vient ni de la taille ni de la graisse : elle vient de
+       l'INTERLETTRAGE et de la position. Un surtitre à 0.42em d'approche et
+       un titre à -0.03em ont le même corps et ne se confondent pas une
+       seconde. C'est le système `spacing-driven`.
+     · Aucun contraste maximal. Les écarts de valeur sont faibles : un noir
+       pur sur un blanc pur crie, et le luxe ne crie pas.
+     · Le mouvement est physique et lent — de la masse, pas de l'animation.
+     · Aucune bordure, aucune surface, aucune ombre. Rien ne délimite rien :
+       seul le blanc sépare.
+
+   Contraintes servies : empty · no-cards · no-shadow · no-standard-cta
+   ========================================================================== */
+
+@layer direction {
+  :root {
+    --direction-name: 'Luxe & Silence';
+    --direction-slug: 'luxe-silence';
+
+    /* Typographie — l'espacement fait la hiérarchie */
+    --type-system: spacing-driven;
+    --font-body: Didot, 'Bodoni MT', 'Playfair Display', 'Times New Roman', serif;
+    --font-display: var(--font-body);
+    --font-title: var(--font-body);
+    --font-lead: var(--font-body);
+    --font-meta: var(--font-body);
+    --font-ui: var(--font-body);
+
+    --scale-ratio: 1.18;        /* échelle resserrée : peu d'écarts de corps */
+    --leading-tight: 1.15;
+    --leading-normal: 1.85;     /* interlignage très ouvert */
+    --leading-loose: 2.1;
+
+    --case-title: none;
+    --case-meta: uppercase;
+    --tracking-title: -0.028em;  /* le titre se resserre */
+    --tracking-meta: 0.42em;     /* le surtitre s'écarte à l'extrême */
+    --weight-title: 400;         /* aucune graisse : le didone porte seul */
+
+    --weight-normal: 400;
+    --weight-medium: 400;
+    --weight-bold: 400;
+
+    /* Formes — il n'y en a pas */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-pill: 0;
+    --border-width: 1px;
+
+    --depth-model: flat;
+    --shadow-style: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    --rule-style: hairline;
+    --rule-line: solid;
+    --rule-width: 1px;
+    --rule-color: var(--border);
+
+    --control-shape: none;
+    --control-fill: none;
+    --control-radius: 0;
+    --control-case: uppercase;
+    --control-tracking: 0.42em;
+    --control-pad-x: 0;
+    --control-pad-y: 0;
+
+    --focus-style: underline;
+    --focus-ring: 1px solid var(--fg);
+    --focus-offset: 6px;
+
+    /* Surface — trame de lin, à la limite du perceptible */
+    --surface-model: textile;
+    --surface-texture-image:
+      repeating-linear-gradient(90deg, rgb(0 0 0 / 0.022) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(0deg, rgb(0 0 0 / 0.022) 0 1px, transparent 1px 3px);
+    --surface-texture-size: 3px 3px, 3px 3px;
+    --surface-texture-blend: multiply, multiply;
+
+    /* Média — jamais recadré, le vide autour est assumé */
+    --media-model: uncropped-object;
+    --media-filter: grayscale(1) contrast(0.85);
+    --media-frame: none;
+    --media-radius: 0;
+
+    /* Densité — le vide comme structure */
+    --density: 2.1;
+    --density-measure: 0.62;
+    --space-unit: 0.5rem;
+    --rhythm: expanding;
+    --container-max: 46rem;
+
+    /* Mouvement — de la masse */
+    --motion-model: physical;
+    --ease: cubic-bezier(0.16, 0.84, 0.24, 1);
+    --duration-fast: 420ms;
+    --duration-slow: 1100ms;
+    --decor-level: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: var(--weight-title);
+    letter-spacing: var(--tracking-title);
+    text-wrap: balance;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-block-end: 1px solid var(--border);
+    padding-block-end: 0.18em;
+    transition: border-color var(--duration-fast) var(--ease);
+  }
+  a:hover { border-block-end-color: var(--fg); }
+}
+
+@layer overrides {
+  /* Rien ne délimite rien. Seul le blanc sépare. */
+  :where(main) :where(section, article, aside, li, div) {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

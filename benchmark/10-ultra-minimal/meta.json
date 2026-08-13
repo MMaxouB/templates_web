@@ -1,0 +1,46 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "10",
+  "variante": "10-ultra-minimal",
+  "role": "Référence de benchmark — ultra-minimal",
+  "archetype": "colonne-unique",
+  "intention": "Retirer jusqu'à ce qu'il ne reste que le nécessaire. Une seule taille de texte, une seule graisse, deux couleurs, aucune navigation : il ne reste, pour hiérarchiser, que l'ordre et la position. Le contenu occupe les marges, le centre reste vide.",
+  "dna": {
+    "composition": "marginal",
+    "density": "balanced",
+    "typography": {
+      "system": "flat",
+      "voice": "neo-grotesque"
+    },
+    "geometry": "borderless",
+    "surface": "void",
+    "navigation": "none",
+    "media": "none",
+    "motion": "none",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "rien",
+  "creativeConstraints": [
+    "no-centered-text",
+    "no-images",
+    "no-cards",
+    "no-shadow",
+    "no-rounded",
+    "no-animation",
+    "single-type-size"
+  ],
+  "justifications": {
+    "single-type-size": "L'échelle typographique vaut 1.0 : toutes les tailles dérivées sont égales à --text-base, titres compris. C'est la contrainte la plus sévère du benchmark parce qu'elle retire tous les outils habituels de hiérarchie.",
+    "density": "Visée « void », mesurée « balanced » (19.9 éléments/écran). On déclare ce qui est mesuré.",
+    "empty retirée": "La contrainte `empty` exige ≤ 6 éléments/écran ; la mesure en donne 19.9. La référence est minimale par son TRAITEMENT — une seule taille, une seule graisse, deux couleurs — pas par sa quantité. Revendiquer `empty` aurait été un mensonge que l'outil a refusé."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 19.9,
+    "densite_classee": "balanced"
+  }
+}

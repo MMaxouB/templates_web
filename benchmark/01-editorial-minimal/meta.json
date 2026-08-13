@@ -1,0 +1,42 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "01",
+  "variante": "01-editorial-minimal",
+  "role": "Référence de benchmark — éditorial minimal",
+  "archetype": "multi-colonnes",
+  "intention": "Une revue trimestrielle. Le texte coule en colonnes, la marge de gauche est habitée par les repères, et rien n'est enfermé dans une surface : la structure tient au filet, au retrait et au blanc.",
+  "dna": {
+    "composition": "editorial-columns",
+    "density": "balanced",
+    "typography": {
+      "system": "family-contrast",
+      "voice": "transitional-serif"
+    },
+    "geometry": "linear-rules",
+    "surface": "paper",
+    "navigation": "marginal-notes",
+    "media": "captioned-editorial",
+    "motion": "none",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "revue",
+  "creativeConstraints": [
+    "no-cards",
+    "no-shadow",
+    "no-rounded",
+    "editorial",
+    "no-standard-cta"
+  ],
+  "justifications": {
+    "density": "Visée « airy », mesurée « balanced » (13.6 éléments/écran). On déclare ce qui est mesuré."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 13.6,
+    "densite_classee": "balanced"
+  }
+}

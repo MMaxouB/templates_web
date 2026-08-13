@@ -1,0 +1,44 @@
+{
+  "famille": "benchmark",
+  "famille_nom": "Diversity Benchmark",
+  "numero": "04",
+  "variante": "04-systeme-ancien",
+  "role": "Référence de benchmark — système d'exploitation ancien",
+  "archetype": "trois-colonnes",
+  "intention": "Un gestionnaire de fenêtres de 1995. La profondeur est un biseau de deux pixels, pas une ombre. Tout est encadré parce que le cadre délimite une responsabilité. On respecte les conventions d'époque plutôt que le goût contemporain.",
+  "dna": {
+    "composition": "panelled",
+    "density": "dense",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "frames",
+    "surface": "plastic",
+    "navigation": "overlay-menu",
+    "media": "tiny-inset",
+    "motion": "mechanical",
+    "interaction": "modal-layer"
+  },
+  "habillage_reference": "systeme-ancien",
+  "creativeConstraints": [
+    "no-hero",
+    "no-rounded",
+    "raw-web",
+    "no-gradient"
+  ],
+  "justifications": {
+    "typography.voice=ui-native": "Seul cas du benchmark où la pile système est le bon choix : ces interfaces employaient littéralement la police système, sans choix possible. Un template rétro qui « améliore » son modèle rate ce qu'il imite.",
+    "density=balanced": "Densité d'interface de bureau d'époque. Ni dense comme un tableur, ni aérée comme un site — c'était le réglage de l'OS.",
+    "no-hero": "La page s'ouvre sur une fenêtre applicative : barre de titre, menus, arborescence et document sont tous présents dès le premier écran. Aucun bandeau d'ouverture, aucun titre géant — c'est la contrainte structurelle que sert la composition `panelled`.",
+    "density": "Visée « balanced », mesurée « dense » (37.0 éléments/écran). On déclare ce qui est mesuré."
+  },
+  "pages": [
+    "index.html"
+  ],
+  "statut": "fini",
+  "mesures": {
+    "elements_par_ecran": 37.0,
+    "densite_classee": "dense"
+  }
+}

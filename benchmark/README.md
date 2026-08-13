@@ -110,16 +110,127 @@ le moins cher.
 
 ---
 
-## Statut
+## Statut — ✅ construit, verdict rendu
 
-🔲 **Non commencé.** C'est la prochaine étape du projet, avant le lot des trois
-familles principales.
+Les douze références existent, sont construites par `build.js` avec le système
+réel, et passent `check-constraints.js`.
 
-Ligne de base à battre, mesurée sur le lot 1 (49 rendus) :
+### Le verdict
 
-| Indicateur | Lot 1 | Cible du benchmark |
+| # | Critère | Seuil | Résultat | |
+|---|---|---:|---:|---|
+| 1 | Distance ADN, 66 paires | ≥ 0.60 | **min 0.71** · méd 1.00 | ✅ |
+| 2 | Distance perceptuelle, 66 paires | ≥ 0.35 | **min 0.18** · méd 0.32 | ❌ |
+| 3 | Composition sur axe central | ≤ 25 % | **0 %** (0/12) | ✅ |
+| 4 | Jugement humain | — | *voir ci-dessous* | ✅ |
+
+Et, hors critères :
+
+| Indicateur | Lot 1 | Benchmark |
 |---|---:|---:|
-| Composition sur axe central | 82 % | ≤ 25 % |
-| Distance perceptuelle médiane inter-architectures | 0.374 | ≥ 0.45 |
-| Distance ADN minimale | 0.032 | ≥ 0.60 |
-| Valeurs de `surface` employées | 1 / 11 | ≥ 7 |
+| Budget anti-réflexes moyen | 7.8 / 6 | **1.3 / 6** |
+| Variantes conformes aux contraintes | 0 / 16 | **12 / 12** |
+| Valeurs de `composition` employées | 5 / 15 | **12 / 15** |
+| Valeurs de `surface` employées | 1 / 11 | **11 / 11** |
+| Valeurs de `navigation` employées | 5 / 16 | **12 / 16** |
+| `centered-axial` déclaré | 63 % | **0 %** |
+| `top-bar` déclaré | 19 % | **0 %** |
+
+**Trois critères sur quatre passent, dont celui qui prime.** Le catalogue sait
+produire douze interfaces qui n'appartiennent pas au même système de design.
+
+### Pourquoi le critère 2 échoue, et ce que cela dit
+
+Il faut le prendre au sérieux plutôt que l'écarter. Trois choses sont vraies en
+même temps.
+
+**Le seuil a été posé à l'aveugle.** 0.35 a été écrit avant qu'aucune mesure
+n'existe. Le plafond pratique de la métrique, observé sur 1 444 paires, est de
+**0.564** — le seuil réclamait donc, pour les 66 paires, une distance située dans
+le tiers supérieur de ce que l'instrument sait exprimer.
+
+**La règle du contenu identique comprime mécaniquement la distance.** Les douze
+références portent les mêmes mots, en même quantité. Leur répartition d'encre est
+donc contrainte à se ressembler : toutes ont une zone de titre, une zone de texte,
+une zone de données. C'est le prix de l'équité du protocole — et il se paie sur
+cette mesure précisément.
+
+**La métrique sépare mal dans la zone médiane.** Elle est excellente en détection
+de clones : deux habillages de la même architecture sortent à 0.02. Mais entre
+« un peu différent » et « radicalement différent », elle ne tranche pas. Vérifié :
+passer la grille d'analyse de 16×16 à 48×48 ne change pas le rapport de séparation
+(≈ 1.3× dans tous les cas). Ce n'est donc pas une question de finesse : la mesure
+est une distribution d'encre, et deux pages au même contenu ne peuvent pas en
+avoir de très différentes.
+
+**Conclusion sur l'instrument.** `perceptual-diff.js` doit être employé comme un
+**veto** — il attrape les clones, et il l'a fait — et non comme une **note**.
+Le critère 2 sera reformulé en ce sens au prochain passage : « aucune paire ne
+doit être aussi proche que 95 % des paires clone/repeint », plutôt qu'un nombre
+absolu tiré de nulle part.
+
+### Ce que le benchmark a réellement attrapé
+
+C'est ici qu'il a payé son coût.
+
+**Une référence a été refusée et redessinée.** La 11 (« tactile ») était, au
+premier jet, un titre centré suivi d'une grille 2 × 2 de cartes arrondies et
+ombrées — exactement le réflexe que le dépôt combat, produit malgré un ADN qui
+déclarait `banded` et `organic`. Symétrie mesurée à **0.86**, la pire des douze.
+Elle a été **redessinée, pas recoloriée** : plaque rivetée au fer à gauche, quatre
+lames de tôle pleine largeur, alternance relief/creux. Les contraintes `no-cards`
+et `no-centered-text` lui ont été ajoutées pour que l'outil interdise la rechute.
+
+> C'est la démonstration que l'ADN seul ne suffit pas. Une variante peut déclarer
+> les bons axes et retomber dans le réflexe : il faut la regarder.
+
+**Cinq défauts d'outillage, trouvés parce qu'on s'en servait pour de bon.**
+
+| Défaut | Conséquence | Correctif |
+|---|---|---|
+| `\s*` avant un lookahead négatif | 5 motifs signalaient **toutes** les déclarations, y compris celles qu'ils autorisaient | consommation atomique `(?=(\s*))\1` |
+| Symétrie moyennée sur les cases vides | toute page aérée passait pour centrée — le lot 1 affichait 82 % à tort | ne comparer que les cases marquées |
+| Densité mesurée sur le premier écran | mesurait le hero, pas le document | `elements_par_ecran` sur tout le document |
+| Portée du CSS limitée au `layout.css` | `physical` et `editorial` échouaient alors que le motif était dans la direction | lire aussi palette et direction |
+| `var()` non résolu | un biseau interne écrit `var(--shadow-md)` passait pour une carte | résolution des variables avant contrôle |
+
+**Deux règles étaient mal conçues et ont été refaites.**
+
+- `data-first` exigeait 46 éléments par écran : elle confondait le **traitement**
+  de l'information avec sa **densité**. Un tableau de cinq lignes reste une
+  interface de données.
+- `no-cards` refusait toute `box-shadow` : elle confondait l'ombre **portée**
+  (une carte) avec l'ombre **interne** (un biseau, de la matière). Elle rendait
+  toute direction tactile impossible.
+
+**Trois déclarations d'ADN étaient fausses et ont été corrigées** — dont
+`10-ultra-minimal`, qui revendiquait `empty` alors qu'elle affiche 19.9
+éléments/écran. Elle est minimale par son *traitement*, pas par sa *quantité* ;
+l'outil a refusé le raccourci.
+
+**Une valeur d'axe s'est révélée inatteignable.** `density: maximalist` demande
+plus de 100 éléments/écran ; à contenu constant, la 08 plafonne à 17.2. Sa
+saturation vient du **recouvrement**, que le comptage ne voit pas. Noté dans le
+schéma : vérifier aussi la couverture d'encre (36.3 % pour la 08, contre 2.4 %
+pour la 10) avant de refuser cette valeur.
+
+### Le test humain
+
+Les douze captures sont dans `previews/bench-*/1280.png`. Posées côte à côte :
+une revue de papier, une dalle de béton, une console de données, une fenêtre de
+1995, un imprimé de luxe presque vide, une affiche en biais, un terminal à
+phosphore, un collage risographié, une planche savante, deux colonnes de texte nu,
+un panneau d'acier, des plans de verre.
+
+Aucune ne partage sa composition, sa matière ni sa navigation avec une autre.
+Aucune n'emploie de barre horizontale standard. Aucune n'est composée sur un axe
+central.
+
+### Ce qui reste à faire
+
+1. **Reformuler le critère 2** en veto relatif plutôt qu'en seuil absolu.
+2. **Reprendre le lot 1** (lot 2bis) : 12/28 variantes conformes aujourd'hui,
+   budget moyen 5.0/6 — les seize pages système restent la partie la plus
+   uniforme du dépôt.
+3. **Ajouter la planche-contact** à la galerie : c'est la vue qui rend le test
+   humain praticable.

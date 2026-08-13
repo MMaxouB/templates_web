@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Référence 03 — Interface de données</title>
+  <meta name="description" content="Diversity Benchmark, référence 03 : la page est une matrice, densité d'outil professionnel, tri et filtre réels.">
+  <link rel="stylesheet" href="../../_core/reset.css">
+  <link rel="stylesheet" href="../../_core/tokens.css">
+  <link rel="stylesheet" href="../../_core/palettes/ardoise-signal.css" data-palette-link>
+  <link rel="stylesheet" href="../../_core/directions/console-donnees.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+  <!-- Composition `tabular` : la page EST une matrice. En-tête persistant,
+       barre d'état en bas, zone centrale à défilement propre. -->
+
+  <div class="outil">
+
+    <header class="barre">
+      <span class="barre__id">REF-02 · 03</span>
+      <!-- Navigation `tab-panel` : le contenu change sans que la page défile. -->
+      <nav class="onglets" aria-label="Vues">
+        <button class="onglet" type="button" data-vue="serie" aria-selected="true">Série</button>
+        <button class="onglet" type="button" data-vue="notes" aria-selected="false">Notes</button>
+      </nav>
+      <span class="barre__meta">Diversity Benchmark · douze références</span>
+    </header>
+
+    <div class="filtres">
+      <label class="champ">
+        <span class="champ__lbl">Filtre</span>
+        <input class="champ__saisie" type="search" id="filtre" placeholder="libellé…" autocomplete="off">
+      </label>
+      <span class="compteur" id="compteur" role="status">5 / 5</span>
+      <span class="legende">
+        <b>Lorem ipsum dolor sit amet</b> — consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </span>
+    </div>
+
+    <!-- Vue 1 — la série, en tableau trié. Le traitement `data-first` du
+         même contenu que les onze autres références. -->
+    <main class="zone" id="vue-serie">
+      <table class="grille">
+        <caption class="grille__titre">Série — 5 entrées</caption>
+        <thead>
+          <tr>
+            <th scope="col"><button class="tri" type="button" data-col="0" data-type="txt">Libellé</button></th>
+            <th scope="col"><button class="tri" type="button" data-col="1" data-type="num">Valeur</button></th>
+            <th scope="col"><button class="tri" type="button" data-col="2" data-type="num">Part</button></th>
+            <th scope="col">Répartition</th>
+          </tr>
+        </thead>
+        <tbody id="corps">
+          <tr><td>Lorem ipsum</td><td data-n="128">128</td><td data-n="14">14 %</td><td><span class="jauge" style="--p:14"></span></td></tr>
+          <tr><td>Dolor sit</td><td data-n="64">64</td><td data-n="7">7 %</td><td><span class="jauge" style="--p:7"></span></td></tr>
+          <tr><td>Amet consectetur</td><td data-n="256">256</td><td data-n="28">28 %</td><td><span class="jauge" style="--p:28"></span></td></tr>
+          <tr><td>Adipiscing elit</td><td data-n="32">32</td><td data-n="3">3 %</td><td><span class="jauge" style="--p:3"></span></td></tr>
+          <tr><td>Sed eiusmod</td><td data-n="512">512</td><td data-n="48">48 %</td><td><span class="jauge" style="--p:48"></span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th scope="row">Total</th><td>992</td><td>100 %</td><td></td></tr>
+        </tfoot>
+      </table>
+    </main>
+
+    <!-- Vue 2 — les quatre sections, traitées comme des enregistrements. -->
+    <div class="zone" id="vue-notes" hidden>
+      <table class="grille">
+        <caption class="grille__titre">Notes — 4 entrées</caption>
+        <thead>
+          <tr><th scope="col">Clé</th><th scope="col">Intitulé</th><th scope="col">Corps</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>N-01</td><td>Sed do eiusmod</td><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</td></tr>
+          <tr><td>N-02</td><td>Ut enim ad minim</td><td>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</td></tr>
+          <tr><td>N-03</td><td>Duis aute irure</td><td>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</td></tr>
+          <tr><td>N-04</td><td>Excepteur sint</td><td>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores. Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- L'action est une commande de barre d'état, pas un CTA. -->
+    <footer class="etat">
+      <span class="etat__pastille" aria-hidden="true"></span>
+      <span>Prêt</span>
+      <span class="etat__sep">│</span>
+      <span>992 unités</span>
+      <span class="etat__sep">│</span>
+      <a class="etat__cmd" href="#" data-stub>Poursuivre</a>
+    </footer>
+
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

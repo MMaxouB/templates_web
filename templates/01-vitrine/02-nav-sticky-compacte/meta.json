@@ -3,12 +3,40 @@
   "famille_nom": "Vitrine",
   "numero": "02",
   "variante": "02-nav-sticky-compacte",
+  "role": "Barre compacte flottante — colonne étroite",
   "archetype": "nav-sticky",
+  "intention": "Une colonne de 42 caractères posée dans un très grand vide, et une seule pastille de navigation qui flotte, détachée des quatre bords. La page se lit comme une note ; la navigation ne s'arrime à rien.",
+  "dna": {
+    "composition": "narrow-measure",
+    "density": "airy",
+    "typography": {
+      "system": "flat",
+      "voice": "neo-grotesque"
+    },
+    "geometry": "borderless",
+    "surface": "void",
+    "navigation": "floating",
+    "media": "none",
+    "motion": "none",
+    "interaction": "progressive-reveal"
+  },
+  "habillage_reference": "rien",
+  "creativeConstraints": [
+    "no-cards",
+    "no-images",
+    "no-viewport-sections",
+    "no-shadow"
+  ],
+  "justifications": {
+    "interaction": "La révélation progressive est portée par l'ancre courante : la section lue passe en pleine opacité, les autres restent en retrait. Repli sans JS — sans script, tout est visible et lisible."
+  },
   "pages": [
     "index.html",
     "page.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « rien » (presque-rien + blanc-graphite)."
+  }
 }

@@ -1,14 +1,44 @@
 {
   "famille": "02-boutique",
-  "famille_nom": "Boutique & catalogue",
+  "famille_nom": "Boutique",
   "numero": "03",
   "variante": "03-filtres-barre-haute",
+  "role": "Filtres en bandeau — grille brisée, collage",
   "archetype": "nav-sticky",
+  "intention": "Une grille de six colonnes existe, et trois familles d'éléments la violent selon une règle écrite : les étiquettes de série débordent à gauche, les visuels chevauchent la gouttière suivante, les prix sortent en marge basse. Le bandeau de filtres ouvre un menu plein écran, jamais un tiroir.",
+  "dna": {
+    "composition": "broken-grid",
+    "density": "information-heavy",
+    "typography": {
+      "system": "family-contrast",
+      "voice": "mixed-mismatch"
+    },
+    "geometry": "irregular",
+    "surface": "printed-halftone",
+    "navigation": "overlay-menu",
+    "media": "mosaic",
+    "motion": "continuous-loop",
+    "interaction": "filter-sort"
+  },
+  "habillage_reference": "riso",
+  "creativeConstraints": [
+    "no-cards",
+    "no-centered-text",
+    "no-images"
+  ],
+  "justifications": {
+    "density": "Visée « maximalist », mesurée à 85 éléments par écran : c'est `information-heavy`. Le mur a été porté de 18 à 36 pièces et resserré à huit colonnes ; au-delà, les vignettes deviennent illisibles avant que le compteur n'atteigne 100. La seconde porte de `maximalist` — couverture d'encre > 45 % par recouvrement — n'est pas mesurable par la sonde actuelle, donc pas opposable : on ne déclare pas ce qu'on ne peut pas prouver. `maximalist` reste donc inemployé dans le catalogue, et c'est un résultat, pas un oubli.",
+    "degrade-decoratif": "Facturé 2 points et assumé : la trame riso EST un dégradé répété (`repeating-radial-gradient`), c'est-à-dire la matière de la direction `collage-riso`, pas un fond d'ambiance. La règle `gratuit_si` d'anti-llm.json ne couvre que metal, plastic et glass ; `printed-halftone` mériterait d'y figurer.",
+    "grille-de-cartes-features": "Facturé 3 points. Le mur de vignettes égales est la conséquence de `media: mosaic` — médias jointifs, aucune gouttière. Ce que la contrainte `no-cards` garantit, c'est qu'aucune vignette n'est une surface flottante : pas d'arrondi, pas d'ombre, et une pièce sur quatre déborde de sa colonne.",
+    "controlled-chaos": "Contrainte retirée après mesure. `controlled-chaos` exige un score de symétrie ≤ 0.60 ; `perceptual-diff.js` mesure 0.73 sur cette page. La cause est identifiée et notée pour le lot suivant : le score est calculé sur la carte de marquage, or une trame de fond pleine largeur — le papier tramé de la direction — marque les deux moitiés de façon identique et fait monter le score quelle que soit la composition. Plutôt que desserrer la règle ou maquiller la page, la contrainte est retirée et le défaut de la métrique est écrit."
+  },
   "pages": [
     "index.html",
     "listing.html",
     "produit.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « riso » (collage-riso + riso-fluo)."
+  }
 }

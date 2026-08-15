@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventaire — Lorem ipsum</title>
+  <meta name="description" content="Catalogue en grille modulaire stricte, index alphabétique.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/ardoise-signal.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/console-donnees.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="tete">
+  <p class="tete__id"><a href="index.html">Lorem Ipsum</a> — nomenclature</p>
+  <p class="tete__compte"><span data-compte>12</span> références</p>
+
+  <!-- navigation: alphabetic-index — un inventaire se parcourt par sa
+       nomenclature, pas par des onglets de rubrique. -->
+  <nav class="alpha" aria-label="Index alphabétique">
+    <ul>
+      <li><a href="#" aria-current="page">A</a></li>
+      <li><a href="#" data-stub>B</a></li>
+      <li><a href="#" data-stub>C</a></li>
+      <li><a href="#" data-stub>D</a></li>
+      <li><a href="#" data-stub>E</a></li>
+      <li><a href="#" data-stub>F</a></li>
+      <li><a href="listing.html">G–M</a></li>
+      <li><a href="#" data-stub>N–S</a></li>
+      <li><a href="#" data-stub>T–Z</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="contenu">
+
+  <h1 class="titre">Inventaire — série A</h1>
+
+  <!-- interaction: filter-sort — les commandes modifient réellement le DOM
+       visible et le compteur. Sans JS, tout est affiché : c'est l'état
+       « aucun filtre », qui est un état valide. -->
+  <form class="commandes" aria-label="Filtres et tri">
+    <p class="commande">
+      <label for="f-serie">Série</label>
+      <select id="f-serie" data-filtre="serie">
+        <option value="">Toutes</option>
+        <option value="a">A</option>
+        <option value="b">B</option>
+      </select>
+    </p>
+    <p class="commande">
+      <label for="f-etat">État</label>
+      <select id="f-etat" data-filtre="etat">
+        <option value="">Tous</option>
+        <option value="dispo">Disponible</option>
+        <option value="attente">En attente</option>
+      </select>
+    </p>
+    <p class="commande">
+      <label for="f-tri">Tri</label>
+      <select id="f-tri" data-tri>
+        <option value="ref">Référence</option>
+        <option value="prix">Montant croissant</option>
+        <option value="prix-desc">Montant décroissant</option>
+      </select>
+    </p>
+    <p class="commande commande__etat" role="status" data-etat>Aucun filtre appliqué.</p>
+  </form>
+
+  <!-- La grille est DESSINÉE : les filets du module sont visibles, tout
+       élément s'aligne dessus, aucune exception. -->
+  <ol class="grille" data-grille>
+    <li class="article" data-serie="a" data-etat="dispo" data-prix="24">
+      <span class="article__vue article__vue--1" aria-hidden="true"></span>
+      <p class="article__ref">A-001</p>
+      <h2 class="article__nom"><a href="produit.html">Lorem ipsum</a></h2>
+      <p class="article__prix">24,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+    <li class="article" data-serie="a" data-etat="dispo" data-prix="36">
+      <span class="article__vue article__vue--2" aria-hidden="true"></span>
+      <p class="article__ref">A-002</p>
+      <h2 class="article__nom"><a href="produit.html">Dolor sit</a></h2>
+      <p class="article__prix">36,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+    <li class="article" data-serie="a" data-etat="attente" data-prix="48">
+      <span class="article__vue article__vue--3" aria-hidden="true"></span>
+      <p class="article__ref">A-003</p>
+      <h2 class="article__nom"><a href="produit.html">Amet consectetur</a></h2>
+      <p class="article__prix">48,00</p>
+      <p class="article__etat">En attente</p>
+    </li>
+    <li class="article" data-serie="a" data-etat="dispo" data-prix="18">
+      <span class="article__vue article__vue--4" aria-hidden="true"></span>
+      <p class="article__ref">A-004</p>
+      <h2 class="article__nom"><a href="produit.html">Adipiscing</a></h2>
+      <p class="article__prix">18,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+    <li class="article" data-serie="b" data-etat="dispo" data-prix="72">
+      <span class="article__vue article__vue--2" aria-hidden="true"></span>
+      <p class="article__ref">B-001</p>
+      <h2 class="article__nom"><a href="produit.html">Elit sed</a></h2>
+      <p class="article__prix">72,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+    <li class="article" data-serie="b" data-etat="attente" data-prix="54">
+      <span class="article__vue article__vue--1" aria-hidden="true"></span>
+      <p class="article__ref">B-002</p>
+      <h2 class="article__nom"><a href="produit.html">Eiusmod tempor</a></h2>
+      <p class="article__prix">54,00</p>
+      <p class="article__etat">En attente</p>
+    </li>
+    <li class="article" data-serie="b" data-etat="dispo" data-prix="30">
+      <span class="article__vue article__vue--3" aria-hidden="true"></span>
+      <p class="article__ref">B-003</p>
+      <h2 class="article__nom"><a href="produit.html">Incididunt</a></h2>
+      <p class="article__prix">30,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+    <li class="article" data-serie="b" data-etat="dispo" data-prix="96">
+      <span class="article__vue article__vue--4" aria-hidden="true"></span>
+      <p class="article__ref">B-004</p>
+      <h2 class="article__nom"><a href="produit.html">Ut labore</a></h2>
+      <p class="article__prix">96,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+    <li class="article" data-serie="a" data-etat="dispo" data-prix="12">
+      <span class="article__vue article__vue--2" aria-hidden="true"></span>
+      <p class="article__ref">A-005</p>
+      <h2 class="article__nom"><a href="produit.html">Magna aliqua</a></h2>
+      <p class="article__prix">12,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+    <li class="article" data-serie="b" data-etat="attente" data-prix="60">
+      <span class="article__vue article__vue--1" aria-hidden="true"></span>
+      <p class="article__ref">B-005</p>
+      <h2 class="article__nom"><a href="produit.html">Enim ad minim</a></h2>
+      <p class="article__prix">60,00</p>
+      <p class="article__etat">En attente</p>
+    </li>
+    <li class="article" data-serie="a" data-etat="dispo" data-prix="42">
+      <span class="article__vue article__vue--3" aria-hidden="true"></span>
+      <p class="article__ref">A-006</p>
+      <h2 class="article__nom"><a href="produit.html">Veniam quis</a></h2>
+      <p class="article__prix">42,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+    <li class="article" data-serie="b" data-etat="dispo" data-prix="84">
+      <span class="article__vue article__vue--4" aria-hidden="true"></span>
+      <p class="article__ref">B-006</p>
+      <h2 class="article__nom"><a href="produit.html">Nostrud</a></h2>
+      <p class="article__prix">84,00</p>
+      <p class="article__etat">Disponible</p>
+    </li>
+  </ol>
+
+  <p class="note">Montants hors taxes · <a href="listing.html">Voir la nomenclature complète</a></p>
+
+</main>
+
+<footer class="pied">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a> · <a href="#" data-stub>Conditions</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

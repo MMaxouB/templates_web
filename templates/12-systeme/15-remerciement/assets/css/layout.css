@@ -5,14 +5,21 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .column {
   display: grid;
   gap: var(--space-8);
-  justify-items: center;
+  justify-items: start;
   inline-size: min(100%, 44rem);
   margin-inline: auto;
   padding: var(--space-12) var(--space-4) var(--space-16);
-  text-align: center;
+  text-align: start;
 }
 
 /* `justify-items: center` dimensionne chaque enfant à sa largeur max-content :
@@ -51,11 +58,11 @@
 
 /* ------------------------------------------------------------------ tête */
 
-.head { display: grid; gap: var(--space-3); justify-items: center; }
+.head { display: grid; gap: var(--space-3); justify-items: start; }
 .head > * { max-inline-size: 100%; }
 
 .head__title { font-size: var(--text-4xl); letter-spacing: var(--tracking-tight); }
-.head__lead { max-inline-size: var(--measure); color: var(--fg-muted); font-size: var(--text-lg); }
+.head__lead { max-inline-size: var(--measure); color: var(--fg); font-size: var(--text-lg); }
 
 .ref {
   display: flex;
@@ -93,7 +100,7 @@
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   text-align: start;
 }
 
@@ -114,7 +121,7 @@
   inline-size: 2rem;
   block-size: 2rem;
   border: calc(var(--border-width) * 2) solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: var(--control-radius);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: var(--weight-bold);
@@ -138,16 +145,16 @@
 .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
 
 .btn {
-  padding: var(--space-3) var(--space-6);
-  background: var(--accent);
-  color: var(--accent-fg);
-  border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  font-weight: var(--weight-medium);
-  text-decoration: none;
-  transition: background var(--duration-fast) var(--ease),
-              transform var(--duration-fast) var(--ease);
+  /* `no-standard-cta` : un lien typographique, pas un bouton plein. */
+  display: inline-block;
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 2px;
+  font-weight: var(--weight-bold);
+  background: none;
+  border: 0;
+  padding: 0;
 }
 
 .btn:hover { background: var(--accent-hover); }
@@ -180,7 +187,7 @@
   padding: var(--space-2) var(--space-3);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: var(--control-radius);
   color: var(--fg-muted);
   font-size: var(--text-sm);
   text-decoration: none;
@@ -254,8 +261,8 @@
   padding: var(--space-2) var(--space-4);
   background: var(--fg);
   color: var(--bg);
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--control-radius);
+  box-shadow: none;
   font-size: var(--text-sm);
 }
 
@@ -269,5 +276,33 @@
   .head__lead { font-size: var(--text-base); }
   .next { padding: var(--space-4); }
   .cards { grid-template-columns: 1fr; }
-  .actions .btn { flex: 1 1 100%; text-align: center; }
+  .actions .btn { flex: 1 1 100%; text-align: start; }
+}
+
+} /* @layer structure */
+
+@layer structure {
+  /* Composition `diagonal`, densité `void` : presque rien, en biais, et les
+     prochaines étapes en liste numérotée plutôt qu'en grille de cartes. */
+  .wrap, .head, .head__title, .head__lead, .copy, .actions, .foot, .share { text-align: start; place-items: start; justify-items: start; }
+  .head__title { max-inline-size: 18ch; }
+  .head__lead { color: var(--fg); max-inline-size: 44ch; }
+  .column { max-inline-size: 44ch; margin-inline: 0; transform: rotate(-2.5deg); }
+  .cards { display: block; counter-reset: etape; }
+  .card {
+    counter-increment: etape;
+    display: block;
+    background: none;
+    border: 0;
+    border-block-start: var(--border-width) solid var(--border);
+    padding: var(--space-2) 0;
+    text-align: start;
+  }
+  .card::before {
+    content: counter(etape, decimal-leading-zero) '\2003';
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--accent-text);
+  }
+  .card__media { display: none; }
 }

@@ -5,6 +5,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .skip {
   position: absolute;
   inset-block-start: var(--space-2);
@@ -13,7 +20,7 @@
   padding: var(--space-2) var(--space-3);
   background: var(--accent);
   color: var(--accent-fg);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   transform: translateY(-200%);
 }
 
@@ -51,7 +58,7 @@
   inset-inline-start: -30%;
   inline-size: 130%;
   block-size: 90%;
-  border-radius: 50%;
+  border-radius: 0;
   background: radial-gradient(circle at 40% 40%,
     color-mix(in srgb, var(--accent) 30%, transparent), transparent 65%);
   filter: blur(20px);
@@ -81,7 +88,7 @@
 .brand__mark {
   inline-size: 1.25rem;
   block-size: 1.25rem;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--accent);
 }
 
@@ -159,7 +166,7 @@
   background: var(--bg-elevated);
   color: var(--fg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
 }
 
 .field textarea { resize: vertical; min-block-size: 10rem; }
@@ -185,7 +192,7 @@
   padding: var(--space-2) var(--space-3);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   font-size: var(--text-sm);
   transition: border-color var(--duration-fast) var(--ease),
               background var(--duration-fast) var(--ease);
@@ -226,8 +233,8 @@
   background: var(--accent);
   color: var(--accent-fg);
   border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  border-radius: 0;
+  box-shadow: none;
   font-weight: var(--weight-medium);
   transition: background var(--duration-fast) var(--ease),
               transform var(--duration-fast) var(--ease);
@@ -249,7 +256,7 @@
 .done {
   padding: var(--space-3) var(--space-4);
   border-inline-start: calc(var(--border-width) * 3) solid var(--success);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--bg-sunken);
   font-size: var(--text-sm);
 }
@@ -288,3 +295,5 @@
   .panel__title { font-size: var(--text-xl); }
   .actions .btn { flex: 1 1 100%; }
 }
+
+} /* @layer structure */

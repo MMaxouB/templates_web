@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Lorem ipsum</title>
+  <meta name="description" content="Formulaire composé en petite annonce.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/encre-journal.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/presse-imprimee.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="bandeau">
+  <p class="bandeau__id"><a href="index.html">Lorem Ipsum</a> — travaux</p>
+  <!-- navigation: alphabetic-index — index A–Z persistant, saut à la lettre. -->
+  <nav class="abc" aria-label="Index alphabétique">
+    <ul>
+      <li><a href="#a">A</a></li><li><a href="#c">C</a></li><li><a href="#e">E</a></li>
+      <li><a href="#l">L</a></li><li><a href="#m">M</a></li><li><a href="#t">T</a></li>
+      <li><a href="projet.html">Projet type</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <p class="bandeau__compte"><span data-compte>12</span> travaux · <a href="#" data-stub>archives</a></p>
+</header>
+
+<main id="contenu">
+  <h1 class="titre">Écrire</h1>
+  <div class="contact">
+    <form class="formulaire" action="#" method="post" novalidate>
+      <p class="champ">
+        <label for="nom">Nom *</label>
+        <input id="nom" name="nom" type="text" required autocomplete="name">
+      </p>
+      <p class="champ">
+        <label for="courriel">Courriel *</label>
+        <input id="courriel" name="courriel" type="email" required autocomplete="email"
+               aria-describedby="aide-courriel">
+        <span class="aide" id="aide-courriel">Format attendu : nom@domaine.test</span>
+      </p>
+      <p class="champ">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </p>
+      <p class="champ champ--inline">
+        <input id="copie" name="copie" type="checkbox">
+        <label for="copie">Recevoir une copie</label>
+      </p>
+      <p><button type="submit">Envoyer</button></p>
+      <p class="aide" role="status">Aucun envoi effectué.</p>
+    </form>
+    <dl class="coord">
+      <dt>Adresse</dt><dd>00 rue Lorem, 00000 Ipsum</dd>
+      <dt>Ligne</dt><dd>00 00 00 00 00</dd>
+      <dt>Courriel</dt><dd>lorem@ipsum.test</dd>
+    </dl>
+  </div>
+</main>
+
+<footer class="ours">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a> · Tirage 000</p>
+</footer>
+
+</body>
+</html>

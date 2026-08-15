@@ -1,0 +1,335 @@
+/* ==========================================================================
+   01-vitrine/01-hero-plein-ecran — layout
+   Archétype : nav-horizontale · Composition : full-bleed · Densité : dense
+   --------------------------------------------------------------------------
+   Règle de la variante : AUCUN conteneur. Pas un seul `max-width` sur un bloc
+   principal, pas un seul `margin-inline: auto`. Les marges sont internes —
+   c'est la conséquence engagée par `composition: full-bleed`.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  /* --- utilitaires ------------------------------------------------------ */
+
+  /* Lien d'évitement : réellement hors écran au repos (le simple décalage
+     négatif laissait dépasser la bordure), rendu visible au focus. */
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  .credit {
+    color: var(--fg-subtle);
+    font-family: var(--font-meta);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+  }
+
+  /* --- manchette : navigation top-bar, version journal ------------------- */
+
+  .manchette {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas:
+      'date titre cote'
+      'nav  nav   nav';
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+    padding: var(--space-3) var(--space-4) 0;
+    border-block-end: var(--rule-width) var(--rule-style) var(--rule-color);
+  }
+
+  .manchette__date { grid-area: date; }
+  .manchette__cote { grid-area: cote; text-align: end; }
+
+  .manchette__date,
+  .manchette__cote {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+  }
+
+  .manchette__titre {
+    grid-area: titre;
+    font-family: var(--font-display);
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-title);
+    letter-spacing: var(--tracking-title);
+    text-transform: uppercase;
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  .manchette__nav {
+    grid-area: nav;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    padding-block: var(--space-2);
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+  }
+
+  .manchette__nav a {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--fg);
+  }
+
+  /* --- la une ----------------------------------------------------------- */
+
+  .une {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: var(--space-3) var(--space-6);
+    padding: var(--space-4);
+  }
+
+  .une__surtitre {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--accent-text);
+  }
+
+  .une__titre {
+    margin: 0;
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+    text-wrap: balance;
+  }
+
+  .une__chapo {
+    margin: 0;
+    font-family: var(--font-lead);
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    max-inline-size: none;
+  }
+
+  /* Le corps coule en colonnes : c'est la contrainte `editorial`. */
+  .une__corps {
+    columns: 3 22ch;
+    column-gap: var(--space-6);
+    column-rule: var(--rule-width) var(--rule-style) var(--rule-color);
+    orphans: 3;
+    widows: 3;
+    hyphens: auto;
+  }
+
+  .une__corps p {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-sm);
+    line-height: var(--leading-tight);
+  }
+
+  .une__corps p:first-child::first-letter {
+    float: inline-start;
+    font-family: var(--font-display);
+    font-size: 3.4em;
+    line-height: 0.82;
+    padding-inline-end: 0.08em;
+  }
+
+  /* --- figures : toujours légendées et créditées (media: captioned-editorial) */
+
+  .figure { margin: 0; }
+
+  .plaque {
+    aspect-ratio: 3 / 2;
+    background-color: var(--bg-sunken);
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--border) 0 1px,
+      transparent 1px 7px
+    );
+    border: var(--border-width) solid var(--border-strong);
+  }
+
+  .plaque--large { aspect-ratio: 16 / 6; }
+
+  .figure figcaption {
+    padding-block-start: var(--space-1);
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    line-height: var(--leading-tight);
+    color: var(--fg-muted);
+  }
+
+  /* --- filets ----------------------------------------------------------- */
+
+  .filet,
+  .filet-fort {
+    margin: var(--space-3) var(--space-4);
+    border: 0;
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+  }
+  .filet-fort { border-block-start-width: calc(var(--rule-width) * 3); }
+
+  /* --- brèves ----------------------------------------------------------- */
+
+  .rubrique {
+    margin: 0 var(--space-4) var(--space-2);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--accent-text);
+  }
+
+  /* Les brèves ne sont PAS six blocs identiques : la première tient deux
+     modules et ouvre sur un chapô. Une grille de six cartes égales est le
+     réflexe le plus fréquent du catalogue — et une une de journal ne
+     fonctionne pas ainsi, elle hiérarchise. */
+  .breves__grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    align-items: start;
+    padding-inline: var(--space-4);
+  }
+
+  .breve--tete { grid-column: span 2; }
+  .breve--tete h3 { font-size: var(--text-xl); }
+  .breve--tete p { font-size: var(--text-base); }
+
+  .breve {
+    padding: 0 var(--space-3);
+    border-inline-start: var(--rule-width) var(--rule-style) var(--rule-color);
+  }
+  .breve:first-child { border-inline-start: 0; padding-inline-start: 0; }
+
+  .breve h3 {
+    margin: 0 0 var(--space-1);
+    font-size: var(--text-base);
+    line-height: var(--leading-tight);
+  }
+  .breve h3 a { color: var(--fg); text-decoration: none; }
+  .breve h3 a:hover { text-decoration: underline; }
+
+  .breve p {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-tight);
+  }
+
+  .breve__meta {
+    padding-block-start: var(--space-1);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    color: var(--fg-subtle);
+  }
+
+  /* --- cahier ----------------------------------------------------------- */
+
+  .cahier {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    padding: 0 var(--space-4) var(--space-6);
+  }
+
+  .cahier__texte { columns: 2 20ch; column-gap: var(--space-6); orphans: 3; widows: 3; }
+  .cahier__texte p { margin: 0 0 var(--space-2); font-size: var(--text-sm); line-height: var(--leading-tight); }
+
+  .sommaire__titre {
+    margin: 0 0 var(--space-2);
+    padding-block-end: var(--space-1);
+    border-block-end: var(--rule-width) var(--rule-style) var(--rule-color);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+  }
+
+  .sommaire__liste { margin: 0; padding: 0; list-style: none; }
+  .sommaire__liste li {
+    display: flex;
+    gap: var(--space-2);
+    padding-block: var(--space-1);
+    border-block-end: var(--rule-width) dotted var(--rule-color);
+    font-size: var(--text-sm);
+  }
+  .folio {
+    font-family: var(--font-meta);
+    font-variant-numeric: tabular-nums;
+    color: var(--fg-subtle);
+  }
+
+  /* --- ours ------------------------------------------------------------- */
+
+  .ours {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border-block-start: calc(var(--rule-width) * 3) var(--rule-style) var(--rule-color);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+  }
+  .ours p { margin: 0; }
+
+  /* --- paliers ---------------------------------------------------------- */
+
+  @media (min-width: 48rem) {
+    .une {
+      grid-template-columns: 5fr 3fr;
+      grid-template-areas:
+        'surtitre figure'
+        'titre    figure'
+        'chapo    figure'
+        'corps    corps';
+    }
+    .une__surtitre { grid-area: surtitre; }
+    .une__titre    { grid-area: titre; font-size: var(--text-4xl); }
+    .une__chapo    { grid-area: chapo; }
+    .une__corps    { grid-area: corps; }
+    .figure--une   { grid-area: figure; }
+
+    .cahier {
+      grid-template-columns: 3fr 2fr;
+      grid-template-areas:
+        'figure sommaire'
+        'texte  sommaire';
+    }
+    .cahier .figure    { grid-area: figure; }
+    .cahier__texte     { grid-area: texte; }
+    .sommaire          { grid-area: sommaire; }
+  }
+
+  @media (min-width: 80rem) {
+    .une { grid-template-columns: 6fr 4fr; }
+    .une__titre { font-size: var(--text-5xl); }
+    .une__corps { columns: 4 20ch; }
+  }
+
+} /* @layer structure */

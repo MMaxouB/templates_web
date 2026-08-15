@@ -1,0 +1,221 @@
+/* ==========================================================================
+   01-vitrine/02-nav-sticky-compacte — layout
+   Archétype : nav-sticky · Composition : narrow-measure · Densité : airy
+   --------------------------------------------------------------------------
+   Règle de la variante : la mesure ne dépasse jamais 42 caractères et le vide
+   occupe plus de 40 % de la largeur. Le vide EST le sujet — ce n'est pas du
+   padding qu'on pourra resserrer plus tard.
+   La navigation ne s'arrime à aucun bord : elle flotte, décollée des quatre.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  /* Lien d'évitement : réellement hors écran au repos (le simple décalage
+     négatif laissait dépasser la bordure), rendu visible au focus. */
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- colonne étroite --------------------------------------------------- */
+
+  .colonne {
+    /* narrow-measure : la mesure est le squelette. Elle n'est pas centrée par
+       hasard — ici la symétrie est le sujet, le vide est égal des deux côtés
+       et représente plus de la moitié de la largeur au-delà de 80rem. */
+    inline-size: min(42ch, 100% - var(--space-8));
+    margin-inline: auto;
+    padding-block: var(--space-24) var(--space-24);
+  }
+
+  /* La cote passe SOUS le titre : une pastille de texte posée au-dessus d'un
+     h1 est un réflexe facturé, et elle ne dit rien de plus à cette place. */
+  .cote {
+    margin: 0 0 var(--space-24);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+
+  .ouverture h1 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-normal);
+    line-height: var(--leading-tight);
+  }
+
+  /* --- blocs ------------------------------------------------------------- */
+
+  /* Aucune carte : pas de fond, pas de cadre, pas d'ombre. Un bloc est
+     délimité par le vide qui le précède et par son numéro en marge. */
+  .bloc {
+    position: relative;
+    margin-block-end: var(--space-16);
+  }
+
+  .bloc__num {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+
+  .bloc h2 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-normal);
+  }
+
+  .bloc p {
+    margin: 0 0 var(--space-3);
+    line-height: var(--leading-loose);
+    color: var(--fg-muted);
+  }
+
+  /* Repli progressif : sans JavaScript, aucune classe n'est posée et tout
+     reste en pleine lisibilité. Avec JS, seul le bloc courant est en pleine
+     valeur — la révélation est liée au défilement, pas à un délai. */
+  .bloc[data-lu='non'] .bloc__num { color: var(--border); }
+  .bloc[data-lu='oui'] h2::after {
+    content: '';
+    display: inline-block;
+    inline-size: var(--space-3);
+    margin-inline-start: var(--space-2);
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+    vertical-align: middle;
+  }
+
+  .suite a { color: var(--accent-text); }
+
+  /* --- navigation flottante ---------------------------------------------- */
+
+  .pastille {
+    position: fixed;
+    /* Détachée des bords : ni collée en haut, ni ancrée à un côté. */
+    inset-block-start: var(--space-8);
+    inset-inline-end: var(--space-8);
+    z-index: 10;
+  }
+
+  .pastille__menu > summary {
+    display: flex;
+    gap: var(--space-1);
+    align-items: baseline;
+    padding: var(--space-2) var(--space-3);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    cursor: pointer;
+    list-style: none;
+  }
+  .pastille__menu > summary::-webkit-details-marker { display: none; }
+
+  .pastille__rang { color: var(--fg); font-variant-numeric: tabular-nums; }
+  .pastille__total { color: var(--fg-subtle); }
+
+  .pastille__liste {
+    margin: var(--space-1) 0 0;
+    padding: var(--space-3);
+    list-style: none;
+    background: var(--bg);
+    border: var(--border-width) solid var(--border);
+    min-inline-size: 9rem;
+  }
+  .pastille__liste li + li { margin-block-start: var(--space-2); }
+  .pastille__liste a {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .pastille__liste a:hover,
+  .pastille__liste a:focus-visible { color: var(--fg); }
+
+  /* --- pied -------------------------------------------------------------- */
+
+  .pied {
+    inline-size: min(42ch, 100% - var(--space-8));
+    margin-inline: auto;
+    padding-block: var(--space-8);
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+  .pied p { margin: 0; }
+
+  /* --- paliers ------------------------------------------------------------ */
+
+  @media (max-width: 30rem) {
+    /* Sous 480 px la pastille passerait sur le texte : elle descend, mais
+       reste détachée des bords — jamais une barre pleine largeur. */
+    .pastille {
+      inset-block-start: auto;
+      inset-block-end: var(--space-4);
+      inset-inline-end: var(--space-4);
+    }
+    .colonne { padding-block: var(--space-8) var(--space-16); }
+  }
+
+  @media (min-width: 80rem) {
+    .colonne { padding-block-start: var(--space-24); }
+  }
+
+} /* @layer structure */
+
+/* ==========================================================================
+   Pages secondaires — mêmes règles, mêmes vides.
+   ========================================================================== */
+
+@layer structure {
+
+  .citation {
+    margin: var(--space-6) 0;
+    padding-inline-start: var(--space-4);
+    border-inline-start: var(--rule-width) var(--rule-style) var(--rule-color);
+    color: var(--fg-muted);
+  }
+  .citation p { margin: 0; }
+
+  .liste { margin: 0 0 var(--space-3); padding-inline-start: var(--space-4); color: var(--fg-muted); }
+  .liste li { margin-block-end: var(--space-2); }
+
+  .formulaire { margin-block-end: var(--space-16); }
+  .champ { display: grid; gap: var(--space-1); margin: 0 0 var(--space-6); }
+  .champ label {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .champ--inline { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); }
+  .aide { font-family: var(--font-meta); font-size: var(--text-xs); color: var(--fg-subtle); }
+
+} /* @layer structure */

@@ -3,12 +3,46 @@
   "famille_nom": "Vitrine",
   "numero": "04",
   "variante": "04-one-page-ancres",
+  "role": "Page unique à ancres — bandes de nature contrastée",
   "archetype": "one-page",
+  "intention": "Un panneau de chantier déroulé : chaque ancre est une bande pleine largeur qui change de fond, de densité et d'alignement interne. La progression remplace le menu — une jauge collée en bas dit où l'on en est et rien d'autre ne permet de se déplacer.",
+  "dna": {
+    "composition": "banded",
+    "density": "compact",
+    "typography": {
+      "system": "display-dominant",
+      "voice": "poster-heavy"
+    },
+    "geometry": "hard-rectilinear",
+    "surface": "concrete",
+    "navigation": "progress-driven",
+    "media": "svg-diagram",
+    "motion": "brutal-cut",
+    "interaction": "expand-collapse"
+  },
+  "habillage_reference": "chantier",
+  "creativeConstraints": [
+    "no-viewport-sections",
+    "physical",
+    "no-rounded",
+    "no-centered-text"
+  ],
+  "justifications": {
+    "interaction": "`expand-collapse` est déclarée : les détails de chaque bande sont repliés par défaut en `<details>` natif. Le réflexe « faq-accordéon » est donc gratuit, et la page fonctionne sans JavaScript.",
+    "composition": "Les bandes alternent trois régimes — pleine largeur en capitales, colonne unique alignée à gauche, matrice de cotes — sans qu'aucune ne fasse exactement un écran de haut : la contrainte `no-viewport-sections` interdit le rythme du viewport.",
+    "density": "Visée « balanced », mesurée à 21.4 éléments par écran : c'est `compact`. On déclare ce qui est mesuré — desserrer l'étiquette pour faire passer la page est précisément ce que le lot 2bis a refusé."
+  },
   "pages": [
     "index.html",
     "page.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « chantier » (beton-brut + beton-orange)."
+  },
+  "mesures": {
+    "elements_par_ecran": 21.4,
+    "densite_classee": "compact"
+  }
 }

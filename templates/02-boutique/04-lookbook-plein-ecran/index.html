@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cahier — Lorem ipsum</title>
+  <meta name="description" content="Cahier de planches superposées, on tourne les pages.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/ocre-encre.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/affiche-diagonale.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <p class="entete__id"><a href="index.html">Lorem Ipsum</a> — cahier</p>
+  <!-- navigation: numeric-index — les numéros SONT la navigation. -->
+  <nav class="index" aria-label="Planches">
+    <ol>
+      <li><a href="#p1" data-aller="0" aria-current="true">01</a></li>
+      <li><a href="#p2" data-aller="1">02</a></li>
+      <li><a href="#p3" data-aller="2">03</a></li>
+      <li><a href="#p4" data-aller="3">04</a></li>
+      <li><a href="#p5" data-aller="4">05</a></li>
+      <li><a href="#p6" data-aller="5">06</a></li>
+      <li><a href="listing.html">Série A</a></li>
+    </ol>
+  </nav>
+</header>
+
+<main id="contenu" class="cahier" data-cahier>
+  <article class="planche" id="p1" data-planche>
+    <p class="planche__num">01</p>
+    <span class="planche__vue planche__vue--1" aria-hidden="true"></span>
+    <h2 class="planche__titre">Lorem ipsum</h2>
+    <p class="planche__legende">Série A · 24,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+  <article class="planche" id="p2" data-planche>
+    <p class="planche__num">02</p>
+    <span class="planche__vue planche__vue--2" aria-hidden="true"></span>
+    <h2 class="planche__titre">Dolor sit amet</h2>
+    <p class="planche__legende">Série B · 37,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+  <article class="planche" id="p3" data-planche>
+    <p class="planche__num">03</p>
+    <span class="planche__vue planche__vue--3" aria-hidden="true"></span>
+    <h2 class="planche__titre">Consectetur</h2>
+    <p class="planche__legende">Série C · 50,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+  <article class="planche" id="p4" data-planche>
+    <p class="planche__num">04</p>
+    <span class="planche__vue planche__vue--1" aria-hidden="true"></span>
+    <h2 class="planche__titre">Adipiscing elit</h2>
+    <p class="planche__legende">Série A · 63,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+  <article class="planche" id="p5" data-planche>
+    <p class="planche__num">05</p>
+    <span class="planche__vue planche__vue--2" aria-hidden="true"></span>
+    <h2 class="planche__titre">Sed eiusmod</h2>
+    <p class="planche__legende">Série B · 76,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+  <article class="planche" id="p6" data-planche>
+    <p class="planche__num">06</p>
+    <span class="planche__vue planche__vue--3" aria-hidden="true"></span>
+    <h2 class="planche__titre">Tempor labore</h2>
+    <p class="planche__legende">Série C · 89,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+</main>
+
+<p class="pas">
+  <button type="button" data-prec>Planche précédente</button>
+  <button type="button" data-suiv>Planche suivante</button>
+</p>
+
+<footer class="ours">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -6,29 +6,32 @@
   "role": "Contact",
   "archetype": "carte-interactive",
   "dna": {
-    "composition": "asymmetric-weighted",
-    "density": "compact",
+    "composition": "stacked-planes",
+    "density": "balanced",
     "typography": {
       "system": "size-driven",
-      "voice": "ui-native"
+      "voice": "rounded"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
-    "navigation": "top-bar",
+    "geometry": "angular-cut",
+    "surface": "metal",
+    "navigation": "map-spatial",
     "media": "svg-diagram",
-    "motion": "discreet",
-    "interaction": "form-flow"
+    "motion": "physical",
+    "interaction": "stateful-tool"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
+  "habillage_reference": "atelier",
+  "creativeConstraints": [
+    "no-cards",
+    "no-rounded",
+    "no-centered-text"
+  ],
   "justifications": {},
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Un plan avec un panneau posé dessus. La profondeur vient du recouvrement, les coins sont coupés au massicot, et la carte est le moyen d'accès.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« atelier ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

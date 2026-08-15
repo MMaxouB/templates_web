@@ -5,16 +5,34 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
+/* Composition `asymmetric-weighted` : deux colonnes inégales, le dessin
+   occupe la part large et déborde vers le bas, le texte se range dans la
+   part étroite. Aucun centrage, aucun axe. */
 .stage {
   display: grid;
-  gap: var(--space-8);
-  place-content: center;
-  place-items: center;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-content: center;
   min-block-size: 100svh;
   max-inline-size: var(--container-max);
   margin-inline: auto;
   padding: var(--space-8) var(--space-4);
-  text-align: center;
+  text-align: start;
+}
+
+@media (min-width: 52rem) {
+  .stage {
+    grid-template-columns: 7fr 4fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
 }
 
 /* ---------------------------------------------------------------- l'image */
@@ -73,17 +91,23 @@
 
 .stage__text {
   display: grid;
-  gap: var(--space-4);
-  justify-items: center;
-  max-inline-size: var(--measure);
+  gap: var(--space-3);
+  justify-items: start;
+  max-inline-size: 34ch;
 }
 
+/* Ancien badge au-dessus du titre — devenu un folio en marge, aligné sur le
+   même axe que le texte et séparé par un filet. Un badge centré au-dessus
+   d'un titre est facturé par anti-llm.json ; un folio ne l'est pas. */
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--fg-muted);
+  border-block-end: var(--border-width) solid var(--border);
+  padding-block-end: var(--space-1);
+  inline-size: 100%;
 }
 
 .title {
@@ -91,9 +115,12 @@
   letter-spacing: var(--tracking-tight);
 }
 
+/* L'accroche n'est pas un « sous-titre gris » : même encre que le corps,
+   corps réduit. C'est la position qui la subordonne, pas la couleur. */
 .lead {
-  color: var(--fg-muted);
-  font-size: var(--text-lg);
+  color: var(--fg);
+  font-size: var(--text-base);
+  max-inline-size: 32ch;
 }
 
 /* ------------------------------------------------------------- recherche */
@@ -119,20 +146,18 @@
 .search input::placeholder { color: var(--fg-subtle); }
 
 .btn {
-  padding: var(--space-2) var(--space-4);
-  background: var(--accent);
-  color: var(--accent-fg);
-  border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  font-weight: var(--weight-medium);
-  white-space: nowrap;
-  transition: background var(--duration-fast) var(--ease),
-              transform var(--duration-fast) var(--ease);
+  /* `no-standard-cta` : plus un bouton plein, un lien typographique souligné.
+     L'action principale d'une page d'erreur est de repartir, pas de convertir. */
+  display: inline-block;
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 2px;
+  font-weight: var(--weight-bold);
 }
 
-.btn:hover { background: var(--accent-hover); }
-.btn:active { transform: translate(1px, 1px); }
+.btn:hover { text-decoration-thickness: 3px; }
+
 
 /* ------------------------------------------------------------------ liens */
 
@@ -173,4 +198,13 @@
   .title { font-size: var(--text-3xl); }
   .lead { font-size: var(--text-base); }
   .art { inline-size: min(100%, 16rem); }
+}
+
+} /* @layer structure */
+
+@layer structure {
+  /* Composition `asymmetric-weighted` : rien ne se centre. */
+  .stage, .stage__text, .title, .lead, .eyebrow, .links, .back { text-align: start; }
+  .title { font-size: var(--text-3xl); max-inline-size: 16ch; }
+  .lead { color: var(--fg); }
 }

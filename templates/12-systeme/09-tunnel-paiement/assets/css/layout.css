@@ -5,6 +5,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .bar {
   display: flex;
   flex-wrap: wrap;
@@ -32,7 +39,7 @@
 .brand__mark {
   inline-size: 1.25rem;
   block-size: 1.25rem;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--accent);
 }
 
@@ -82,7 +89,7 @@
   inline-size: 1.5rem;
   block-size: 1.5rem;
   border: calc(var(--border-width) * 2) solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: var(--weight-bold);
@@ -106,7 +113,7 @@
   padding: var(--space-6);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   box-shadow: var(--shadow-sm);
 }
 
@@ -133,7 +140,7 @@
 .line__media {
   inline-size: 3.5rem;
   block-size: 3.5rem;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   background:
     linear-gradient(135deg, var(--accent) 0%, transparent 65%),
     var(--bg-sunken);
@@ -148,7 +155,7 @@
   background: var(--bg);
   color: var(--fg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   font-size: var(--text-sm);
 }
 
@@ -172,7 +179,7 @@
   background: var(--bg);
   color: var(--fg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
 }
 
 .field input::placeholder { color: var(--fg-subtle); }
@@ -194,7 +201,7 @@
   padding: var(--space-3);
   background: var(--bg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   font-size: var(--text-sm);
   cursor: pointer;
 }
@@ -212,7 +219,7 @@
 .reassure {
   padding: var(--space-3) var(--space-4);
   border-inline-start: calc(var(--border-width) * 3) solid var(--info);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--bg-sunken);
   font-size: var(--text-sm);
   color: var(--fg-muted);
@@ -225,7 +232,7 @@
   gap: var(--space-2);
   padding: var(--space-4);
   background: var(--bg-sunken);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   font-size: var(--text-sm);
 }
 
@@ -248,7 +255,7 @@
 .done {
   padding: var(--space-3) var(--space-4);
   border-inline-start: calc(var(--border-width) * 3) solid var(--success);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--bg-sunken);
   font-size: var(--text-sm);
 }
@@ -271,7 +278,7 @@
   background: var(--accent);
   color: var(--accent-fg);
   border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   box-shadow: var(--shadow-sm);
   font-weight: var(--weight-medium);
   transition: background var(--duration-fast) var(--ease),
@@ -305,7 +312,7 @@
   padding: var(--space-6);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   box-shadow: var(--shadow-md);
 }
 
@@ -369,3 +376,5 @@
   .rail__list { gap: var(--space-2); }
   .rail__step { font-size: var(--text-xs); }
 }
+
+} /* @layer structure */

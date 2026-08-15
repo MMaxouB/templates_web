@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Lorem ipsum</title>
+  <meta name="description" content="Écran coupé en deux panneaux à défilement indépendant.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/nuit-verre.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/plans-verre.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body class="deux-panneaux">
+
+<a class="skip" href="#droite">Aller au contenu</a>
+
+<div class="split">
+
+  <section class="panneau panneau--gauche" aria-labelledby="t-gauche">
+    <div class="panneau__interieur">
+      <h1 id="t-gauche">Écrire</h1>
+      <p class="intro">Formulaire de contact. Revenir au <a href="index.html">sommaire</a> ou lire la <a href="page.html">page détaillée</a>.</p>
+      <div class="vue" role="img" aria-label="Plan masqué, bloc graphique neutre"></div>
+      <p class="pied"><a class="marque" href="index.html">Lorem Ipsum</a> · MMXXVI — <a href="#" data-stub>Mentions légales</a></p>
+    </div>
+  </section>
+
+  <main class="panneau panneau--droite" id="droite">
+    <div class="panneau__interieur">
+      <article class="entree">
+        <p class="entree__num">01</p>
+        <h2>Formulaire</h2>
+        <form class="formulaire" action="#" method="post" novalidate>
+          <p class="champ">
+            <label for="nom">Nom *</label>
+            <input id="nom" name="nom" type="text" required autocomplete="name">
+          </p>
+          <p class="champ">
+            <label for="courriel">Courriel *</label>
+            <input id="courriel" name="courriel" type="email" required autocomplete="email"
+                   aria-describedby="aide-courriel">
+            <span class="aide" id="aide-courriel">Format attendu : nom@domaine.test</span>
+          </p>
+          <p class="champ">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </p>
+          <p class="champ champ--inline">
+            <input id="copie" name="copie" type="checkbox">
+            <label for="copie">Recevoir une copie</label>
+          </p>
+          <p><button type="submit">Envoyer</button></p>
+          <p class="aide" role="status">Aucun envoi effectué.</p>
+        </form>
+      </article>
+
+      <article class="entree">
+        <p class="entree__num">02</p>
+        <h2>Coordonnées</h2>
+        <dl class="couche__donnees">
+          <div><dt>Adresse</dt><dd>00 rue Lorem, 00000 Ipsum</dd></div>
+          <div><dt>Ligne</dt><dd>00 00 00 00 00</dd></div>
+          <div><dt>Courriel</dt><dd>lorem@ipsum.test</dd></div>
+        </dl>
+      </article>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

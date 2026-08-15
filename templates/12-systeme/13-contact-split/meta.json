@@ -6,29 +6,33 @@
   "role": "Contact",
   "archetype": "split-screen",
   "dna": {
-    "composition": "panelled",
-    "density": "dense",
+    "composition": "marginal",
+    "density": "airy",
     "typography": {
-      "system": "size-driven",
-      "voice": "ui-native"
+      "system": "spacing-driven",
+      "voice": "didone"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
-    "navigation": "none",
-    "media": "full-bleed",
-    "motion": "discreet",
+    "geometry": "borderless",
+    "surface": "textile",
+    "navigation": "marginal-notes",
+    "media": "uncropped-object",
+    "motion": "physical",
     "interaction": "form-flow"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
+  "habillage_reference": "silence",
+  "creativeConstraints": [
+    "no-cards",
+    "no-shadow",
+    "no-rounded",
+    "no-centered-text"
+  ],
   "justifications": {},
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Le contenu occupe les marges, le centre reste vide. Hiérarchie par l'interlettrage, aucune bordure, aucune ombre : un carton d'invitation, pas un formulaire de site.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« silence ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deux panneaux — Lorem ipsum</title>
+  <meta name="description" content="Écran coupé en deux panneaux à défilement indépendant.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/nuit-verre.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/plans-verre.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body class="deux-panneaux">
+
+<a class="skip" href="#droite">Aller au contenu</a>
+
+<div class="split">
+
+  <!-- Panneau gauche : défile pour lui seul. La navigation est dans le texte
+       (navigation: inline-contextual) — aucun bloc de menu. -->
+  <section class="panneau panneau--gauche" aria-labelledby="t-gauche">
+    <div class="panneau__interieur">
+
+      <h1 id="t-gauche">Consectetur adipiscing elit sed do eiusmod</h1>
+
+      <p class="intro">Tempor incididunt ut labore et dolore magna aliqua, voir le
+        <a href="#s1">premier relevé</a>, la <a href="#s2">seconde approche</a> ou
+        directement la <a href="page.html">page détaillée</a>.</p>
+
+      <!-- media: masked — le visuel n'est révélé que par un clip-path. -->
+      <div class="vue" role="img" aria-label="Plan masqué, bloc graphique neutre"></div>
+
+      <p class="intro">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        Pour écrire, passer par le <a href="contact.html">formulaire</a> ; les
+        <a href="#" data-stub>archives</a> restent à créer.</p>
+
+      <p class="pied"><a class="marque" href="index.html">Lorem Ipsum</a> · MMXXVI — <a href="#" data-stub>Mentions légales</a></p>
+    </div>
+  </section>
+
+  <!-- Panneau droit : le contenu. Il défile indépendamment du gauche. -->
+  <main class="panneau panneau--droite" id="droite">
+    <div class="panneau__interieur">
+
+      <article class="entree" id="s1">
+        <p class="entree__num">01</p>
+        <h2>Lorem</h2>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum, sed ut
+          perspiciatis unde omnis iste natus error sit voluptatem.</p>
+        <p><a class="ouvrir" href="page.html" data-detail="1">Ouvrir le relevé</a></p>
+      </article>
+
+      <article class="entree" id="s2">
+        <p class="entree__num">02</p>
+        <h2>Ipsum dolor</h2>
+        <p>Accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo
+          inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+        <p><a class="ouvrir" href="page.html" data-detail="2">Ouvrir le relevé</a></p>
+      </article>
+
+      <article class="entree" id="s3">
+        <p class="entree__num">03</p>
+        <h2>Sit amet</h2>
+        <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt,
+          neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</p>
+        <p>Consectetur adipisci velit, sed quia non numquam eius modi tempora incidunt
+          ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+      </article>
+
+      <article class="entree" id="s4">
+        <p class="entree__num">04</p>
+        <h2>Consectetur</h2>
+        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+          laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
+        <p>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
+          nihil molestiae consequatur.</p>
+      </article>
+
+    </div>
+  </main>
+</div>
+
+<!-- interaction: modal-layer — couche native, piège de focus et retour à
+     l'origine assurés par <dialog>. Sans JavaScript, le lien reste un lien
+     vers la page détaillée : rien n'est perdu. -->
+<dialog class="couche" id="couche" aria-labelledby="t-couche">
+  <div class="couche__corps">
+    <p class="entree__num">Relevé <span data-num>01</span></p>
+    <h2 id="t-couche">Lorem ipsum dolor sit amet</h2>
+    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <dl class="couche__donnees">
+      <div><dt>Lorem</dt><dd>0,40</dd></div>
+      <div><dt>Ipsum</dt><dd>1,20</dd></div>
+      <div><dt>Dolor</dt><dd>3,60</dd></div>
+    </dl>
+    <p><button type="button" class="fermer" data-fermer>Fermer</button></p>
+  </div>
+</dialog>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

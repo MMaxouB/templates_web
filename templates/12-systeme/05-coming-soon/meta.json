@@ -6,29 +6,40 @@
   "role": "Avant lancement",
   "archetype": "colonne-unique",
   "dna": {
-    "composition": "centered-axial",
-    "density": "airy",
+    "composition": "narrow-measure",
+    "density": "balanced",
     "typography": {
-      "system": "size-driven",
-      "voice": "ui-native"
+      "system": "family-contrast",
+      "voice": "mixed-mismatch"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
+    "geometry": "irregular",
+    "surface": "printed-halftone",
     "navigation": "none",
-    "media": "none",
-    "motion": "discreet",
+    "media": "masked",
+    "motion": "continuous-loop",
     "interaction": "form-flow"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
-  "justifications": {},
+  "habillage_reference": "riso",
+  "creativeConstraints": [
+    "no-cards",
+    "no-shadow",
+    "no-rounded",
+    "no-centered-text"
+  ],
+  "justifications": {
+    "distinction": "Première version trop proche de `bench/05-imprime-luxe` (distance 0.226) : les deux partageaient composition, densité, typographie, géométrie et surface. Les deux avaient été conçues séparément, ce que le rapport d'ADN a immédiatement vu. Différenciée sur cinq axes — c'est exactement le rôle de la mémoire de diversité.",
+    "density": "Visée « void », mesurée « balanced » (12.8 éléments/écran). La contrainte `empty` a été retirée : elle exige ≤ 6 éléments/écran et la page en compte davantage. On déclare ce qui est mesuré."
+  },
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Une affiche d'attente tramée. Mesure très étroite, formes irrégulières, et la hiérarchie portée par la graisse d'une linéale élargie. Le titre est le seul élément qui bouge — le reste attend.",
+  "mesures": {
+    "elements_par_ecran": 12.8,
+    "densite_classee": "balanced"
+  },
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« riso ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

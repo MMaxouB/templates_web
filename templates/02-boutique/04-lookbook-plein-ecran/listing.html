@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Série A — Lorem ipsum</title>
+  <meta name="description" content="Planches de la série A.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/ocre-encre.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/affiche-diagonale.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <p class="entete__id"><a href="index.html">Lorem Ipsum</a> — série A</p>
+  <nav class="index" aria-label="Planches">
+    <ol>
+      <li><a href="#p1" data-aller="0" aria-current="true">01</a></li>
+      <li><a href="#p2" data-aller="1">02</a></li>
+      <li><a href="#p3" data-aller="2">03</a></li>
+      <li><a href="index.html">Cahier complet</a></li>
+    </ol>
+  </nav>
+</header>
+
+<main id="contenu" class="cahier" data-cahier>
+  <article class="planche" id="p1" data-planche>
+    <p class="planche__num">01</p>
+    <span class="planche__vue planche__vue--1" aria-hidden="true"></span>
+    <h2 class="planche__titre">Lorem ipsum</h2>
+    <p class="planche__legende">Série A · 24,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+  <article class="planche" id="p2" data-planche>
+    <p class="planche__num">02</p>
+    <span class="planche__vue planche__vue--2" aria-hidden="true"></span>
+    <h2 class="planche__titre">Dolor sit amet</h2>
+    <p class="planche__legende">Série B · 37,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+  <article class="planche" id="p3" data-planche>
+    <p class="planche__num">03</p>
+    <span class="planche__vue planche__vue--3" aria-hidden="true"></span>
+    <h2 class="planche__titre">Consectetur</h2>
+    <p class="planche__legende">Série C · 50,00 — <a href="produit.html">voir la fiche</a></p>
+  </article>
+</main>
+
+<p class="pas">
+  <button type="button" data-prec>Planche précédente</button>
+  <button type="button" data-suiv>Planche suivante</button>
+</p>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

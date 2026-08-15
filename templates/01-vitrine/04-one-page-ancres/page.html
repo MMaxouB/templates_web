@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page — Lorem ipsum</title>
+  <meta name="description" content="Page de contenu type, en bandes.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/beton-orange.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/beton-brut.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#b1">Aller au contenu</a>
+
+<main id="contenu">
+
+  <section class="bande bande--titre" id="b1" data-bande>
+    <p class="bande__num">01</p>
+    <h1>Ut enim ad minim<br>veniam quis nostrud</h1>
+    <p class="bande__ligne">Page détaillée — dossier 002</p>
+  </section>
+
+  <section class="bande bande--texte" id="b2" data-bande>
+    <p class="bande__num">02</p>
+    <h2>Exercitation</h2>
+    <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.</p>
+    <details class="detail">
+      <summary>Détail technique</summary>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+        doloremque laudantium, totam rem aperiam.</p>
+    </details>
+  </section>
+
+  <section class="bande bande--cotes" id="b3" data-bande>
+    <p class="bande__num">03</p>
+    <h2>Relevé</h2>
+    <table class="cotes">
+      <caption>Lorem ipsum dolor sit amet consectetur</caption>
+      <thead>
+        <tr><th scope="col">Repère</th><th scope="col">Lorem</th><th scope="col">Ipsum</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">A</th><td>064</td><td>0,25</td></tr>
+        <tr><th scope="row">B</th><td>128</td><td>0,50</td></tr>
+        <tr><th scope="row">C</th><td>256</td><td>1,00</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="bande bande--sortie" id="b4" data-bande>
+    <p class="bande__num">04</p>
+    <h2>Suite</h2>
+    <p class="liens"><a href="index.html">Retour au panneau</a> · <a href="contact.html">Contact</a></p>
+  </section>
+
+</main>
+
+<nav class="jauge" aria-label="Progression">
+  <p class="jauge__etat"><span data-rang>01</span> / 04 — <span data-titre>Lorem ipsum</span></p>
+  <div class="jauge__piste" role="presentation"><span class="jauge__part" data-part></span></div>
+  <p class="jauge__pas">
+    <a href="#b1" data-prec>Précédent</a>
+    <a href="#b2" data-suiv>Suivant</a>
+  </p>
+</nav>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

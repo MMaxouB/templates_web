@@ -5,6 +5,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .page {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -51,7 +58,7 @@
 
 .huge__d {
   flex: 1 1 0;
-  text-align: center;
+  text-align: start;
 }
 
 /* Le zéro central prend la couleur d'accent : c'est le seul écart de la page. */
@@ -108,3 +115,5 @@
   .say { font-size: var(--text-base); }
   .go a { font-size: var(--text-base); }
 }
+
+} /* @layer structure */

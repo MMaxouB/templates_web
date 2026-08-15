@@ -1,0 +1,167 @@
+/* ==========================================================================
+   03-portfolio/01-grille-uniforme — layout
+   Archétype : grille-uniforme · Composition : marginal · Densité : balanced
+   --------------------------------------------------------------------------
+   Règle de la variante : la grille est UNIFORME mais elle ceinture l'écran.
+   Le centre — 46 % de la surface du premier écran — ne reçoit qu'un seul
+   élément : la projection de l'entrée désignée. Au repos, il est vide, et
+   c'est le sujet de la page.
+   Lecture de la contrainte `marginal` : « contenu en périphérie, centre laissé
+   libre ». Un centre rempli de vignettes serait une grille ordinaire.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- ceinture ------------------------------------------------------------ */
+
+  .ceinture {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .bord { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+  .bord--haut,
+  .bord--bas { grid-auto-flow: column; grid-auto-columns: 1fr; }
+
+  .entree__lien {
+    display: grid;
+    gap: var(--space-1);
+    color: var(--fg-muted);
+    text-decoration: none;
+  }
+  .entree__lien:hover,
+  .entree__lien:focus-visible { color: var(--fg); }
+
+  /* media: monochrome — une seule teinte, celle du phosphore, déclinée en
+     valeurs. Aucune seconde couleur n'entre dans la page. */
+  .entree__vue {
+    display: block;
+    aspect-ratio: 4 / 3;
+    background-color: var(--bg-sunken);
+    background-image: repeating-linear-gradient(0deg, var(--accent) 0 1px, transparent 1px 4px);
+    border: var(--border-width) solid var(--border);
+    opacity: 0.55;
+  }
+  .entree__vue--2 { background-image: repeating-linear-gradient(90deg, var(--accent) 0 1px, transparent 1px 5px); }
+  .entree__vue--3 { background-image: repeating-linear-gradient(45deg, var(--accent) 0 1px, transparent 1px 6px); }
+  .entree__vue--4 { background-image: repeating-linear-gradient(-45deg, var(--accent) 0 2px, transparent 2px 8px); }
+
+  .entree__lien:hover .entree__vue,
+  .entree__lien:focus-visible .entree__vue { opacity: 1; }
+
+  .entree__num,
+  .entree__nom {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+  .entree__num { font-variant-numeric: tabular-nums; color: var(--fg-subtle); }
+
+  /* --- centre libre -------------------------------------------------------- */
+
+  .centre {
+    display: grid;
+    align-content: center;
+    gap: var(--space-2);
+    min-block-size: 8rem;
+    padding: var(--space-4);
+    border: var(--border-width) dashed var(--border);
+  }
+  .centre p { margin: 0; text-align: start; }
+  .centre__num {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    font-variant-numeric: tabular-nums;
+    color: var(--accent-text);
+  }
+  .centre__titre { font-size: var(--text-3xl); line-height: var(--leading-tight); }
+  .centre__aide {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+
+  /* --- cartouche ----------------------------------------------------------- */
+
+  .cartouche {
+    padding: var(--space-3) var(--space-4);
+    border-block-start: var(--border-width) solid var(--border);
+  }
+  .cartouche--page { border-block-start: 0; border-block-end: var(--border-width) solid var(--border); }
+  .cartouche h1 { margin: 0 0 var(--space-1); font-size: var(--text-base); text-transform: uppercase; letter-spacing: var(--tracking-meta); text-align: start; }
+  .cartouche p { margin: 0; font-family: var(--font-meta); font-size: var(--text-xs); letter-spacing: var(--tracking-meta); }
+
+  /* --- pages internes ------------------------------------------------------ */
+
+  .page { display: grid; gap: var(--space-6); padding: var(--space-6) var(--space-4) var(--space-12); }
+  .page__vue { inline-size: min(20rem, 100%); opacity: 1; }
+  .page__texte p { max-inline-size: 60ch; }
+  .page__meta { font-family: var(--font-meta); font-size: var(--text-xs); letter-spacing: var(--tracking-meta); color: var(--fg-subtle); }
+  .page__donnees { display: grid; gap: var(--space-2); margin: var(--space-4) 0; max-inline-size: 36ch; }
+  .page__donnees > div { display: grid; grid-template-columns: 10ch 1fr; gap: var(--space-3); }
+  .page__donnees dt { font-family: var(--font-meta); font-size: var(--text-xs); text-transform: uppercase; color: var(--fg-subtle); }
+  .page__donnees dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+  .formulaire { max-inline-size: 44ch; }
+  .champ { display: grid; gap: var(--space-1); margin: 0 0 var(--space-4); }
+  .champ label { font-family: var(--font-meta); font-size: var(--text-xs); letter-spacing: var(--tracking-meta); text-transform: uppercase; }
+  .champ--inline { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); }
+  .aide { font-family: var(--font-meta); font-size: var(--text-xs); color: var(--fg-subtle); }
+
+  /* --- paliers ------------------------------------------------------------- */
+
+  @media (min-width: 48rem) {
+    .ceinture {
+      /* La ceinture prend sa forme : quatre en haut, quatre en bas, deux de
+         chaque côté, et un centre vide qui occupe le reste. */
+      grid-template-columns: 12rem 1fr 12rem;
+      grid-template-areas:
+        'haut   haut   haut'
+        'gauche centre droite'
+        'bas    bas    bas';
+      gap: var(--space-6);
+      padding: var(--space-6);
+      min-block-size: 88svh;
+    }
+    .bord--haut   { grid-area: haut; }
+    .bord--bas    { grid-area: bas; }
+    .bord--gauche { grid-area: gauche; }
+    .bord--droite { grid-area: droite; }
+    .centre       { grid-area: centre; }
+    .centre__titre { font-size: var(--text-4xl); }
+    .page { grid-template-columns: auto 1fr; align-items: start; padding-inline: var(--space-8); }
+  }
+
+  @media (min-width: 80rem) {
+    .ceinture { grid-template-columns: 16rem 1fr 16rem; padding: var(--space-8); }
+  }
+
+} /* @layer structure */

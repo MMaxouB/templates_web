@@ -37,9 +37,20 @@
     /* Profondeur — halos, pas ombres */
     --depth-model: outline;
     --shadow-style: soft;
-    --shadow-sm: 0 0 0 1px rgb(0 240 255 / 0.16);
-    --shadow-md: 0 0 20px rgb(0 240 255 / 0.22), 0 0 0 1px rgb(0 240 255 / 0.3);
-    --shadow-lg: 0 0 48px rgb(255 0 160 / 0.28), 0 0 0 1px rgb(0 240 255 / 0.45);
+    /* Les halos sont dérivés de la PALETTE, pas d'un cyan écrit en dur.
+       Défaut trouvé en écrivant `03-portfolio/04` : c'était la seule direction
+       du dépôt à coder une teinte en clair, et elle survivait donc au
+       changement de palette — un habillage ocre aurait gardé une lueur cyan.
+       Les variantes antérieures ne l'avaient pas révélé parce qu'elles
+       référencent encore l'ancien thème monolithique, que le contrôle
+       d'hygiène ne lit pas. */
+    --shadow-sm: 0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent);
+    --shadow-md:
+      0 0 20px color-mix(in srgb, var(--accent) 22%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent);
+    --shadow-lg:
+      0 0 48px color-mix(in srgb, var(--danger) 28%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent);
 
     --rule-style: hairline;
     --rule-line: solid;

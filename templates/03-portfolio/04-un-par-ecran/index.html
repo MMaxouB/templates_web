@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plans — Lorem ipsum</title>
+  <meta name="description" content="Un travail par plan, lecture en biais.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/neon-cyan-magenta.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/neon-nocturne.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#p1">Aller au contenu</a>
+
+<main id="contenu" class="pile" data-pile>
+  <section class="plan plan--1" id="p1" data-plan>
+    <p class="plan__num">01</p>
+    <h2 class="plan__titre">Lorem</h2>
+    <span class="plan__vue" aria-hidden="true"></span>
+    <p class="plan__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,
+      ut enim ad minim veniam quis nostrud exercitation ullamco laboris.</p>
+    <p class="plan__lien"><a href="projet.html">Voir le travail</a></p>
+  </section>
+  <section class="plan plan--2" id="p2" data-plan>
+    <p class="plan__num">02</p>
+    <h2 class="plan__titre">Ipsum dolor</h2>
+    <span class="plan__vue" aria-hidden="true"></span>
+    <p class="plan__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,
+      ut enim ad minim veniam quis nostrud exercitation ullamco laboris.</p>
+    <p class="plan__lien"><a href="projet.html">Voir le travail</a></p>
+  </section>
+  <section class="plan plan--3" id="p3" data-plan>
+    <p class="plan__num">03</p>
+    <h2 class="plan__titre">Sit amet</h2>
+    <span class="plan__vue" aria-hidden="true"></span>
+    <p class="plan__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,
+      ut enim ad minim veniam quis nostrud exercitation ullamco laboris.</p>
+    <p class="plan__lien"><a href="projet.html">Voir le travail</a></p>
+  </section>
+  <section class="plan plan--1" id="p4" data-plan>
+    <p class="plan__num">04</p>
+    <h2 class="plan__titre">Consectetur</h2>
+    <span class="plan__vue" aria-hidden="true"></span>
+    <p class="plan__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,
+      ut enim ad minim veniam quis nostrud exercitation ullamco laboris.</p>
+    <p class="plan__lien"><a href="projet.html">Voir le travail</a></p>
+  </section>
+  <section class="plan plan--2" id="p5" data-plan>
+    <p class="plan__num">05</p>
+    <h2 class="plan__titre">Adipiscing</h2>
+    <span class="plan__vue" aria-hidden="true"></span>
+    <p class="plan__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,
+      ut enim ad minim veniam quis nostrud exercitation ullamco laboris.</p>
+    <p class="plan__lien"><a href="projet.html">Voir le travail</a></p>
+  </section>
+  <section class="plan plan--3" id="p6" data-plan>
+    <p class="plan__num">06</p>
+    <h2 class="plan__titre">Elit sed</h2>
+    <span class="plan__vue" aria-hidden="true"></span>
+    <p class="plan__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua,
+      ut enim ad minim veniam quis nostrud exercitation ullamco laboris.</p>
+    <p class="plan__lien"><a href="projet.html">Voir le travail</a></p>
+  </section>
+</main>
+
+<!-- navigation: progress-driven — une jauge et deux pas, rien d'autre. -->
+<nav class="jauge" aria-label="Progression">
+  <p class="jauge__etat"><span data-rang>01</span> / 06</p>
+  <div class="jauge__piste"><span class="jauge__part" data-part></span></div>
+  <p class="jauge__pas">
+    <button type="button" data-prec>Précédent</button>
+    <button type="button" data-suiv>Suivant</button>
+  </p>
+  <p class="jauge__liens"><a href="projet.html">Travail</a> · <a href="contact.html">Écrire</a></p>
+</nav>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

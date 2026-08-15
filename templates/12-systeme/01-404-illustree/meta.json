@@ -6,29 +6,34 @@
   "role": "Erreur 404",
   "archetype": "plein-ecran",
   "dna": {
-    "composition": "centered-axial",
+    "composition": "asymmetric-weighted",
     "density": "airy",
     "typography": {
       "system": "size-driven",
       "voice": "ui-native"
     },
-    "geometry": "soft-rounded",
+    "geometry": "organic",
     "surface": "flat-paint",
-    "navigation": "none",
-    "media": "svg-diagram",
+    "navigation": "inline-contextual",
+    "media": "framed-plate",
     "motion": "discreet",
-    "interaction": "static-all-visible"
+    "interaction": "hover-preview"
   },
   "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
-  "justifications": {},
+  "creativeConstraints": [
+    "asymmetry",
+    "no-cards",
+    "no-standard-cta"
+  ],
+  "justifications": {
+    "distinction": "Média et interaction différenciés après alignement des habillages : la 01 et la 06 partagent la direction `moderne-neutre`, donc quatre axes sur neuf. Les cinq axes portés par la structure doivent alors faire tout le travail de distinction."
+  },
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Une erreur qui s'excuse sans s'étaler. Le dessin porte le message, le texte s'efface : composition déséquilibrée, forme organique, et la sortie de secours est une phrase, pas un bouton.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« moderne-clair ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

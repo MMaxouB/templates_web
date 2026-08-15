@@ -5,6 +5,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .skip {
   position: absolute;
   inset-block-start: var(--space-2);
@@ -13,7 +20,7 @@
   padding: var(--space-2) var(--space-3);
   background: var(--accent);
   color: var(--accent-fg);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   transform: translateY(-200%);
 }
 
@@ -23,7 +30,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   padding: var(--space-4) var(--space-6);
   border-block-end: var(--border-width) solid var(--border);
@@ -45,7 +52,7 @@
 .brand__mark {
   inline-size: 1.25rem;
   block-size: 1.25rem;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--accent);
 }
 
@@ -64,7 +71,7 @@
 
 .head { display: grid; gap: var(--space-2); margin-block-end: var(--space-8); }
 .head__title { font-size: var(--text-3xl); letter-spacing: var(--tracking-tight); }
-.head__lead { max-inline-size: var(--measure); color: var(--fg-muted); }
+.head__lead { max-inline-size: var(--measure); color: var(--fg); }
 
 .cols {
   display: grid;
@@ -97,7 +104,7 @@
   background: var(--bg-elevated);
   color: var(--fg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
 }
 
 .field textarea { resize: vertical; min-block-size: 8rem; }
@@ -126,8 +133,8 @@
   background: var(--accent);
   color: var(--accent-fg);
   border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  border-radius: 0;
+  box-shadow: none;
   font-weight: var(--weight-medium);
   transition: background var(--duration-fast) var(--ease),
               transform var(--duration-fast) var(--ease);
@@ -139,7 +146,7 @@
 .done {
   padding: var(--space-3) var(--space-4);
   border-inline-start: calc(var(--border-width) * 3) solid var(--success);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--bg-sunken);
   font-size: var(--text-sm);
 }
@@ -152,9 +159,9 @@
 
 .map {
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .map__svg { inline-size: 100%; block-size: auto; display: block; }
@@ -199,7 +206,7 @@
   padding: var(--space-3) var(--space-4);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   transition: border-color var(--duration-fast) var(--ease);
 }
 
@@ -227,7 +234,7 @@
 .foot {
   padding: var(--space-6) var(--space-4);
   border-block-start: var(--border-width) solid var(--border);
-  text-align: center;
+  text-align: start;
   font-size: var(--text-sm);
   color: var(--fg-subtle);
 }
@@ -248,4 +255,24 @@
   .head__title { font-size: var(--text-2xl); }
   .row2 { grid-template-columns: 1fr; }
   .btn { justify-self: stretch; }
+}
+
+} /* @layer structure */
+
+@layer structure {
+  /* Composition `stacked-planes`, navigation `map-spatial`. */
+  .head, .head__title, .head__lead { text-align: start; }
+  .head__title { max-inline-size: 22ch; }
+  .head__lead { color: var(--fg); max-inline-size: 46ch; }
+  .nav__links, .nav__cta { display: none; }
+  @media (min-width: 60rem) {
+    .cols > *:first-child {
+      position: relative;
+      z-index: 2;
+      margin-inline-end: -2.5rem;
+      padding-inline-end: 3rem;
+      background: var(--bg-elevated);
+      clip-path: polygon(0 0, 100% 0, calc(100% - 1.2rem) 100%, 0 100%);
+    }
+  }
 }

@@ -7,7 +7,7 @@
   "archetype": "colonne-unique",
   "dna": {
     "composition": "centered-axial",
-    "density": "balanced",
+    "density": "compact",
     "typography": {
       "system": "size-driven",
       "voice": "ui-native"
@@ -20,15 +20,20 @@
     "interaction": "form-flow"
   },
   "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
-  "justifications": {},
+  "creativeConstraints": [
+    "no-hero",
+    "no-gradient"
+  ],
+  "justifications": {
+    "composition=centered-axial": "Seule page du dépôt où le centrage est une convention établie et non un réflexe : un formulaire de connexion court se centre depuis trente ans, et le décentrer serait faire bizarre pour être différent. Le budget anti-réflexes le facture ; cette ligne est la justification exigée.",
+    "geometry=soft-rounded": "Les champs et le bouton d'un formulaire de connexion sont arrondis par convention d'usage. La valeur étant déclarée, anti-llm.json exempte le coût de l'arrondi."
+  },
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "La seule page du dépôt où le centrage est la convention et non le réflexe : un formulaire de connexion court, centré, sans rien autour. Le budget le facture, la justification l'assume.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« moderne-clair ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

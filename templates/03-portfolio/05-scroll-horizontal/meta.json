@@ -1,14 +1,48 @@
 {
   "famille": "03-portfolio",
-  "famille_nom": "Portfolio & galerie",
+  "famille_nom": "Portfolio",
   "numero": "05",
   "variante": "05-scroll-horizontal",
+  "role": "Défilement latéral — planches numérotées et symétriques",
   "archetype": "scroll-horizontal",
+  "intention": "Un carton à planches qu'on fait glisser. Chaque planche est composée sur son axe central — cadre, cote, légende numérotée —, exactement comme une figure d'ouvrage savant, et le déplacement se fait à la main : on tire la planche suivante.",
+  "dna": {
+    "composition": "centered-axial",
+    "density": "dense",
+    "typography": {
+      "system": "rule-driven",
+      "voice": "oldstyle-serif"
+    },
+    "geometry": "frames",
+    "surface": "paper",
+    "navigation": "numeric-index",
+    "media": "uncropped-object",
+    "motion": "none",
+    "interaction": "drag-manipulate"
+  },
+  "habillage_reference": "planche",
+  "creativeConstraints": [
+    "no-hero",
+    "no-shadow",
+    "no-rounded",
+    "physical"
+  ],
+  "justifications": {
+    "composition": "`centered-axial` est employée une seule fois sur les quinze variantes du lot, et volontairement : la planche d'ouvrage est le cas où l'axe central n'est pas un réflexe mais une convention de l'objet imité. Le catalogue est à 4 % de centered-axial, très en dessous du seuil de 40 % qui l'aurait fermée.",
+    "no-hero": "La première planche est une figure, pas un titre : le premier écran contient la figure 01, sa cote, sa légende et l'index — le `h1` occupe moins de 12 % de la hauteur.",
+    "density": "Visée « airy », mesurée à 35.1 éléments par écran : c'est `dense`. On déclare ce qui est mesuré — desserrer l'étiquette pour faire passer la page est précisément ce que le lot 2bis a refusé."
+  },
   "pages": [
     "index.html",
     "projet.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « planche » (planche-savante + herbier-sepia)."
+  },
+  "mesures": {
+    "elements_par_ecran": 35.1,
+    "densite_classee": "dense"
+  }
 }

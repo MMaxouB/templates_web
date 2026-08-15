@@ -1,0 +1,171 @@
+/* ==========================================================================
+   02-boutique/05-masonry — layout
+   Archétype : masonry · Composition : scattered · Densité : balanced
+   --------------------------------------------------------------------------
+   RÈGLE INTERNE DE POSE — écrite, donc reproductible (contrainte
+   `controlled-chaos`) :
+
+     x        : (index × 29) modulo 52, plus 3  →  trame de pourcentage,
+                bornée à gauche : l'établi a un bord de travail et un vide
+     y        : (index × 47) modulo 68, plus 4
+     rotation : ((index × 37) modulo 9) − 4 degrés
+     taille   : cycle de cinq valeurs (10 / 14 / 18 / 12 / 16 rem)
+     z-index  : 20 − taille  →  les grosses pièces passent DERRIÈRE
+
+   Aucune valeur n'est tirée au hasard : appliquée à douze pièces nouvelles,
+   la règle redonne la même famille de dispositions.
+
+   Le masonry classique — colonnes qui se remplissent — est refusé ici : ce
+   n'est pas une grille tassée, c'est un plan de travail vu de dessus, et les
+   objets y sont POSÉS, pas empilés.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- tête --------------------------------------------------------------- */
+
+  .etabli__tete { padding: var(--space-6) var(--space-4) var(--space-4); }
+  .etabli__tete h1 { margin: 0 0 var(--space-3); font-size: var(--text-3xl); text-align: start; }
+
+  /* navigation: inline-contextual — les liens sont des mots du texte. */
+  .intro { max-inline-size: 56ch; margin: 0 0 var(--space-4); color: var(--fg-muted); }
+  .intro a { color: var(--accent-text); }
+
+  .outils { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin: 0; }
+  .outils__etat {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    font-variant-numeric: tabular-nums;
+    color: var(--fg-muted);
+  }
+
+  /* --- le plan ------------------------------------------------------------ */
+
+  /* `physical` : le plan est du métal brossé — trame directionnelle serrée
+     produite en CSS, aucune image. */
+  .plan {
+    position: relative;
+    overflow: auto;
+    block-size: 34rem;
+    background-color: var(--bg-sunken);
+    background-image:
+      repeating-linear-gradient(90deg, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 5px),
+      repeating-linear-gradient(0deg, rgb(0 0 0 / 0.03) 0 1px, transparent 1px 9px);
+    border-block: var(--border-width) solid var(--border);
+  }
+  .plan:focus-visible { outline: var(--focus-ring); outline-offset: -4px; }
+
+  .objets {
+    position: relative;
+    /* Plus grand que l'écran : c'est ce qui rend `spatial-zoom` réel. */
+    inline-size: 160%;
+    block-size: 60rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transform: scale(var(--echelle, 1));
+    transform-origin: 0 0;
+  }
+
+  .objet {
+    position: absolute;
+    inset-inline-start: var(--x);
+    inset-block-start: var(--y);
+    inline-size: var(--t);
+    rotate: var(--rot);
+  }
+
+  /* media: uncropped-object — ratio d'origine conservé, jamais de recadrage.
+     Le vide autour de l'objet est le plan de travail. */
+  .objet__vue {
+    display: block;
+    aspect-ratio: 3 / 4;
+    background-color: var(--bg-elevated);
+    background-image: repeating-linear-gradient(12deg, var(--border-strong) 0 1px, transparent 1px 5px);
+    border: var(--border-width) solid var(--border-strong);
+  }
+  .objet__vue--2 { aspect-ratio: 1 / 1; background-image: repeating-linear-gradient(-30deg, var(--border-strong) 0 1px, transparent 1px 7px); }
+  .objet__vue--3 { aspect-ratio: 4 / 3; background-image: repeating-linear-gradient(60deg, var(--border-strong) 0 2px, transparent 2px 9px); }
+  .objet__vue--4 { aspect-ratio: 2 / 3; background-image: repeating-linear-gradient(0deg, var(--border-strong) 0 1px, transparent 1px 4px); }
+
+  .objet__nom { margin: var(--space-1) 0 0; font-size: var(--text-sm); }
+  .objet__nom a { color: var(--fg); }
+  .objet__prix {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    font-variant-numeric: tabular-nums;
+    color: var(--fg-muted);
+  }
+
+  /* --- listes et fiche ----------------------------------------------------- */
+
+  .liste { padding: 0 var(--space-4) var(--space-12); }
+  .liste ul { margin: 0; padding: 0; list-style: none; max-inline-size: 40ch; }
+  .liste li {
+    padding-block: var(--space-2);
+    border-block-end: var(--border-width) solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fiche { display: grid; gap: var(--space-6); padding: 0 var(--space-4) var(--space-12); }
+  .fiche__vue { inline-size: min(18rem, 100%); }
+  .fiche p { max-inline-size: 58ch; }
+  .specs { display: grid; gap: var(--space-2); margin: var(--space-4) 0; max-inline-size: 40ch; }
+  .specs > div { display: grid; grid-template-columns: 10ch 1fr; gap: var(--space-3); }
+  .specs dt { font-family: var(--font-meta); font-size: var(--text-xs); text-transform: uppercase; color: var(--fg-subtle); }
+  .specs dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+  .pied {
+    padding: var(--space-4);
+    border-block-start: var(--border-width) solid var(--border);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+  .pied p { margin: 0; }
+
+  /* --- paliers ------------------------------------------------------------- */
+
+  @media (min-width: 48rem) {
+    .etabli__tete { padding-inline: var(--space-8); }
+    .plan { block-size: 42rem; }
+    .liste, .fiche { padding-inline: var(--space-8); }
+    .fiche { grid-template-columns: auto 1fr; align-items: start; }
+  }
+
+  @media (min-width: 80rem) {
+    .etabli__tete, .liste, .fiche { padding-inline: var(--space-16); }
+    .plan { block-size: 48rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .plan { scroll-behavior: auto; }
+  }
+
+} /* @layer structure */

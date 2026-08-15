@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Écrire — Lorem ipsum</title>
+  <meta name="description" content="Formulaire au fer à gauche.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/jaune-corail.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/neo-brutaliste.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="tete tete--page">
+  <h1 class="tete__titre">Écrire</h1>
+  <p class="tete__ligne"><a href="index.html">Liste</a> · <a href="projet.html">travail type</a></p>
+</header>
+
+<main id="contenu" class="page">
+  <form class="formulaire" action="#" method="post" novalidate>
+    <p class="champ">
+      <label for="nom">Nom *</label>
+      <input id="nom" name="nom" type="text" required autocomplete="name">
+    </p>
+    <p class="champ">
+      <label for="courriel">Courriel *</label>
+      <input id="courriel" name="courriel" type="email" required autocomplete="email"
+             aria-describedby="aide-courriel">
+      <span class="aide" id="aide-courriel">Format attendu : nom@domaine.test</span>
+    </p>
+    <p class="champ">
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+    </p>
+    <p class="champ champ--inline">
+      <input id="copie" name="copie" type="checkbox">
+      <label for="copie">Recevoir une copie</label>
+    </p>
+    <p><button type="submit">Envoyer</button></p>
+    <p class="aide" role="status">Aucun envoi effectué.</p>
+  </form>
+</main>
+
+<footer class="pied">
+  <p>MMXXVI · <a href="#" data-stub>Mentions légales</a></p>
+</footer>
+
+</body>
+</html>

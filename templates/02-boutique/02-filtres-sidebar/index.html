@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matrice — Lorem ipsum</title>
+  <meta name="description" content="Catalogue en matrice, filtres en colonne latérale.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/gris-systeme.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/systeme-95.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<div class="fenetre">
+  <header class="barre">
+    <p class="barre__titre">Lorem Ipsum — catalogue</p>
+    <p class="barre__meta">Vue : matrice · 8 lignes</p>
+  </header>
+
+  <div class="corps">
+
+  <!-- navigation: sidebar — panneau de réglages permanent, façon logiciel.
+       Les filtres sont des contrôles natifs : cases, radios, listes. -->
+  <aside class="panneau" aria-label="Filtres">
+    <p class="panneau__titre">Filtres</p>
+
+    <form class="filtres" aria-label="Filtrer la matrice">
+      <fieldset class="groupe">
+        <legend>Série</legend>
+        <p><input type="checkbox" id="s-a" data-filtre="serie" value="a" checked><label for="s-a">Série A</label></p>
+        <p><input type="checkbox" id="s-b" data-filtre="serie" value="b" checked><label for="s-b">Série B</label></p>
+        <p><input type="checkbox" id="s-c" data-filtre="serie" value="c" checked><label for="s-c">Série C</label></p>
+      </fieldset>
+
+      <fieldset class="groupe">
+        <legend>État</legend>
+        <p><input type="checkbox" id="e-d" data-filtre="etat" value="dispo" checked><label for="e-d">Disponible</label></p>
+        <p><input type="checkbox" id="e-a" data-filtre="etat" value="attente" checked><label for="e-a">En attente</label></p>
+      </fieldset>
+
+      <fieldset class="groupe">
+        <legend>Montant</legend>
+        <p><label for="m-max">Maximum</label><input type="range" id="m-max" min="12" max="110" value="110" data-max></p>
+        <p class="groupe__val"><span data-max-val>110</span> maximum</p>
+      </fieldset>
+
+      <p class="groupe"><button type="reset" data-reinit>Réinitialiser</button></p>
+    </form>
+
+    <p class="panneau__etat" role="status" data-etat>8 lignes sur 8.</p>
+
+    <nav class="panneau__nav" aria-label="Vues">
+      <ul>
+        <li><a href="index.html">Matrice</a></li>
+        <li><a href="listing.html">Sélection</a></li>
+        <li><a href="produit.html">Fiche</a></li>
+        <li><a href="#" data-stub>Archives</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+    <main class="table" id="contenu">
+      <h1 class="table__titre">Catalogue — matrice complète</h1>
+      <div class="table__cadre">
+        <table class="matrice" data-matrice>
+          <caption>Lignes : références. Colonnes : propriétés comparables.</caption>
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">Vue</span></th>
+              <th scope="col">Réf.</th>
+              <th scope="col">Désignation</th>
+              <th scope="col">Série</th>
+              <th scope="col">Montant</th>
+              <th scope="col">Masse</th>
+              <th scope="col">Cotes</th>
+              <th scope="col">État</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr data-serie="a" data-etat="dispo">
+          <td><span class="puce puce--1" aria-hidden="true"></span></td>
+          <th scope="row"><a href="produit.html">R-101</a></th>
+          <td>Lorem ipsum</td>
+          <td>A</td>
+          <td class="n">12,00</td>
+          <td class="n">0,20</td>
+          <td class="n">60 × 40</td>
+          <td>Disponible</td>
+        </tr>
+        <tr data-serie="b" data-etat="attente">
+          <td><span class="puce puce--2" aria-hidden="true"></span></td>
+          <th scope="row"><a href="produit.html">R-102</a></th>
+          <td>Dolor sit</td>
+          <td>B</td>
+          <td class="n">19,50</td>
+          <td class="n">0,35</td>
+          <td class="n">70 × 46</td>
+          <td>En attente</td>
+        </tr>
+        <tr data-serie="c" data-etat="dispo">
+          <td><span class="puce puce--3" aria-hidden="true"></span></td>
+          <th scope="row"><a href="produit.html">R-103</a></th>
+          <td>Amet consectetur</td>
+          <td>C</td>
+          <td class="n">27,00</td>
+          <td class="n">0,50</td>
+          <td class="n">80 × 52</td>
+          <td>Disponible</td>
+        </tr>
+        <tr data-serie="a" data-etat="dispo">
+          <td><span class="puce puce--4" aria-hidden="true"></span></td>
+          <th scope="row"><a href="produit.html">R-104</a></th>
+          <td>Adipiscing elit</td>
+          <td>A</td>
+          <td class="n">34,50</td>
+          <td class="n">0,65</td>
+          <td class="n">90 × 58</td>
+          <td>Disponible</td>
+        </tr>
+        <tr data-serie="b" data-etat="attente">
+          <td><span class="puce puce--1" aria-hidden="true"></span></td>
+          <th scope="row"><a href="produit.html">R-105</a></th>
+          <td>Sed eiusmod</td>
+          <td>B</td>
+          <td class="n">42,00</td>
+          <td class="n">0,80</td>
+          <td class="n">100 × 64</td>
+          <td>En attente</td>
+        </tr>
+        <tr data-serie="c" data-etat="dispo">
+          <td><span class="puce puce--2" aria-hidden="true"></span></td>
+          <th scope="row"><a href="produit.html">R-106</a></th>
+          <td>Tempor incididunt</td>
+          <td>C</td>
+          <td class="n">49,50</td>
+          <td class="n">0,95</td>
+          <td class="n">110 × 70</td>
+          <td>Disponible</td>
+        </tr>
+        <tr data-serie="a" data-etat="dispo">
+          <td><span class="puce puce--3" aria-hidden="true"></span></td>
+          <th scope="row"><a href="produit.html">R-107</a></th>
+          <td>Ut labore</td>
+          <td>A</td>
+          <td class="n">57,00</td>
+          <td class="n">1,10</td>
+          <td class="n">120 × 76</td>
+          <td>Disponible</td>
+        </tr>
+        <tr data-serie="b" data-etat="dispo">
+          <td><span class="puce puce--4" aria-hidden="true"></span></td>
+          <th scope="row"><a href="produit.html">R-108</a></th>
+          <td>Dolore magna</td>
+          <td>B</td>
+          <td class="n">64,50</td>
+          <td class="n">1,25</td>
+          <td class="n">130 × 82</td>
+          <td>Disponible</td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Montants hors taxes · <a href="listing.html">sélection courante</a></p>
+    </main>
+  </div>
+
+  <footer class="statut">
+    <p>Prêt.</p>
+    <p><a href="#" data-stub>Mentions légales</a></p>
+  </footer>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

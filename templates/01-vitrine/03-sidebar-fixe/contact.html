@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Lorem ipsum</title>
+  <meta name="description" content="Formulaire aligné sur la colonne de droite.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/papier-chaux.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/revue-papier.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<div class="cadre">
+  <aside class="flanc">
+    <p class="flanc__marque"><a href="index.html">Lorem<br>Ipsum</a></p>
+    <nav class="flanc__nav" aria-label="Principale">
+      <ul>
+        <li><a href="index.html">Sommaire</a></li>
+        <li><a href="page.html">Page</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+        <li><a href="#" data-stub>Archives</a></li>
+      </ul>
+    </nav>
+    <figure class="apercu">
+      <span class="apercu__vue" data-vue="04" aria-hidden="true"></span>
+      <figcaption class="apercu__legende">Repère 04</figcaption>
+    </figure>
+    <p class="flanc__pied">MMXXVI · <a href="#" data-stub>Mentions</a></p>
+  </aside>
+
+  <main class="corps" id="contenu">
+    <header class="entree">
+      <h1>Écrire</h1>
+      <p class="entree__ligne">Contact — 003</p>
+    </header>
+
+    <form class="formulaire" action="#" method="post" novalidate>
+      <p class="champ">
+        <label for="nom">Nom *</label>
+        <input id="nom" name="nom" type="text" required autocomplete="name">
+      </p>
+      <p class="champ">
+        <label for="courriel">Courriel *</label>
+        <input id="courriel" name="courriel" type="email" required autocomplete="email"
+               aria-describedby="aide-courriel">
+        <span class="aide" id="aide-courriel">Format attendu : nom@domaine.test</span>
+      </p>
+      <p class="champ">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </p>
+      <p class="champ champ--inline">
+        <input id="copie" name="copie" type="checkbox">
+        <label for="copie">Recevoir une copie</label>
+      </p>
+      <p><button type="submit">Envoyer</button></p>
+      <p class="aide" role="status">Aucun envoi effectué.</p>
+    </form>
+
+    <section class="section">
+      <p class="section__num">—</p>
+      <h2>Coordonnées</h2>
+      <dl class="donnees">
+        <div><dt>Adresse</dt><dd>00 rue Lorem, 00000 Ipsum</dd></div>
+        <div><dt>Ligne</dt><dd>00 00 00 00 00</dd></div>
+        <div><dt>Courriel</dt><dd>lorem@ipsum.test</dd></div>
+      </dl>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>

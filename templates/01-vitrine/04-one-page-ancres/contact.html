@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Lorem ipsum</title>
+  <meta name="description" content="Formulaire en bande, aligné au fer à gauche.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/beton-orange.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/beton-brut.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#b1">Aller au contenu</a>
+
+<main id="contenu">
+
+  <section class="bande bande--titre" id="b1" data-bande>
+    <p class="bande__num">01</p>
+    <h1>Écrire</h1>
+    <p class="bande__ligne">Contact — dossier 003</p>
+  </section>
+
+  <section class="bande bande--texte" id="b2" data-bande>
+    <p class="bande__num">02</p>
+    <h2>Formulaire</h2>
+    <form class="formulaire" action="#" method="post" novalidate>
+      <p class="champ">
+        <label for="nom">Nom *</label>
+        <input id="nom" name="nom" type="text" required autocomplete="name">
+      </p>
+      <p class="champ">
+        <label for="courriel">Courriel *</label>
+        <input id="courriel" name="courriel" type="email" required autocomplete="email"
+               aria-describedby="aide-courriel">
+        <span class="aide" id="aide-courriel">Format attendu : nom@domaine.test</span>
+      </p>
+      <p class="champ">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </p>
+      <p class="champ champ--inline">
+        <input id="copie" name="copie" type="checkbox">
+        <label for="copie">Recevoir une copie</label>
+      </p>
+      <p><button type="submit">Envoyer</button></p>
+      <p class="aide" role="status">Aucun envoi effectué.</p>
+    </form>
+  </section>
+
+  <section class="bande bande--cotes" id="b3" data-bande>
+    <p class="bande__num">03</p>
+    <h2>Coordonnées</h2>
+    <table class="cotes">
+      <caption>Lorem ipsum</caption>
+      <tbody>
+        <tr><th scope="row">Adresse</th><td>00 rue Lorem, 00000 Ipsum</td></tr>
+        <tr><th scope="row">Ligne</th><td>00 00 00 00 00</td></tr>
+        <tr><th scope="row">Courriel</th><td>lorem@ipsum.test</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="bande bande--sortie" id="b4" data-bande>
+    <p class="bande__num">04</p>
+    <h2>Suite</h2>
+    <p class="liens"><a href="index.html">Retour au panneau</a> · <a href="page.html">Page détaillée</a></p>
+  </section>
+
+</main>
+
+<nav class="jauge" aria-label="Progression">
+  <p class="jauge__etat"><span data-rang>01</span> / 04 — <span data-titre>Lorem ipsum</span></p>
+  <div class="jauge__piste" role="presentation"><span class="jauge__part" data-part></span></div>
+  <p class="jauge__pas">
+    <a href="#b1" data-prec>Précédent</a>
+    <a href="#b2" data-suiv>Suivant</a>
+  </p>
+</nav>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

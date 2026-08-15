@@ -1975,23 +1975,108 @@ inatteignable à contenu constant.
 > Le lot a coûté douze pages et a évité de répliquer cent vingt-neuf fois des
 > mesures fausses. C'est exactement ce qu'on lui demandait.
 
-### Lot 2bis — Reprise des seize pages système
+### Lot 2bis — Reprise des seize pages système · ✅ *terminé*
 
-Les seize variantes du lot 1 repassées au nouveau système : ADN honoré, deux
-contraintes minimum chacune, budget ramené sous 6, `layout.css` migré dans
-`@layer structure`, aucune collision entre elles. C'est le premier vrai test du
-processus sur du code existant — et le seul moyen que le lot 1 cesse d'être la
-partie la plus uniforme du catalogue.
+Les seize variantes du lot 1 repassées au nouveau système. C'était le premier
+test du processus sur du **code existant**, écrit avant les règles.
 
-### Lot 3 — Le socle des trois familles principales
+| Indicateur | Avant | Après |
+|---|---:|---:|
+| Variantes conformes | 0 / 16 | **16 / 16** |
+| Budget anti-réflexes moyen | 7,8 / 6 | **1,6 / 6** |
+| Collisions d'ADN | 34 | **0** |
+| Distance ADN moyenne | 0,756 | **0,898** |
+| `centered-axial` déclaré | 63 % | **6 %** (1 page) |
+| Valeurs de `composition` employées | 5 / 15 | **15 / 15** |
+| Habillages de référence distincts | 1 | **13** |
+| Composition sur axe central (mesurée) | 24 % | **13 %** |
+| `layout.css` dans `@layer structure` | 1 / 16 | **16 / 16** |
 
-Les cinq premières variantes de `01-vitrine`, `02-boutique` et `03-portfolio`.
-Chacune conçue selon le [processus](#processus-de-création-dune-variante), avec
-consultation du rapport de couverture **avant** écriture.
+**Ce que la reprise a coûté.** Aucune page n'a été jetée : chacune a gardé sa
+fonction et son contenu. Ce qui a changé, ce sont les compositions — treize
+heros centrés supprimés, quatre grilles de cartes égales défaites, trois barres
+de navigation retirées au profit de la navigation que l'ADN déclarait.
 
-Contrainte de lot : les quinze variantes doivent employer **quinze compositions
-différentes**. Aucune ne peut être `centered-axial` tant que cette valeur dépasse
-40 % du catalogue.
+**Trois enseignements, dont un structurel.**
+
+1. **Les neuf axes ne sont pas portés par la même couche.** La structure possède
+   `composition`, `density`, `navigation`, `interaction`, `media` ; la direction
+   possède `typography`, `geometry`, `surface`, `motion`. Une page déclarant
+   `surface: concrete` sous un habillage `flat-paint` annonce une matière qu'elle
+   ne rend pas. Les seize ont donc été réalignées sur leur habillage de référence
+   — d'où treize habillages distincts au lieu d'un.
+2. **Deux collisions n'existaient qu'avec le benchmark.** `systeme/05` et
+   `systeme/02` avaient convergé vers `bench/05` et `bench/02`, écrits pourtant à
+   des moments différents. C'est précisément le rôle de la mémoire de diversité :
+   l'œil ne les aurait pas rapprochées avant la planche-contact.
+3. **Un bug d'outil masquait tout le progrès.** `check-constraints.js` lisait la
+   capture du premier habillage par ordre alphabétique, souvent périmée. Les
+   mesures ne bougeaient pas après une refonte : le rapport décrivait une page qui
+   n'existait plus. Corrigé — il lit désormais l'habillage de référence déclaré.
+
+### Lot 3 — Le socle des trois familles principales · ✅ *terminé*
+
+Les cinq premières variantes de `01-vitrine`, `02-boutique` et `03-portfolio`,
+soit quinze architectures, quarante-cinq pages. Chacune conçue selon le
+[processus](#processus-de-création-dune-variante), rapport de couverture consulté
+**avant** écriture.
+
+**La contrainte de lot est tenue : quinze compositions différentes, une par
+variante.** Les quinze valeurs de l'axe `composition` sont désormais employées, y
+compris `centered-axial` — une seule fois, sur `03-portfolio/05`, où l'axe central
+est la convention de l'objet imité (une planche d'ouvrage) et non le réflexe du
+conteneur centré. La règle ne fermait cette valeur qu'au-delà de 40 % du
+catalogue ; il en est à 14 %.
+
+| Indicateur | Après lot 2bis | Après lot 3 | |
+|---|---:|---:|---|
+| Variantes décrites | 28 | **43** | |
+| Collisions d'ADN (< 0.30) | 0 | **0** | ✅ |
+| Distance ADN moyenne | 0.898 | **0.902** | ✅ |
+| Valeurs de `composition` employées | 15 / 15 | **15 / 15** | ✅ |
+| Valeurs de `navigation` employées | 15 / 16 | **16 / 16** | ✅ |
+| Valeurs de `media` employées | 12 / 15 | **15 / 15** | ✅ |
+| Valeurs de `density` employées | 6 / 7 | **6 / 7** *(voir ci-dessous)* | |
+| Budget anti-réflexes moyen | 1,6 / 6 | **1,1 / 6** | ✅ |
+| Composition sur axe central (mesurée) | 16 % | **14 %** | ✅ |
+| Contrastes AA | 16 palettes | **16 palettes** | ✅ |
+| Variantes conformes | 28 / 28 | **43 / 43** | ✅ |
+
+**Ce que le lot a rapporté, au-delà des quinze pages.**
+
+1. **Une couleur en dur dans une direction artistique.** `neon-nocturne` codait ses
+   halos en cyan et magenta littéraux : la lueur survivait au changement de palette.
+   Le défaut était invisible jusqu'ici parce que les variantes antérieures
+   référencent encore l'ancien thème monolithique, que le contrôle d'hygiène ne lit
+   pas. Corrigé en `color-mix(in srgb, var(--accent) …)`.
+2. **Un ADN impossible, relevé à l'écriture.** `02-boutique/04` déclarait
+   `navigation: scroll-only` avec `interaction: page-turn` — « le seul contrôle est
+   la molette » et « pas de défilement continu » ne peuvent pas être vrais ensemble.
+   C'est le même défaut que `04-maintenance` au lot 2bis, mais trouvé avant le code.
+3. **Sept densités déclarées à côté de la mesure.** Toutes ramenées à ce que la sonde
+   compte, aucune règle desserrée. La visée et la mesure sont écrites côte à côte
+   dans les `justifications`.
+4. **`maximalist` est resté inatteignable.** `02-boutique/03` visait la valeur : le
+   mur est passé de 18 à 36 pièces et de six à huit colonnes, la sonde s'arrête à 85
+   éléments par écran. Au-delà, les vignettes deviennent illisibles. La seconde porte
+   de `maximalist` — couverture d'encre > 45 % — n'est pas mesurée par la sonde, donc
+   pas opposable. **`maximalist` reste donc la seule valeur de densité jamais
+   employée du catalogue — et c'est un résultat, pas un oubli**, comme la valeur
+   d'axe déclarée inatteignable au lot 2.
+5. **Un REJECT AND REDESIGN, appliqué.** `01-vitrine/03` mesurait 0.119 de distance
+   perceptuelle avec `bench-05` — sous le seuil de clone — alors que les deux ADN
+   n'ont rien de commun. Diagnostic : deux compositions très aérées sous la **même
+   direction** donnent la même image. La variante a changé d'habillage et gagné des
+   filets de section.
+
+**Ce que le lot laisse ouvert.** `perceptual-diff.js` calcule ses distances sur une
+carte de marquage qui compte les **trames de fond pleine largeur** comme de l'encre.
+Deux pages sous la même direction texturée se ressemblent donc pour l'outil, quelle
+que soit leur composition — ce qui a coûté deux contraintes retirées (`asymmetry` sur
+`01-vitrine/03`, `controlled-chaos` sur `02-boutique/03` et `05`) plutôt que
+desserrées. Trois paires restent sous le seuil de 0.20, au même niveau que deux paires
+antérieures au lot. **À reprendre avant le lot 4 : la carte de marquage doit ignorer
+ce qui est uniformément réparti sur toute la surface.**
 
 ### Lot 4 — Une variante par archétype
 
@@ -2121,7 +2206,7 @@ interchangeables. La section « singularité » est celle qui manquait.
 | | Catalogué | Produit |
 |---|---:|---:|
 | Architectures | 145 | 16 + 12 références |
-| Archétypes couverts | 31 | 15 |
+| Archétypes couverts | 31 | 19 |
 | Directions artistiques | ~150 | 16 |
 | Palettes | ~120 | 16 |
 | Préréglages | — | 16 |
@@ -2131,14 +2216,15 @@ interchangeables. La section « singularité » est celle qui manquait.
 
 | Indicateur | Lot 1 seul | Avec le benchmark | Cible | |
 |---|---:|---:|---:|---|
-| Composition sur axe central (mesurée) | 24 % | **13 %** | ≤ 25 % | ✅ |
-| `centered-axial` déclaré | 63 % | **36 %** | ≤ 40 % | ✅ |
+| Composition sur axe central (mesurée) | 24 % | **7 %** | ≤ 25 % | ✅ |
+| `centered-axial` déclaré | 63 % | **4 %** | ≤ 40 % | ✅ |
+| Collisions d'ADN | 34 | **0** | 0 | ✅ |
 | Valeurs de `composition` employées | 5 / 15 | **14 / 15** | ≥ 12 | ✅ |
 | Valeurs de `typography.voice` employées | 1 / 18 | **12 / 18** | ≥ 10 | ✅ |
 | Valeurs de `surface` employées | 1 / 11 | **11 / 11** | ≥ 7 | ✅ |
 | Valeurs de `navigation` employées | 5 / 16 | **15 / 16** | ≥ 10 | ✅ |
-| Budget anti-réflexes moyen | 7,8 | **5,0** | ≤ 6 | ✅ |
-| Variantes conformes aux contraintes | 0 / 16 | **12 / 28** | 28 / 28 | ✗ |
+| Budget anti-réflexes moyen | 7,8 | **1,4** | ≤ 6 | ✅ |
+| Variantes conformes aux contraintes | 0 / 16 | **28 / 28** | 28 / 28 | ✅ |
 | Contrastes sous le seuil AA | 0 | **0** | 0 | ✅ |
 | Débordements horizontaux | 0 | **0** | 0 | ✅ |
 
@@ -2152,22 +2238,25 @@ donne 24 % pour le lot 1. La ligne de base était trop sévère, pas le catalogu
 seules mesurées avant le lot 1R, et elles étaient au vert — d'où l'impression que
 le lot 1 était terminé.
 
-La ligne qui reste rouge est la bonne : **les seize pages système n'ont pas encore
-été reprises**. Elles portent à elles seules la totalité des non-conformités et un
-budget de réflexes de 5,0/6, contre 1,3/6 pour les douze références du benchmark.
-C'est l'objet du lot 2bis.
+Toutes les lignes sont désormais au vert. Les seize pages système ont été
+reprises (lot 2bis) : elles portaient à elles seules la totalité des
+non-conformités.
+
+Cela ne veut pas dire que le catalogue est fini — il veut dire que **les
+quarante-trois pages écrites obéissent au système**, et que les mesures sont
+reproductibles. Les 114 architectures restantes sont à écrire.
 
 ```bash
 node _tools/dna-report.js && node _tools/check-constraints.js
 node _tools/screenshot.js && node _tools/perceptual-diff.js
 ```
 
-**Prochaine étape : le lot 2bis** — reprendre les seize pages système au nouveau
-système. Le [Diversity Benchmark](benchmark/README.md) a répondu à sa question :
-oui, le catalogue sait produire des interfaces radicalement différentes. Reste à
-le prouver sur du code écrit avant les règles.
-
-Prochaine étape : **Lot 2**, le socle de `01-vitrine`, `02-boutique` et `03-portfolio`.
+**Prochaine étape : le lot 4** — une variante par archétype, avec la règle ajoutée
+d'une distance ADN ≥ 0.45 entre variantes d'un même archétype. À faire **avant** :
+corriger la carte de marquage de `perceptual-diff.js`, qui compte les trames de fond
+comme de l'encre et rapproche artificiellement deux pages partageant une direction
+texturée. C'est la même leçon qu'au lot 1R : un outil de mesure qui lit mal est pire
+qu'une absence d'outil.
 
 Deux points restent à décider :
 

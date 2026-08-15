@@ -1,0 +1,260 @@
+/* ==========================================================================
+   02-boutique/01-grille-classique — layout
+   Archétype : grille-uniforme · Composition : modular-grid · Densité : balanced
+   --------------------------------------------------------------------------
+   Règle de la variante : la grille est DESSINÉE. Douze colonnes, des filets
+   visibles, et aucun élément qui ne s'aligne pas sur un module — c'est la
+   contrainte `visible-grid` et la conséquence engagée par `modular-grid`.
+   Un article n'est pas une carte : pas de fond propre, pas d'arrondi, pas
+   d'ombre. Ce qui le délimite, c'est le module et son filet.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- tête --------------------------------------------------------------- */
+
+  .tete {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border-block-end: var(--border-width) solid var(--border-strong);
+  }
+
+  .tete__id,
+  .tete__compte {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .tete__id a { color: var(--fg); text-decoration: none; }
+  .tete__compte { font-variant-numeric: tabular-nums; }
+
+  .alpha ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .alpha li { border-inline-start: var(--border-width) solid var(--border); }
+  .alpha li:first-child { border-inline-start: 0; }
+  .alpha a {
+    display: block;
+    padding: var(--space-1) var(--space-3);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+    text-decoration: none;
+  }
+  .alpha a[aria-current='page'] { background-color: var(--accent); color: var(--accent-fg); }
+
+  /* --- titre et commandes ------------------------------------------------- */
+
+  .titre {
+    margin: 0;
+    padding: var(--space-4);
+    font-size: var(--text-xl);
+    letter-spacing: var(--tracking-title);
+    text-transform: uppercase;
+  }
+
+  .commandes {
+    display: grid;
+    gap: var(--space-3);
+    padding: 0 var(--space-4) var(--space-4);
+    border-block-end: var(--border-width) solid var(--border-strong);
+  }
+  .commande { display: grid; gap: var(--space-1); margin: 0; }
+  .commande label,
+  .commande__etat {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .commande__etat { align-self: end; font-variant-numeric: tabular-nums; }
+
+  /* --- la grille ---------------------------------------------------------- */
+
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* Les filets du module SONT le fond : la grille se voit même là où il n'y
+       a pas d'article. */
+    border-block-start: var(--border-width) solid var(--border);
+    border-inline-start: var(--border-width) solid var(--border);
+  }
+
+  .article {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto auto;
+    gap: var(--space-1);
+    padding: var(--space-3);
+    border-inline-end: var(--border-width) solid var(--border);
+    border-block-end: var(--border-width) solid var(--border);
+  }
+
+  /* media: duotone — deux couleurs de palette, rien entre les deux. La
+     seconde teinte est obtenue par un aplat en `mix-blend-mode`, pas par une
+     nuance intermédiaire. */
+  .article__vue {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    background-color: var(--bg-sunken);
+    overflow: hidden;
+  }
+  .article__vue::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--accent);
+    mix-blend-mode: multiply;
+  }
+  .article__vue--1::before { clip-path: polygon(0 100%, 100% 100%, 100% 34%, 0 62%); }
+  .article__vue--2::before { clip-path: polygon(18% 0, 82% 0, 82% 100%, 18% 100%); }
+  .article__vue--3::before { clip-path: circle(34% at 50% 52%); }
+  .article__vue--4::before { clip-path: polygon(0 0, 100% 0, 0 100%); }
+
+  .article__ref,
+  .article__prix,
+  .article__etat {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    font-variant-numeric: tabular-nums;
+    color: var(--fg-muted);
+  }
+  .article__prix { color: var(--fg); }
+
+  .article__nom {
+    margin: 0;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+  }
+  .article__nom a { color: var(--fg); text-decoration: none; }
+  .article__nom a:hover,
+  .article__nom a:focus-visible { text-decoration: underline; }
+
+  .article[hidden] { display: none; }
+
+  /* --- pied et note ------------------------------------------------------- */
+
+  .note,
+  .pied {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+  .pied { border-block-start: var(--border-width) solid var(--border-strong); }
+  .pied p { margin: 0; }
+
+  /* --- paliers ------------------------------------------------------------ */
+
+  @media (min-width: 48rem) {
+    .tete {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+    }
+    .tete .alpha { grid-column: 1 / -1; }
+    .commandes { grid-template-columns: repeat(4, 1fr); align-items: end; }
+    .grille { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  @media (min-width: 80rem) {
+    /* Douze colonnes, quatre modules de trois. Rien ne déborde jamais. */
+    .grille { grid-template-columns: repeat(6, 1fr); }
+    .commandes { grid-template-columns: repeat(6, 1fr); }
+  }
+
+} /* @layer structure */
+
+/* ==========================================================================
+   Nomenclature et fiche — mêmes modules, même filet.
+   `data-first` : chiffres alignés, comparables, en `tabular-nums`.
+   ========================================================================== */
+
+@layer structure {
+
+  .nomenclature,
+  .specs {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+  }
+  .nomenclature caption,
+  .specs caption {
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    text-align: start;
+    color: var(--fg-muted);
+  }
+  .nomenclature th,
+  .nomenclature td,
+  .specs th,
+  .specs td {
+    padding: var(--space-2) var(--space-3);
+    border: var(--border-width) solid var(--border);
+    text-align: start;
+  }
+  .nomenclature thead th {
+    background-color: var(--bg-sunken);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+  .nomenclature tbody th,
+  .specs th { font-family: var(--font-meta); font-weight: var(--weight-normal); color: var(--fg-muted); }
+
+  .fiche { display: grid; gap: var(--space-4); padding: var(--space-4); }
+  .fiche__vue { display: grid; grid-template-columns: 1fr 1fr; gap: var(--border-width); }
+  .fiche__texte p { max-inline-size: 60ch; }
+  .fiche__action { margin-block: var(--space-4); }
+
+  @media (min-width: 48rem) {
+    .fiche { grid-template-columns: 5fr 7fr; }
+  }
+
+} /* @layer structure */

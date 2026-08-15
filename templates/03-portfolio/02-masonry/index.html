@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travaux — Lorem ipsum</title>
+  <meta name="description" content="Colonnes coulantes, logique d’imprimé, index alphabétique.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/encre-journal.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/presse-imprimee.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="bandeau">
+  <p class="bandeau__id"><a href="index.html">Lorem Ipsum</a> — travaux</p>
+  <!-- navigation: alphabetic-index — index A–Z persistant, saut à la lettre. -->
+  <nav class="abc" aria-label="Index alphabétique">
+    <ul>
+      <li><a href="#a">A</a></li><li><a href="#c">C</a></li><li><a href="#e">E</a></li>
+      <li><a href="#l">L</a></li><li><a href="#m">M</a></li><li><a href="#t">T</a></li>
+      <li><a href="projet.html">Projet type</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <p class="bandeau__compte"><span data-compte>12</span> travaux · <a href="#" data-stub>archives</a></p>
+</header>
+
+<main id="contenu">
+
+  <h1 class="titre">Travaux — relevé complet</h1>
+
+  <form class="tri" aria-label="Tri des travaux">
+    <label for="t-ordre">Ordre</label>
+    <select id="t-ordre" data-tri>
+      <option value="alpha">Alphabétique</option>
+      <option value="inverse">Alphabétique inverse</option>
+    </select>
+    <span class="tri__etat" role="status" data-etat>Ordre alphabétique.</span>
+  </form>
+
+  <div class="colonnes" data-colonnes>
+      <article class="notice" data-lettre="a" id="a">
+        <p class="notice__lettre">A</p>
+        <span class="notice__vue notice__vue--1" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Adipiscing elit</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+        <p class="notice__meta">MMXXVI · série A</p>
+      </article>
+      <article class="notice" data-lettre="c" id="c">
+        <p class="notice__lettre">C</p>
+        <span class="notice__vue notice__vue--2" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Consectetur</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure.</p>
+        <p class="notice__meta">MMXXVI · série B</p>
+      </article>
+      <article class="notice" data-lettre="e" id="e">
+        <p class="notice__lettre">E</p>
+        <span class="notice__vue notice__vue--3" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Eiusmod tempor</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore.</p>
+        <p class="notice__meta">MMXXVI · série C</p>
+      </article>
+      <article class="notice" data-lettre="l" id="l">
+        <p class="notice__lettre">L</p>
+        <span class="notice__vue notice__vue--1" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Lorem ipsum</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+        <p class="notice__meta">MMXXVI · série A</p>
+      </article>
+      <article class="notice" data-lettre="m" id="m">
+        <p class="notice__lettre">M</p>
+        <span class="notice__vue notice__vue--2" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Magna aliqua</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure.</p>
+        <p class="notice__meta">MMXXVI · série B</p>
+      </article>
+      <article class="notice" data-lettre="t" id="t">
+        <p class="notice__lettre">T</p>
+        <span class="notice__vue notice__vue--3" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Tempor incididunt</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore.</p>
+        <p class="notice__meta">MMXXVI · série C</p>
+      </article>
+      <article class="notice" data-lettre="a">
+        <p class="notice__lettre">A</p>
+        <span class="notice__vue notice__vue--1" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Aliquip commodo</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+        <p class="notice__meta">MMXXVI · série A</p>
+      </article>
+      <article class="notice" data-lettre="c">
+        <p class="notice__lettre">C</p>
+        <span class="notice__vue notice__vue--2" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Cillum dolore</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure.</p>
+        <p class="notice__meta">MMXXVI · série B</p>
+      </article>
+      <article class="notice" data-lettre="e">
+        <p class="notice__lettre">E</p>
+        <span class="notice__vue notice__vue--3" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Excepteur sint</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore.</p>
+        <p class="notice__meta">MMXXVI · série C</p>
+      </article>
+      <article class="notice" data-lettre="l">
+        <p class="notice__lettre">L</p>
+        <span class="notice__vue notice__vue--1" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Laboris nisi</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+        <p class="notice__meta">MMXXVI · série A</p>
+      </article>
+      <article class="notice" data-lettre="m">
+        <p class="notice__lettre">M</p>
+        <span class="notice__vue notice__vue--2" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Minim veniam</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure.</p>
+        <p class="notice__meta">MMXXVI · série B</p>
+      </article>
+      <article class="notice" data-lettre="t">
+        <p class="notice__lettre">T</p>
+        <span class="notice__vue notice__vue--3" aria-hidden="true"></span>
+        <h2 class="notice__titre"><a href="projet.html">Ullamco</a></h2>
+        <p class="notice__texte">Sed do eiusmod tempor incididunt ut labore et dolore magna
+          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat duis aute irure.</p>
+        <p class="notice__meta">MMXXVI · série C</p>
+      </article>
+  </div>
+
+</main>
+
+<footer class="ours">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a> · Tirage 000</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

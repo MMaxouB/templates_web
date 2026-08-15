@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Lorem ipsum</title>
+  <meta name="description" content="Formulaire en colonne.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/phosphore-vert.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/terminal-phosphore.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="cartouche cartouche--page">
+  <h1>Contact</h1>
+  <p><a href="index.html">Index</a> · <a href="projet.html">Projet type</a></p>
+</header>
+
+<main id="contenu" class="page">
+  <form class="formulaire" action="#" method="post" novalidate>
+    <p class="champ">
+      <label for="nom">Nom *</label>
+      <input id="nom" name="nom" type="text" required autocomplete="name">
+    </p>
+    <p class="champ">
+      <label for="courriel">Courriel *</label>
+      <input id="courriel" name="courriel" type="email" required autocomplete="email"
+             aria-describedby="aide-courriel">
+      <span class="aide" id="aide-courriel">Format attendu : nom@domaine.test</span>
+    </p>
+    <p class="champ">
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+    </p>
+    <p class="champ champ--inline">
+      <input id="copie" name="copie" type="checkbox">
+      <label for="copie">Recevoir une copie</label>
+    </p>
+    <p><button type="submit">Envoyer</button></p>
+    <p class="aide" role="status">Aucun envoi effectué.</p>
+  </form>
+</main>
+
+</body>
+</html>

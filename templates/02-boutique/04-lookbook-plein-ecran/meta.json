@@ -1,14 +1,48 @@
 {
   "famille": "02-boutique",
-  "famille_nom": "Boutique & catalogue",
+  "famille_nom": "Boutique",
   "numero": "04",
   "variante": "04-lookbook-plein-ecran",
+  "role": "Cahier d'images — plans superposés",
   "archetype": "plein-ecran",
+  "intention": "Un cahier d'affiches qu'on feuillette. Les plans se recouvrent — le visuel passe sous le titre, le titre passe sous la légende suivante — et la profondeur vient du recouvrement, jamais d'une ombre. On tourne les pages, on ne défile pas.",
+  "dna": {
+    "composition": "stacked-planes",
+    "density": "balanced",
+    "typography": {
+      "system": "weight-driven",
+      "voice": "condensed"
+    },
+    "geometry": "angular-cut",
+    "surface": "newsprint",
+    "navigation": "numeric-index",
+    "media": "aggressive-crop",
+    "motion": "directional",
+    "interaction": "page-turn"
+  },
+  "habillage_reference": "affiche",
+  "creativeConstraints": [
+    "no-shadow",
+    "no-standard-cta",
+    "no-centered-text",
+    "no-rounded"
+  ],
+  "justifications": {
+    "composition": "`stacked-planes` engage un recouvrement à `z-index` signifiant : trois plans par page (visuel / titre / légende-prix), chacun mordant sur le précédent d'au moins 8 % de sa hauteur. La contrainte `no-shadow` garantit que la profondeur ne peut pas être trichée.",
+    "navigation": "`numeric-index` : les planches sont désignées par leurs numéros, et ces numéros SONT la navigation. La première rédaction déclarait `scroll-only`, ce qui contredisait `interaction: page-turn` — « le seul contrôle est la molette » et « pas de défilement continu » ne peuvent pas être vrais en même temps. Contradiction relevée à l'écriture, pas après.",
+    "density": "Visée « airy », mesurée à 17.1 éléments par écran : c'est `balanced`. On déclare ce qui est mesuré — desserrer l'étiquette pour faire passer la page est précisément ce que le lot 2bis a refusé."
+  },
   "pages": [
     "index.html",
     "listing.html",
     "produit.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « affiche » (affiche-diagonale + ocre-encre)."
+  },
+  "mesures": {
+    "elements_par_ecran": 17.1,
+    "densite_classee": "balanced"
+  }
 }

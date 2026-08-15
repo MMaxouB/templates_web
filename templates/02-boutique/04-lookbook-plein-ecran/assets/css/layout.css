@@ -1,0 +1,198 @@
+/* ==========================================================================
+   02-boutique/04-lookbook-plein-ecran — layout
+   Archétype : plein-ecran · Composition : stacked-planes · Densité : airy
+   --------------------------------------------------------------------------
+   Règle de la variante : la profondeur vient du RECOUVREMENT, jamais d'une
+   ombre. Trois plans par planche — la vue, le titre, la légende — et chacun
+   mord sur le précédent d'au moins 8 % de sa hauteur, avec un `z-index`
+   signifiant. La contrainte `no-shadow` garantit qu'on ne peut pas tricher :
+   sans ombre, seule la superposition réelle produit de la profondeur.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- entête et index ---------------------------------------------------- */
+
+  /* Nom à gauche, index en dessous : la disposition « nom à gauche, liens à
+     droite » est la barre standard, facturée 2 points — et ce n'est pas ce que
+     la variante déclare. L'index numérique est une ligne de chiffres, pas un
+     menu. */
+  .entete {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+  }
+  .entete__id {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+  .entete__id a { color: var(--fg); text-decoration: none; }
+
+  .index ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .index a {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    font-variant-numeric: tabular-nums;
+    color: var(--fg-muted);
+    text-decoration: none;
+  }
+  .index a[aria-current='true'] { color: var(--fg); border-block-end: 2px solid var(--accent); }
+
+  /* --- planches ------------------------------------------------------------ */
+
+  .cahier { padding: var(--space-4) var(--space-4) var(--space-16); }
+
+  .planche {
+    position: relative;
+    display: grid;
+    margin-block-end: var(--space-16);
+  }
+
+  .planche__num {
+    position: relative;
+    z-index: 3;
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    font-variant-numeric: tabular-nums;
+    color: var(--fg-muted);
+  }
+
+  /* media: aggressive-crop — ratios extrêmes, sujet coupé, cadrage assumé. */
+  .planche__vue {
+    position: relative;
+    z-index: 1;
+    display: block;
+    aspect-ratio: 5 / 2;
+    background-color: var(--bg-sunken);
+    background-image: repeating-linear-gradient(
+      68deg, var(--fg) 0 1px, transparent 1px 16px
+    );
+  }
+  .planche__vue--2 { aspect-ratio: 1 / 1.2; background-image: repeating-linear-gradient(-12deg, var(--fg) 0 2px, transparent 2px 22px); }
+  .planche__vue--3 { aspect-ratio: 4 / 1; background-image: repeating-linear-gradient(100deg, var(--fg) 0 1px, transparent 1px 9px); }
+
+  /* Le titre passe SUR la vue et la mord — c'est le recouvrement, pas une
+     marge négative décorative : il est au-dessus dans l'ordre des plans. */
+  .planche__titre {
+    position: relative;
+    z-index: 2;
+    margin: -1.6rem 0 0;
+    padding-inline-end: var(--space-4);
+    font-size: var(--text-4xl);
+    line-height: 0.9;
+    text-transform: uppercase;
+    text-align: start;
+    mix-blend-mode: difference;
+    color: var(--bg);
+  }
+
+  /* La légende repasse sous le titre et déborde à droite. */
+  .planche__legende {
+    position: relative;
+    z-index: 1;
+    margin: -0.4rem 0 0;
+    padding-inline-start: 12%;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .planche__legende a { color: var(--accent-text); }
+
+  /* --- page-turn ----------------------------------------------------------- */
+
+  /* Avec JavaScript, une seule planche est visible à la fois et l'on avance
+     par unité. Sans JavaScript, aucune planche n'est masquée : le cahier se
+     lit comme un cahier. */
+  .planche[hidden] { display: none; }
+
+  .pas {
+    position: sticky;
+    inset-block-end: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--bg);
+    border-block-start: var(--border-width) solid var(--border);
+  }
+  .pas button {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  .ours {
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+  .ours p { margin: 0; }
+
+  /* --- fiche --------------------------------------------------------------- */
+
+  .fiche { display: grid; gap: var(--space-4); padding: var(--space-4) var(--space-4) var(--space-12); }
+  .fiche__vue { aspect-ratio: 4 / 5; }
+  .fiche__texte h1 { margin: var(--space-2) 0; font-size: var(--text-3xl); text-transform: uppercase; text-align: start; }
+  .fiche__texte p { max-inline-size: 58ch; }
+  .fiche__action { margin-block: var(--space-4); }
+
+  /* --- paliers ------------------------------------------------------------- */
+
+  @media (min-width: 48rem) {
+    .cahier { padding-inline: var(--space-8); }
+    .planche__titre { font-size: var(--text-5xl); margin-block-start: -3rem; }
+    .planche__vue { inline-size: 88%; }
+    .planche:nth-child(even) .planche__vue { justify-self: end; }
+    .planche:nth-child(even) .planche__titre { padding-inline-start: 14%; }
+    .fiche { grid-template-columns: 5fr 7fr; align-items: start; }
+  }
+
+  @media (min-width: 80rem) {
+    .cahier { padding-inline: var(--space-16); }
+    .planche__vue { inline-size: 76%; }
+  }
+
+} /* @layer structure */

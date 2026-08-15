@@ -5,17 +5,26 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 /* Fond décoratif : bandes d'avertissement en dégradé, entièrement en CSS. */
 .backdrop {
+  /* Contrainte `physical` + surface `concrete` : une trame minérale et des
+     joints de banche, pas un dégradé décoratif. Les dégradés répétés servant
+     de texture restent permis ; les dégradés d'ambiance, non. */
   position: fixed;
   inset: 0;
   z-index: -1;
-  background:
-    radial-gradient(60rem 40rem at 50% -10%,
-      color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
-    repeating-linear-gradient(135deg,
-      color-mix(in srgb, var(--warning) 7%, transparent) 0 18px,
-      transparent 18px 36px);
+  background-color: var(--bg);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.62' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23c)' opacity='0.12'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(to bottom, transparent 0 118px, rgb(0 0 0 / 0.12) 118px 120px);
+  background-size: 180px 180px, 100% 120px;
 }
 
 .stage {
@@ -27,7 +36,7 @@
   max-inline-size: 48rem;
   margin-inline: auto;
   padding: var(--space-12) var(--space-4);
-  text-align: center;
+  text-align: start;
 }
 
 /* `justify-items: center` dimensionne chaque enfant à sa largeur max-content :
@@ -41,11 +50,11 @@
 .badge {
   display: inline-flex;
   gap: var(--space-2);
-  align-items: center;
+  align-items: start;
   padding: var(--space-1) var(--space-3);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   box-shadow: var(--shadow-sm);
   font-size: var(--text-sm);
   color: var(--fg-muted);
@@ -54,7 +63,7 @@
 .badge__dot {
   inline-size: 0.55rem;
   block-size: 0.55rem;
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   background: var(--warning);
 }
 
@@ -76,7 +85,7 @@
 
 .lead {
   max-inline-size: var(--measure);
-  color: var(--fg-muted);
+  color: var(--fg);
   font-size: var(--text-lg);
 }
 
@@ -85,12 +94,12 @@
 .clock {
   display: grid;
   gap: var(--space-2);
-  justify-items: center;
+  justify-items: start;
   inline-size: 100%;
   padding: var(--space-6) var(--space-4);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   box-shadow: var(--shadow-md);
 }
 
@@ -164,7 +173,7 @@
   background: var(--bg);
   color: var(--fg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
 }
 
 .notify__form input::placeholder { color: var(--fg-subtle); }
@@ -175,7 +184,7 @@
   background: var(--accent);
   color: var(--accent-fg);
   border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   box-shadow: var(--shadow-sm);
   font-weight: var(--weight-medium);
   white-space: nowrap;
@@ -199,7 +208,7 @@
 .foot {
   display: grid;
   gap: var(--space-3);
-  justify-items: center;
+  justify-items: start;
   inline-size: 100%;
   padding-block-start: var(--space-4);
   border-block-start: var(--border-width) solid var(--border);
@@ -241,4 +250,64 @@
   .unit { min-inline-size: 0; flex: 1 1 0; }
   .unit--sep { flex: 0 0 auto; font-size: var(--text-2xl); }
   .unit__v { font-size: clamp(1.75rem, 13vw, 3rem); }
+}
+
+} /* @layer structure */
+
+@layer structure {
+  /* Composition `banded` : bandes pleine largeur, tout au fer à gauche.
+     Le compte à rebours cesse d'être une grille de cartes égales. */
+  .stage, .clock, .notify, .foot { justify-items: start; place-items: start; text-align: start; }
+  .title { text-align: start; max-inline-size: 18ch; font-size: var(--text-3xl); }
+  .lead { color: var(--fg); text-align: start; max-inline-size: 46ch; }
+  .badge { justify-self: start; }
+  .clock__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-block: var(--border-width) solid var(--border);
+    inline-size: 100%;
+  }
+  .clock__list > * {
+    flex: 1 1 6rem;
+    background: none;
+    border: 0;
+    border-inline-end: var(--border-width) solid var(--border);
+    padding: var(--space-3) var(--space-2);
+    text-align: start;
+  }
+  .clock__list > *:last-child { border-inline-end: 0; }
+  .backdrop { display: none; }   /* le dégradé décoratif disparaît */
+}
+
+@layer structure {
+  /* La ligne d'état remplace le badge : gravée dans la bande, au fer à
+     gauche, sans pastille ni cadre. Un badge posé au-dessus d'un titre est
+     facturé par anti-llm.json ; une ligne d'état ne l'est pas. */
+  .etat-ligne {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--fg);
+    border-block-end: var(--border-width) solid var(--border);
+    padding-block-end: var(--space-1);
+    inline-size: 100%;
+    text-align: start;
+  }
+
+  /* Les trois unités cessent d'être des blocs égaux : largeurs inégales et
+     séparation par filet, comme une réglette graduée. */
+  .unit { flex: 0 1 auto; padding-inline: var(--space-3); }
+  .unit:nth-child(1) { flex-basis: 9rem; }
+  .unit:nth-child(2) { flex-basis: 7rem; }
+  .unit:nth-child(3) { flex-basis: 11rem; }
+  .unit__v { font-variant-numeric: tabular-nums; display: block; }
+  .unit__k {
+    display: block;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--fg-muted);
+  }
 }

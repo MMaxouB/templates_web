@@ -1,14 +1,45 @@
 {
   "famille": "02-boutique",
-  "famille_nom": "Boutique & catalogue",
+  "famille_nom": "Boutique",
   "numero": "01",
   "variante": "01-grille-classique",
+  "role": "Catalogue en grille modulaire stricte",
   "archetype": "grille-uniforme",
+  "intention": "Un inventaire, pas une vitrine. La grille de douze colonnes est dessinée et visible : chaque article s'aligne au module, les gouttières sont des filets, et le catalogue se lit comme une nomenclature — référence, mesure, disponibilité.",
+  "dna": {
+    "composition": "modular-grid",
+    "density": "information-heavy",
+    "typography": {
+      "system": "rule-driven",
+      "voice": "system-mono"
+    },
+    "geometry": "modular-blocks",
+    "surface": "flat-paint",
+    "navigation": "alphabetic-index",
+    "media": "duotone",
+    "motion": "instant",
+    "interaction": "filter-sort"
+  },
+  "habillage_reference": "donnees",
+  "creativeConstraints": [
+    "visible-grid",
+    "no-cards",
+    "no-rounded",
+    "data-first"
+  ],
+  "justifications": {
+    "grille-de-cartes-features": "La grille régulière est ici l'archétype vendu (`grille-uniforme`) et l'ADN déclaré (`modular-grid`, dont la conséquence EST l'alignement sans exception). Le réflexe facturé est payé en connaissance de cause : ce que la contrainte `no-cards` empêche, c'est de le déguiser en cartes — aucun article n'est une surface arrondie et ombrée, les regroupements se font au filet.",
+    "media": "Les visuels sont strictement bichromes : le fond de module et un aplat d'accent en `mix-blend-mode: multiply` découpé au `clip-path`. Deux couleurs de palette, aucune nuance intermédiaire, aucun fichier image.",
+    "density": "Visée « balanced », mesurée à 75 éléments par écran : c'est `information-heavy`. On déclare ce qui est mesuré — un inventaire de douze références, chacune avec sa vue, sa référence, son montant et son état, n'est pas une page équilibrée, c'est un outil.",
+    "navigation": "`alphabetic-index` plutôt que des onglets : un inventaire se parcourt par sa nomenclature. La première version déclarait `tab-panel` et entrait en collision avec `bench/03` (distance 0.29) — deux interfaces de données sous le même habillage, filtrées de la même façon. L'index A–Z et la densité déclarée à la mesure remontent la distance à 0.55."
+  },
   "pages": [
     "index.html",
     "listing.html",
     "produit.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « donnees » (console-donnees + ardoise-signal)."
+  }
 }

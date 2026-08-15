@@ -6,29 +6,33 @@
   "role": "Indisponibilité planifiée",
   "archetype": "plein-ecran",
   "dna": {
-    "composition": "centered-axial",
-    "density": "balanced",
+    "composition": "banded",
+    "density": "airy",
     "typography": {
       "system": "size-driven",
       "voice": "ui-native"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
+    "geometry": "frames",
+    "surface": "plastic",
     "navigation": "none",
-    "media": "svg-diagram",
-    "motion": "continuous-loop",
-    "interaction": "form-flow"
+    "media": "background-texture",
+    "motion": "mechanical",
+    "interaction": "progressive-reveal"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
+  "habillage_reference": "systeme-ancien",
+  "creativeConstraints": [
+    "no-hero",
+    "physical",
+    "no-rounded",
+    "no-centered-text"
+  ],
   "justifications": {},
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Un panneau de chantier. Bandes horizontales, béton, capitales condensées : la page dit qu'une machine est à l'arrêt, pas qu'un service est « momentanément indisponible ».",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« systeme-ancien ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

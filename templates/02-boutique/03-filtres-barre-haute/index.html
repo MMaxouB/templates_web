@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mur — Lorem ipsum</title>
+  <meta name="description" content="Mur de pièces, grille brisée, filtres en bandeau.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/riso-fluo.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/collage-riso.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="bandeau">
+  <p class="bandeau__id"><a href="index.html">Lorem Ipsum</a></p>
+  <p class="bandeau__compte"><span data-compte>36</span> pièces</p>
+  <button class="bandeau__ouvrir" type="button" data-ouvrir aria-expanded="false" aria-controls="overlay">Filtrer</button>
+</header>
+
+<!-- navigation: overlay-menu — un seul déclencheur, l'ouverture masque toute
+     la page. Sans JavaScript, le menu est simplement toujours affiché en tête
+     de document : rien n'est enfermé derrière un bouton. -->
+<div class="overlay" id="overlay" data-overlay hidden>
+  <div class="overlay__tete">
+    <p>Filtres</p>
+    <button type="button" data-fermer>Fermer</button>
+  </div>
+  <form class="overlay__groupes" aria-label="Filtrer les pièces">
+    <fieldset>
+      <legend>Série</legend>
+      <p><input type="checkbox" id="s-a" data-filtre="serie" value="a" checked><label for="s-a">Série A</label></p>
+      <p><input type="checkbox" id="s-b" data-filtre="serie" value="b" checked><label for="s-b">Série B</label></p>
+      <p><input type="checkbox" id="s-c" data-filtre="serie" value="c" checked><label for="s-c">Série C</label></p>
+    </fieldset>
+    <fieldset>
+      <legend>Montant maximum</legend>
+      <p><input type="range" id="m-max" min="15" max="120" value="120" data-max><label for="m-max">Plafond</label></p>
+      <p><span data-max-val>120</span></p>
+    </fieldset>
+    <fieldset>
+      <legend>Tri</legend>
+      <p><input type="radio" name="tri" id="t-ref" value="ref" checked data-tri><label for="t-ref">Référence</label></p>
+      <p><input type="radio" name="tri" id="t-prix" value="prix" data-tri><label for="t-prix">Montant croissant</label></p>
+    </fieldset>
+  </form>
+</div>
+
+<main id="contenu">
+  <ol class="mur" data-mur>
+    <li class="piece" data-serie="a" data-prix="15">
+      <p class="piece__serie">A-001</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Lorem</a></h2>
+      <p class="piece__prix">15,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="21">
+      <p class="piece__serie">B-002</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Ipsum</a></h2>
+      <p class="piece__prix">21,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="27">
+      <p class="piece__serie">C-003</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Dolor</a></h2>
+      <p class="piece__prix">27,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="33">
+      <p class="piece__serie">A-004</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Sit amet</a></h2>
+      <p class="piece__prix">33,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="39">
+      <p class="piece__serie">B-005</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Consectetur</a></h2>
+      <p class="piece__prix">39,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="45">
+      <p class="piece__serie">C-006</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Adipiscing</a></h2>
+      <p class="piece__prix">45,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="51">
+      <p class="piece__serie">A-007</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Elit sed</a></h2>
+      <p class="piece__prix">51,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="57">
+      <p class="piece__serie">B-008</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Eiusmod</a></h2>
+      <p class="piece__prix">57,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="63">
+      <p class="piece__serie">C-009</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Tempor</a></h2>
+      <p class="piece__prix">63,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="69">
+      <p class="piece__serie">A-010</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Incididunt</a></h2>
+      <p class="piece__prix">69,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="75">
+      <p class="piece__serie">B-011</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Ut labore</a></h2>
+      <p class="piece__prix">75,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="81">
+      <p class="piece__serie">C-012</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Dolore</a></h2>
+      <p class="piece__prix">81,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="87">
+      <p class="piece__serie">A-013</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Magna</a></h2>
+      <p class="piece__prix">87,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="93">
+      <p class="piece__serie">B-014</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Aliqua</a></h2>
+      <p class="piece__prix">93,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="99">
+      <p class="piece__serie">C-015</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Enim ad</a></h2>
+      <p class="piece__prix">99,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="105">
+      <p class="piece__serie">A-016</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Minim veniam</a></h2>
+      <p class="piece__prix">105,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="111">
+      <p class="piece__serie">B-017</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Quis nostrud</a></h2>
+      <p class="piece__prix">111,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="117">
+      <p class="piece__serie">C-018</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Exercitation</a></h2>
+      <p class="piece__prix">117,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="123">
+      <p class="piece__serie">A-019</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Ullamco</a></h2>
+      <p class="piece__prix">123,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="129">
+      <p class="piece__serie">B-020</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Laboris</a></h2>
+      <p class="piece__prix">129,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="135">
+      <p class="piece__serie">C-021</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Nisi ut</a></h2>
+      <p class="piece__prix">135,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="141">
+      <p class="piece__serie">A-022</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Aliquip</a></h2>
+      <p class="piece__prix">141,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="147">
+      <p class="piece__serie">B-023</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Ex ea</a></h2>
+      <p class="piece__prix">147,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="153">
+      <p class="piece__serie">C-024</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Commodo</a></h2>
+      <p class="piece__prix">153,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="159">
+      <p class="piece__serie">A-025</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Consequat</a></h2>
+      <p class="piece__prix">159,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="165">
+      <p class="piece__serie">B-026</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Duis aute</a></h2>
+      <p class="piece__prix">165,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="171">
+      <p class="piece__serie">C-027</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Irure</a></h2>
+      <p class="piece__prix">171,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="177">
+      <p class="piece__serie">A-028</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">In voluptate</a></h2>
+      <p class="piece__prix">177,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="183">
+      <p class="piece__serie">B-029</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Velit esse</a></h2>
+      <p class="piece__prix">183,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="189">
+      <p class="piece__serie">C-030</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Cillum</a></h2>
+      <p class="piece__prix">189,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="195">
+      <p class="piece__serie">A-031</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Eu fugiat</a></h2>
+      <p class="piece__prix">195,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="201">
+      <p class="piece__serie">B-032</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Nulla</a></h2>
+      <p class="piece__prix">201,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="207">
+      <p class="piece__serie">C-033</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Pariatur</a></h2>
+      <p class="piece__prix">207,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="213">
+      <p class="piece__serie">A-034</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Excepteur</a></h2>
+      <p class="piece__prix">213,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="219">
+      <p class="piece__serie">B-035</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Sint occaecat</a></h2>
+      <p class="piece__prix">219,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="225">
+      <p class="piece__serie">C-036</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Cupidatat</a></h2>
+      <p class="piece__prix">225,00</p>
+    </li>
+  </ol>
+</main>
+
+<footer class="pied">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a> · <a href="#" data-stub>Conditions</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -6,29 +6,32 @@
   "role": "Commande",
   "archetype": "multi-etapes",
   "dna": {
-    "composition": "asymmetric-weighted",
+    "composition": "tabular",
     "density": "dense",
     "typography": {
-      "system": "size-driven",
-      "voice": "ui-native"
+      "system": "rule-driven",
+      "voice": "condensed"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
-    "navigation": "progress-driven",
-    "media": "none",
-    "motion": "discreet",
+    "geometry": "hard-rectilinear",
+    "surface": "newsprint",
+    "navigation": "numeric-index",
+    "media": "tiny-inset",
+    "motion": "none",
     "interaction": "form-flow"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
+  "habillage_reference": "quotidien",
+  "creativeConstraints": [
+    "data-first",
+    "no-rounded",
+    "no-centered-text"
+  ],
   "justifications": {},
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Une matrice de commande. Le récapitulatif est un tableau, pas une carte : lignes, colonnes, chiffres alignés, total en pied.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« quotidien ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

@@ -1,14 +1,47 @@
 {
   "famille": "03-portfolio",
-  "famille_nom": "Portfolio & galerie",
+  "famille_nom": "Portfolio",
   "numero": "04",
   "variante": "04-un-par-ecran",
+  "role": "Une entrée par plan — lecture en biais",
   "archetype": "scroll-snap",
+  "intention": "L'axe dominant n'est ni horizontal ni vertical : chaque plan est découpé en biais, le titre suit la pente, et le visuel est masqué par le même angle. On avance d'un plan à l'autre comme on tourne une page, avec une jauge de progression pour seul repère.",
+  "dna": {
+    "composition": "diagonal",
+    "density": "balanced",
+    "typography": {
+      "system": "family-contrast",
+      "voice": "system-mono"
+    },
+    "geometry": "circular",
+    "surface": "screen-phosphor",
+    "navigation": "progress-driven",
+    "media": "masked",
+    "motion": "directional",
+    "interaction": "page-turn"
+  },
+  "habillage_reference": "neon-nuit",
+  "creativeConstraints": [
+    "no-centered-text",
+    "no-cards",
+    "no-gradient"
+  ],
+  "justifications": {
+    "composition": "`diagonal` engage un `clip-path` structurant et une lecture en biais : la coupe à 12° traverse le plan, le texte suit la même pente, et aucun bloc n'est orthogonal au cadre.",
+    "no-gradient": "L'habillage « néon » invite au dégradé d'ambiance ; la contrainte l'interdit. La lueur vient d'un `box-shadow` de couleur et d'un filet, pas d'un fond dégradé.",
+    "density": "Visée « airy », mesurée à 12.0 éléments par écran : c'est `balanced`. On déclare ce qui est mesuré — desserrer l'étiquette pour faire passer la page est précisément ce que le lot 2bis a refusé."
+  },
   "pages": [
     "index.html",
     "projet.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « neon-nuit » (neon-nocturne + neon-cyan-magenta)."
+  },
+  "mesures": {
+    "elements_par_ecran": 12.0,
+    "densite_classee": "balanced"
+  }
 }

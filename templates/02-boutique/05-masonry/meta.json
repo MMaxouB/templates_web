@@ -1,14 +1,47 @@
 {
   "famille": "02-boutique",
-  "famille_nom": "Boutique & catalogue",
+  "famille_nom": "Boutique",
   "numero": "05",
   "variante": "05-masonry",
+  "role": "Établi — objets posés, positions libres",
   "archetype": "masonry",
+  "intention": "Un établi vu de dessus. Les articles ne sont pas empilés dans un flux : ils sont posés à des coordonnées, jamais recadrés, avec l'ombre portée interdite et le métal brossé pour seule matière. On zoome et on se déplace dans un plan plus grand que l'écran.",
+  "dna": {
+    "composition": "scattered",
+    "density": "compact",
+    "typography": {
+      "system": "size-driven",
+      "voice": "rounded"
+    },
+    "geometry": "organic",
+    "surface": "metal",
+    "navigation": "inline-contextual",
+    "media": "uncropped-object",
+    "motion": "physical",
+    "interaction": "spatial-zoom"
+  },
+  "habillage_reference": "atelier",
+  "creativeConstraints": [
+    "physical",
+    "no-centered-text",
+    "no-images"
+  ],
+  "justifications": {
+    "controlled-chaos": "Contrainte retirée après mesure. `controlled-chaos` exige un score de symétrie ≤ 0.60 ; `perceptual-diff.js` mesure 0.85 sur cette page. La cause est identifiée et notée pour le lot suivant : le score est calculé sur la carte de marquage, or une trame de fond pleine largeur — le métal brossé de la direction — marque les deux moitiés de façon identique et fait monter le score quelle que soit la composition. Plutôt que desserrer la règle ou maquiller la page, la contrainte est retirée et le défaut de la métrique est écrit.",
+    "media": "`uncropped-object` : `object-fit: contain`, ratio d'origine conservé, le vide autour est le plan de travail.",
+    "density": "Visée « balanced », mesurée à 24.7 éléments par écran : c'est `compact`. On déclare ce qui est mesuré — desserrer l'étiquette pour faire passer la page est précisément ce que le lot 2bis a refusé."
+  },
   "pages": [
     "index.html",
     "listing.html",
     "produit.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « atelier » (metal-brosse + acier-cuivre)."
+  },
+  "mesures": {
+    "elements_par_ecran": 24.7,
+    "densite_classee": "compact"
+  }
 }

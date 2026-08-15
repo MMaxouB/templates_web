@@ -1,0 +1,260 @@
+/* ==========================================================================
+   01-vitrine/04-one-page-ancres — layout
+   Archétype : one-page · Composition : banded · Densité : balanced
+   --------------------------------------------------------------------------
+   Règle de la variante : chaque bande change de FOND, de DENSITÉ et
+   d'ALIGNEMENT interne. Une bande qui ne change que de couleur n'est pas une
+   bande, c'est une section repeinte.
+   Aucune bande ne fait un écran de haut : contrainte `no-viewport-sections`,
+   vérifiée textuellement — le rythme vertical ne peut pas être celui du
+   viewport.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- bandes ------------------------------------------------------------- */
+
+  .bande {
+    padding: var(--space-12) var(--space-4);
+    border-block-end: calc(var(--rule-width) * 2) var(--rule-style) var(--rule-color);
+  }
+
+  .bande__num {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+
+  /* Bande 1 — pleine largeur, capitales, aucune matière ajoutée. */
+  .bande--titre {
+    background-color: var(--bg-sunken);
+    /* `physical` : la matière est produite en CSS, ici un banchage de béton —
+       trame minérale + joints réguliers. Un dégradé répété EST une trame ;
+       c'est le dégradé d'ambiance qui est interdit. */
+    background-image:
+      repeating-linear-gradient(90deg, rgb(0 0 0 / 0.05) 0 2px, transparent 2px 9px),
+      repeating-linear-gradient(0deg, rgb(0 0 0 / 0.07) 0 1px, transparent 1px 88px);
+    padding-block: var(--space-16);
+  }
+
+  .bande--titre h1 {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-4xl);
+    line-height: 0.94;
+    text-transform: uppercase;
+    text-align: start;
+  }
+
+  .bande__ligne {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+
+  /* Bande 2 — colonne unique, alignée à gauche, mesure courte. */
+  .bande--texte { background-color: var(--bg); }
+  .bande--texte p { max-inline-size: 62ch; line-height: var(--leading-normal); }
+
+  /* Bande 3 — matrice : la densité y triple, l'alignement passe au tableau. */
+  .bande--cotes {
+    background-color: var(--bg-elevated);
+    padding-block: var(--space-8);
+  }
+
+  .cotes {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+    font-size: var(--text-sm);
+  }
+  .cotes caption {
+    padding-block-end: var(--space-2);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    text-align: start;
+    color: var(--fg-muted);
+  }
+  .cotes th,
+  .cotes td {
+    padding: var(--space-2) var(--space-3);
+    border: var(--border-width) solid var(--border);
+    text-align: start;
+  }
+  .cotes thead th {
+    background-color: var(--bg-sunken);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  /* Bande 4 — schéma, alignement centré sur la figure mais texte au fer. */
+  .bande--schema {
+    background-color: var(--bg);
+    background-image: repeating-linear-gradient(
+      45deg, rgb(0 0 0 / 0.04) 0 1px, transparent 1px 14px
+    );
+  }
+  .schema { margin: 0; }
+  .schema__svg {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 34rem;
+    block-size: auto;
+    color: var(--fg);
+  }
+  .schema figcaption {
+    padding-block-start: var(--space-2);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+  }
+
+  /* Bande 5 — sortie, la plus courte, fond d'accent. */
+  .bande--sortie {
+    background-color: var(--accent);
+    color: var(--accent-fg);
+    padding-block: var(--space-8);
+    border-block-end: 0;
+  }
+  .bande--sortie h2,
+  .bande--sortie .bande__num { color: var(--accent-fg); }
+  .liens a { color: var(--accent-fg); }
+
+  .bande h2 {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-2xl);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-title);
+  }
+
+  /* --- détails repliés (interaction: expand-collapse) --------------------- */
+
+  .detail {
+    margin-block-start: var(--space-4);
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+  }
+  .detail > summary {
+    padding-block: var(--space-2);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .detail p { margin: 0 0 var(--space-3); max-inline-size: 62ch; }
+
+  /* --- jauge de progression ---------------------------------------------- */
+
+  .jauge {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 'etat pas' 'piste piste';
+    gap: var(--space-2) var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--bg-sunken);
+    border-block-start: calc(var(--rule-width) * 2) var(--rule-style) var(--rule-color);
+  }
+
+  .jauge__etat { grid-area: etat; margin: 0; }
+  .jauge__pas { grid-area: pas; margin: 0; display: flex; gap: var(--space-4); }
+  .jauge__piste {
+    grid-area: piste;
+    block-size: 6px;
+    background-color: var(--bg);
+    border: var(--border-width) solid var(--border);
+  }
+  .jauge__part {
+    display: block;
+    block-size: 100%;
+    inline-size: 20%;
+    background-color: var(--accent);
+  }
+
+  .jauge__etat,
+  .jauge__pas a {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  /* --- paliers ------------------------------------------------------------ */
+
+  @media (min-width: 48rem) {
+    .bande { padding-inline: var(--space-12); }
+    .bande--titre h1 { font-size: var(--text-5xl); }
+
+    /* L'alignement interne change d'une bande à l'autre : la bande de texte
+       décale son contenu d'un tiers, la matrice reste au fer, la sortie
+       repart à zéro. C'est ce qui distingue `banded` d'un empilement. */
+    .bande--texte { padding-inline-start: 33%; }
+    .bande--schema { padding-inline-start: 12%; }
+  }
+
+  @media (min-width: 80rem) {
+    .bande { padding-inline: var(--space-16); }
+    .bande--texte { padding-inline-start: 40%; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* `motion: brutal-cut` — aucun fondu, aucun glissement : la jauge saute
+       d'un cran à l'autre. Le seul « mouvement » est un changement d'état. */
+    .jauge__part { transition: none; }
+  }
+
+} /* @layer structure */
+
+/* ==========================================================================
+   Formulaire — posé dans une bande, jamais centré.
+   ========================================================================== */
+
+@layer structure {
+
+  .formulaire { max-inline-size: 46ch; }
+  .champ { display: grid; gap: var(--space-1); margin: 0 0 var(--space-4); }
+  .champ label {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+  .champ--inline { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); }
+  .aide { font-family: var(--font-meta); font-size: var(--text-xs); color: var(--fg-muted); }
+
+} /* @layer structure */

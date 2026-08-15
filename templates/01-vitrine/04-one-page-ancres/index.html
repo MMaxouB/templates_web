@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panneau — Lorem ipsum</title>
+  <meta name="description" content="Page unique en bandes contrastées, progression pour seule navigation.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/beton-orange.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/beton-brut.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#b1">Aller au contenu</a>
+
+<main id="contenu">
+
+  <!-- Bande 1 — pleine largeur, capitales, aucune illustration. -->
+  <section class="bande bande--titre" id="b1" data-bande>
+    <p class="bande__num">01</p>
+    <h1>Lorem ipsum<br>dolor sit amet</h1>
+    <p class="bande__ligne">Consectetur adipiscing elit — dossier 001</p>
+  </section>
+
+  <!-- Bande 2 — colonne unique alignée à gauche, texte courant. -->
+  <section class="bande bande--texte" id="b2" data-bande>
+    <p class="bande__num">02</p>
+    <h2>Sed do eiusmod</h2>
+    <p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+      fugiat nulla pariatur, excepteur sint occaecat cupidatat non proident.</p>
+    <details class="detail">
+      <summary>Détail technique</summary>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut
+        perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+    </details>
+  </section>
+
+  <!-- Bande 3 — matrice de cotes, densité maximale de la page. -->
+  <section class="bande bande--cotes" id="b3" data-bande>
+    <p class="bande__num">03</p>
+    <h2>Cotes</h2>
+    <table class="cotes">
+      <caption>Relevé — lorem ipsum dolor sit amet</caption>
+      <thead>
+        <tr><th scope="col">Repère</th><th scope="col">Lorem</th><th scope="col">Ipsum</th><th scope="col">Dolor</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">A</th><td>120</td><td>0,40</td><td>18</td></tr>
+        <tr><th scope="row">B</th><td>240</td><td>0,80</td><td>36</td></tr>
+        <tr><th scope="row">C</th><td>480</td><td>1,60</td><td>72</td></tr>
+        <tr><th scope="row">D</th><td>960</td><td>3,20</td><td>144</td></tr>
+      </tbody>
+    </table>
+    <details class="detail">
+      <summary>Méthode de relevé</summary>
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+        sed quia consequuntur magni dolores eos.</p>
+    </details>
+  </section>
+
+  <!-- Bande 4 — schéma. media: svg-diagram, pas d'illustration. -->
+  <section class="bande bande--schema" id="b4" data-bande>
+    <p class="bande__num">04</p>
+    <h2>Schéma</h2>
+    <figure class="schema">
+      <svg viewBox="0 0 320 120" role="img" aria-labelledby="t-schema" class="schema__svg">
+        <title id="t-schema">Schéma de principe en quatre postes reliés</title>
+        <rect x="4" y="24" width="70" height="44" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="96" y="8" width="70" height="44" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="96" y="66" width="70" height="44" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="188" y="24" width="128" height="72" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M74 46 H96 M74 46 V30 H96 M74 46 V88 H96 M166 30 H188 M166 88 H188 V60"
+              fill="none" stroke="currentColor" stroke-width="2"/>
+        <text x="10" y="50" font-size="10" fill="currentColor">A</text>
+        <text x="102" y="34" font-size="10" fill="currentColor">B</text>
+        <text x="102" y="92" font-size="10" fill="currentColor">C</text>
+        <text x="194" y="64" font-size="10" fill="currentColor">D</text>
+      </svg>
+      <figcaption>Fig. 1 — Lorem ipsum dolor, quatre postes.</figcaption>
+    </figure>
+    <details class="detail">
+      <summary>Légende complète</summary>
+      <p>A — lorem · B — ipsum · C — dolor · D — sit amet consectetur adipiscing.</p>
+    </details>
+  </section>
+
+  <!-- Bande 5 — sortie. -->
+  <section class="bande bande--sortie" id="b5" data-bande>
+    <p class="bande__num">05</p>
+    <h2>Suite</h2>
+    <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur.</p>
+    <p class="liens"><a href="page.html">Page détaillée</a> · <a href="contact.html">Contact</a> · <a href="#" data-stub>Archives</a></p>
+  </section>
+
+</main>
+
+<!-- navigation: progress-driven — une jauge et deux déplacements, rien d'autre. -->
+<nav class="jauge" aria-label="Progression">
+  <p class="jauge__etat"><span data-rang>01</span> / 05 — <span data-titre>Lorem ipsum</span></p>
+  <div class="jauge__piste" role="presentation"><span class="jauge__part" data-part></span></div>
+  <p class="jauge__pas">
+    <a href="#b1" data-prec>Précédent</a>
+    <a href="#b2" data-suiv>Suivant</a>
+  </p>
+</nav>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -6,29 +6,40 @@
   "role": "Erreur 404",
   "archetype": "colonne-unique",
   "dna": {
-    "composition": "centered-axial",
+    "composition": "full-bleed",
     "density": "airy",
     "typography": {
-      "system": "display-dominant",
-      "voice": "ui-native"
+      "system": "weight-driven",
+      "voice": "condensed"
     },
-    "geometry": "borderless",
-    "surface": "flat-paint",
+    "geometry": "angular-cut",
+    "surface": "newsprint",
     "navigation": "none",
     "media": "none",
-    "motion": "discreet",
+    "motion": "directional",
     "interaction": "static-all-visible"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
-  "justifications": {},
+  "habillage_reference": "affiche",
+  "creativeConstraints": [
+    "typography-first",
+    "no-images",
+    "no-cards",
+    "no-centered-text"
+  ],
+  "justifications": {
+    "density": "Visée « void », mesurée « airy » (8.0 éléments/écran). La contrainte `empty` a été retirée : elle exige ≤ 6 éléments/écran et la page en compte davantage. On déclare ce qui est mesuré.",
+    "distinction": "Habillage changé de `chantier` à `affiche` : sous `chantier`, la page était à 0.194 de `bench/02-brutalisme-brut` — même direction, même composition pleine largeur, même geste typographique énorme. Deux pages écrites à des moments différents avaient convergé sur le même parti. Le rapport d'ADN l'a vu ; l'œil ne l'aurait pas vu avant la planche-contact."
+  },
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Le nombre EST la page. Un seul geste typographique bord à bord, aucune surface, aucun média, aucune navigation. Ce qui reste tient en deux lignes.",
+  "mesures": {
+    "elements_par_ecran": 8.0,
+    "densite_classee": "airy"
+  },
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« chantier ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

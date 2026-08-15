@@ -5,6 +5,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .skip {
   position: absolute;
   inset-block-start: var(--space-2);
@@ -13,7 +20,7 @@
   padding: var(--space-2) var(--space-3);
   background: var(--accent);
   color: var(--accent-fg);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   transform: translateY(-200%);
 }
 
@@ -23,7 +30,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   padding: var(--space-4) var(--space-6);
   border-block-end: var(--border-width) solid var(--border);
@@ -45,7 +52,7 @@
 .brand__mark {
   inline-size: 1.25rem;
   block-size: 1.25rem;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--accent);
 }
 
@@ -64,7 +71,7 @@
 
 .head { display: grid; gap: var(--space-4); margin-block-end: var(--space-8); }
 .head__title { font-size: var(--text-3xl); letter-spacing: var(--tracking-tight); }
-.head__lead { color: var(--fg-muted); }
+.head__lead { color: var(--fg); }
 
 /* -------------------------------------------------------------- recherche */
 
@@ -76,7 +83,7 @@
   background: var(--bg-elevated);
   color: var(--fg);
   border: var(--border-width) solid var(--border-strong);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   font-size: var(--text-base);
 }
 
@@ -90,7 +97,7 @@
   transform: translateY(-50%);
   inline-size: 1.75rem;
   block-size: 1.75rem;
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   background: var(--bg-sunken);
   color: var(--fg-muted);
   font-size: var(--text-lg);
@@ -108,7 +115,7 @@
   padding: var(--space-2) var(--space-3);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   color: var(--fg-muted);
   font-size: var(--text-sm);
   transition: background var(--duration-fast) var(--ease),
@@ -163,7 +170,7 @@
 .qa {
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   transition: border-color var(--duration-fast) var(--ease);
 }
 
@@ -209,13 +216,13 @@
 .qa mark {
   background: color-mix(in srgb, var(--accent) 30%, transparent);
   color: inherit;
-  border-radius: 2px;
+  border-radius: 0;
   padding-inline: 2px;
 }
 
 .empty {
   padding: var(--space-8) var(--space-4);
-  text-align: center;
+  text-align: start;
   color: var(--fg-muted);
   font-size: var(--text-sm);
 }
@@ -228,26 +235,26 @@
 .cta {
   display: grid;
   gap: var(--space-3);
-  justify-items: center;
+  justify-items: start;
   margin-block-start: var(--space-12);
   padding: var(--space-8) var(--space-4);
   background: var(--bg-sunken);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-lg);
-  text-align: center;
+  border-radius: 0;
+  text-align: start;
 }
 
 .cta > * { max-inline-size: 100%; }
 .cta__title { font-size: var(--text-xl); }
-.cta__text { color: var(--fg-muted); font-size: var(--text-sm); }
+.cta__text { color: var(--fg); font-size: var(--text-sm); }
 
 .btn {
   padding: var(--space-3) var(--space-6);
   background: var(--accent);
   color: var(--accent-fg);
   border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  border-radius: 0;
+  box-shadow: none;
   font-weight: var(--weight-medium);
   text-decoration: none;
   transition: background var(--duration-fast) var(--ease),
@@ -262,7 +269,7 @@
 .foot {
   padding: var(--space-6) var(--space-4);
   border-block-start: var(--border-width) solid var(--border);
-  text-align: center;
+  text-align: start;
   font-size: var(--text-sm);
   color: var(--fg-subtle);
 }
@@ -276,4 +283,18 @@
   .wrap { padding-inline: var(--space-3); }
   .head__title { font-size: var(--text-2xl); }
   .qa summary { padding: var(--space-3); }
+}
+
+} /* @layer structure */
+
+@layer structure {
+  /* Composition `broken-grid` : retraits inégaux tirés d'une suite fixe. */
+  .head, .head__title, .head__lead, .cta, .cta__title, .cta__text { text-align: start; }
+  .head__title { max-inline-size: 20ch; }
+  .head__lead { color: var(--fg); max-inline-size: 48ch; }
+  .nav__links, .nav__cta { display: none; }
+  .cat:nth-child(3n+1) { margin-inline-start: 0;  max-inline-size: 62ch; }
+  .cat:nth-child(3n+2) { margin-inline-start: 8%; max-inline-size: 54ch; }
+  .cat:nth-child(3n+3) { margin-inline-start: 3%; max-inline-size: 58ch; }
+  .cat__title { border-block-start: 3px solid var(--fg); padding-block-start: var(--space-2); }
 }

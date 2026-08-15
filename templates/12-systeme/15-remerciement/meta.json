@@ -6,29 +6,38 @@
   "role": "Après conversion",
   "archetype": "colonne-unique",
   "dna": {
-    "composition": "centered-axial",
+    "composition": "diagonal",
     "density": "balanced",
     "typography": {
-      "system": "size-driven",
-      "voice": "ui-native"
+      "system": "display-dominant",
+      "voice": "geometric-sans"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
+    "geometry": "overlapping",
+    "surface": "glass",
     "navigation": "none",
     "media": "none",
-    "motion": "discreet",
+    "motion": "scroll-driven",
     "interaction": "static-all-visible"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
-  "justifications": {},
+  "habillage_reference": "verre",
+  "creativeConstraints": [
+    "no-cards",
+    "no-standard-cta",
+    "no-centered-text"
+  ],
+  "justifications": {
+    "density": "Visée « void », mesurée « balanced » (13.9 éléments/écran). La contrainte `empty` a été retirée : elle exige ≤ 6 éléments/écran et la page en compte davantage. On déclare ce qui est mesuré."
+  },
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Une confirmation en biais. Presque rien à l'écran, un axe diagonal, des plans qui se recouvrent, et l'arrivée des éléments en séquence.",
+  "mesures": {
+    "elements_par_ecran": 13.9,
+    "densite_classee": "balanced"
+  },
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« verre ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

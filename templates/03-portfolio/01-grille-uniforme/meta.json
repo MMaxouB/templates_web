@@ -1,14 +1,49 @@
 {
   "famille": "03-portfolio",
-  "famille_nom": "Portfolio & galerie",
+  "famille_nom": "Portfolio",
   "numero": "01",
   "variante": "01-grille-uniforme",
+  "role": "Index en périphérie — centre laissé libre",
   "archetype": "grille-uniforme",
+  "intention": "La grille existe, mais elle occupe les marges : les entrées ceinturent l'écran en haut, en bas et sur les côtés, et le centre reste vide jusqu'à ce qu'un survol y projette le titre de l'entrée visée. Une console qui affiche ce qu'on désigne.",
+  "dna": {
+    "composition": "marginal",
+    "density": "compact",
+    "typography": {
+      "system": "case-driven",
+      "voice": "typewriter-mono"
+    },
+    "geometry": "borderless",
+    "surface": "screen-phosphor",
+    "navigation": "numeric-index",
+    "media": "monochrome",
+    "motion": "brutal-cut",
+    "interaction": "hover-preview"
+  },
+  "habillage_reference": "console",
+  "creativeConstraints": [
+    "no-cards",
+    "no-centered-text",
+    "no-rounded",
+    "monochrome"
+  ],
+  "justifications": {
+    "grille-de-cartes-features": "Facturé 3 points et assumé : l'archétype vendu sous ce numéro EST la grille uniforme, et les douze entrées ont donc le même gabarit. Ce que la variante refuse, c'est que ces entrées occupent le centre — la contrainte est déplacée de la forme des vignettes vers leur position.",
+    "composition": "`marginal` engage un centre libre : la zone centrale, 46 % de la surface du premier écran, ne contient qu'un seul élément — la projection du titre survolé, vide au repos.",
+    "interaction": "`hover-preview` a son équivalent clavier obligatoire : le focus déclenche exactement la même projection que le survol.",
+    "density": "Visée « balanced », mesurée à 20.7 éléments par écran : c'est `compact`. On déclare ce qui est mesuré — desserrer l'étiquette pour faire passer la page est précisément ce que le lot 2bis a refusé."
+  },
   "pages": [
     "index.html",
     "projet.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « console » (terminal-phosphore + phosphore-vert)."
+  },
+  "mesures": {
+    "elements_par_ecran": 20.7,
+    "densite_classee": "compact"
+  }
 }

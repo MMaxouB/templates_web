@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sommaire — Lorem ipsum</title>
+  <meta name="description" content="Colonne latérale fixe, grille 3/9, aucun axe de symétrie.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/papier-chaux.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/revue-papier.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<div class="cadre">
+
+  <!-- Colonne fine, immobile. Elle porte l'appareil ; le vide s'accumule en
+       bas de cette colonne et jamais entre les blocs de droite. -->
+  <aside class="flanc">
+    <p class="flanc__marque"><a href="index.html">Lorem<br>Ipsum</a></p>
+
+    <nav class="flanc__nav" aria-label="Principale">
+      <ul>
+        <li><a href="#s1" data-apercu="01">Lorem</a></li>
+        <li><a href="#s2" data-apercu="02">Ipsum dolor</a></li>
+        <li><a href="#s3" data-apercu="03">Sit amet</a></li>
+        <li><a href="#s4" data-apercu="04">Consectetur</a></li>
+        <li><a href="page.html">Page</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#" data-stub>Archives</a></li>
+      </ul>
+    </nav>
+
+    <!-- media: tiny-inset — la vignette ne dépasse jamais 96 px. Elle change
+         au survol ET au focus clavier : hover-preview a un équivalent. -->
+    <figure class="apercu" aria-live="polite">
+      <span class="apercu__vue" data-vue="01" aria-hidden="true"></span>
+      <figcaption class="apercu__legende" data-legende>Repère 01</figcaption>
+    </figure>
+
+    <p class="flanc__pied">MMXXVI · <a href="#" data-stub>Mentions</a></p>
+  </aside>
+
+  <main class="corps" id="contenu">
+
+    <header class="entree">
+      <h1>Sed do eiusmod tempor incididunt ut labore et dolore magna</h1>
+      <p class="entree__ligne">Consectetur adipiscing elit — édition courante</p>
+    </header>
+
+    <section class="section" id="s1">
+      <p class="section__num">01</p>
+      <h2>Lorem</h2>
+      <p class="section__texte">Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p class="section__texte">Excepteur sint occaecat cupidatat non proident, sunt in
+        culpa qui officia deserunt mollit anim id est laborum.</p>
+    </section>
+
+    <section class="section" id="s2">
+      <p class="section__num">02</p>
+      <h2>Ipsum dolor</h2>
+      <p class="section__texte">Sed ut perspiciatis unde omnis iste natus error sit
+        voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae
+        ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.</p>
+      <dl class="donnees">
+        <div><dt>Lorem</dt><dd>Ipsum dolor</dd></div>
+        <div><dt>Sit amet</dt><dd>Consectetur elit</dd></div>
+        <div><dt>Tempor</dt><dd>Incididunt labore</dd></div>
+      </dl>
+    </section>
+
+    <section class="section" id="s3">
+      <p class="section__num">03</p>
+      <h2>Sit amet</h2>
+      <p class="section__texte">Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+        aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+        voluptatem sequi nesciunt.</p>
+      <p class="section__texte">Neque porro quisquam est qui dolorem ipsum quia dolor sit
+        amet, consectetur, adipisci velit.</p>
+    </section>
+
+    <section class="section" id="s4">
+      <p class="section__num">04</p>
+      <h2>Consectetur</h2>
+      <p class="section__texte">At vero eos et accusamus et iusto odio dignissimos ducimus
+        qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et
+        quas molestias excepturi sint occaecati cupiditate non provident.</p>
+      <p class="section__suite"><a href="page.html">Poursuivre</a> — <a href="contact.html">écrire</a></p>
+    </section>
+
+  </main>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

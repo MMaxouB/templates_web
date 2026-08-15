@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carton de planches — Lorem ipsum</title>
+  <meta name="description" content="Défilement latéral, planches encadrées et numérotées.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/herbier-sepia.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/planche-savante.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<main id="contenu">
+
+  <!-- no-hero : le premier écran s'ouvre sur la figure 01, pas sur un titre.
+       Le h1 est un cartouche, il occupe moins de 12 % de la hauteur. -->
+  <h1 class="cartouche">Lorem Ipsum — carton de planches, MMXXVI</h1>
+
+  <ol class="carton" data-carton tabindex="0"
+      aria-label="Carton de planches — flèches gauche et droite pour changer de planche">
+    <li class="planche" id="f1">
+      <figure class="planche__fig">
+        <span class="planche__vue planche__vue--1" aria-hidden="true"></span>
+        <figcaption class="planche__legende">
+          <span class="planche__num">Fig. 01</span>
+          <span class="planche__titre">Lorem ipsum</span>
+          <span class="planche__cote">120 × 80 mm — série A</span>
+        </figcaption>
+      </figure>
+      <p class="planche__lien"><a href="projet.html">Notice</a></p>
+    </li>
+    <li class="planche" id="f2">
+      <figure class="planche__fig">
+        <span class="planche__vue planche__vue--2" aria-hidden="true"></span>
+        <figcaption class="planche__legende">
+          <span class="planche__num">Fig. 02</span>
+          <span class="planche__titre">Dolor sit amet</span>
+          <span class="planche__cote">130 × 86 mm — série B</span>
+        </figcaption>
+      </figure>
+      <p class="planche__lien"><a href="projet.html">Notice</a></p>
+    </li>
+    <li class="planche" id="f3">
+      <figure class="planche__fig">
+        <span class="planche__vue planche__vue--3" aria-hidden="true"></span>
+        <figcaption class="planche__legende">
+          <span class="planche__num">Fig. 03</span>
+          <span class="planche__titre">Consectetur</span>
+          <span class="planche__cote">140 × 92 mm — série C</span>
+        </figcaption>
+      </figure>
+      <p class="planche__lien"><a href="projet.html">Notice</a></p>
+    </li>
+    <li class="planche" id="f4">
+      <figure class="planche__fig">
+        <span class="planche__vue planche__vue--4" aria-hidden="true"></span>
+        <figcaption class="planche__legende">
+          <span class="planche__num">Fig. 04</span>
+          <span class="planche__titre">Adipiscing elit</span>
+          <span class="planche__cote">150 × 98 mm — série A</span>
+        </figcaption>
+      </figure>
+      <p class="planche__lien"><a href="projet.html">Notice</a></p>
+    </li>
+    <li class="planche" id="f5">
+      <figure class="planche__fig">
+        <span class="planche__vue planche__vue--1" aria-hidden="true"></span>
+        <figcaption class="planche__legende">
+          <span class="planche__num">Fig. 05</span>
+          <span class="planche__titre">Sed eiusmod</span>
+          <span class="planche__cote">160 × 104 mm — série B</span>
+        </figcaption>
+      </figure>
+      <p class="planche__lien"><a href="projet.html">Notice</a></p>
+    </li>
+    <li class="planche" id="f6">
+      <figure class="planche__fig">
+        <span class="planche__vue planche__vue--2" aria-hidden="true"></span>
+        <figcaption class="planche__legende">
+          <span class="planche__num">Fig. 06</span>
+          <span class="planche__titre">Tempor incididunt</span>
+          <span class="planche__cote">170 × 110 mm — série C</span>
+        </figcaption>
+      </figure>
+      <p class="planche__lien"><a href="projet.html">Notice</a></p>
+    </li>
+    <li class="planche" id="f7">
+      <figure class="planche__fig">
+        <span class="planche__vue planche__vue--3" aria-hidden="true"></span>
+        <figcaption class="planche__legende">
+          <span class="planche__num">Fig. 07</span>
+          <span class="planche__titre">Ut labore</span>
+          <span class="planche__cote">180 × 116 mm — série A</span>
+        </figcaption>
+      </figure>
+      <p class="planche__lien"><a href="projet.html">Notice</a></p>
+    </li>
+    <li class="planche" id="f8">
+      <figure class="planche__fig">
+        <span class="planche__vue planche__vue--4" aria-hidden="true"></span>
+        <figcaption class="planche__legende">
+          <span class="planche__num">Fig. 08</span>
+          <span class="planche__titre">Dolore magna</span>
+          <span class="planche__cote">190 × 122 mm — série B</span>
+        </figcaption>
+      </figure>
+      <p class="planche__lien"><a href="projet.html">Notice</a></p>
+    </li>
+  </ol>
+
+  <!-- navigation: numeric-index — les numéros de figure sont la navigation. -->
+  <nav class="index" aria-label="Figures">
+    <ol>
+      <li><a href="#f1" data-aller="0">01</a></li>
+      <li><a href="#f2" data-aller="1">02</a></li>
+      <li><a href="#f3" data-aller="2">03</a></li>
+      <li><a href="#f4" data-aller="3">04</a></li>
+      <li><a href="#f5" data-aller="4">05</a></li>
+      <li><a href="#f6" data-aller="5">06</a></li>
+      <li><a href="#f7" data-aller="6">07</a></li>
+      <li><a href="#f8" data-aller="7">08</a></li>
+    </ol>
+    <p class="index__etat" role="status" data-etat>Planche 01 sur 08.</p>
+    <p class="index__liens"><a href="projet.html">Notice type</a> · <a href="contact.html">Écrire</a> · <a href="#" data-stub>Archives</a></p>
+  </nav>
+
+</main>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

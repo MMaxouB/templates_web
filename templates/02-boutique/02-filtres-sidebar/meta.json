@@ -1,14 +1,43 @@
 {
   "famille": "02-boutique",
-  "famille_nom": "Boutique & catalogue",
+  "famille_nom": "Boutique",
   "numero": "02",
   "variante": "02-filtres-sidebar",
+  "role": "Filtres en colonne — catalogue en matrice",
   "archetype": "sidebar",
+  "intention": "Le catalogue est une matrice, pas une galerie : lignes d'articles, colonnes de propriétés, en-têtes qui restent en place. La colonne de filtres est un panneau de réglages d'un logiciel de 1995, cases à cocher comprises.",
+  "dna": {
+    "composition": "tabular",
+    "density": "information-heavy",
+    "typography": {
+      "system": "size-driven",
+      "voice": "ui-native"
+    },
+    "geometry": "frames",
+    "surface": "plastic",
+    "navigation": "sidebar",
+    "media": "tiny-inset",
+    "motion": "mechanical",
+    "interaction": "filter-sort"
+  },
+  "habillage_reference": "systeme-ancien",
+  "creativeConstraints": [
+    "data-first",
+    "dense",
+    "no-rounded",
+    "no-centered-text"
+  ],
+  "justifications": {
+    "density": "`information-heavy` engage 55 à 100 éléments par écran et un corps de texte ≤ 13 px : la matrice compte quatorze lignes de sept colonnes visibles au premier écran, plus vingt-deux contrôles de filtre.",
+    "media": "Chaque ligne porte une vignette de 32 px — un repère de ligne, jamais un sujet."
+  },
   "pages": [
     "index.html",
     "listing.html",
     "produit.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « systeme-ancien » (systeme-95 + gris-systeme)."
+  }
 }

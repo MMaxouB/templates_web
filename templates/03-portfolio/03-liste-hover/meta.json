@@ -1,14 +1,42 @@
 {
   "famille": "03-portfolio",
-  "famille_nom": "Portfolio & galerie",
+  "famille_nom": "Portfolio",
   "numero": "03",
   "variante": "03-liste-hover",
+  "role": "Liste au fer à gauche — l'aperçu vient au survol",
   "archetype": "colonne-unique",
+  "intention": "Une seule liste de titres énormes, tous pendus au même axe gauche, drapeau à droite. Aucun visuel n'est visible au repos : l'aperçu apparaît au survol, bichrome, et disparaît. La page est une table des matières qui se suffit.",
+  "dna": {
+    "composition": "flush-left-ragged",
+    "density": "compact",
+    "typography": {
+      "system": "weight-driven",
+      "voice": "neo-grotesque"
+    },
+    "geometry": "modular-blocks",
+    "surface": "flat-paint",
+    "navigation": "vertical-index",
+    "media": "duotone",
+    "motion": "mechanical",
+    "interaction": "hover-preview"
+  },
+  "habillage_reference": "neo-brutal",
+  "creativeConstraints": [
+    "no-centered-text",
+    "no-cards",
+    "typography-first"
+  ],
+  "justifications": {
+    "typography-first": "Aucune balise `<img>` : les aperçus sont des SVG bichromes générés en CSS. Le rapport entre la plus grande et la plus petite taille de texte est de 11:1 — la composition typographique EST le visuel.",
+    "media": "`duotone` : deux couleurs de palette et rien entre les deux, obtenues par superposition de deux aplats en `mix-blend-mode`."
+  },
   "pages": [
     "index.html",
     "projet.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « neo-brutal » (neo-brutaliste + jaune-corail)."
+  }
 }

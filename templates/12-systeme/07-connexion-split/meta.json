@@ -9,26 +9,30 @@
     "composition": "panelled",
     "density": "balanced",
     "typography": {
-      "system": "size-driven",
-      "voice": "ui-native"
+      "system": "family-contrast",
+      "voice": "transitional-serif"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
+    "geometry": "linear-rules",
+    "surface": "paper",
     "navigation": "none",
     "media": "full-bleed",
-    "motion": "discreet",
+    "motion": "none",
     "interaction": "form-flow"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
+  "habillage_reference": "revue",
+  "creativeConstraints": [
+    "no-hero",
+    "no-rounded",
+    "no-gradient",
+    "no-centered-text"
+  ],
   "justifications": {},
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Deux panneaux qui ne communiquent pas : le visuel occupe le sien entièrement, le formulaire occupe le sien. Aucun pont, aucune ombre, aucun arrondi.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« revue ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

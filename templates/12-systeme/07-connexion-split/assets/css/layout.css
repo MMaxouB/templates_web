@@ -5,6 +5,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -22,11 +29,7 @@
   block-size: 100svh;
   padding: var(--space-8);
   overflow: hidden;
-  background:
-    linear-gradient(160deg,
-      color-mix(in srgb, var(--accent) 88%, var(--fg)) 0%,
-      var(--accent) 55%,
-      color-mix(in srgb, var(--accent) 70%, var(--bg)) 100%);
+  background: var(--accent);
   color: var(--accent-fg);
 }
 
@@ -44,7 +47,7 @@
   position: absolute;
   inset: 0;
   border: 2px solid currentColor;
-  border-radius: 50%;
+  border-radius: 0;
   opacity: 0.18;
 }
 
@@ -99,7 +102,7 @@
 .quote__avatar {
   inline-size: 2.5rem;
   block-size: 2.5rem;
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   background: currentColor;
   opacity: 0.35;
   flex: none;
@@ -175,7 +178,7 @@
   background: var(--bg-sunken);
   color: var(--fg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
 }
 
 .field input[type='password'] { padding-inline-end: var(--space-16); }
@@ -190,7 +193,7 @@
   padding: var(--space-1) var(--space-2);
   background: var(--bg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   color: var(--fg-muted);
   font-size: var(--text-xs);
 }
@@ -200,7 +203,7 @@
 .form__error {
   padding: var(--space-2) var(--space-3);
   border-inline-start: calc(var(--border-width) * 3) solid var(--danger);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--bg-sunken);
   color: var(--danger);
   font-size: var(--text-sm);
@@ -221,7 +224,7 @@
   background: var(--accent);
   color: var(--accent-fg);
   border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   box-shadow: var(--shadow-sm);
   font-weight: var(--weight-bold);
   transition: background var(--duration-fast) var(--ease),
@@ -260,7 +263,7 @@
   background: var(--bg-sunken);
   color: var(--fg);
   border: var(--border-width) solid var(--border-strong);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   transition: background var(--duration-fast) var(--ease);
@@ -308,3 +311,5 @@
   .quote p { font-size: var(--text-base); }
   .main__title { font-size: var(--text-2xl); }
 }
+
+} /* @layer structure */

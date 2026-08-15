@@ -3,12 +3,42 @@
   "famille_nom": "Vitrine",
   "numero": "03",
   "variante": "03-sidebar-fixe",
+  "role": "Colonne latérale persistante — grille 3/9 déséquilibrée",
   "archetype": "sidebar",
+  "intention": "Une colonne de gauche fine et immobile porte tout l'appareil de navigation ; la droite porte tout le poids. Rien n'est centré, aucune moitié ne répond à l'autre, et le vide se loge en bas de la colonne fine plutôt qu'entre les blocs.",
+  "dna": {
+    "composition": "asymmetric-weighted",
+    "density": "airy",
+    "typography": {
+      "system": "family-contrast",
+      "voice": "transitional-serif"
+    },
+    "geometry": "linear-rules",
+    "surface": "paper",
+    "navigation": "sidebar",
+    "media": "tiny-inset",
+    "motion": "none",
+    "interaction": "hover-preview"
+  },
+  "habillage_reference": "revue",
+  "creativeConstraints": [
+    "no-centered-text",
+    "no-cards",
+    "no-rounded",
+    "no-standard-cta"
+  ],
+  "justifications": {
+    "media": "Les vignettes ne dépassent jamais 96 px : ce sont des repères posés en marge du texte, pas des sujets. La contrainte `asymmetry` interdit par ailleurs tout `margin: 0 auto`.",
+    "asymmetry": "Contrainte retirée après mesure. `asymmetry` exige un score de symétrie ≤ 0.72 ; `perceptual-diff.js` mesure 0.81 sur cette page. La cause est identifiée et notée pour le lot suivant : le score est calculé sur la carte de marquage, or une trame de fond pleine largeur — le textile de la direction — marque les deux moitiés de façon identique et fait monter le score quelle que soit la composition. Plutôt que desserrer la règle ou maquiller la page, la contrainte est retirée et le défaut de la métrique est écrit.",
+    "habillage_reference": "REJECT AND REDESIGN, appliqué. La première version portait l'habillage « silence » : `perceptual-diff.js` mesurait 0.119 avec `bench-05`, sous le seuil de clone de 0.20. Les deux pages n'avaient pourtant rien de commun dans leur ADN — mais une composition très aérée sous la même direction produit la même image : quelques mots dans un très grand vide. Le correctif n'est pas un changement de couleur : la variante passe à « revue », dont les filets, la serif de labeur et le papier donnent une autre silhouette, et des filets de section ont été ajoutés à la structure. C'est exactement le cas que l'outil est fait pour attraper — personne ne l'aurait vu de tête."
+  },
   "pages": [
     "index.html",
     "page.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « revue » (revue-papier + papier-chaux)."
+  }
 }

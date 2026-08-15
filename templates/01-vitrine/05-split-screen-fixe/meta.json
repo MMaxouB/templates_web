@@ -3,12 +3,45 @@
   "famille_nom": "Vitrine",
   "numero": "05",
   "variante": "05-split-screen-fixe",
+  "role": "Écran coupé en deux panneaux à défilement indépendant",
   "archetype": "split-screen",
+  "intention": "Deux panneaux pleine hauteur qui défilent séparément : le document ne défile jamais globalement. À gauche l'index des rubriques et son verre dépoli, à droite le contenu. Le détail s'ouvre en couche par-dessus les deux.",
+  "dna": {
+    "composition": "panelled",
+    "density": "compact",
+    "typography": {
+      "system": "display-dominant",
+      "voice": "geometric-sans"
+    },
+    "geometry": "overlapping",
+    "surface": "glass",
+    "navigation": "inline-contextual",
+    "media": "masked",
+    "motion": "scroll-driven",
+    "interaction": "modal-layer"
+  },
+  "habillage_reference": "verre",
+  "creativeConstraints": [
+    "no-cards",
+    "no-centered-text",
+    "no-rounded"
+  ],
+  "justifications": {
+    "navigation": "Aucun bloc de navigation : les liens de rubrique sont des mots du texte du panneau gauche, repris en fin de paragraphe. La seule liste verticale est un sommaire de lecture, pas un menu.",
+    "backdrop-blur": "Le flou d'arrière-plan est la matière même de l'habillage « verre » (surface: glass). Il est gratuit par la règle `gratuit_si` d'anti-llm.json.",
+    "density": "Visée « balanced », mesurée à 30.0 éléments par écran : c'est `compact`. On déclare ce qui est mesuré — desserrer l'étiquette pour faire passer la page est précisément ce que le lot 2bis a refusé."
+  },
   "pages": [
     "index.html",
     "page.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « verre » (plans-verre + nuit-verre)."
+  },
+  "mesures": {
+    "elements_par_ecran": 30.0,
+    "densite_classee": "compact"
+  }
 }

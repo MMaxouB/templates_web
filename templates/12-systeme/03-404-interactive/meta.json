@@ -6,29 +6,32 @@
   "role": "Erreur 404",
   "archetype": "canvas-libre",
   "dna": {
-    "composition": "centered-axial",
+    "composition": "scattered",
     "density": "balanced",
     "typography": {
-      "system": "size-driven",
-      "voice": "ui-native"
+      "system": "family-contrast",
+      "voice": "system-mono"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
-    "navigation": "none",
+    "geometry": "circular",
+    "surface": "screen-phosphor",
+    "navigation": "scroll-only",
     "media": "svg-diagram",
-    "motion": "continuous-loop",
+    "motion": "directional",
     "interaction": "drag-manipulate"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
+  "habillage_reference": "neon-nuit",
+  "creativeConstraints": [
+    "no-cards",
+    "no-hero",
+    "no-rounded"
+  ],
   "justifications": {},
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Un bac à sable pendant qu'on décide où aller. Les éléments sont posés librement dans l'espace, le module est le cercle, et l'on manipule plutôt qu'on ne lit.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« neon-nuit ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

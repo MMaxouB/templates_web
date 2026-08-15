@@ -3,12 +3,41 @@
   "famille_nom": "Vitrine",
   "numero": "01",
   "variante": "01-hero-plein-ecran",
+  "role": "Ouverture pleine largeur — la une",
   "archetype": "nav-horizontale",
+  "intention": "Une une de quotidien. Rien n'est dans un conteneur : le bandeau de titre, le filet de navigation et les colonnes touchent les quatre bords. L'ouverture n'est pas un hero, c'est un chapeau d'article suivi immédiatement de matière.",
+  "dna": {
+    "composition": "full-bleed",
+    "density": "dense",
+    "typography": {
+      "system": "rule-driven",
+      "voice": "condensed"
+    },
+    "geometry": "hard-rectilinear",
+    "surface": "newsprint",
+    "navigation": "top-bar",
+    "media": "captioned-editorial",
+    "motion": "none",
+    "interaction": "static-all-visible"
+  },
+  "habillage_reference": "quotidien",
+  "creativeConstraints": [
+    "dense",
+    "editorial",
+    "no-rounded",
+    "no-shadow"
+  ],
+  "justifications": {
+    "navigation": "`top-bar` est déclarée et assumée : l'archétype de cette variante EST la barre horizontale, et le catalogue n'en contenait aucune. Ici elle n'est pas un réflexe mais un manchette de journal — filets doubles, capitales condensées, aucune surface, aucun bouton d'appel à l'action à droite.",
+    "media": "Toutes les images sont des `<figure>` légendées et créditées, alignées sur la colonne — c'est la règle d'imprimé, pas une illustration décorative."
+  },
   "pages": [
     "index.html",
     "page.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement sont repris de l'habillage de référence « quotidien » (presse-imprimee + encre-journal) : ces quatre axes sont portés par la direction, pas par la structure."
+  }
 }

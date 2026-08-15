@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Établi — Lorem ipsum</title>
+  <meta name="description" content="Objets posés à des coordonnées, zoom et déplacement.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/acier-cuivre.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/metal-brosse.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="etabli__tete">
+  <h1>Établi</h1>
+  <p class="intro">Douze pièces posées sur le plan. Les <a href="listing.html">séries</a> se
+    consultent à part, chaque pièce a sa <a href="produit.html">fiche</a>, et les
+    <a href="#" data-stub>archives</a> restent à créer.</p>
+  <p class="outils">
+    <button type="button" data-zoom="-1">Éloigner</button>
+    <button type="button" data-zoom="1">Rapprocher</button>
+    <span class="outils__etat" role="status" data-etat>Échelle 100 %</span>
+  </p>
+</header>
+
+<main id="contenu" class="plan" data-plan tabindex="0"
+      aria-label="Plan de travail — flèches pour se déplacer, plus et moins pour l'échelle">
+  <ol class="objets" data-objets>
+    <li class="objet" style="--x: 3%; --y: 4%; --rot: -4deg; --t: 10rem; z-index: 10;">
+      <span class="objet__vue objet__vue--1" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Lorem</a></h2>
+      <p class="objet__prix">18,00</p>
+    </li>
+    <li class="objet" style="--x: 32%; --y: 51%; --rot: -3deg; --t: 14rem; z-index: 6;">
+      <span class="objet__vue objet__vue--2" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Ipsum</a></h2>
+      <p class="objet__prix">27,00</p>
+    </li>
+    <li class="objet" style="--x: 9%; --y: 30%; --rot: -2deg; --t: 18rem; z-index: 2;">
+      <span class="objet__vue objet__vue--3" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Dolor</a></h2>
+      <p class="objet__prix">36,00</p>
+    </li>
+    <li class="objet" style="--x: 38%; --y: 9%; --rot: -1deg; --t: 12rem; z-index: 8;">
+      <span class="objet__vue objet__vue--4" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Sit amet</a></h2>
+      <p class="objet__prix">45,00</p>
+    </li>
+    <li class="objet" style="--x: 15%; --y: 56%; --rot: 0deg; --t: 16rem; z-index: 4;">
+      <span class="objet__vue objet__vue--1" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Consectetur</a></h2>
+      <p class="objet__prix">54,00</p>
+    </li>
+    <li class="objet" style="--x: 44%; --y: 35%; --rot: 1deg; --t: 10rem; z-index: 10;">
+      <span class="objet__vue objet__vue--2" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Adipiscing</a></h2>
+      <p class="objet__prix">63,00</p>
+    </li>
+    <li class="objet" style="--x: 21%; --y: 14%; --rot: 2deg; --t: 14rem; z-index: 6;">
+      <span class="objet__vue objet__vue--3" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Elit</a></h2>
+      <p class="objet__prix">72,00</p>
+    </li>
+    <li class="objet" style="--x: 50%; --y: 61%; --rot: 3deg; --t: 18rem; z-index: 2;">
+      <span class="objet__vue objet__vue--4" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Eiusmod</a></h2>
+      <p class="objet__prix">81,00</p>
+    </li>
+    <li class="objet" style="--x: 27%; --y: 40%; --rot: 4deg; --t: 12rem; z-index: 8;">
+      <span class="objet__vue objet__vue--1" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Tempor</a></h2>
+      <p class="objet__prix">90,00</p>
+    </li>
+    <li class="objet" style="--x: 4%; --y: 19%; --rot: -4deg; --t: 16rem; z-index: 4;">
+      <span class="objet__vue objet__vue--2" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Labore</a></h2>
+      <p class="objet__prix">99,00</p>
+    </li>
+    <li class="objet" style="--x: 33%; --y: 66%; --rot: -3deg; --t: 10rem; z-index: 10;">
+      <span class="objet__vue objet__vue--3" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Magna</a></h2>
+      <p class="objet__prix">108,00</p>
+    </li>
+    <li class="objet" style="--x: 10%; --y: 45%; --rot: -2deg; --t: 14rem; z-index: 6;">
+      <span class="objet__vue objet__vue--4" aria-hidden="true"></span>
+      <h2 class="objet__nom"><a href="produit.html">Aliqua</a></h2>
+      <p class="objet__prix">117,00</p>
+    </li>
+  </ol>
+</main>
+
+<footer class="pied">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -5,6 +5,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .shell {
   display: grid;
   gap: var(--space-6);
@@ -17,11 +24,13 @@
 
 /* ------------------------------------------------------------------- tête */
 
+/* Composition `scattered` : l'en-tête n'est pas un hero centré, il est
+   posé dans un coin et le plateau de jeu occupe le reste. */
 .head {
   display: grid;
   gap: var(--space-2);
-  justify-items: center;
-  text-align: center;
+  justify-items: start;
+  text-align: start;
 }
 
 .head__code {
@@ -38,7 +47,7 @@
 
 .head__lead {
   max-inline-size: var(--measure);
-  color: var(--fg-muted);
+  color: var(--fg);
 }
 
 /* -------------------------------------------------------------------- jeu */
@@ -77,9 +86,9 @@
 .play__stage {
   position: relative;
   border: calc(var(--border-width) * 2) solid var(--border-strong);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   background: var(--bg-sunken);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -105,7 +114,7 @@
   padding: var(--space-4);
   text-align: center;
   background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(3px);
+  backdrop-filter: opacity(3px);
 }
 
 .veil[hidden] { display: none; }
@@ -127,8 +136,8 @@
   background: var(--accent);
   color: var(--accent-fg);
   border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  border-radius: 0;
+  box-shadow: none;
   font-weight: var(--weight-medium);
   transition: background var(--duration-fast) var(--ease),
               transform var(--duration-fast) var(--ease);
@@ -140,7 +149,7 @@
 /* ------------------------------------------------------------------ aide */
 
 .aide {
-  text-align: center;
+  text-align: start;
   color: var(--fg-subtle);
   font-size: var(--text-xs);
 }
@@ -151,7 +160,7 @@ kbd {
   margin-inline: 1px;
   background: var(--bg-sunken);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   font-family: var(--font-mono);
 }
 
@@ -190,4 +199,27 @@ kbd {
   .head__title { font-size: var(--text-2xl); }
   .play__bar { gap: var(--space-4); }
   .stat__v { font-size: var(--text-lg); }
+}
+
+} /* @layer structure */
+
+@layer structure {
+  /* Décale l'en-tête hors de l'axe : `scattered` interdit l'axe central. */
+  .head { max-inline-size: 34ch; margin-inline: 0 auto; }
+  .head__code { display: inline-block; border-block-end: 2px solid var(--accent); }
+  .head__title { font-size: var(--text-2xl); }
+}
+
+@layer structure {
+  /* Composition `scattered` : l'en-tête est posé dans un coin, le plateau
+     occupe le reste. Aucun axe central. */
+  .head { justify-items: start; text-align: start; place-content: start; max-inline-size: 36ch; margin-inline: 0; }
+  .head__title { font-size: var(--text-2xl); text-align: start; }
+  .head__lead { color: var(--fg); text-align: start; }
+  /* L'ancien badge devient une cote technique en filet, alignée au texte. */
+  .head__code {
+    display: inline-block;
+    border-block-end: 2px solid var(--accent);
+    padding-block-end: 2px;
+  }
 }

@@ -1,14 +1,44 @@
 {
   "famille": "03-portfolio",
-  "famille_nom": "Portfolio & galerie",
+  "famille_nom": "Portfolio",
   "numero": "02",
   "variante": "02-masonry",
+  "role": "Colonnes coulantes — logique d'imprimé",
   "archetype": "masonry",
+  "intention": "Le masonry rendu à son ancêtre : des colonnes de journal. Le contenu coule d'une colonne à la suivante, les hauteurs inégales sont une conséquence du texte et non une mosaïque décorative, et un index alphabétique persistant tient lieu de sommaire.",
+  "dna": {
+    "composition": "editorial-columns",
+    "density": "dense",
+    "typography": {
+      "system": "rule-driven",
+      "voice": "condensed"
+    },
+    "geometry": "hard-rectilinear",
+    "surface": "newsprint",
+    "navigation": "alphabetic-index",
+    "media": "halftone",
+    "motion": "none",
+    "interaction": "filter-sort"
+  },
+  "habillage_reference": "quotidien",
+  "creativeConstraints": [
+    "editorial",
+    "dense",
+    "no-rounded",
+    "justified"
+  ],
+  "justifications": {
+    "grille-de-cartes-features": "Facturé 3 points. Les notices coulent dans des colonnes et n'ont ni fond ni cadre ; ce que la sonde voit, ce sont douze vignettes tramées de gabarit voisin. Trois ratios différents et des longueurs de texte inégales ont réduit l'effet sans le supprimer — on préfère payer le réflexe et le dire que déguiser la régularité.",
+    "media": "`halftone` : la trame d'impression est simulée en `repeating-radial-gradient` sur les visuels — points visibles, aucun fichier bitmap.",
+    "justified": "Texte justifié avec césures automatiques ; la mesure est bornée à 34 caractères par colonne pour que les lézardes restent tenables."
+  },
   "pages": [
     "index.html",
     "projet.html",
     "contact.html"
   ],
-  "themes_valides": [],
-  "statut": "vide"
+  "statut": "fini",
+  "notes": {
+    "axes_et_couches": "Typographie, géométrie, surface et mouvement viennent de l'habillage « quotidien » (presse-imprimee + encre-journal). Partagé avec `01-vitrine/01` : les deux variantes doivent donc se séparer sur les cinq axes de structure — elles le font sur la composition, la navigation, le média et l'interaction."
+  }
 }

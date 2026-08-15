@@ -168,15 +168,28 @@ const resoudreVars = (css) => {
   return out;
 };
 
+/**
+ * La capture d'une variante, dans l'habillage qu'elle déclare comme référence.
+ *
+ * Prendre le premier dossier venu par ordre alphabétique était un piège : une
+ * variante construite sous quatre habillages voyait ses métriques lues dans le
+ * plus ancien, resté d'un build précédent. Les mesures ne bougeaient donc pas
+ * après une refonte — le rapport décrivait une page qui n'existait plus.
+ */
 const probePour = (v) => {
   if (!fs.existsSync(PREVIEWS)) return null;
   const num = v.variante.split('-')[0];
   // build.js nomme les dossiers du benchmark `bench-NN--…`, pas `benchmark-NN--`.
   const label = v.famille === 'benchmark' ? 'bench' : v.famille.replace(/^\d+-/, '');
   const prefixe = `${label}-${num}--`;
-  const d = fs.readdirSync(PREVIEWS).find((x) => x.startsWith(prefixe));
-  if (!d) return null;
-  const p = path.join(PREVIEWS, d, 'probe.json');
+
+  const candidats = fs.readdirSync(PREVIEWS).filter((x) => x.startsWith(prefixe));
+  if (!candidats.length) return null;
+
+  const ref = v.meta.habillage_reference;
+  const choisi = (ref && candidats.find((x) => x === `${prefixe}${ref}`)) || candidats[0];
+
+  const p = path.join(PREVIEWS, choisi, 'probe.json');
   return fs.existsSync(p) ? lire(p) : null;
 };
 

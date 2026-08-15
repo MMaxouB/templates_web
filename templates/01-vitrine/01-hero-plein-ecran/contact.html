@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Lorem ipsum</title>
+  <meta name="description" content="Formulaire de contact, composé comme une petite annonce.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/encre-journal.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/presse-imprimee.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="manchette">
+  <p class="manchette__date"><time datetime="2026-01-01">Édition I</time> · N° 001</p>
+  <a class="manchette__titre" href="index.html">Lorem Ipsum</a>
+  <nav class="manchette__nav" aria-label="Principale">
+    <a href="page.html">Rubrique</a>
+    <a href="#" data-stub>Dossier</a>
+    <a href="#" data-stub>Archives</a>
+    <a href="contact.html" aria-current="page">Contact</a>
+  </nav>
+  <p class="manchette__cote">Dolor sit amet · 24 p.</p>
+</header>
+
+<main id="contenu">
+
+  <section class="petites" aria-labelledby="t-contact">
+    <div class="petites__texte">
+      <p class="une__surtitre">Petites annonces</p>
+      <h1 class="une__titre" id="t-contact">Écrire à la rédaction</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua.</p>
+      <dl class="coord">
+        <dt>Adresse</dt><dd>00 rue Lorem, 00000 Ipsum</dd>
+        <dt>Ligne</dt><dd>00 00 00 00 00</dd>
+        <dt>Courriel</dt><dd>lorem@ipsum.test</dd>
+        <dt>Horaires</dt><dd>Du lundi au vendredi, 9 h – 18 h</dd>
+      </dl>
+    </div>
+
+    <form class="annonce" action="#" method="post" novalidate>
+      <p class="annonce__legende">Tous les champs marqués d'un astérisque sont requis.</p>
+
+      <p class="champ">
+        <label for="nom">Nom *</label>
+        <input id="nom" name="nom" type="text" required autocomplete="name">
+      </p>
+      <p class="champ">
+        <label for="courriel">Courriel *</label>
+        <input id="courriel" name="courriel" type="email" required autocomplete="email"
+               aria-describedby="aide-courriel">
+        <span class="aide" id="aide-courriel">Format attendu : nom@domaine.test</span>
+      </p>
+      <p class="champ">
+        <label for="objet">Objet</label>
+        <select id="objet" name="objet">
+          <option>Lorem</option>
+          <option>Ipsum</option>
+          <option>Dolor sit amet</option>
+        </select>
+      </p>
+      <p class="champ">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </p>
+      <p class="champ champ--inline">
+        <input id="copie" name="copie" type="checkbox">
+        <label for="copie">Recevoir une copie</label>
+      </p>
+
+      <p class="annonce__envoi">
+        <button type="submit">Envoyer</button>
+      </p>
+      <p class="annonce__etat" role="status">Aucun envoi effectué.</p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="ours">
+  <p>Lorem ipsum · Ours et mentions — <a href="#" data-stub>Mentions légales</a></p>
+  <p>Dolor sit amet consectetur · Tirage 000</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page — Lorem ipsum</title>
+  <meta name="description" content="Écran coupé en deux panneaux à défilement indépendant.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/nuit-verre.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/plans-verre.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body class="deux-panneaux">
+
+<a class="skip" href="#droite">Aller au contenu</a>
+
+<div class="split">
+
+  <section class="panneau panneau--gauche" aria-labelledby="t-gauche">
+    <div class="panneau__interieur">
+      <h1 id="t-gauche">Ut enim ad minim veniam quis nostrud</h1>
+      <p class="intro">Page détaillée. Revenir au <a href="index.html">sommaire</a> ou passer au <a href="contact.html">formulaire</a>.</p>
+      <div class="vue" role="img" aria-label="Plan masqué, bloc graphique neutre"></div>
+      <p class="pied"><a class="marque" href="index.html">Lorem Ipsum</a> · MMXXVI — <a href="#" data-stub>Mentions légales</a></p>
+    </div>
+  </section>
+
+  <main class="panneau panneau--droite" id="droite">
+    <div class="panneau__interieur">
+      <article class="entree">
+        <p class="entree__num">01</p>
+        <h2>Relevé</h2>
+        <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+          irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+        <dl class="couche__donnees">
+          <div><dt>Lorem</dt><dd>0,40</dd></div>
+          <div><dt>Ipsum</dt><dd>1,20</dd></div>
+          <div><dt>Dolor</dt><dd>3,60</dd></div>
+        </dl>
+      </article>
+
+      <article class="entree">
+        <p class="entree__num">02</p>
+        <h2>Suite</h2>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.</p>
+        <p><a class="ouvrir" href="index.html">Revenir au sommaire</a></p>
+      </article>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

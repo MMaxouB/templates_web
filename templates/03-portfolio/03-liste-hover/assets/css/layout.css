@@ -1,0 +1,179 @@
+/* ==========================================================================
+   03-portfolio/03-liste-hover — layout
+   Archétype : colonne-unique · Composition : flush-left-ragged · Densité : compact
+   --------------------------------------------------------------------------
+   Règle de la variante : TOUT pend du même axe gauche. Un seul retrait, pour
+   tous les niveaux — titres, numéros, années, formulaires. Le drapeau est à
+   droite et personne ne vient le justifier.
+   `typography-first` : aucun <img>, aucun décor. Le rapport entre la plus
+   grande et la plus petite taille de texte dépasse 8:1 — c'est la composition
+   typographique qui fait le visuel.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- tête --------------------------------------------------------------- */
+
+  .tete { padding: var(--space-8) var(--space-4) var(--space-6); }
+
+  .tete__titre {
+    margin: 0 0 var(--space-3);
+    /* La plus grande taille de la page. Avec les 11 px des métadonnées, le
+       rapport dépasse 8:1 — condition mesurée de `typography-first`. */
+    font-size: clamp(3rem, 13vw, 9rem);
+    line-height: 0.84;
+    text-transform: uppercase;
+    text-align: start;
+  }
+
+  .tete__ligne {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: 11px;
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  /* --- la liste ------------------------------------------------------------ */
+
+  .liste { margin: 0; padding: 0; list-style: none; }
+
+  .ligne { border-block-start: calc(var(--border-width) * 2) solid var(--fg); }
+  .ligne:last-child { border-block-end: calc(var(--border-width) * 2) solid var(--fg); }
+
+  .ligne__lien {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .ligne__lien:hover,
+  .ligne__lien:focus-visible { background-color: var(--accent); color: var(--accent-fg); }
+
+  .ligne__num,
+  .ligne__annee {
+    font-family: var(--font-meta);
+    font-size: 11px;
+    letter-spacing: var(--tracking-meta);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ligne__titre {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  /* --- aperçu au survol ---------------------------------------------------- */
+
+  /* Rien n'est visible au repos : l'aperçu apparaît là où le pointeur est, ou
+     au centre droit quand c'est le clavier qui désigne. */
+  .apercu {
+    position: fixed;
+    inset-block-start: var(--y, 30%);
+    inset-inline-start: var(--x, 62%);
+    z-index: 5;
+    inline-size: 16rem;
+    aspect-ratio: 4 / 5;
+    display: none;
+    pointer-events: none;
+    border: calc(var(--border-width) * 2) solid var(--fg);
+  }
+  .apercu[data-visible='oui'] { display: block; }
+
+  .apercu__plan {
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg-sunken);
+  }
+  /* duotone : le second aplat est la seule autre couleur, en fusion. */
+  .apercu__plan::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--accent);
+    mix-blend-mode: multiply;
+  }
+  .apercu[data-vue='1'] .apercu__plan::after { clip-path: polygon(0 40%, 100% 8%, 100% 100%, 0 100%); }
+  .apercu[data-vue='2'] .apercu__plan::after { clip-path: polygon(0 0, 62% 0, 62% 100%, 0 100%); }
+  .apercu[data-vue='3'] .apercu__plan::after { clip-path: circle(38% at 54% 46%); }
+  .apercu[data-vue='4'] .apercu__plan::after { clip-path: polygon(0 0, 100% 0, 100% 34%, 0 78%); }
+
+  /* --- pages internes ------------------------------------------------------ */
+
+  .page { padding: 0 var(--space-4) var(--space-12); max-inline-size: 62ch; }
+  .page__chapo { font-size: var(--text-lg); line-height: var(--leading-normal); }
+  .page p { text-align: start; }
+
+  .page__vue {
+    display: block;
+    aspect-ratio: 16 / 9;
+    margin-block: var(--space-6);
+    background-color: var(--bg-sunken);
+    background-image: repeating-linear-gradient(90deg, var(--fg) 0 2px, transparent 2px 14px);
+    border: calc(var(--border-width) * 2) solid var(--fg);
+  }
+
+  .page__donnees { display: grid; gap: var(--space-2); margin: var(--space-6) 0; }
+  .page__donnees > div { display: grid; grid-template-columns: 8ch 1fr; gap: var(--space-3); }
+  .page__donnees dt { font-family: var(--font-meta); font-size: 11px; text-transform: uppercase; }
+  .page__donnees dd { margin: 0; }
+
+  .formulaire { max-inline-size: 44ch; }
+  .champ { display: grid; gap: var(--space-1); margin: 0 0 var(--space-4); }
+  .champ label { font-family: var(--font-meta); font-size: 11px; letter-spacing: var(--tracking-meta); text-transform: uppercase; }
+  .champ--inline { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); }
+  .aide { font-family: var(--font-meta); font-size: 11px; color: var(--fg-muted); }
+
+  .pied {
+    padding: var(--space-4);
+    border-block-start: calc(var(--border-width) * 2) solid var(--fg);
+    font-family: var(--font-meta);
+    font-size: 11px;
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+  .pied p { margin: 0; }
+
+  /* --- paliers ------------------------------------------------------------- */
+
+  @media (min-width: 48rem) {
+    .tete, .ligne__lien, .page, .pied { padding-inline: var(--space-8); }
+    .ligne__lien { grid-template-columns: 5rem 1fr auto; }
+  }
+
+  @media (min-width: 80rem) {
+    .tete, .ligne__lien, .page, .pied { padding-inline: var(--space-12); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .apercu { transition: none; }
+  }
+
+} /* @layer structure */

@@ -6,29 +6,32 @@
   "role": "Questions fréquentes",
   "archetype": "accordeons",
   "dna": {
-    "composition": "centered-axial",
-    "density": "balanced",
+    "composition": "broken-grid",
+    "density": "compact",
     "typography": {
-      "system": "size-driven",
-      "voice": "ui-native"
+      "system": "weight-driven",
+      "voice": "condensed"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
-    "navigation": "top-bar",
+    "geometry": "linear-rules",
+    "surface": "newsprint",
+    "navigation": "alphabetic-index",
     "media": "none",
-    "motion": "discreet",
+    "motion": "directional",
     "interaction": "expand-collapse"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
+  "habillage_reference": "affiche",
+  "creativeConstraints": [
+    "no-centered-text",
+    "no-cards",
+    "no-rounded"
+  ],
   "justifications": {},
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Une grille volontairement cassée : les questions n'ont pas toutes la même largeur ni le même retrait. Index alphabétique, dépliage natif, aucun texte centré.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« affiche ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

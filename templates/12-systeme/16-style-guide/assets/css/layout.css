@@ -3,6 +3,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .skip {
   position: absolute;
   inset-block-start: var(--space-2);
@@ -11,7 +18,7 @@
   padding: var(--space-2) var(--space-3);
   background: var(--accent);
   color: var(--accent-fg);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   transform: translateY(-200%);
 }
 .skip:focus { transform: none; }
@@ -30,7 +37,7 @@
   padding: var(--space-3) var(--space-4);
   background: var(--bg-elevated);
   border-block-end: var(--border-width) solid var(--border);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .bar__id {
@@ -128,7 +135,7 @@
   min-block-size: 6rem;
   padding: var(--space-3);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   font-size: var(--text-sm);
 }
 
@@ -166,7 +173,7 @@
   font-size: var(--text-xs);
   color: var(--fg-subtle);
 }
-.bars__bar { block-size: 1rem; background: var(--accent); border-radius: var(--radius-sm); }
+.bars__bar { block-size: 1rem; background: var(--accent); border-radius: 0; }
 
 /* --------------------------------------------------------- formes & ombres */
 
@@ -191,7 +198,7 @@
 
 .tile--plain {
   background: var(--bg-elevated);
-  border-radius: var(--radius-md);
+  border-radius: 0;
 }
 
 /* ---------------------------------------------------------------- boutons */
@@ -204,8 +211,8 @@
   background: var(--accent);
   color: var(--accent-fg);
   border: var(--border-width) solid transparent;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  border-radius: 0;
+  box-shadow: none;
   font-weight: var(--weight-medium);
   line-height: var(--leading-tight);
   text-decoration: none;
@@ -251,7 +258,7 @@ input[type='text'] {
   background: var(--bg-sunken);
   color: var(--fg);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
 }
 .field input::placeholder,
 .field textarea::placeholder { color: var(--fg-subtle); }
@@ -274,14 +281,14 @@ input[type='text'] {
   padding: var(--space-4);
   background: var(--bg-elevated);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 /* Placeholder visuel : dégradé CSS, aucune image. */
 .card__media {
   block-size: 7rem;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   background:
     linear-gradient(135deg, var(--accent) 0%, transparent 60%),
     repeating-linear-gradient(45deg, var(--bg-sunken) 0 10px, var(--bg) 10px 20px);
@@ -298,7 +305,7 @@ input[type='text'] {
   padding: var(--space-3) var(--space-4);
   margin-block-end: var(--space-2);
   border-inline-start: calc(var(--border-width) * 3) solid var(--info);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   background: var(--bg-elevated);
   font-size: var(--text-sm);
 }
@@ -314,7 +321,7 @@ input[type='text'] {
   padding: var(--space-1) var(--space-2);
   background: var(--bg-sunken);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
@@ -325,7 +332,7 @@ input[type='text'] {
 
 /* ---------------------------------------------------------------- tableau */
 
-.table-wrap { overflow-x: auto; border: var(--border-width) solid var(--border); border-radius: var(--radius-md); }
+.table-wrap { overflow-x: auto; border: var(--border-width) solid var(--border); border-radius: 0; }
 table { font-size: var(--text-sm); }
 th, td { padding: var(--space-2) var(--space-3); border-block-end: var(--border-width) solid var(--border); }
 thead th { background: var(--bg-sunken); font-weight: var(--weight-bold); }
@@ -339,7 +346,7 @@ pre {
   padding: var(--space-4);
   background: var(--bg-sunken);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   line-height: var(--leading-normal);
 }
 
@@ -347,7 +354,7 @@ kbd {
   padding: 0 var(--space-1);
   background: var(--bg-sunken);
   border: var(--border-width) solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 0;
 }
 
 /* ------------------------------------------------------------------- pied */
@@ -368,3 +375,5 @@ kbd {
   .scale__row, .bars li { flex-direction: column; align-items: flex-start; gap: var(--space-1); }
   .scale__tag, .bars__tag { flex-basis: auto; }
 }
+
+} /* @layer structure */

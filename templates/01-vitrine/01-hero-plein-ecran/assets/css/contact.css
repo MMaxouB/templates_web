@@ -1,0 +1,70 @@
+/* ==========================================================================
+   01-vitrine/01-hero-plein-ecran — page de contact
+   Le formulaire est composé comme une petite annonce : filets, capitales de
+   labels, aucun conteneur. La règle full-bleed vaut aussi ici.
+   ========================================================================== */
+
+@layer structure {
+
+  .petites {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    padding: var(--space-4) var(--space-4) var(--space-8);
+  }
+
+  .petites__texte p { font-size: var(--text-sm); line-height: var(--leading-normal); }
+
+  .coord {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-1) var(--space-3);
+    margin: var(--space-4) 0 0;
+    font-size: var(--text-sm);
+  }
+  .coord dt {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-muted);
+  }
+  .coord dd { margin: 0; }
+
+  .annonce {
+    padding-block-start: var(--space-3);
+    border-block-start: calc(var(--rule-width) * 3) var(--rule-style) var(--rule-color);
+  }
+
+  .annonce__legende,
+  .aide,
+  .annonce__etat {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    color: var(--fg-muted);
+  }
+
+  .champ { display: grid; gap: var(--space-1); margin: 0 0 var(--space-3); }
+  .champ label {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-meta);
+  }
+  .champ--inline {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .annonce__envoi { margin: var(--space-4) 0 var(--space-2); }
+  .annonce__etat {
+    padding-block-start: var(--space-2);
+    border-block-start: var(--rule-width) dotted var(--rule-color);
+  }
+
+  @media (min-width: 48rem) {
+    .petites { grid-template-columns: 4fr 5fr; }
+  }
+
+} /* @layer structure */

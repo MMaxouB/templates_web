@@ -1,0 +1,267 @@
+/* ==========================================================================
+   01-vitrine/03-sidebar-fixe — layout
+   Archétype : sidebar · Composition : asymmetric-weighted · Densité : airy
+   --------------------------------------------------------------------------
+   Règle de la variante : la page est une grille 3/9 et rien ne la rééquilibre.
+   Aucun `margin: 0 auto`, aucun `text-align: center`, aucun bloc pleine
+   largeur centré — ce sont les contraintes `asymmetry` et `no-centered-text`,
+   toutes deux vérifiées automatiquement.
+   Le vide s'accumule en BAS de la colonne fine ; il n'est jamais réparti.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- grille déséquilibrée ---------------------------------------------- */
+
+  .cadre {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /* --- colonne fine ------------------------------------------------------- */
+
+  .flanc {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr;
+    gap: var(--space-8);
+    padding: var(--space-6) var(--space-4);
+    border-block-end: var(--rule-width) var(--rule-style) var(--rule-color);
+  }
+
+  .flanc__marque {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-title);
+    text-transform: uppercase;
+  }
+  .flanc__marque a { color: var(--fg); text-decoration: none; }
+
+  .flanc__nav ul { margin: 0; padding: 0; list-style: none; }
+  .flanc__nav li { margin-block-end: var(--space-3); }
+  .flanc__nav a {
+    font-family: var(--font-meta);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-wide);
+    color: var(--fg-muted);
+    text-decoration: none;
+  }
+  .flanc__nav a:hover,
+  .flanc__nav a:focus-visible {
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  /* --- aperçu : media tiny-inset, jamais plus de 96 px -------------------- */
+
+  .apercu { margin: 0; }
+
+  .apercu__vue {
+    display: block;
+    inline-size: 96px;
+    block-size: 96px;
+    background-color: var(--bg-sunken);
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--border) 0 1px,
+      transparent 1px 6px
+    );
+    border: var(--border-width) solid var(--border);
+  }
+  /* Quatre repères, quatre trames. Le survol et le focus produisent
+     exactement le même changement — hover-preview avec équivalent clavier. */
+  .apercu__vue[data-vue='02'] {
+    background-image: repeating-linear-gradient(0deg, var(--border) 0 1px, transparent 1px 6px);
+  }
+  .apercu__vue[data-vue='03'] {
+    background-image: repeating-linear-gradient(45deg, var(--border) 0 1px, transparent 1px 9px);
+  }
+  .apercu__vue[data-vue='04'] {
+    background-image: repeating-linear-gradient(-45deg, var(--border) 0 2px, transparent 2px 12px);
+  }
+
+  .apercu__legende {
+    padding-block-start: var(--space-2);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+
+  .flanc__pied {
+    align-self: end;
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--fg-subtle);
+  }
+
+  /* --- corps -------------------------------------------------------------- */
+
+  .corps {
+    padding: var(--space-8) var(--space-4) var(--space-16);
+  }
+
+  .entree { margin-block-end: var(--space-16); }
+
+  .entree h1 {
+    /* Le titre pend de l'axe gauche du corps. Il n'est pas ramené au centre,
+       et sa mesure est volontairement plus courte que la colonne : le vide
+       tombe à droite. */
+    margin: 0 0 var(--space-4);
+    /* Mesure bornée à 15 caractères : au-delà, le bloc du titre s'élargit
+       jusqu'à ce que son centre optique retombe sur l'axe de l'écran — la
+       sonde le détectait alors comme un hero centré, à juste titre. Le poids
+       doit rester à gauche de la colonne de droite. */
+    max-inline-size: 20ch;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    text-align: start;
+  }
+
+  .entree__ligne {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+
+  /* Filet en tête de section : sans lui, la page n'a pour silhouette que
+     quelques mots dans un très grand vide — c'est-à-dire la silhouette de
+     `bench-05`, sous le même habillage. `perceptual-diff.js` mesurait 0.119
+     entre les deux, sous le seuil de clone. Le filet, lui, ne traverse que la
+     colonne de droite : il marque l'asymétrie au lieu de la déclarer. */
+  .section {
+    margin-block-end: var(--space-12);
+    padding-block-start: var(--space-4);
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+  }
+
+  .section__num {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    color: var(--accent-text);
+  }
+
+  .section h2 {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-normal);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  .section__texte {
+    margin: 0 0 var(--space-4);
+    /* Mesure courte et vide à droite : `perceptual-diff.js` mesurait un score
+       de symétrie de 0.82 alors que la contrainte `asymmetry` exige ≤ 0.72.
+       Une colonne de 58 caractères dans une colonne de droite large finit par
+       recentrer la masse d'encre — l'ADN disait « déséquilibré », les pixels
+       disaient « centré ». */
+    max-inline-size: 40ch;
+    line-height: var(--leading-loose);
+    color: var(--fg-muted);
+  }
+
+  .section__suite a { color: var(--accent-text); }
+
+  .donnees {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding-block-start: var(--space-4);
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+    max-inline-size: 58ch;
+  }
+  .donnees > div { display: grid; grid-template-columns: 12ch 1fr; gap: var(--space-4); }
+  .donnees dt {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+  .donnees dd { margin: 0; color: var(--fg-muted); }
+
+  /* --- paliers ------------------------------------------------------------ */
+
+  @media (min-width: 48rem) {
+    .cadre {
+      /* 3/9 : la colonne fine ne bouge plus, le poids est à droite. */
+      grid-template-columns: minmax(12rem, 3fr) 9fr;
+      align-items: start;
+    }
+
+    .flanc {
+      position: sticky;
+      inset-block-start: 0;
+      block-size: 100svh;
+      padding: var(--space-8) var(--space-4);
+      border-block-end: 0;
+      border-inline-end: var(--rule-width) var(--rule-style) var(--rule-color);
+    }
+
+    .corps { padding: var(--space-16) var(--space-8) var(--space-24); }
+    /* Dès que la colonne de droite existe, le titre l'occupe entièrement et
+       pend de son axe gauche. Une mesure bornée le recentrait optiquement sur
+       l'axe de l'écran — la sonde y voyait un hero, et elle avait raison. */
+    .entree h1 { font-size: var(--text-5xl); max-inline-size: none; }
+  }
+
+  @media (min-width: 80rem) {
+    .cadre { grid-template-columns: minmax(14rem, 2fr) 9fr; }
+    .corps { padding-inline: var(--space-12) var(--space-16); }
+  }
+
+} /* @layer structure */
+
+/* ==========================================================================
+   Formulaire — aligné sur l'axe gauche du corps, jamais centré.
+   ========================================================================== */
+
+@layer structure {
+
+  .formulaire { max-inline-size: 46ch; margin-block-end: var(--space-12); }
+  .champ { display: grid; gap: var(--space-1); margin: 0 0 var(--space-6); }
+  .champ label {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+  .champ--inline { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); }
+  .aide { font-family: var(--font-meta); font-size: var(--text-xs); color: var(--fg-subtle); }
+
+} /* @layer structure */

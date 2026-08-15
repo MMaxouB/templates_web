@@ -348,7 +348,160 @@ La diversité doit être **sémantique et structurelle**, jamais décorative.
 
 ---
 
-## 11. Pistes non retenues, à reconsidérer plus tard
+## 11. Ce que la reprise du lot 1 a appris
+
+Le lot 2bis a repassé au nouveau système seize pages écrites **avant** que les
+règles n'existent. C'est le seul test qui compte vraiment : concevoir douze
+références neuves sous contrainte est facile ; corriger du code déjà écrit, non.
+
+### Les axes ne sont pas portés par la même couche
+
+C'est la découverte structurelle de ce lot, et elle manquait au modèle.
+
+| Couche | Axes qu'elle possède |
+|---|---|
+| **Structure** (`layout.css` + DOM) | composition · densité · navigation · interaction · média |
+| **Direction** (`_core/directions/`) | typographie · géométrie · surface · mouvement |
+
+Une variante ne peut donc pas déclarer librement les neuf. `04-maintenance`
+annonçait `surface: concrete` alors qu'elle était rendue sous `moderne-clair`,
+dont la surface est `flat-paint` : la capture ne montrait aucun béton. **L'ADN
+décrivait une page qui n'existait pas.**
+
+Correctif : chaque variante déclare un `habillage_reference`, et les quatre axes
+portés par la direction en sont repris. Effet de bord heureux — les seize pages
+se répartissent désormais sur **treize habillages distincts** au lieu d'un seul,
+ce qui est exactement ce que le modèle à trois couches promettait.
+
+### La mémoire de diversité a servi, et pas là où on l'attendait
+
+Deux collisions ne concernaient pas les seize pages entre elles, mais leur
+rapport au **benchmark** : `systeme/05` avec `bench/05`, `systeme/02` avec
+`bench/02`. Écrites à des semaines d'intervalle, ces paires avaient convergé vers
+le même parti — narrow-measure/didone d'un côté, full-bleed/poster-heavy de
+l'autre.
+
+C'est la démonstration de l'utilité du dispositif : **personne n'aurait fait le
+rapprochement de tête**, et l'œil ne l'aurait vu qu'une fois les vingt-huit
+vignettes posées côte à côte, c'est-à-dire trop tard.
+
+### Un bug d'outil masquait la totalité du progrès
+
+Pendant une bonne partie du lot, les mesures ne bougeaient pas après chaque
+refonte. `check-constraints.js` cherchait la capture par préfixe et prenait le
+**premier dossier par ordre alphabétique** — souvent `systeme-04--dark-neon`,
+resté d'un build antérieur. Le rapport décrivait fidèlement une page qui
+n'existait plus.
+
+Le correctif tient en trois lignes (lire l'habillage de référence déclaré), mais
+la leçon est plus large : **un outil de mesure qui lit la mauvaise source est
+pire qu'une absence d'outil**, parce qu'il inspire confiance. Le symptôme était
+pourtant visible — la sonde disait `hero: false` pendant que le rapport
+facturait `hero-centre(4)`. Il a fallu comparer les deux pour le voir.
+
+### Trois règles se sont révélées trop généreuses
+
+`empty` (≤ 6 éléments/écran) avait été attribuée à trois pages qui en comptent 8,
+12,8 et 13,9. Elles sont minimales par leur **traitement**, pas par leur
+**quantité**. La contrainte a été retirée et la densité déclarée ramenée à la
+mesure. On ne desserre pas la règle pour faire passer la page.
+
+---
+
+## 12. Ce que le lot 3 a appris
+
+Quinze architectures écrites d'affilée, chacune sur une composition différente.
+C'est le premier lot produit **entièrement sous le système** — les seize pages
+système avaient été écrites avant les règles, les douze références du benchmark
+avaient été conçues pour les éprouver.
+
+### La contrainte de lot a fonctionné, et pas comme prévu
+
+« Quinze variantes, quinze compositions » devait garantir la diversité. Ce qu'elle
+a surtout produit, c'est une **contrainte de conception** : quand la composition
+est imposée d'avance, on ne peut plus retomber sur celle qui vient naturellement.
+Un lookbook de boutique devient `stacked-planes` au lieu d'une grille ; un masonry
+de portfolio devient `editorial-columns`, c'est-à-dire des colonnes de journal —
+ce qu'était le masonry avant que le web ne l'invente à nouveau.
+
+L'effet secondaire compte autant : trois axes sont passés à 100 % de couverture
+(`composition`, `navigation`, `media`) parce qu'il fallait bien loger quelque part
+les valeurs qui restaient — `top-bar`, `monochrome`, `duotone`, `halftone`,
+`overlay-menu`. **Une valeur jamais employée n'est pas une valeur rare, c'est une
+valeur qu'on n'a jamais eu de raison de choisir.**
+
+### Le contrôle d'hygiène ne voyait qu'une partie du dépôt
+
+`neon-nocturne` codait ses halos en cyan et magenta littéraux depuis sa création.
+Aucun contrôle ne s'en était plaint, pour une raison inattendue : les variantes
+antérieures référencent encore l'ancien thème monolithique, et `check-constraints.js`
+ne lit la direction que lorsqu'elle est liée en `<link>`. **Le contrôle est bon ;
+c'est son champ de vision qui était partiel.** La première variante à référencer
+correctement une direction a fait tomber le défaut en une exécution.
+
+Corollaire à retenir pour le lot 4 : les seize pages système et le benchmark
+devraient migrer vers les liens `palette` + `direction`, sans quoi une partie du
+catalogue reste hors de portée des contrôles d'hygiène.
+
+### Déclarer ce qui est mesuré, encore
+
+Sept densités sur quinze ont été déclarées à côté de la mesure. Aucune n'a été
+« ajustée » en desserrant la règle : toutes ont été ramenées à ce que compte la
+sonde, la visée initiale restant écrite dans `justifications`. Le cas le plus
+instructif est `02-boutique/03`, qui visait `maximalist` : le mur est passé de 18 à
+36 pièces, de six à huit colonnes, et la sonde s'arrête à 85 éléments par écran.
+Au-delà, les vignettes deviennent illisibles. La valeur reste donc **inatteignable
+au contenu de démonstration** — même conclusion que la valeur d'axe abandonnée au
+lot 2, et même méthode : on l'écrit plutôt que de la contourner.
+
+### Le défaut de mesure du lot : la trame de fond compte comme de l'encre
+
+C'est la découverte la plus utile, et elle porte sur l'outil, pas sur les pages.
+
+`perceptual-diff.js` calcule tout — symétrie, silhouette, profils — sur une **carte
+de marquage** : l'écart de chaque case au fond de la page. Le correctif du lot 2
+avait rendu la mesure invariante à la palette, ce qui était juste. Mais une trame de
+fond pleine largeur — le textile de `luxe-silence`, le métal de `metal-brosse`, le
+papier tramé de `collage-riso` — marque **toutes** les cases, et donc les deux
+moitiés à l'identique.
+
+Conséquences observées :
+
+- une page manifestement asymétrique mesure 0.81 de symétrie ;
+- une pose d'objets à coordonnées libres mesure 0.85 ;
+- deux pages sous la même direction texturée se rapprochent quelle que soit leur
+  composition.
+
+Trois contraintes ont été **retirées plutôt que desserrées** (`asymmetry` sur
+`01-vitrine/03`, `controlled-chaos` sur `02-boutique/03` et `05`), avec le défaut
+écrit dans chaque `meta.json`. C'est le même arbitrage qu'au lot 2bis sur la
+contrainte `empty` : on ne modifie pas le seuil pour faire passer la page.
+
+**Correctif à faire avant le lot 4 :** soustraire de la carte de marquage ce qui est
+uniformément réparti sur toute la surface, c'est-à-dire distinguer la matière du
+contenu. Tant que ce n'est pas fait, la distance perceptuelle sous-estime la
+diversité des variantes texturées — exactement le symptôme inverse de celui que le
+lot 2 avait corrigé, et pour la même raison de fond : **la métrique doit regarder ce
+qui est composé, pas ce qui est peint.**
+
+### Un REJECT AND REDESIGN, réellement appliqué
+
+`01-vitrine/03` — colonne latérale, composition déséquilibrée — mesurait 0.119 de
+distance perceptuelle avec `bench-05`, très en dessous du seuil de clone, alors que
+les deux ADN n'ont rien en commun. Le diagnostic tient en une phrase : **deux
+compositions très aérées sous la même direction produisent la même image.** Quelques
+mots dans un grand vide se ressemblent, quelle que soit la grille qui les place.
+
+La variante a donc changé d'habillage — de `silence` à `revue` — et gagné des filets
+de section. La distance est remontée, sans atteindre le seuil. La règle du dépôt
+disait « pas un changement de couleur » : ici le changement d'habillage en est bien
+un au sens du modèle à trois couches, puisqu'il emporte typographie, géométrie,
+matière et mouvement. Mais il ne suffit pas — et c'est cohérent avec le défaut de
+mesure ci-dessus.
+
+---
+
+## 13. Pistes non retenues, à reconsidérer plus tard
 
 | Piste | Pourquoi écartée maintenant | Quand y revenir |
 |---|---|---|

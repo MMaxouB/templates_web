@@ -6,29 +6,33 @@
   "role": "Offres",
   "archetype": "grille-uniforme",
   "dna": {
-    "composition": "centered-axial",
-    "density": "compact",
+    "composition": "editorial-columns",
+    "density": "balanced",
     "typography": {
-      "system": "size-driven",
-      "voice": "ui-native"
+      "system": "rule-driven",
+      "voice": "oldstyle-serif"
     },
-    "geometry": "soft-rounded",
-    "surface": "flat-paint",
-    "navigation": "top-bar",
+    "geometry": "frames",
+    "surface": "paper",
+    "navigation": "tab-panel",
     "media": "none",
-    "motion": "discreet",
+    "motion": "none",
     "interaction": "static-all-visible"
   },
-  "habillage_reference": "moderne-clair",
-  "creativeConstraints": [],
+  "habillage_reference": "planche",
+  "creativeConstraints": [
+    "no-cards",
+    "editorial",
+    "no-shadow",
+    "no-rounded"
+  ],
   "justifications": {},
   "pages": [
     "index.html"
   ],
-  "themes_valides": [
-    "modern-light",
-    "dark-neon",
-    "neo-brutalism"
-  ],
-  "statut": "fini"
+  "statut": "fini",
+  "intention": "Une page de tarifs composée comme un imprimé : le texte coule en colonnes, les offres sont séparées par des filets, et la bascule mensuel/annuel est un jeu d'onglets.",
+  "notes": {
+    "axes_et_couches": "Les neuf axes ne sont pas tous portés par la même couche. La STRUCTURE possède composition, densité, navigation, interaction et média ; la DIRECTION possède typographie, géométrie, surface et mouvement. Les quatre derniers sont donc repris de l'habillage de référence (« planche ») — les déclarer autrement reviendrait à annoncer une matière que la page ne rend pas."
+  }
 }

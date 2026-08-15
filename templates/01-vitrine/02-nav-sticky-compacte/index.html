@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Note — Lorem ipsum</title>
+  <meta name="description" content="Colonne étroite, grand vide, navigation flottante compacte.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/blanc-graphite.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/presque-rien.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<!-- Navigation flottante : `position: fixed`, détachée des quatre bords.
+     Compacte au repos, elle n'affiche que le repère de progression ; la liste
+     complète est dans le <details>, replié, et reste atteignable au clavier. -->
+<nav class="pastille" aria-label="Principale">
+  <details class="pastille__menu">
+    <summary>
+      <span class="pastille__rang" data-rang>01</span>
+      <span class="pastille__total">/ 05</span>
+      <span class="visually-hidden">Ouvrir le sommaire</span>
+    </summary>
+    <ul class="pastille__liste">
+      <li><a href="#s1">Lorem</a></li>
+      <li><a href="#s2">Ipsum</a></li>
+      <li><a href="#s3">Dolor</a></li>
+      <li><a href="#s4">Sit amet</a></li>
+      <li><a href="#s5">Consectetur</a></li>
+      <li><a href="page.html">Page</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </details>
+</nav>
+
+<main id="contenu" class="colonne">
+
+  <header class="ouverture">
+    <h1>Sed do eiusmod tempor incididunt</h1>
+    <p class="cote">Lorem ipsum — note 001</p>
+  </header>
+
+  <section class="bloc" id="s1" data-bloc>
+    <p class="bloc__num" aria-hidden="true">01</p>
+    <h2>Lorem</h2>
+    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+    <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat, duis aute irure
+      dolor in reprehenderit.</p>
+  </section>
+
+  <section class="bloc" id="s2" data-bloc>
+    <p class="bloc__num" aria-hidden="true">02</p>
+    <h2>Ipsum</h2>
+    <p>In voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+      sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+    <p>Mollit anim id est laborum, sed ut perspiciatis unde omnis iste natus
+      error sit voluptatem.</p>
+  </section>
+
+  <section class="bloc" id="s3" data-bloc>
+    <p class="bloc__num" aria-hidden="true">03</p>
+    <h2>Dolor</h2>
+    <p>Accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab
+      illo inventore veritatis et quasi architecto beatae vitae dicta sunt.</p>
+    <p>Explicabo nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+      odit aut fugit.</p>
+  </section>
+
+  <section class="bloc" id="s4" data-bloc>
+    <p class="bloc__num" aria-hidden="true">04</p>
+    <h2>Sit amet</h2>
+    <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+      nesciunt, neque porro quisquam est qui dolorem ipsum quia dolor.</p>
+    <p>Sit amet consectetur adipisci velit, sed quia non numquam eius modi
+      tempora incidunt.</p>
+  </section>
+
+  <section class="bloc" id="s5" data-bloc>
+    <p class="bloc__num" aria-hidden="true">05</p>
+    <h2>Consectetur</h2>
+    <p>Ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
+      veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+    <p class="suite"><a href="page.html">Lire la suite</a> · <a href="contact.html">Écrire</a></p>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <p>Lorem ipsum · <a href="#" data-stub>Mentions légales</a> · <a href="#" data-stub>Archives</a></p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

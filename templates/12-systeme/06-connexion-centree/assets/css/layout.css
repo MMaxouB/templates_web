@@ -5,6 +5,13 @@
    Aucune couleur en dur. Uniquement des var(--…).
    ========================================================================== */
 
+/* Structure enveloppée dans `@layer structure` — voir l'ordre des couches en
+   tête de _core/tokens.css. Sans cela, une direction artistique ne peut pas
+   reprendre la main via `@layer overrides` : les règles non layerisées
+   gagnent sur toutes les couches. */
+
+@layer structure {
+
 .canvas {
   display: grid;
   gap: var(--space-6);
@@ -12,10 +19,7 @@
   justify-items: center;
   min-block-size: 100svh;
   padding: var(--space-8) var(--space-4);
-  background:
-    radial-gradient(48rem 32rem at 50% 0%,
-      color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
-    var(--bg-sunken);
+  background: var(--accent);
 }
 
 /* ------------------------------------------------------------------ carte */
@@ -242,3 +246,5 @@
 @media (max-width: 30rem) {
   .card { padding: var(--space-6) var(--space-4); }
 }
+
+} /* @layer structure */

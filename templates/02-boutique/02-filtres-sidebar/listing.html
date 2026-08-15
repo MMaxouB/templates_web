@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sélection — Lorem ipsum</title>
+  <meta name="description" content="Catalogue en matrice, filtres en colonne latérale.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/gris-systeme.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/systeme-95.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+
+<div class="fenetre">
+  <header class="barre">
+    <p class="barre__titre">Lorem Ipsum — catalogue</p>
+    <p class="barre__meta">Vue : sélection · 4 lignes</p>
+  </header>
+
+  <div class="corps">
+  <aside class="panneau" aria-label="Filtres">
+    <p class="panneau__titre">Filtres</p>
+
+    <form class="filtres" aria-label="Filtrer la matrice">
+      <fieldset class="groupe">
+        <legend>Série</legend>
+        <p><input type="checkbox" id="s-a" data-filtre="serie" value="a" checked><label for="s-a">Série A</label></p>
+        <p><input type="checkbox" id="s-b" data-filtre="serie" value="b" checked><label for="s-b">Série B</label></p>
+        <p><input type="checkbox" id="s-c" data-filtre="serie" value="c" checked><label for="s-c">Série C</label></p>
+      </fieldset>
+
+      <fieldset class="groupe">
+        <legend>État</legend>
+        <p><input type="checkbox" id="e-d" data-filtre="etat" value="dispo" checked><label for="e-d">Disponible</label></p>
+        <p><input type="checkbox" id="e-a" data-filtre="etat" value="attente" checked><label for="e-a">En attente</label></p>
+      </fieldset>
+
+      <fieldset class="groupe">
+        <legend>Montant</legend>
+        <p><label for="m-max">Maximum</label><input type="range" id="m-max" min="12" max="110" value="110" data-max></p>
+        <p class="groupe__val"><span data-max-val>110</span> maximum</p>
+      </fieldset>
+
+      <p class="groupe"><button type="reset" data-reinit>Réinitialiser</button></p>
+    </form>
+
+    <p class="panneau__etat" role="status" data-etat>14 lignes sur 14.</p>
+
+    <nav class="panneau__nav" aria-label="Vues">
+      <ul>
+        <li><a href="index.html">Matrice</a></li>
+        <li><a href="listing.html">Sélection</a></li>
+        <li><a href="produit.html">Fiche</a></li>
+        <li><a href="#" data-stub>Archives</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+    <main class="table" id="contenu">
+      <h1 class="table__titre">Sélection courante</h1>
+      <div class="table__cadre">
+        <table class="matrice">
+          <caption>Lignes retenues, montants hors taxes.</caption>
+          <thead>
+            <tr><th scope="col">Réf.</th><th scope="col">Désignation</th><th scope="col">Quantité</th><th scope="col">Montant</th><th scope="col">Total</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row"><a href="produit.html">R-101</a></th><td>Lorem ipsum</td><td class="n">1</td><td class="n">12,00</td><td class="n">12,00</td></tr>
+            <tr><th scope="row"><a href="produit.html">R-104</a></th><td>Adipiscing elit</td><td class="n">2</td><td class="n">34,50</td><td class="n">69,00</td></tr>
+            <tr><th scope="row"><a href="produit.html">R-107</a></th><td>Ut labore</td><td class="n">1</td><td class="n">57,00</td><td class="n">57,00</td></tr>
+            <tr><th scope="row"><a href="produit.html">R-112</a></th><td>Nostrud exercitation</td><td class="n">3</td><td class="n">94,50</td><td class="n">283,50</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><th scope="row" colspan="4">Total hors taxes</th><td class="n">421,50</td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <p class="note"><a href="index.html">Revenir à la matrice</a></p>
+    </main>
+  </div>
+
+  <footer class="statut">
+    <p>Prêt.</p>
+    <p><a href="#" data-stub>Mentions légales</a></p>
+  </footer>
+</div>
+
+</body>
+</html>

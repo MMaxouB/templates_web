@@ -1,0 +1,212 @@
+/* ==========================================================================
+   03-portfolio/02-masonry — layout
+   Archétype : masonry · Composition : editorial-columns · Densité : dense
+   --------------------------------------------------------------------------
+   Règle de la variante : le masonry est rendu à son ancêtre, la colonne de
+   journal. Le contenu COULE d'une colonne à la suivante (`columns`), et les
+   hauteurs inégales sont une conséquence du texte — pas une mosaïque calculée
+   pour faire joli. Filets de séparation, césures, veuves et orphelines gérées.
+   Aucune couleur en dur : uniquement des var(--…).
+   ========================================================================== */
+
+@layer structure {
+
+  .skip {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .skip:focus {
+    position: fixed;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-2);
+    z-index: 50;
+    inline-size: auto;
+    block-size: auto;
+    clip-path: none;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg);
+    border: var(--border-width) solid var(--border-strong);
+    color: var(--fg);
+  }
+
+  /* --- bandeau et index --------------------------------------------------- */
+
+  .bandeau {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border-block-end: calc(var(--rule-width) * 3) var(--rule-style) var(--rule-color);
+  }
+  .bandeau p { margin: 0; font-family: var(--font-meta); font-size: var(--text-xs); letter-spacing: var(--tracking-meta); text-transform: uppercase; color: var(--fg-muted); }
+  .bandeau__id a { color: var(--fg); text-decoration: none; }
+  .bandeau__compte { font-variant-numeric: tabular-nums; }
+
+  .abc ul { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+  .abc a {
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  /* --- titre et tri -------------------------------------------------------- */
+
+  .titre {
+    margin: 0;
+    padding: var(--space-4) var(--space-4) var(--space-2);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-tight);
+    text-align: start;
+  }
+
+  .tri {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    padding: 0 var(--space-4) var(--space-3);
+    border-block-end: var(--rule-width) var(--rule-style) var(--rule-color);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+  .tri__etat { color: var(--fg-muted); }
+
+  /* --- colonnes coulantes -------------------------------------------------- */
+
+  .colonnes {
+    columns: 1;
+    column-gap: var(--space-6);
+    column-rule: var(--rule-width) var(--rule-style) var(--rule-color);
+    padding: var(--space-4);
+    orphans: 3;
+    widows: 3;
+  }
+
+  .notice {
+    break-inside: avoid-column;
+    margin-block-end: var(--space-6);
+    padding-block-end: var(--space-3);
+    border-block-end: var(--rule-width) var(--rule-style) var(--rule-color);
+  }
+
+  .notice__lettre {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
+  /* media: halftone — trame d'impression simulée, points visibles. */
+  .notice__vue {
+    display: block;
+    aspect-ratio: 3 / 2;
+    background-color: var(--bg-sunken);
+    background-image: repeating-radial-gradient(
+      circle at 25% 25%,
+      var(--fg) 0 1.1px,
+      transparent 1.1px 4px
+    );
+    background-size: 4px 4px;
+  }
+  .notice__vue--2 { aspect-ratio: 1 / 1; background-image: repeating-radial-gradient(circle at 50% 50%, var(--fg) 0 1.6px, transparent 1.6px 6px); background-size: 6px 6px; }
+  .notice__vue--3 { aspect-ratio: 4 / 5; background-image: repeating-radial-gradient(circle at 75% 25%, var(--fg) 0 0.8px, transparent 0.8px 3px); background-size: 3px 3px; }
+
+  .notice__titre {
+    margin: var(--space-2) 0 var(--space-1);
+    font-size: var(--text-base);
+    line-height: var(--leading-tight);
+  }
+  .notice__titre a { color: var(--fg); text-decoration: none; }
+  .notice__titre a:hover { text-decoration: underline; }
+
+  /* `justified` : justification et césures, comme un livre. La mesure est
+     bornée par le nombre de colonnes pour que les lézardes restent tenables. */
+  .notice__texte,
+  .article__corps p {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-sm);
+    line-height: var(--leading-tight);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .notice__meta {
+    margin: 0;
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+  }
+
+  .notice[hidden] { display: none; }
+
+  /* --- article ------------------------------------------------------------- */
+
+  .article { padding: 0 var(--space-4) var(--space-8); }
+  .article__chapo {
+    max-inline-size: 46ch;
+    font-family: var(--font-lead);
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+  }
+  .article__figure { margin: var(--space-4) 0; }
+  .article__figure figcaption {
+    padding-block-start: var(--space-1);
+    border-block-start: var(--rule-width) var(--rule-style) var(--rule-color);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    color: var(--fg-muted);
+  }
+  .credit { color: var(--fg-subtle); text-transform: uppercase; letter-spacing: var(--tracking-meta); }
+  .article__corps { columns: 1; column-gap: var(--space-6); column-rule: var(--rule-width) var(--rule-style) var(--rule-color); orphans: 3; widows: 3; }
+
+  /* --- contact -------------------------------------------------------------- */
+
+  .contact { display: grid; gap: var(--space-6); padding: 0 var(--space-4) var(--space-8); }
+  .formulaire { max-inline-size: 44ch; }
+  .champ { display: grid; gap: var(--space-1); margin: 0 0 var(--space-3); }
+  .champ label { font-family: var(--font-meta); font-size: var(--text-xs); letter-spacing: var(--tracking-meta); text-transform: uppercase; }
+  .champ--inline { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); }
+  .aide { font-family: var(--font-meta); font-size: var(--text-xs); color: var(--fg-subtle); }
+  .coord { display: grid; grid-template-columns: auto 1fr; gap: var(--space-1) var(--space-3); margin: 0; font-size: var(--text-sm); }
+  .coord dt { font-family: var(--font-meta); font-size: var(--text-xs); text-transform: uppercase; color: var(--fg-muted); }
+  .coord dd { margin: 0; }
+
+  .ours {
+    padding: var(--space-3) var(--space-4);
+    border-block-start: calc(var(--rule-width) * 3) var(--rule-style) var(--rule-color);
+    font-family: var(--font-meta);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .ours p { margin: 0; }
+
+  /* --- paliers -------------------------------------------------------------- */
+
+  @media (min-width: 48rem) {
+    .bandeau { grid-template-columns: 1fr auto; align-items: baseline; }
+    .bandeau .abc { grid-column: 1 / -1; }
+    .colonnes { columns: 3; }
+    .article__corps { columns: 2; }
+    .contact { grid-template-columns: 5fr 3fr; padding-inline: var(--space-8); }
+    .article, .titre, .tri { padding-inline: var(--space-8); }
+  }
+
+  @media (min-width: 80rem) {
+    .colonnes { columns: 5; padding-inline: var(--space-8); }
+    .article__corps { columns: 3; }
+  }
+
+} /* @layer structure */

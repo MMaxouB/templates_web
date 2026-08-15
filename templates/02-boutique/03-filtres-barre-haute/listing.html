@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr" class="is-authoring">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Série A — Lorem ipsum</title>
+  <meta name="description" content="Sous-ensemble de la série A.">
+
+  <link rel="stylesheet" href="../../../_core/reset.css">
+  <link rel="stylesheet" href="../../../_core/tokens.css">
+  <link rel="stylesheet" href="../../../_core/palettes/riso-fluo.css" data-palette-link>
+  <link rel="stylesheet" href="../../../_core/directions/collage-riso.css" data-direction-link>
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="bandeau">
+  <p class="bandeau__id"><a href="index.html">Lorem Ipsum</a></p>
+  <p class="bandeau__compte"><span data-compte>18</span> pièces</p>
+  <button class="bandeau__ouvrir" type="button" data-ouvrir aria-expanded="false" aria-controls="overlay">Filtrer</button>
+</header>
+
+<!-- navigation: overlay-menu — un seul déclencheur, l'ouverture masque toute
+     la page. Sans JavaScript, le menu est simplement toujours affiché en tête
+     de document : rien n'est enfermé derrière un bouton. -->
+<div class="overlay" id="overlay" data-overlay hidden>
+  <div class="overlay__tete">
+    <p>Filtres</p>
+    <button type="button" data-fermer>Fermer</button>
+  </div>
+  <form class="overlay__groupes" aria-label="Filtrer les pièces">
+    <fieldset>
+      <legend>Série</legend>
+      <p><input type="checkbox" id="s-a" data-filtre="serie" value="a" checked><label for="s-a">Série A</label></p>
+      <p><input type="checkbox" id="s-b" data-filtre="serie" value="b" checked><label for="s-b">Série B</label></p>
+      <p><input type="checkbox" id="s-c" data-filtre="serie" value="c" checked><label for="s-c">Série C</label></p>
+    </fieldset>
+    <fieldset>
+      <legend>Montant maximum</legend>
+      <p><input type="range" id="m-max" min="15" max="120" value="120" data-max><label for="m-max">Plafond</label></p>
+      <p><span data-max-val>120</span></p>
+    </fieldset>
+    <fieldset>
+      <legend>Tri</legend>
+      <p><input type="radio" name="tri" id="t-ref" value="ref" checked data-tri><label for="t-ref">Référence</label></p>
+      <p><input type="radio" name="tri" id="t-prix" value="prix" data-tri><label for="t-prix">Montant croissant</label></p>
+    </fieldset>
+  </form>
+</div>
+
+<main id="contenu">
+  <ol class="mur" data-mur>
+    <li class="piece" data-serie="a" data-prix="15">
+      <p class="piece__serie">A-001</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Lorem</a></h2>
+      <p class="piece__prix">15,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="21">
+      <p class="piece__serie">B-002</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Ipsum</a></h2>
+      <p class="piece__prix">21,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="27">
+      <p class="piece__serie">C-003</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Dolor</a></h2>
+      <p class="piece__prix">27,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="33">
+      <p class="piece__serie">A-004</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Sit amet</a></h2>
+      <p class="piece__prix">33,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="39">
+      <p class="piece__serie">B-005</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Consectetur</a></h2>
+      <p class="piece__prix">39,00</p>
+    </li>
+    <li class="piece" data-serie="c" data-prix="45">
+      <p class="piece__serie">C-006</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Adipiscing</a></h2>
+      <p class="piece__prix">45,00</p>
+    </li>
+    <li class="piece" data-serie="a" data-prix="51">
+      <p class="piece__serie">A-007</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Elit sed</a></h2>
+      <p class="piece__prix">51,00</p>
+    </li>
+    <li class="piece" data-serie="b" data-prix="57">
+      <p class="piece__serie">B-008</p>
+      <span class="piece__vue" aria-hidden="true"></span>
+      <h2 class="piece__nom"><a href="produit.html">Eiusmod</a></h2>
+      <p class="piece__prix">57,00</p>
+    </li>
+  </ol>
+  <p class="pied"><a href="index.html">Revenir au mur complet</a></p>
+</main>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
